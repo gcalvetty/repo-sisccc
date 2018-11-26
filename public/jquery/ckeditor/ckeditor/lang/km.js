@@ -1,0 +1,5 @@
+﻿/*
+Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+CKEDITOR.lang['km']={"editor":"ឧបករណ៍​សរសេរ​អត្ថបទ​សម្បូរ​បែប","editorPanel":"ផ្ទាំង​ឧបករណ៍​សរសេរ​អត្ថបទ​សម្បូរ​បែប","common":{"editorHelp":"ចុច ALT 0 សម្រាប់​ជំនួយ","browseServer":"រក​មើល​ក្នុង​ម៉ាស៊ីន​បម្រើ","url":"URL","protocol":"ពិធីការ","upload":"ផ្ទុក​ឡើង","uploadSubmit":"បញ្ជូនទៅកាន់ម៉ាស៊ីន​បម្រើ","image":"រូបភាព","flash":"Flash","form":"បែបបទ","checkbox":"ប្រអប់​ធីក","radio":"ប៊ូតុង​មូល","textField":"វាល​អត្ថបទ","textarea":"Textarea","hiddenField":"វាល​កំបាំង","button":"ប៊ូតុង","select":"វាល​ជម្រើស","imageButton":"ប៊ូតុង​រូបភាព","notSet":"<មិនកំណត់>","id":"Id","name":"ឈ្មោះ","langDir":"ទិសដៅភាសា","langDirLtr":"ពីឆ្វេងទៅស្តាំ (LTR)","langDirRtl":"ពីស្តាំទៅឆ្វេង (RTL)","langCode":"លេខ​កូដ​ភាសា","longDescr"

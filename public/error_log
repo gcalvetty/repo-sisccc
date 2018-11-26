@@ -1,0 +1,1 @@
+[22-Nov-2018 13:13:46 UTC] PHP Fatal error:  Class 'Fideloper\Proxy\TrustProxies' not found in /home/cpmisusbol/sitios/sis.ccc.edu.bo/laravel/app/Http/Middleware/TrustProxies.php on line 8

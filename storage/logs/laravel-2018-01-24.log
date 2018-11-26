@@ -1,0 +1,21 @@
+[2018-01-24 00:03:49] production.ERROR: Class 'PHPExcel_Shared_Font' not found {"exception":"[object] (Symfony\\Component\\Debug\\Exception\\FatalThrowableError(code: 0): Class 'PHPExcel_Shared_Font' not found at /home/cpmisusbol/sitios/sis.ccc.edu.bo/laravel/config/excel.php:182)
+[stacktrace]
+#0 /home/cpmisusbol/sitios/sis.ccc.edu.bo/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(71): require()
+#1 /home/cpmisusbol/sitios/sis.ccc.edu.bo/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 /home/cpmisusbol/sitios/sis.ccc.edu.bo/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(213): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 /home/cpmisusbol/sitios/sis.ccc.edu.bo/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(162): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 /home/cpmisusbol/sitios/sis.ccc.edu.bo/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(146): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 /home/cpmisusbol/sitios/sis.ccc.edu.bo/laravel/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 /home/cpmisusbol/sitios/sis.ccc.edu.bo/laravel/public/index.php(53): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 {main}
+"} 
+[2018-01-24 00:29:46] production.INFO: El Usuario serv_inscr1@ccc.edu.bo Logeado!!!   
+[2018-01-24 12:25:22] production.INFO: El Usuario serv_inscr2@ccc.edu.bo Logeado!!!   
+[2018-01-24 12:27:29] production.INFO: El Usuario serv_inscr3@ccc.edu.bo Logeado!!!   
+[2018-01-24 13:53:21] production.INFO: El Usuario serv_inscr2@ccc.edu.bo Logeado!!!   
+[2018-01-24 14:58:04] production.INFO: El Usuario serv_inscr3@ccc.edu.bo Logeado!!!   
+[2018-01-24 16:35:38] production.INFO: El Usuario serv_inscr2@ccc.edu.bo Logeado!!!   
+[2018-01-24 17:46:03] production.INFO: El Usuario serv_inscr3@ccc.edu.bo Logeado!!!   
+[2018-01-24 17:51:44] production.INFO: El Usuario serv_inscr2@ccc.edu.bo Logeado!!!   
+[2018-01-24 18:49:33] production.INFO: El Usuario serv_inscr3@ccc.edu.bo Logeado!!!   
+[2018-01-24 19:00:38] production.INFO: El Usuario serv_inscr2@ccc.edu.bo Logeado!!!   
