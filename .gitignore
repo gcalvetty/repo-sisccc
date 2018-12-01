@@ -1,4 +1,7 @@
 /node_modules
+/storage/framework
+/storage/libretas
+/storage/logs
 /public/storage
 /vendor/tcg/voyager/
 /vendor
