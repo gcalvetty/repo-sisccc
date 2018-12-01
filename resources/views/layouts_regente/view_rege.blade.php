@@ -21,7 +21,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">      
         <h1>
-            Escritorio:
+            Escritorio:1111
             <small>Bienvenido!!!</small>
         </h1>
         <ol class="breadcrumb">
@@ -32,28 +32,26 @@
 
     <section class="content">
         <div class="row">
-            <div class="col-xs-12">
-
+            <div class="col-md-8 col-md-push-2">
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Lista de Alumnos</h3>                        
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                    <div class="box-body ">
+                        <table id="example1" class="table table-bordered table-striped ">
                             <thead>
-                                <tr>
-                                    <th>ID</th>
+                                <tr>                                    
                                     <th>Curso</th>
-                                    <th>Alumno Nombre</th> 
-                                    <th>Alumno Apellido</th> 
-                                    <th>Conducta</th>                                    
+                                    <th>Nombre</th> 
+                                    <th>Apellido</th> 
+                                    <th>Conducta</th> 
+                                    <th>Reporte</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($Lista as $Alumno)
-                                <tr>
-                                    <td>{{ $Alumno->id }}</td>  
+                                <tr>                                    
                                     <td>{{ $Alumno->curso }} - {{ $Alumno->aula }}</td>
                                     <td>{{ $Alumno->nombre }} </td>
                                     <td>    
@@ -66,7 +64,18 @@
                                                 data-nomalm=" {{ $Alumno->nombre }} {{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}">
                                             <i class="fa fa-edit"></i></button>
                                     </td>
-
+                                    <td>
+                                        <?php $val = sis_ccc\Http\Controllers\Regente\RegeController::haveComportamiento($Alumno->id) ?>
+                                        @if ($val>0)
+                                        <a href="{{ route('Rege.PDFCom',$Alumno->id) }}" target="_blank">
+                                            <button type="button" class="btn btn-success" >
+                                                <span class="badge"><i class="fa fa-file-pdf-o"></i> {{ $val }}</span>                                                 
+                                            </button>
+                                        </a> 
+                                        @else
+                                        <i class="fa fa-file-pdf-o"></i>
+                                        @endif
+                                    </td>
                                     @endforeach    
                                 </tr>
 
@@ -84,98 +93,98 @@
 
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="EstudianteModal">
         <div class="modal-dialog" role="document" id="Comportamiento">            
-            <form v-on:submit="validateBeforeSubmit" class="form-horizontal" role="form" action="{{route('Rege.insCom')}}">    
+            <form id="regente_frm" v-on:submit="validateBeforeSubmit" class="form-horizontal" role="form" action="{{route('Rege.insCom')}}">    
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="exampleModalLabel">Comportamiento del Alumn@: <span class="Alm"></span></h4>
                     </div>
                     <div class="modal-body" >
-                        <div class="col-lg-12">    
-                            <div class="form-group has-feedback {{ $errors->has('tip_comp') ? ' has-error' : '' }} " v-bind:class="{'': true, 'has-error': errors.has('tip_comp') }">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon1">                                        
-                                        <i class="fa fa-balance-scale"></i></span>
-                                    <select type="text" class="form-control" id="tip_comp"  name="tip_comp" value=""  placeholder="Tipo de Comportamiento" 
-                                            v-model="tip_comp" 
-                                            v-validate.initial="tip_comp" 
-                                            data-vv-rules="required" 
-                                            data-vv-delay="500" 
-                                            v-bind:class="{'': true, 'has-error': errors.has('tip_comp') }">                                    
-                                        @foreach($ListaComp as $TipComp)
-                                        <option value="{{ $TipComp->regt_id }}">{{ $TipComp->regt_descripcion }}</option>
-                                        @endforeach 
-
-                                    </select>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group has-feedback {{ $errors->has('fec') ? ' has-error' : '' }}" v-bind:class="{'': true, 'has-error': errors.has('fec') }">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon10"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
+                                        <vuejs-datepicker id="fec" name="fec" 
+                                                          :value="state.date" 
+                                                          :format="customFormatter" 
+                                                          :language="es"                                                      
+                                                          v-model="fec"></vuejs-datepicker>
+                                    </div>
+                                    <span class="glyphicon  form-control-feedback" aria-hidden="true" v-bind:class="{'': true, 'glyphicon-remove': errors.has('fec') }"></span>
+                                    @if ($errors->has('fec'))<span class="help-block"><strong>{{ $errors->first('fec') }}</strong></span>@endif
                                 </div>
-                                <span class="glyphicon  form-control-feedback" aria-hidden="true" v-bind:class="{'': true, 'glyphicon-remove': errors.has('tip_comp') }"></span>
-                                @if ($errors->has('tip_comp'))<span class="help-block"><strong>{{ $errors->first('tip_comp') }}</strong></span>
-                                @endif
                             </div>
-                        </div>    
-                        <ul class="list-group col-lg-12">
-                            <li class="list-group-item list-group-item-success col-lg-6">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="tipTarj" id="optionsRadios1" value="1" checked>
-                                        Sin Tarjeta
-                                    </label>
+                            <div class="col-md-12 btn-tarjeta">                                
+                                <div class="btn-group">
+                                    <button v-on:click="cambTar(1);" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sin Tarjeta</button>
+                                    <button v-on:click="cambTar(1);" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li v-for="option in tT.ts"><a href="#" v-bind:value="option.id" v-on:click="cambMem2(option.id,option.txt)">@{{ option.txt }}</a></li>                                    
+                                    </ul>
                                 </div>
-                            </li>
-                            <li class="list-group-item list-group-item-info col-lg-6">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="tipTarj" id="optionsRadios2" value="2" >
-                                        Tarjeta Blanca
-                                    </label>
-                                </div>
-                            </li>
-                            <li class="list-group-item list-group-item-warning col-lg-6">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="tipTarj" id="optionsRadios3" value="3">
-                                        Tarjeta Amarrilla
-                                    </label>
-                                </div>
-                            </li>
-                            <li class="list-group-item list-group-item-danger col-lg-6">
-                                <div class="radio">
-                                    <label>
-                                        <input type="radio" name="tipTarj" id="optionsRadios4" value="4" >
-                                        Tarjeta Roja
-                                    </label>
-                                </div>
-                            </li>
-                        </ul>
-                        
-                        <div class="col-lg-12">   
-                            <div class="form-group has-feedback {{ $errors->has('fec') ? ' has-error' : '' }}" v-bind:class="{'': true, 'has-error': errors.has('fec') }">
-                                <div class="input-group">
-                                    <span class="input-group-addon" id="basic-addon10"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" id="fec"  name="fec" value="{{ old('fec') }}"  placeholder="Fecha DD/MM/YYYY" aria-describedby="basic-addon10" v-model="fec"  v-validate.initial="fec" data-vv-rules="required|date_format:DD/MM/YYYY" data-vv-delay="200" v-bind:class="{'': true, 'has-error': errors.has('fec') }">
-                                </div>
-                                <span class="glyphicon  form-control-feedback" aria-hidden="true" v-bind:class="{'': true, 'glyphicon-remove': errors.has('fec') }"></span>
-                                @if ($errors->has('fec'))<span class="help-block"><strong>{{ $errors->first('fec') }}</strong></span>@endif
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-12">    
 
-                           
+                                <div class="btn-group">
+                                    <button v-on:click="cambTar(2);" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tarjeta Blanca</button>
+                                    <button v-on:click="cambTar(2);" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li v-for="option in tT.tb"><a href="#" v-bind:value="option.id" v-on:click="cambMem2(option.id,option.txt)">@{{ option.txt }}</a></li>                                    
+                                    </ul>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button v-on:click="cambTar(3);" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tarjeta Amarilla</button>
+                                    <button v-on:click="cambTar(3);" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li v-for="option in tT.ta"><a href="#" v-bind:value="option.id" v-on:click="cambMem2(option.id,option.txt)">@{{ option.txt }}</a></li>                                    
+                                    </ul>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button v-on:click="cambTar(4);" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tarjeta Roja</button>
+                                    <button v-on:click="cambTar(4);" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="caret"></span>
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li v-for="option in tT.tr"><a href="#" v-bind:value="option.id" v-on:click="cambMem2(option.id,option.txt)">@{{ option.txt }}</a></li>                                    
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-12 ">
+                                <div class="panel " v-bind:class="[ttarClass]" v-show="ttar.tarAct>0">
+                                    <div class="panel-heading">
+                                        @{{ $data.moSel }}
+                                    </div>
+                                    <div class="panel-body">@{{ $data.moSelDes }}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-12"> 
                                 <textarea id="editor" name="editor" rows="5" cols="80" 
-                                          v-bind:class="{'': true, 'has-error': errors.has('observacion') }" 
-                                          data-vv-rules="required" >
-                                    
+                                          v-bind:class="{'': true, 'has-error': errors.has('editor') }" 
+                                          v-model="editor"
+                                          data-vv-rules="required">
                                 </textarea>
-                           
-                        </div>
-                        <input class="AlmId" id="AlmId" name="AlmId" value="" hidden="true">
+                                <input class="AlmId" id="AlmId" name="AlmId" value="" hidden="true" />
+                                <input class="tarSel" id="tarSel" name="tarSel" v-model="ttar.tarAct" hidden="true" data-vv-rules="required"/>
+                                <input class="tarSelMem" id="tarSelMem" name="tarSelMem" v-model="ttar.mem" hidden="true" data-vv-rules="required"/>
+
+                            </div>  
+                        </div>    
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>                        
-                        {!! Form::submit('Guardar', ['class' => 'btn btn-primary']); !!}
+                        <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="iniVal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="ttar.tarAct==0">Guardar</button>
                     </div>
-                </div>
             </form>
         </div>
     </div>

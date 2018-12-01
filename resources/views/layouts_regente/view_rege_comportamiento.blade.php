@@ -22,7 +22,7 @@
     <section class="content-header">      
         <h1>
             Escritorio:
-            <small>Bienvenido!!!</small>
+            <small>Comportamiento</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/direccion/"><i class="fa fa-dashboard"></i> Home</a></li>

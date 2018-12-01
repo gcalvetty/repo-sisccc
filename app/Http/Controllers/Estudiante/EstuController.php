@@ -16,14 +16,15 @@ class EstuController extends Controller {
     function __get($name) {
         $this->tieneLib = almLog::user()->libreta;
         $this->alum     = almLog::user()->id;
-        $this->user     = fGECN::obt_nombre();
+        $this->user     = fGECN::obt_nombre();        
         $this->Tar      = qGECN::listTarEst($this->alum,5);
         $this->comprt   = qGECN::listCompEst($this->alum,5);  
-        $this->lisCom   = qGECN::listComunicado(2);
-        $this->lisAct   = qGECN::listActividad(3);
+        $this->lisCom   = qGECN::listComunicado(2,0); // tipo, cantidad 
+        $this->lisAct   = qGECN::listActividad(5);
         $this->almAct   = qGECN::almAct($this->alum);                
    }
-    public function index() {                
+    public function index() {  
+        $this->__get(1);
         return view('layouts_estudiante/view_estu', [
             'usuactivo' => $this->user,
             'libreta'   => $this->tieneLib,
@@ -58,7 +59,7 @@ class EstuController extends Controller {
         $this->__get(1);
         return view('layouts_estudiante/view_estu_comportamiento', [
             'usuactivo' => $this->user,
-            'comp'   => $this->comprt, 
+            'comp'   => qGECN::listCompEst($this->alum,0), 
             'VerCont'   => $this->almAct,
         ]);
     }

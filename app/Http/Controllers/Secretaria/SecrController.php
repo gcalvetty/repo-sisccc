@@ -29,7 +29,7 @@ class SecrController extends Controller {
         $user = fGECN::obt_nombre();
         $lgestion = self::$gyear;
         
-        $lisCom  = $sql::listComunicado(0);
+        $lisCom  = $sql::listComunicado(0,5);// tipo, cantidad
         $lisAct  = $sql::listActividad(5);
 
 
@@ -108,8 +108,7 @@ class SecrController extends Controller {
 
     public function verActividades() {
         $user = fGECN::obt_nombre();
-        $Niveles = Grd_Nivel::get();
-        
+        $Niveles = Grd_Nivel::get();       
         
         return view('layouts_secretaria/view_secr_actividades', [
             'usuactivo' => $user,
@@ -135,28 +134,31 @@ class SecrController extends Controller {
     /*
      * ---- Calendario de Actividades
      */
-    
-    
     public function mostrarCalActividad() {
         $sql = new qGECN;
-        $lisCom  = $sql::listActividad2();         
+        $lisCom  = $sql::listActividad2();
+        
+        
         return $lisCom;
     }
     
     /*
      * ---- Acciones de Calendario de Actividades
      */
-    public function store(Request $request) {        
+    public function store(Request $request) {               
         $func = new fGECN;        
-        $fec = $func::setDateAttribute($request->act_fec);               
+        $fec  = $func::setDateAttribute($request->act_fec); 
+        $fec2 = $func::setDateAttribute($request->act_fecfin); 
         $this->validate($request, [
             'act_tit'  => ' required',
             'act_fec' => 'required'
         ]);
+        
         DB::table('cal_actividad')->insert(
                 [                    
                     'act_titulo' => $request->act_tit,
-                    'act_fec' => $fec
+                    'act_fec' => $fec,
+                    'act_fecfin' => $fec2,
                     ]
         );
         return;

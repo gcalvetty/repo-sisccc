@@ -38,10 +38,10 @@ use Monolog\Handler\SyslogHandler as MonologSyslogHandler;
  */
 class Google_Client
 {
-  const LIBVER = "2.2.1";
+  const LIBVER = "2.2.2";
   const USER_AGENT_SUFFIX = "google-api-php-client/";
-  const OAUTH2_REVOKE_URI = 'https://accounts.google.com/o/oauth2/revoke';
-  const OAUTH2_TOKEN_URI = 'https://www.googleapis.com/oauth2/v4/token';
+  const OAUTH2_REVOKE_URI = 'https://oauth2.googleapis.com/revoke';
+  const OAUTH2_TOKEN_URI = 'https://oauth2.googleapis.com/token';
   const OAUTH2_AUTH_URL = 'https://accounts.google.com/o/oauth2/auth';
   const API_BASE_PATH = 'https://www.googleapis.com';
 
@@ -125,11 +125,12 @@ class Google_Client
           'login_hint' => '',
           'request_visible_actions' => '',
           'access_type' => 'online',
-          'approval_prompt' => 'auto',
+          'approval_prompt' => 'consent',
 
           // Task Runner retry configuration
           // @see Google_Task_Runner
           'retry' => array(),
+          'retry_map' => null,
 
           // cache config for downstream auth caching
           'cache_config' => [],
@@ -568,8 +569,9 @@ class Google_Client
 
   /**
    * @param string $approvalPrompt Possible values for approval_prompt include:
-   *  {@code "force"} to force the approval UI to appear.
-   *  {@code "auto"} to request auto-approval when possible. (This is the default value)
+   *  {@code "none"} Do not display any authentication or consent screens. Must not be specified with other values.
+   *  {@code "consent"} Prompt the user for consent.
+   *  {@code "select_account"} Prompt the user to select an account.
    */
   public function setApprovalPrompt($approvalPrompt)
   {
@@ -725,13 +727,13 @@ class Google_Client
   /**
    * Set the scopes to be requested. Must be called before createAuthUrl().
    * Will remove any previously configured scopes.
-   * @param array $scopes, ie: array('https://www.googleapis.com/auth/plus.login',
+   * @param string|array $scope_or_scopes, ie: array('https://www.googleapis.com/auth/plus.login',
    * 'https://www.googleapis.com/auth/moderator')
    */
-  public function setScopes($scopes)
+  public function setScopes($scope_or_scopes)
   {
     $this->requestedScopes = array();
-    $this->addScope($scopes);
+    $this->addScope($scope_or_scopes);
   }
 
   /**
@@ -795,7 +797,13 @@ class Google_Client
     // this is where most of the grunt work is done
     $http = $this->authorize();
 
-    return Google_Http_REST::execute($http, $request, $expectedClass, $this->config['retry']);
+    return Google_Http_REST::execute(
+        $http,
+        $request,
+        $expectedClass,
+        $this->config['retry'],
+        $this->config['retry_map']
+    );
   }
 
   /**

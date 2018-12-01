@@ -17,18 +17,18 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">Menú de Administración</li>
-            <li class="active">
+            <li class="<?php echo ((Route::current()->getName() == 'Admtr.Reg'))? "active":"";?>">
                 <a href="{{ route('Admtr.Reg') }}">
                     <i class="fa fa-th"></i> <span>Escritorio</span>            
                 </a>
             </li>            
-            <li class="treeview">                
+            <li class="treeview <?php echo ((Route::current()->getName() == 'Admtr.Doc'))? "active":"";?>">                
                 <a href="#">
-                    <i class="fa fa-id-card-o"></i> <span>Plante Docente</span>
+                    <i class="fa fa-id-card-o"></i> <span>Plantel Docente</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
-                </a>
+                </a>                
                 <ul class="treeview-menu">
                     @foreach($Niveles as $Nivel)                         
                     <li>
@@ -38,7 +38,7 @@
                     @endforeach
                 </ul>
             </li>
-            <li class="treeview">
+            <li class="treeview <?php echo ((Route::current()->getName() == 'Admtr.listalumnos'))? "active":"";?>">
                 <a href="#">
                     <i class="fa fa-graduation-cap"></i> <span>Alumnos</span>
                     <span class="pull-right-container">
@@ -56,7 +56,23 @@
                     </li>                            
                     @endforeach
                 </ul>
-            </li>        
+            </li>
+            <li class="<?php echo ((Route::current()->getName() == 'Admtr.secactividades'))? "active":"";?>">
+                <a href="{{ route('Admtr.secactividades') }}">
+                    <i class="fa fa-pencil"></i> <span>Secretaria</span> 
+                </a>
+            </li> 
+            <li class="<?php echo ((Route::current()->getName() == 'Admtr.alumcomportamiento'))? "active":"";?>">
+                <a href="{{ route('Admtr.alumcomportamiento') }}">
+                    <i class="fa fa-book"></i> <span>Regencia</span>            
+                </a>
+            </li> 
+            
+            <li class="<?php echo ((Route::current()->getName() == 'Admtr.PsiComp'))? "active":"";?>">
+                <a href="{{ route('Admtr.PsiComp') }}">
+                    <i class="fa fa-eye" aria-hidden="true"></i> <span>Dep. Psicologico</span>            
+                </a>
+            </li> 
             <li class="hidden">
                 <a href="{{ route('Admtr.agenda') }}">
                     <i class="fa fa-calendar"></i><span>Agenda</span>
@@ -64,11 +80,7 @@
                 </a>
             </li>
 
-            <li>
-                <a href="{{ route('Admtr.actividades') }}">
-                    <i class="fa  fa-calendar-check-o"></i> <span>Calendario de Actividades</span> 
-                </a>
-            </li>                              
+                                         
         </ul>
     </section>
     <!-- /.sidebar -->

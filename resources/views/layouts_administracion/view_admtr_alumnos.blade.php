@@ -25,7 +25,7 @@
             <small>Bienvenido!!!</small>
         </h1> 
 
-        {!! Breadcrumbs::render() !!}
+        {!! Breadcrumbs::render('Admtr.listalumnos') !!}
     </section>  
 
 

@@ -30,33 +30,19 @@
 
     <!-- Main content -->
     <section class="content">
-
-        <!-- Default box -->
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">Escritorio</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                        <i class="fa fa-minus"></i></button>            
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-body no-padding">
-                            <!-- THE CALENDAR -->
-                            <div id="calendar"></div>
-                        </div>
-                        <!-- /.box-body -->
+        <div class="row">
+            <section class="col-lg-8 col-md-8 col-sm-12 col-md-push-2 col-lg-push-2 connectedSortable ui-sortable">
+                <div class="box box-success">
+                    <div class="box-header ui-sortable-handle" style="cursor: move;">
+                        <i class="fa fa-binoculars"></i>
+                        <h3 class="box-title">Calendario de Actividades</h3>
                     </div>
-                    <!-- /. box -->
-                </div>
-            </div>
-            <!-- /.box-body -->            
+                    <div class="box-body">    
+                        <div id="calendario"></div>
+                    </div>    
+                </div> 
+            </section>
         </div>
-        <!-- /.box -->
-
     </section>
     <!-- /.content -->
 
@@ -66,24 +52,4 @@
     {!! Html::footer('siscccConfig.pie') !!}
 </footer>
 @endsection
-
-@section('menu-configuracion')
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home">1</i></a></li>      
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <!-- Home tab content -->
-        <div class="tab-pane" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Actividades Recientes</h3>
-        </div>
-    </div>
-</aside>
-<!-- /.control-sidebar -->
-<!-- Add the sidebar's background. This div must be placed
-     immediately after the control sidebar -->
-<div class="control-sidebar-bg"></div>
-@endsection	
+	

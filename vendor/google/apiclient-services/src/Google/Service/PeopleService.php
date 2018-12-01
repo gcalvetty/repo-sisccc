@@ -30,10 +30,10 @@
  */
 class Google_Service_PeopleService extends Google_Service
 {
-  /** Manage your contacts. */
+  /** See, edit, download, and permanently delete your contacts. */
   const CONTACTS =
       "https://www.googleapis.com/auth/contacts";
-  /** View your contacts. */
+  /** See and download your contacts. */
   const CONTACTS_READONLY =
       "https://www.googleapis.com/auth/contacts.readonly";
   /** Know the list of people in your circles, your age range, and language. */
@@ -273,6 +273,10 @@ class Google_Service_PeopleService extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'syncToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'personFields' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -289,15 +293,11 @@ class Google_Service_PeopleService extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'requestMask.includeField' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'syncToken' => array(
+                'requestMask.includeField' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

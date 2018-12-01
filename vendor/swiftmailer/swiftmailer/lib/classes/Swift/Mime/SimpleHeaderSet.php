@@ -68,8 +68,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_CharsetObserver
      */
     public function addMailboxHeader($name, $addresses = null)
     {
-        $this->storeHeader($name,
-        $this->factory->createMailboxHeader($name, $addresses));
+        $this->storeHeader($name, $this->factory->createMailboxHeader($name, $addresses));
     }
 
     /**
@@ -79,8 +78,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_CharsetObserver
      */
     public function addDateHeader($name, DateTimeInterface $dateTime = null)
     {
-        $this->storeHeader($name,
-        $this->factory->createDateHeader($name, $dateTime));
+        $this->storeHeader($name, $this->factory->createDateHeader($name, $dateTime));
     }
 
     /**
@@ -91,8 +89,7 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_CharsetObserver
      */
     public function addTextHeader($name, $value = null)
     {
-        $this->storeHeader($name,
-        $this->factory->createTextHeader($name, $value));
+        $this->storeHeader($name, $this->factory->createTextHeader($name, $value));
     }
 
     /**
@@ -362,9 +359,9 @@ class Swift_Mime_SimpleHeaderSet implements Swift_Mime_CharsetObserver
             return $a > $b ? -1 : 1;
         }
 
-        if ($aPos == -1) {
+        if (-1 == $aPos) {
             return 1;
-        } elseif ($bPos == -1) {
+        } elseif (-1 == $bPos) {
             return -1;
         }
 

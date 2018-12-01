@@ -177,7 +177,7 @@ class CurlFactory implements CurlFactoryInterface
             'cURL error %s: %s (%s)',
             $ctx['errno'],
             $ctx['error'],
-            'see http://curl.haxx.se/libcurl/c/libcurl-errors.html'
+            'see https://curl.haxx.se/libcurl/c/libcurl-errors.html'
         );
 
         // Create a connection exception if it was a specific error code.
@@ -287,7 +287,14 @@ class CurlFactory implements CurlFactoryInterface
     {
         foreach ($conf['_headers'] as $name => $values) {
             foreach ($values as $value) {
-                $conf[CURLOPT_HTTPHEADER][] = "$name: $value";
+                $value = (string) $value;
+                if ($value === '') {
+                    // cURL requires a special format for empty headers.
+                    // See https://github.com/guzzle/guzzle/issues/1882 for more details.
+                    $conf[CURLOPT_HTTPHEADER][] = "$name;";
+                } else {
+                    $conf[CURLOPT_HTTPHEADER][] = "$name: $value";
+                }
             }
         }
 

@@ -22,7 +22,9 @@
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
         "predis/predis": "^1.1",
         "maatwebsite/excel": "~2.0",
-        "league/flysystem": "1.0.43"
+        "league/flysystem": "1.0.43",
+        "phpoffice/phpspreadsheet": "dev-master",
+        "barryvdh/laravel-dompdf": "^0.8.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

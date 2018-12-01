@@ -71,7 +71,6 @@
         <script src="/jquery/toastr.js" type="text/javascript"></script>
 
         @if((Route::current()->getName() == 'Secr.agenda'))
-
         <script>
             
             new Vue({

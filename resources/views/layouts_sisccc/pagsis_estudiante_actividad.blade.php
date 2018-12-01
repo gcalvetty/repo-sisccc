@@ -75,10 +75,7 @@
     /* initialize the calendar
      -----------------------------------------------------------------*/
     //Date for the calendar events (dummy data)
-    var date = new Date();
-    var d = date.getDate(),
-        m = date.getMonth(),
-        y = date.getFullYear();
+    var date = new Date();    
     var initialLocaleCode = 'es';
     $('#calendario').fullCalendar({
       header: {

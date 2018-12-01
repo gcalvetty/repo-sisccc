@@ -20,6 +20,7 @@ class Google_Service_ShoppingContent_TestOrder extends Google_Collection
   protected $collection_key = 'promotions';
   protected $customerType = 'Google_Service_ShoppingContent_TestOrderCustomer';
   protected $customerDataType = '';
+  public $enableOrderinvoices;
   public $kind;
   protected $lineItemsType = 'Google_Service_ShoppingContent_TestOrderLineItem';
   protected $lineItemsDataType = 'array';
@@ -27,7 +28,7 @@ class Google_Service_ShoppingContent_TestOrder extends Google_Collection
   protected $paymentMethodType = 'Google_Service_ShoppingContent_TestOrderPaymentMethod';
   protected $paymentMethodDataType = '';
   public $predefinedDeliveryAddress;
-  protected $promotionsType = 'Google_Service_ShoppingContent_OrderPromotion';
+  protected $promotionsType = 'Google_Service_ShoppingContent_OrderLegacyPromotion';
   protected $promotionsDataType = 'array';
   protected $shippingCostType = 'Google_Service_ShoppingContent_Price';
   protected $shippingCostDataType = '';
@@ -48,6 +49,14 @@ class Google_Service_ShoppingContent_TestOrder extends Google_Collection
   public function getCustomer()
   {
     return $this->customer;
+  }
+  public function setEnableOrderinvoices($enableOrderinvoices)
+  {
+    $this->enableOrderinvoices = $enableOrderinvoices;
+  }
+  public function getEnableOrderinvoices()
+  {
+    return $this->enableOrderinvoices;
   }
   public function setKind($kind)
   {
@@ -102,14 +111,14 @@ class Google_Service_ShoppingContent_TestOrder extends Google_Collection
     return $this->predefinedDeliveryAddress;
   }
   /**
-   * @param Google_Service_ShoppingContent_OrderPromotion
+   * @param Google_Service_ShoppingContent_OrderLegacyPromotion
    */
   public function setPromotions($promotions)
   {
     $this->promotions = $promotions;
   }
   /**
-   * @return Google_Service_ShoppingContent_OrderPromotion
+   * @return Google_Service_ShoppingContent_OrderLegacyPromotion
    */
   public function getPromotions()
   {

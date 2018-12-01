@@ -3,8 +3,6 @@
 Route::get('/', [
     'as' => 'homeCCC',
     'uses' => 'ErrorController@index']);
-
-
 /*
  * Acceso
  */

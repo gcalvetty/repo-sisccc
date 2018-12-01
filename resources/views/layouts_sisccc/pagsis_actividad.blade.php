@@ -41,7 +41,7 @@
             window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
         </script>
     </head>
-    <body class="sidebar-mini skin-green wysihtml5-supported sidebar-collapse">         
+    <body class="sidebar-mini skin-green wysihtml5-supported">         
         <div class="wrapper">
             @if (Auth::guest())       		
             @else     
@@ -64,16 +64,10 @@
         <script src="/jquery/axios.js"></script>
         <script src="/jquery/toastr.js" type="text/javascript"></script>
 
-
-
         <!-- fullCalendar 2.2.5 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
         <script src="/plugins/fullcalendar/fullcalendar.min.js"></script>
         <!-- Page specific script -->
-
-        
-
-
 
         @if(Route::current()->getName() == 'Prof.actividades')                  
         <script src="/jquery/ccc-profesor-actividad.js" type="text/javascript"></script>        
@@ -140,6 +134,5 @@
         </script>
         
         @endif
-
 
     </body>

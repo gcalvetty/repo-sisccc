@@ -3,19 +3,21 @@
 namespace sis_ccc\Http\Controllers\Regente;
 
 use Illuminate\Http\Request;
-use sis_ccc\Http\Requests;
+use PDF;
 use sis_ccc\Http\Controllers\Controller;
 use sis_ccc\ModeloCCC\Grd_Nivel;
 use sis_ccc\libreriaCCC\queryCCC as qGECN;
 use sis_ccc\libreriaCCC\fncCCC as fGECN;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use sis_ccc\User;
+
+
 
 class RegeController extends Controller {
     /*
      * Obtener fecha para la BD
      */
-
     public function getDateAttribute($value) {
         return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
     }
@@ -32,8 +34,8 @@ class RegeController extends Controller {
         $sql = new qGECN;
         $lGECN = $sql::listAlumn($request);
         $lComp = $sql::listComp();
-
-        $Niveles = Grd_Nivel::get();
+        $NivSel = $request->grd_nivel;
+        $Niveles = Grd_Nivel::find(["2", "3"]);
         $user = fGECN::obt_nombre();
 
         return view('layouts_regente/view_rege', [
@@ -41,48 +43,70 @@ class RegeController extends Controller {
             'Lista' => $lGECN,
             'ListaComp' => $lComp,
             'Niveles' => $Niveles,
+            'NivSel' => $NivSel
         ]);
     }
 
-    public function comportamiento() {
+    public function comportamiento(Request $request) {
         $sql = new qGECN;
-        $lGECN = $sql::listAlumnComportamiento();
-        $Niveles = Grd_Nivel::get();
+        $NivSel = $request->grd_nivel;
+        $lGECN = $sql::listAlumnComportamiento($NivSel);
+        $Niveles = Grd_Nivel::find(["2", "3"]);
         $user = fGECN::obt_nombre();
 
         return view('layouts_regente/view_rege_comportamiento', [
             'usuactivo' => $user,
-            'Lista' => $lGECN,            
+            'Lista' => $lGECN,
             'Niveles' => $Niveles,
+            'NivSel' => $NivSel
         ]);
     }
-    
+
     /*
      * CRUD
      */
+
     public function insComportamiento(Request $req) {
         $data = $req->all();
-        
         $dateBD = $this->setDateAttribute($data['fec']);
         DB::Table('reg_comportamiento')->insert(
                 ['user_id' => $data['AlmId'],
-                    'reg_tipComp' => $data['tip_comp'],
-                    'reg_tipTarj' => $data['tipTarj'],
+                    'reg_tipComp' => $data['tarSelMem'],
+                    'reg_tipTarj' => $data['tarSel'],
                     'reg_obser' => $data['editor'],
                     'reg_fec' => $dateBD
                 ]
         );
         return redirect()->route('Rege.Reg')->withSuccess('OK');
     }
-    
+
     public function delComportamiento(Request $req) {
         $data = $req->all();
-
         $eliDocente = DB::delete('Delete '
                         . ' From reg_comportamiento'
-                        . ' where reg_id=' . $req->AlmId);        
+                        . ' where reg_id=' . $req->AlmId);
         return redirect()->route('Rege.Comp')->withSuccess('OK');
     }
+    
+    static function haveComportamiento($AlmId){
+        
+        $comprt = qGECN::listCompEst($AlmId,0);
+        $totReg = count($comprt);        
+        return $totReg;        
+        
+    }
+    public function PDFComportamiento(Request $req) {                      
+        
+        // $pdf = PDF::loadHTML('welcome2')->setPaper('a4', 'landscape')->setWarnings(false)->save('myfile.pdf');
+        $comprt = qGECN::listCompEst($req->AlmId,0);
+        $datAlm = User::find($req->AlmId);
+        
+        $pdf = PDF::loadView("layouts_reportes.pagsis_comportamiento_pdf", [
+            'alumno' => $datAlm->nombre." ".$datAlm->ape_paterno." ".$datAlm->ape_materno,
+            'comp'   => $comprt,            
+        ]);        
+        return $pdf->stream(); // download - stream
+    }   
 
     /**
      * Show the form for creating a new resource.

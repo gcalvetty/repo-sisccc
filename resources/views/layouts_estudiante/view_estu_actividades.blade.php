@@ -49,7 +49,6 @@
     {!! Html::footer('siscccConfig.pie') !!}
 </footer>
 @endsection
-
 @section('sis_actividad')
     @foreach($ListaC as $Comu)
         <?php

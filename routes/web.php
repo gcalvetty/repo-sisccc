@@ -1,8 +1,5 @@
 <?php
 
-
-
-
 Route::group(['middleware' => 'Grp_Admtr', 'prefix' => 'administracion/', 'namespace' => 'Administracion'], function () {
     require __DIR__ . '/RoutesCCC/admtracion.routes.php';
 });
@@ -59,7 +56,6 @@ Route::group(['middleware' => 'Grp_Tut', 'prefix' => 'tutor/', 'namespace' => 'T
  * fin del SIS CCC
  */
 
-
 Route::group(['middleware' => 'web'], function() {
     require __DIR__ . '/RoutesCCC/web.routes.php';
 });
@@ -70,8 +66,9 @@ Route::group(['prefix' => 'ccc/', 'namespace' => 'CCC'], function () {
 
 
 
-
+/*
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+*/
