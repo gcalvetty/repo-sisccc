@@ -43,19 +43,25 @@
                                 <tr>                                    
                                     <th>Curso</th>
                                     <th>Paralelo</th>
-                                    <th>Alumno</th>                                                                        
+                                    <th>Alumno</th>
+                                    <th>Tel.</th>
+                                    <th>Cel.</th>
                                     <th>Adeuda</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody>                                
                                 @foreach($Lista as $Alumno)
                                 <tr id="{{ $Alumno->id }}">
 
                                     <td>{{ $Alumno->curso }}</td>
                                     <td>{{ $Alumno->aula }}</td>
-                                    <td>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</td>                                    
+                                    <td>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</td>
                                     <td>
-                                        
+                                        <?php echo sis_ccc\Http\Controllers\Contador\ContController::verTel($Alumno->Tel); ?>    
+                                    </td>                                    
+                                    <td>
+                                        <?php echo sis_ccc\Http\Controllers\Contador\ContController::verTel($Alumno->Cel); ?>
+                                    <td>                                        
                                         @if($Alumno->estado == 'Inscrito')
                                         <button type="button" class="actbot btn btn-danger btnbloq{{ $Alumno->id }}" v-on:click.prevent="bloqAlm({{ $Alumno->id }});">                                                                                        
                                             <i class="fa fa-unlock-alt" aria-hidden="true"> Bloquear</i>
@@ -64,9 +70,8 @@
                                         <button type="button" class="desbot btn btn-danger btnbloq{{ $Alumno->id }}" v-on:click.prevent="bloqAlm({{ $Alumno->id }});">                                                                                        
                                             <i class="fa fa-unlock-alt" aria-hidden="true"> Bloquear</i>
                                         </button>
-                                        @endif
-                                        
-                                        
+                                        @endif                                        
+
                                         @if($Alumno->estado != 'Inscrito')
                                         <button type="button" class="actbot btn btn-success btndesbloq{{ $Alumno->id }}" v-on:click.prevent="desbloqAlm({{ $Alumno->id }})">
                                             <i class="fa fa-unlock" aria-hidden="true"> DesBloquear</i>
@@ -76,7 +81,7 @@
                                             <i class="fa fa-unlock" aria-hidden="true"> DesBloquear</i>
                                         </button>
                                         @endif
-                                        
+
                                     </td>                                    
                                 </tr>
                                 @endforeach 
@@ -88,7 +93,7 @@
                 <!-- /.box -->
             </div>
             <!-- /.col -->
-          
+
         </div>
         <!-- /.row -->
     </section>

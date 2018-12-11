@@ -20,7 +20,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">      
         <h1>
-            Escritorio            
+            Escritorio       
         </h1>
         <ol class="breadcrumb">
             <li><a href="/estudiante/"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -50,29 +50,45 @@
 </footer>
 @endsection
 @section('sis_actividad')
+    <?php 
+        $col2 = array('#3cb043','#3a5311','#32612d','#3ded97','#028a0f'); // verde
+        $col1 = array('#ed7014','#b56727','#8d4004','#fc6a03','#c95b0c','#893101'); // naranja
+     ?>
     @foreach($ListaC as $Comu)
         <?php
             $date = date_create($Comu->com_fec);
-            $fecha = date_format($date, 'Y, m, d');
+            $fecha = date_format($date, 'Y-m-d');
+            $random_col=rand(0,4);
+            $rmdCol = $col1[$random_col];
         ?>
         {
-            title: '{{ $Comu->com_titulo }}',
-            start: new Date({{ $fecha }}),            
-            backgroundColor: "#333", //red
-            borderColor: "#f56954" //red
+            title: '{{ $Comu->com_titulo }}', // --- Comunicado ---
+            start: '{{ $fecha }}', 
+            end:   '{{ $fecha }}',
+            constraint: 'availableForMeeting',
+            backgroundColor: '{{ $rmdCol }}', //
+            borderColor: '{{ $rmdCol }}' //
         },                                    
     @endforeach
     
     @foreach($ListaA as $Act)
         <?php
             $date = date_create($Act->act_fec);
-            $fecha = date_format($date, 'Y, m, d');
+            $dateend = date_create($Act->act_fecfin);
+            $fecha = date_format($date, 'Y-m-d');
+            $fechaend = date_format($dateend, 'Y-m-d');            
+            $random_col=rand(0,4);
+            $rmdCol = $col2[$random_col];
+            
         ?>
         {
-            title: '{{ $Act->act_titulo }}',
-            start: new Date({{ $fecha }}),            
-            backgroundColor: "#f56954", //red
-            borderColor: "#f56954" //red
+            id: {{ $Act->act_id }},
+            title: '{{ $Act->act_titulo }}', // --- Actividad ---
+            start: '{{ $fecha }}',  
+            end:   '{{ $fechaend }}', 
+            constraint: 'businessHours',
+            backgroundColor: '{{ $rmdCol }}', //
+            borderColor: '{{ $rmdCol }}' //
         },                                    
     @endforeach
 @endsection

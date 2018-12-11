@@ -19,9 +19,33 @@ Route::get('/actividades', [
     'as' => 'Secr.actividades',
     'uses' => 'SecrController@verActividades']);
 
+Route::get('/libreta',[ 
+    'as' => 'Secr.libreta',
+    'uses' => 'SecrController@verlibreta'    
+]);
+
 Route::get('/reportes', [
     'as' => 'Secr.reportes',
     'uses' => 'SecrController@verReportes']);
+
+/*
+ * Rutas Para listar Alumnos por Nivel
+ */
+Route::get('libreta/nivel/{grd_nivel}', [
+    'as'   => 'rude.nivel',
+    'uses' => 'SecrController@index',
+])->where(['grd_nivel' => '[1-4]']);
+/*
+ * Libreta Subir
+ */
+Route::get('/subir/libreta/{alumno}', 
+        array('uses' => 'SecrController@editlibreta',
+              'as' => 'Secr.sublib'))->where(['alumno'=>'[0-9]+']);
+
+Route::post('/subir/libreta/guardar', 
+        array('uses' => 'SecrController@storeLibreta',
+              'as' => 'Secr.subirPdf'));
+        
 /*
  * ----
  */
@@ -77,3 +101,5 @@ Route::resource('acc_calactividad', 'SecrController', [
     'except' => ['show',  'edit'],
         ]
 );
+
+

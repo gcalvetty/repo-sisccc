@@ -45,7 +45,7 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-                <ul class="treeview-menu">
+                <ul class="treeview-menu">                    
                     @foreach($Niveles as $Nivel)                         
                     <li>
                         <a href="{{ route('Admtr.Reg')}}/alumnos/nivel/{{ $Nivel->grd_nivel_id }}"> {{ $Nivel->grd_nivel_nombre }}
@@ -53,8 +53,11 @@
                                 <small class="label pull-right bg-green">({{ count($Nivel->Cursos) }})</small>
                             </span>
                         </a> 
-                    </li>                            
+                    </li>
                     @endforeach
+                    <li>
+                        <a href="{{ route('Admtr.listalumnos')}}"> Todos</a> 
+                    </li>
                 </ul>
             </li>
             <li class="<?php echo ((Route::current()->getName() == 'Admtr.secactividades'))? "active":"";?>">

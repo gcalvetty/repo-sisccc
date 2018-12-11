@@ -61,20 +61,20 @@
                 </a>
             </li> 
             
-            <li class="hidden">
-                <a href="{{ route('register') }}">
-                    <i class="fa  fa-user-plus"></i> <span>Crear Nuevo Usuario</span>                                        
-                </a>
-            </li> 
-            
-             <li  class="hidden">
+            <li>
                 <a href="{{ route('Dir.lib')}}">
                   <i class="fa fa-file-text"></i> <span>Libretas</span>
                   <span class="pull-right-container">
                     <small class="label pull-right bg-green">subir</small>
                   </span>
                 </a>
-              </li>
+            </li>
+            
+            <li class="enable">
+                <a href="{{ route('register') }}">
+                    <i class="fa  fa-user-plus"></i> <span>Crear Nuevo Usuario</span>                                        
+                </a>
+            </li> 
             
 
             

@@ -33,7 +33,7 @@
         <div class="row ">
             <div  class="container inscripcion inscrForm col-md-12">
                 <div class="panel panel-success">
-                    <div class="panel-heading">Libreta [@yield('titulo')]</div> 
+                    <div class="panel-heading"><h3><i class="fa fa-id-card-o" aria-hidden="true"></i> {{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}, {{ $Alumno->nombre }}</h3> </div> 
                     <div class="panel-body">
                         @include('layouts_sisccc/pagsis-msg-reg-alm')
                         @include('layouts_sisccc/pagsis-error')            

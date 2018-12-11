@@ -1,5 +1,5 @@
 @extends('layouts_sisccc.pagsis')
-@section('titulo','Dirección')
+@section('titulo','Secretaría | Libreta')
 @section('usuccc')
 {{ $usuactivo }}
 @endsection
@@ -11,9 +11,8 @@
 @endsection
 
 @section('sis_menu_lateral')
-@include('layouts_direccion.partials.menu')
+@include('layouts_secretaria.partials.menu')
 @endsection
-
 
 @section('sis_contenido')
 <!-- Content Wrapper. Contains page content -->
@@ -59,7 +58,7 @@
                                     <td>{{ $Alumno->aula }}</td>
                                     <td><b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</td>
                                     <td>
-                                        <a href="{{ route('Dir.sublib', ['alumno' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
+                                        <a href="{{ route('Secr.sublib', ['alumno' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
                                         @if(($Alumno->libreta!='') || ($Alumno->libreta!=null))
                                         &nbsp;<a href="{{ $Alumno->libreta }}" target="_blanck"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> 
                                         @endif   
@@ -89,3 +88,23 @@
 </footer>
 @endsection
 
+@section('menu-configuracion')
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home">1</i></a></li>      
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Actividades Recientes</h3>
+        </div>
+    </div>
+</aside>
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+     immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
+@endsection

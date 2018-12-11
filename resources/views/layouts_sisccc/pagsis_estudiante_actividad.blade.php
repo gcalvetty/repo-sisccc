@@ -12,7 +12,7 @@
         <link rel="icon" type="image/png" href="/imagenes/favicon/favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="/imagenes/favicon/favicon-16x16.png" sizes="16x16">
         <link rel="manifest" href="/imagenes/favicon/manifest.json">
-        <link rel="mask-icon" href="/imagenes/favicon/safari-pinned-tab.svg" color="#385c27">
+        <link rel="mask-icon" href="/imagenes/favicon/safari-pinned-tab.svg">
         <meta name="msapplication-TileColor" content="#7cba5f">
         <meta name="theme-color" content="#7cba5f">
         <meta name="google-site-verification" content="TMCJ84VbGNP_H5cHT4uBHnMKj0lKeK0yYNPNw1wBgXU" />
@@ -51,49 +51,47 @@
         <script src="/jquery/jquery-3.1.1.min.js"></script>    
         <!-- jQuery UI 1.11.4 -->
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
-
-
-
+        
         <!-- Bootstrap 3.3.6 -->
         <script src="/bootstrap/js/bootstrap.min.js"></script>
         <script src="/dist/js/app.min.js"></script>
         <script src="/dist/js/ccc-escritorio.js"></script>
         <script src="/jquery/vue.js"></script>
 
-<!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-<script src="/plugins/fullcalendar/moment.min.js"></script>
-<script src="/plugins/fullcalendar/fullcalendar.min.js"></script>
-<script src="/plugins/fullcalendar/locale-all.js"></script>
+        <!-- jQuery UI 1.11.4 -->
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+        <script src="/plugins/fullcalendar/moment.min.js"></script>
+        <script src="/plugins/fullcalendar/fullcalendar.min.js"></script>
+        <script src="/plugins/fullcalendar/locale-all.js"></script>
 
+        <!-- Page specific script -->
+        <script>
+            $(function () {
+                /* initialize the calendar
+                 -----------------------------------------------------------------*/
+                //Date for the calendar events (dummy data)
+                var date = new Date();
+                var initialLocaleCode = 'es';
+                $('#calendario').fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek'
+                    },
+                    locale: initialLocaleCode,
+                    buttonText: {
+                        today: 'today',
+                        month: 'month',
+                        week: 'week',
+                        day: 'day'
+                    },
+                    navLinks: false,
+                    eventLimit: true,
+                    //Random default events
+                    events: [@yield('sis_actividad')]
+                });
+            });
+        </script>
 
-<!-- Page specific script -->
-<script>
-  $(function () {
-    /* initialize the calendar
-     -----------------------------------------------------------------*/
-    //Date for the calendar events (dummy data)
-    var date = new Date();    
-    var initialLocaleCode = 'es';
-    $('#calendario').fullCalendar({
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,agendaWeek,agendaDay'
-      },
-      locale: initialLocaleCode,
-      buttonText: {
-        today: 'today',
-        month: 'month',
-        week: 'week',
-        day: 'day'
-      },
-      //Random default events
-      events: [@yield('sis_actividad')]
-    });    
-  });
-</script>
-
-</body>
+    </body>

@@ -12,7 +12,7 @@
         <link rel="icon" type="image/png" href="/imagenes/favicon/favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="/imagenes/favicon/favicon-16x16.png" sizes="16x16">
         <link rel="manifest" href="/imagenes/favicon/manifest.json">
-        <link rel="mask-icon" href="/imagenes/favicon/safari-pinned-tab.svg" color="#385c27">
+        <link rel="mask-icon" href="/imagenes/favicon/safari-pinned-tab.svg">
         <meta name="msapplication-TileColor" content="#7cba5f">
         <meta name="theme-color" content="#7cba5f">
         <meta name="google-site-verification" content="TMCJ84VbGNP_H5cHT4uBHnMKj0lKeK0yYNPNw1wBgXU" />
@@ -52,9 +52,9 @@
             @yield('sis_menu_lateral')
 
             @yield('sis_contenido')
-             
+
             @yield('menu-configuracion')
-            
+
 
         </div>
         <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=tjcHah7sB34YguDSZ8X4JxpC77rb3bQ4P8C4ujVW6W4G62t3N98vnkXKWzs6"></script></span>
@@ -90,6 +90,29 @@
                 });
             });
         </script>
+         @if((Route::current()->getName() == 'Dir.Reg')||
+             (Route::current()->getName() == 'Admtr.alumnos')||
+             (Route::current()->getName() == 'Admtr.listalumnos')
+             )
+        <script>
+            $('#exampleModal20').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var alum = button.data('alumno');
+                var usu = button.data('usuario');
+                var modal = $(this);                
+                modal.find('.modal-title').text('Login del Alumno: ' + alum);
+                modal.find('.modal-usu').text(' '+usu);
+            })
+            $('#exampleModal21').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var alum = button.data('alumno');
+                var id = button.data('id');
+                var modal = $(this);                
+                modal.find('.modal-title').text('Login del Alumno: ' + alum);
+                modal.find('.modal-id').text(' '+id);
+            })
+        </script>
+        @endif
 
         @if((Route::current()->getName() == 'rude-d.edit')or 
         (Route::current()->getName() == 'rude-ins.edit')or

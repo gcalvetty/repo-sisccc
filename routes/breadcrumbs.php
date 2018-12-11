@@ -39,6 +39,16 @@ Breadcrumbs::register('Cont.nivel', function ($breadcrumbs, $grd_nivel) {
     $nivel = qGECN::migaNivel($grd_nivel);
     $breadcrumbs->push('Alumnos de ' . $nivel, route('Admtr.alumnos', ['grd_nivel' => 1]));
 });
+/* --------------------------- */
+
+Breadcrumbs::register('Secr.libreta', function ($breadcrumbs) {
+    $breadcrumbs->push('Libreta', route('Secr.libreta'));
+});
+
+Breadcrumbs::register('Secr.sublib', function ($breadcrumbs) {
+    $breadcrumbs->parent('Secr.libreta');
+    $breadcrumbs->push('Subir Libreta', route('Secr.sublib',['alumno'=>1]));
+});
 
 /* --------------------------- */
 
@@ -51,6 +61,16 @@ Breadcrumbs::register('libreta-d.edit', function ($breadcrumbs, $alumno) {
     $estudiante = qGECN::migaAlumno($alumno);
     $breadcrumbs->push('Alumn' . $estudiante, route('libreta-d.edit', ['alumno' => 1]));
 });
+
+Breadcrumbs::register('Dir.libreta', function ($breadcrumbs) {
+    $breadcrumbs->push('Libreta', route('Secr.libreta'));
+});
+
+Breadcrumbs::register('Dir.sublib', function ($breadcrumbs) {
+    $breadcrumbs->parent('Dir.libreta');
+    $breadcrumbs->push('Subir Libreta', route('Dir.sublib',['alumno'=>1]));
+});
+
 
 /*
  * Niveles Escolares

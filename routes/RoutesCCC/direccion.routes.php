@@ -22,9 +22,26 @@ Route::get('/actividades', [
     'as'   => 'Dir.actividades',
     'uses' => 'DirController@verActividades']);
 
-Route::get('/libreta', [
+Route::get('/libretaAux', [
     'as'   => 'Dir.lib',
     'uses' => 'LibretaController@index']);
+
+Route::get('/libreta',[ 
+    'as' => 'Dir.libreta',
+    'uses' => 'DirController@verlibreta'    
+]);
+
+
+/*
+ * Libreta Subir
+ */
+Route::get('/subir/libreta/{alumno}', 
+        array('uses' => 'DirController@editlibreta',
+              'as' => 'Dir.sublib'))->where(['alumno'=>'[0-9]+']);
+
+Route::post('/subir/libreta/guardar', 
+        array('uses' => 'DirController@storeLibreta',
+              'as' => 'Dir.subirPdf'));
 
 /* rutas para subir archivo Libreta.pdf */
 Route::resource('libreta-d', 'LibretaController', ['parameters' => [

@@ -12,13 +12,13 @@ class ErrorController extends Controller
     {        
         if($request->session()->has('Ruta-Acceso'))
         {
-        return view('homeccc-paralax');            
+        return view('layouts_home/view_home');            
         }
         else{
         Auth::logout();
         Session::flush(); 
 	//return Redirect::route('homeCCC');
-        return view('homeccc-paralax');         // welcome
+        return view('layouts_home/view_home');         // welcome
         }
        
     }

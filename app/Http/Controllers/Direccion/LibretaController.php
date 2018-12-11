@@ -14,6 +14,7 @@ use sis_ccc\libreriaCCC\queryCCC as qGECN;
 use sis_ccc\libreriaCCC\fncCCC as fGECN;
 use Illuminate\Support\Facades\Session;
 
+
 class LibretaController extends Controller {
 
     
@@ -23,10 +24,16 @@ class LibretaController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+    public static $gyear = "";
+    public function __construct() {
+        $dt          = Carbon::now();
+        self::$gyear = $dt->year;
+    }
     public function index(Request $request) {
         $sql = new qGECN;
         $lGECN = $sql::listAlumn($request);
         $lGECNcnt = $sql::listAlumnXAul($request);
+        $lgestion = self::$gyear;     
         $Niveles = Grd_Nivel::get();
         $user = fGECN::obt_nombre();        
 
@@ -35,6 +42,8 @@ class LibretaController extends Controller {
             'Lista' => $lGECN,
             'Niveles' => $Niveles,
             'CantAlm' => $lGECNcnt,
+            'Gestion'   => $lgestion,
+            'Grd'       => 0,
         ]);        
     }
 
@@ -73,16 +82,13 @@ class LibretaController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(RUDE $alumno) {
-        
+    public function edit(RUDE $alumno) {        
         $Niveles = Grd_Nivel::get();
-        $user = fGECN::obt_nombre();  
-        
-        $sql = new qGECN;
-        
-        
+        $user = fGECN::obt_nombre();        
+        $sql = new qGECN;        
+        $alumnoNom = User::find($alumno->user_id);
         return view('layouts_direccion/view_dir_libreta_edit', [
-            'Alumno' => $alumno,   'usuactivo' => $user,   'Niveles' => $Niveles,
+            'Alumno' => $alumnoNom,   'usuactivo' => $user,   'Niveles' => $Niveles,
         ]);
     }
 

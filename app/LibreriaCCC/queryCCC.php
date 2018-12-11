@@ -118,12 +118,17 @@ order by curso asc, fec Desc
 
     public static function listActividad($limite) {
         $limAux = ($limite > 0) ? " Limit " . $limite : "";
+        $condAux =($limite > 0) ? " datediff(act_fec,now()) > 0 " : "YEAR(act_fec) = Year(now())";
+        
         $lisActividad = DB::select('Select *
                 from cal_actividad as c 
-                where datediff(act_fec,now()) > 0
-                order by act_fec ASC ' . $limAux);
+                where '.$condAux.'
+                order by act_fec ASC ' . $limAux);        
+        
         return $lisActividad;
-    }
+    }    
+  
+    
 
     public static function listActividad2() {
         $lisActividad = DB::select('Select *, DATE_FORMAT(act_fec,"%d de %b") AS act_fecini2, DATE_FORMAT(act_fecfin,"%d de %b") AS act_fecfin2
@@ -355,7 +360,7 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
 
     public static function listAlumn($req) {
         $lisAlumno = User::busXnom($req->buscar)
-                ->select('id', 'nombre', 'ape_paterno', 'ape_materno', 'r.estado as estado', 'g.gst_aula as aula', 'e.grd_nombre as curso', 'e.grd_id as idCurso', 'n.grd_nivel_id as idNivel', 'email')
+                ->select('id', 'libreta', 'nombre', 'ape_paterno', 'ape_materno', 'r.estado as estado', 'g.gst_aula as aula', 'e.grd_nombre as curso', 'e.grd_id as idCurso', 'n.grd_nivel_id as idNivel', 'email')
                 ->join('rude as r', function ($join) {
                     $join->on('id', '=', 'r.user_id');
                 })
@@ -433,7 +438,7 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
     public static function listAlumnContador($req) {
 
         $lisAlumno = User::busXnom($req->buscar)
-                ->select('id', 'ape_paterno', 'ape_materno', 'nombre', 'r.estado as estado', 'r.rude_id as CodAlm', 'g.gst_aula as aula', 'e.grd_nombre as curso', 'e.grd_id as idCurso', 'n.grd_nivel_id as idNivel')
+                ->select('id', 'ape_paterno', 'ape_materno', 'nombre','rd.dir_telf as Tel', 'rd.dir_cel as Cel', 'r.estado as estado', 'r.rude_id as CodAlm', 'g.gst_aula as aula', 'e.grd_nombre as curso', 'e.grd_id as idCurso', 'n.grd_nivel_id as idNivel')
                 ->join('rude as r', function ($join) {
                     $join->on('id', '=', 'r.user_id');
                 })
@@ -451,6 +456,9 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
                     })
                     ->orderBy('n.grd_nivel_id', 'asc');
                 })
+                ->join('rude_4_direccion as rd',function($join){
+                    $join->on('id','=','rd.user_id');
+                })
                 ->where([['tipo_Usu', '=', 'Est_ccc']])
                 ->orderBy('e.grd_id', 'asc')
                 ->orderBy('ape_paterno', 'asc')
@@ -462,8 +470,7 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
             $lisAlumno = $lisAlumno->get();
         } else {
             $lisAlumno = $lisAlumno->take(1000)->get();
-        }
-
+        }         
         return $lisAlumno;
     }
 

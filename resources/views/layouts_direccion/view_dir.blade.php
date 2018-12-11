@@ -120,9 +120,9 @@
                                     <th>Paralelo</th>
                                     <th>Alumno</th>                                    
                                     <th>Estado</th>                  
-                                    <th>Editar</th>
-                                    <th>Imprimir</th>
-                                    <th>Borrar</th>
+                                    <th>Editar</th>                                    
+                                    <th>Apoyos</th>
+                                    <th>Mas</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -131,11 +131,10 @@
                                     <td>{{ $Alumno->id }}</td>  
                                     <td>{{ $Alumno->curso }}</td>
                                     <td>{{ $Alumno->aula }}</td>
-                                    <td><b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</b>
-                                        <br><b>Sitio Web:</b> sis.ccc.edu.bo
-                                        <br><b>Usuario:</b> {{ $Alumno->email }}
-                                        <br><b>Contraseña:</b> cccedu</td>
+                                    <td>
+                                        <div class="col-md-6"><b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}, {{ $Alumno->nombre }}</b></div>
 
+                                    </td>
                                     <td>
                                         @if ($Alumno->estado == "Inscrito")
                                         <span class="label label-success">{{ $Alumno->estado }}</span>
@@ -145,35 +144,55 @@
                                     </td>
 
                                     <td style="text-aling:center">
-                                        <a href="{{ route('rude-d.edit', ['alumno' => $Alumno->id]) }}"><i class="fa fa-pencil-square-o   fa-lg" aria-hidden="true"></i></a>
+                                        <a href="{{ route('rude-d.edit', ['alumno' => $Alumno->id]) }}" class="btn btn-github">
+                                            <i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i></a>
                                     </td>    
                                     @if ($Alumno->estado == "No Inscrito")
                                     <td>
-                                        <a href="#" target="_blank" class="btn btn-large disabled"><i class="fa fa-print" aria-hidden="true"></i></a>
+                                        <a href="#" target="_blank" class="btn btn-large disabled"><i class="fa fa-print fa-fw" aria-hidden="true"></i></a>
                                     </td>
                                     @else
                                     <td>
-                                        <a href="{{ route('rude-d.imprimir', ['alumno' => $Alumno->id]) }}" target="_blank"><i class="fa fa-print  fa-lg" aria-hidden="true"></i></a>
+                                        <div class="col-md-4" data-toggle="tooltip" data-placement="top" title="Imprimir RUDE">
+                                            <a href="{{ route('rude-d.imprimir', ['alumno' => $Alumno->id]) }}" target="_blank" class="btn btn-vimeo">
+                                                <i class="fa fa-print  fa-fw" aria-hidden="true"></i></a>
+                                        </div>    
+                                        <div class="col-md-4"  data-toggle="tooltip" data-placement="top"  title="Ver Libreta">
+                                            @if ($Alumno->libreta !='')
+                                            <a href="{{ $Alumno->libreta }}" class="btn btn-yahoo" target="_blank"><i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i></a>                                        
+                                            @endif
+                                        </div>
+                                        <div class="col-md-4" data-toggle="tooltip" data-placement="top"  title="Ver Acceso">
+                                            <button type="button" class="btn btn-facebook"
+                                                    data-toggle="modal" 
+                                                    data-target="#exampleModal20" 
+                                                    data-usuario="{{ $Alumno->email }}"
+                                                    data-alumno="{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}">
+                                                <i class="fa fa-sign-in fa-fw" aria-hidden="true"></i></button>
+                                        </div>
+
                                     </td>
                                     @endif
-
                                     <td>
-                                        <a href="{{ route('rude-d.destroy', ['alumno' => $Alumno->id]) }}"></a>
-
                                         {!!Form::open([
                                         'method'=>'delete',
                                         'route' =>['rude-d.destroy',$Alumno->id]
-                                        ])!!}
+                                        ])!!}                                        
+                                        <button type="button" class="btn btn-danger"
+                                                data-toggle="modal" 
+                                                data-target="#exampleModal21" 
+                                                data-id="{{ $Alumno->id }}"
+                                                data-alumno="{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}">
+                                            <i class="fa fa-trash" aria-hidden="true"></i></button>
 
-                                        <input class="btn btn-danger dropdown-toggle" type="submit" value="Eliminar" onclick="return confirm('Desea Eliminar este Registro')">
+
                                         {!!Form::close()!!}
-
                                     </td>
 
                                 </tr>
                                 @endforeach  
 
-                                </tfoot>
+                            </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->
@@ -187,6 +206,48 @@
 
 
     <!-- /.content -->
+    <div class="modal fade" id="exampleModal20" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="exampleModalLabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <label class="modal-title"></label></h4>
+                </div>
+                <div class="modal-body">
+
+                    <ul class="list-group">
+                        <li class="list-group-item "><i class="fa fa-user-circle-o modal-usu" aria-hidden="true"></i></li>
+                        <li class="list-group-item"><i class="fa fa-key" aria-hidden="true">-- cccedu --</i> </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>  
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal21" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="exampleModalLabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <label class="modal-title"></label></h4>
+                </div>
+                <div class="modal-footer">
+
+                    {!!Form::open([
+                    'method'=>'delete',
+                    'route' =>['rude-d.destroy',1]
+                    ])!!} 
+                    <button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i></button>
+                    <button type="submit" class="btn btn-warning"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    {!!Form::close()!!}
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 <!-- /.content-wrapper -->

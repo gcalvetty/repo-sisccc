@@ -10,6 +10,8 @@ use sis_ccc\libreriaCCC\fncCCC as fGECN;
 use sis_ccc\libreriaCCC\queryCCC as qGECN;
 use sis_ccc\ModeloCCC\Grd_Nivel;
 use sis_ccc\ModeloCCC\Perfil;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\User;
 
 class DirController extends Controller
 {
@@ -21,6 +23,64 @@ class DirController extends Controller
         $dt          = Carbon::now();
         self::$gyear = $dt->year;
     }
+    
+    /*
+     * Subir Libreta
+     */
+    public function verlibreta(Request $request) {
+        $sql = new qGECN;
+        $lGECN = $sql::listAlumn($request);
+        $lGECNcnt = $sql::listAlumnXAul($request);
+        $lgestion = self::$gyear;
+        $Niveles = Grd_Nivel::get();
+        $user = fGECN::obt_nombre();
+
+        return view('layouts_direccion/view_dir_libreta', [
+            'usuactivo' => $user,
+            'Lista' => $lGECN,
+            'Niveles' => $Niveles,
+            'CantAlm' => $lGECNcnt,
+            'Gestion' => $lgestion,
+            'Grd' => 0,
+        ]);
+    }
+    
+    public function editlibreta(Request $request) {
+        $sql = new qGECN;
+        $lGECN = $sql::listAlumn($request);
+        $lGECNcnt = $sql::listAlumnXAul($request);
+        $lgestion = self::$gyear;
+        $Niveles = Grd_Nivel::get();
+        $user = fGECN::obt_nombre();
+        return view('layouts_direccion/view_dir_libreta_sub', [
+            'usuactivo' => $user,
+            'Lista' => $lGECN,
+            'Niveles' => $Niveles,
+            'CantAlm' => $lGECNcnt,
+            'Gestion' => $lgestion,
+            'IdAlum' => $request->alumno,
+            'Grd' => 0
+        ]);
+    }
+    
+     public function storeLibreta(Request $request) {
+        $validatedData = $request->validate([
+            'ArcPdf' => 'required|file|mimes:pdf',
+        ]);
+
+
+        if ($request->file('ArcPdf')) {
+           $path = Storage::disk('publicLib')->putFileAs('uploads/alumno-' . $request->idAlum , $request->file('ArcPdf'),'libreta-'.self::$gyear.'.pdf');                        
+            $alm = User::find($request->idAlum);
+            $alm->libreta = asset($path);
+            $alm->save();
+        }
+        return redirect()->route('Dir.libreta')->with('info', 'Guardado Correctamente');
+    }
+    
+    /*
+     * INDEX
+     */
 
     public function index(Request $request)
     {

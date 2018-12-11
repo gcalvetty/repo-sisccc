@@ -37,11 +37,22 @@
                 </a>
             </li> 
             
+            <li class="<?php echo ((Route::current()->getName() == 'Secr.libreta'))? "active":"";?>">
+                <a href="{{ route('Secr.libreta')}}">
+                  <i class="fa fa-file-text"></i> <span>Libretas</span>
+                  <span class="pull-right-container">
+                    <small class="label pull-right bg-green">subir</small>
+                  </span>
+                </a>
+            </li>
+            
             <li class="<?php echo ((Route::current()->getName() == 'Secr.reportes'))? "active":"";?>">
                 <a href="{{ route('Secr.reportes') }}">
                     <i class="fa fa-file-excel-o"></i> <span>Reportes</span>                    
                 </a>
-            </li>            
+            </li> 
+            
+            
         </ul>
     </section>
     <!-- /.sidebar -->

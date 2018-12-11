@@ -19,7 +19,6 @@
                 @if ($errors->has('libreta'))<span class="help-block"><strong>{{ $errors->first('libreta') }}</strong></span>
                 @endif
             </div>
-
         </div>
     </div><!-- ********** // Col 2 ********** --> 
 </div>    
@@ -31,4 +30,3 @@
     </div>
 
 </div> 
-</div>

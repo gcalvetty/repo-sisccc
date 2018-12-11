@@ -12,7 +12,7 @@
         <link rel="icon" type="image/png" href="/imagenes/favicon/favicon-32x32.png" sizes="32x32">
         <link rel="icon" type="image/png" href="/imagenes/favicon/favicon-16x16.png" sizes="16x16">
         <link rel="manifest" href="/imagenes/favicon/manifest.json">
-        <link rel="mask-icon" href="/imagenes/favicon/safari-pinned-tab.svg" color="#385c27">
+        <link rel="mask-icon" href="/imagenes/favicon/safari-pinned-tab.svg">
         <meta name="msapplication-TileColor" content="#7cba5f">
         <meta name="theme-color" content="#7cba5f">
         <!-- Styles -->

@@ -45,7 +45,9 @@ class EstuController extends Controller {
     }
     
     public function verActividades(){        
-        $this->__get(1);        
+        $this->__get(1);
+        $this->lisAct = qGECN::listActividad(0);
+        
         return view('layouts_estudiante/view_estu_actividades', [
             'usuactivo' => $this->user,  
             'ListaC'    => $this->lisCom,
