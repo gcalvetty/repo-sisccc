@@ -4,8 +4,17 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                @yield('usuico') 
-            </div>
+                <?php 
+              $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();
+              $avatar = sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu); 
+            ?>
+                @if(( $avatar!='') && ($avatar!=null))
+                <img src="{{ $avatar }}" class="img-circle" alt="Avatar">
+                @else 
+                @yield('usuico')
+                @endif
+            
+        </div>
             <div class="pull-left info">
                 <p>@yield('usuccc')</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Conectado</a>
