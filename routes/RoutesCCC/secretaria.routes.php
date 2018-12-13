@@ -28,6 +28,10 @@ Route::get('/reportes', [
     'as' => 'Secr.reportes',
     'uses' => 'SecrController@verReportes']);
 
+Route::get('/avatar', [
+    'as' => 'Secr.Avatar',
+    'uses' => 'SecrController@verAvatar']);
+
 /*
  * Rutas Para listar Alumnos por Nivel
  */
@@ -45,7 +49,19 @@ Route::get('/subir/libreta/{alumno}',
 Route::post('/subir/libreta/guardar', 
         array('uses' => 'SecrController@storeLibreta',
               'as' => 'Secr.subirPdf'));
-        
+/*
+* Avatar
+*/      
+
+Route::get('/subir/avatar/{idUsu}', 
+        array('uses' => 'SecrController@editAvatar',
+              'as' => 'Secr.subAvatar'))->where(['idUsu'=>'[0-9]+']);
+
+Route::post('/subir/avatar/guardar', 
+        array('uses' => 'SecrController@storeAvatar',
+               'as' => 'Secr.subirAvatar'));
+
+
 /*
  * ----
  */

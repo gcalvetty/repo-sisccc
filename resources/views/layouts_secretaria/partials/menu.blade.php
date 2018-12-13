@@ -5,7 +5,16 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                @yield('usuico')
+                    <?php 
+                  $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();
+                  $avatar = sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu); 
+                ?>
+                    @if(( $avatar!='') && ($avatar!=null))
+                    <img src="{{ $avatar }}" class="img-circle" alt="Avatar">
+                    @else 
+                    @yield('usuico')
+                    @endif
+                
             </div>
             <div class="pull-left info">
                 <p>@yield('usuccc')</p>
@@ -45,12 +54,21 @@
                   </span>
                 </a>
             </li>
+            <li class="<?php echo ((Route::current()->getName() == 'Secr.Avatar'))? "active":"";?>">
+                <a href="{{ route('Secr.Avatar') }}">                    
+                    <i class="fa fa-file-image-o" aria-hidden="true"></i> <span>Subir Avatar</span>
+                    <span class="pull-right-container">
+                        <small class="label pull-right bg-green">subir</small>
+                    </span>         
+                </a>
+            </li> 
             
             <li class="<?php echo ((Route::current()->getName() == 'Secr.reportes'))? "active":"";?>">
                 <a href="{{ route('Secr.reportes') }}">
                     <i class="fa fa-file-excel-o"></i> <span>Reportes</span>                    
                 </a>
             </li> 
+            
             
             
         </ul>

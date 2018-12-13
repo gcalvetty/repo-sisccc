@@ -206,7 +206,7 @@ class SecrController extends Controller {
             'usuactivo' => $user,
             'Lista' => $lGECN,
             'Niveles' => $Niveles,
-            'CantAlm' => $lGECNcnt,
+            
             'Gestion' => $lgestion,
             'IdAlum' => $request->alumno,
         ]);
@@ -217,17 +217,63 @@ class SecrController extends Controller {
             'ArcPdf' => 'required|file|mimes:pdf',
         ]);
 
-
         if ($request->file('ArcPdf')) {
-           $path = Storage::disk('publicLib')->putFileAs('uploads/alumno-' . $request->idAlum , $request->file('ArcPdf'),'libreta-'.self::$gyear.'.pdf');
-                        
+            //--- almacebar Libreta del estudiante
             $alm = User::find($request->idAlum);
-                      
-            
+            $ruta= 'uploads/'.$alm->tipo_Usu.'/'.$request->idAlum.'';
+            $path = Storage::disk('publicLib')->putFileAs($ruta, $request->file('ArcPdf'),'libreta-'.self::$gyear.'.pdf');
             $alm->libreta = asset($path);
-            $alm->save();
+            $alm->save();            
         }
         return redirect()->route('Secr.libreta')->with('info', 'Guardado Correctamente');
+    }
+    /*
+    * Avatar
+    */
+    public function verAvatar(Request $request){
+        $sql = new qGECN;
+        $lGECN = $sql::listAlumn($request);
+        $lGECN2 = $sql::listUsu($request);        
+        $lgestion = self::$gyear;        
+        $user = fGECN::obt_nombre();
+
+        return view('layouts_secretaria/view_secr_avatar', [
+            'usuactivo' => $user,
+            'Lista' => $lGECN,
+            'Lista2' => $lGECN2,
+            'Gestion' => $lgestion,
+            'Grd' => 0,
+        ]);
+    }
+    public function editAvatar(Request $request) {
+        $sql = new qGECN;
+        $lgestion = self::$gyear;        
+        $user = fGECN::obt_nombre();
+        $usuNom = fGECN::usuNom($request->idUsu);
+        
+        return view('layouts_secretaria/view_secr_avatar_sub', [
+            'usuactivo' => $user,
+            'Gestion' => $lgestion,
+            'idUsu' => $request->idUsu,
+            'usuNombre' => $usuNom, 
+        ]);
+    }
+    public function storeAvatar(Request $request){
+        $image_file = $request->imgAvatar;
+        list($type, $image_file) = explode(';', $image_file);
+        list(, $image_file)      = explode(',', $image_file);
+        $image_file = base64_decode($image_file);
+        $image_name= 'avatar-'.self::$gyear.'.png';
+
+        $usuAva = User::find($request->idUsu);   
+        $rutaImg = 'uploads/'.$usuAva->tipo_Usu.'/'.$request->idUsu.'/'.$image_name;       
+        $usuAva->avatar = asset($rutaImg);
+        $usuAva->save();        
+        
+        //Funciona ->         
+        Storage::disk('publicLib')->put($rutaImg, $image_file);
+        
+        return response()->json([$request->all()]);          
     }
 
 }

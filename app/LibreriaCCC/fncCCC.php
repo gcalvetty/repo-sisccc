@@ -3,6 +3,7 @@
 namespace sis_ccc\libreriaCCC;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User;
 use Carbon\Carbon;
 
 class fncCCC {
@@ -17,6 +18,25 @@ class fncCCC {
                 Auth::user()->nombre;
         return $user;
     }
+    public static function getId(){
+        $user = Auth::user()->id;
+        return $user;
+    }
+
+    public static function usuNom($idUsu){
+        $user = User::find($idUsu);
+        $nomComp = $user->ape_paterno . ' ' . 
+                   $user->ape_materno.', '.
+                   $user->nombre;
+
+        return $nomComp;
+    } 
+
+    public static function getAvatar($idUsu){
+        $user = User::find($idUsu);
+        $urlAvatar = $user->avatar;
+        return $urlAvatar;
+    } 
 
     public static function getDateAttribute($value) {
         return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');

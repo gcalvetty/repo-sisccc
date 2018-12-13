@@ -50,6 +50,20 @@ Breadcrumbs::register('Secr.sublib', function ($breadcrumbs) {
     $breadcrumbs->push('Subir Libreta', route('Secr.sublib',['alumno'=>1]));
 });
 
+/* ------ */
+Breadcrumbs::register('Secr.Avatar', function ($breadcrumbs) {
+    $breadcrumbs->push('Avatar', route('Secr.Avatar'));
+});
+
+Breadcrumbs::register('Secr.subAvatar', function ($breadcrumbs) {
+    $breadcrumbs->parent('Secr.Avatar');
+    $breadcrumbs->push('Subir Avatar', route('Secr.subAvatar',['id'=>1]));
+});
+
+
+
+
+
 /* --------------------------- */
 
 Breadcrumbs::register('Dir.lib', function ($breadcrumbs) {

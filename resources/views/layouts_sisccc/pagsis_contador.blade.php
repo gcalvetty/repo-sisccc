@@ -33,8 +33,7 @@
         <script>
             window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
         </script>
-        <!-- js Vendor - Axions - AppCCC -->
-        
+        <!-- js Vendor - Axions - AppCCC -->     
         
         
     </head>

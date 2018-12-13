@@ -358,6 +358,18 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
         return($curtotSex);
     }
 
+    public static function listUsu() {
+        $lisAlumno = User::select('id', 'nombre', 'ape_paterno', 'ape_materno', 'tipo_Usu', 'avatar')                
+                ->where([
+                        ['tipo_Usu', '<>', 'Est_ccc'],
+                        ['tipo_Usu', '<>', 'SuperAdm']
+                        ]
+                )
+                ->orderBy('tipo_Usu', 'asc')                
+                ->get();                
+        return $lisAlumno;
+    }
+
     public static function listAlumn($req) {
         $lisAlumno = User::busXnom($req->buscar)
                 ->select('id', 'libreta', 'nombre', 'ape_paterno', 'ape_materno', 'r.estado as estado', 'g.gst_aula as aula', 'e.grd_nombre as curso', 'e.grd_id as idCurso', 'n.grd_nivel_id as idNivel', 'email')
