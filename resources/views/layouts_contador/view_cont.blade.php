@@ -41,21 +41,30 @@
                         <table id="example1" class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>                                    
-                                    <th>Curso</th>
-                                    <th>Paralelo</th>
+                                    <th>#</th>                                    
                                     <th>Alumno</th>
+                                    <th>Curso</th>
                                     <th>Tel.</th>
                                     <th>Cel.</th>
                                     <th>Adeuda</th>
                                 </tr>
                             </thead>
-                            <tbody>                                
+                            <tbody>
+                                <?php $aux = 1 ?>
                                 @foreach($Lista as $Alumno)
-                                <tr id="{{ $Alumno->id }}">
-
-                                    <td>{{ $Alumno->curso }}</td>
-                                    <td>{{ $Alumno->aula }}</td>
-                                    <td>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</td>
+                                <tr id="{{$Alumno->id}}">
+                                    <td>{{ $aux++ }}</td>  
+                                    <td>
+                                           <div class="col-md-2">                                            
+                                                <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
+                                            </div>
+                                            <div class="col-md-9 text-left">
+                                            <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
+                                            </div>    
+                                    </td>
+                                    <td>                                                
+                                            {{ $Alumno->curso }} - {{ $Alumno->aula }}    
+                                    </td>
                                     <td>
                                         <?php echo sis_ccc\Http\Controllers\Contador\ContController::verTel($Alumno->Tel); ?>    
                                     </td>                                    

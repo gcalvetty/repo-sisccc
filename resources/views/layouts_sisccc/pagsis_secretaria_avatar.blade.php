@@ -112,13 +112,10 @@
               }).then(function (img) {
                 html = '<img src="' + img + '" />';
                 $("#preview-crop-image").html(html);
-
-                url="/secretaria/subir/avatar/guardar";
-                
+                url="/secretaria/subir/avatar/guardar";                
                 axios.post(url, {
                     idUsu: {{ $idUsu }},                    
                     imgAvatar:img,
-
                 })
                 .then(function (response) {
                     console.log(response);

@@ -24,7 +24,7 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
+                                        <th>N°</th>
                                         <th>Curso</th>
                                         <th>Paralelo</th>
                                         <th>Apellido Paterno</th>  

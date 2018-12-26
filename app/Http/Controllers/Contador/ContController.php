@@ -11,7 +11,7 @@ use sis_ccc\libreriaCCC\fncCCC as fGECN;
 class ContController extends Controller {
 
     public function index(Request $request) {
-
+        $NivSel = ($request->grd_nivel!=null)?$request->grd_nivel:0;        
         $sql = new qGECN;
         $lGECN = $sql::listAlumnContador($request);
         $Niveles = Grd_Nivel::get();
@@ -20,7 +20,9 @@ class ContController extends Controller {
             'usuactivo' => $user,
             'Lista' => $lGECN,
             'Niveles' => $Niveles,
+            'NivelSel' => $NivSel, 
         ]);
+        
     }
 
     public static function verTel($numTel) {

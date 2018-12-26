@@ -1,18 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container menu-home">
         <div class="navbar-header">
-            <div class="pull-left image">
-                <?php 
-              $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();
-              $avatar = sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu); 
-            ?>
-                @if(( $avatar!='') && ($avatar!=null))
-                <img src="{{ $avatar }}" class="img-circle" alt="Avatar">
-                @else 
-                @yield('usuico')
-                @endif
-            
-        </div>
+                <div class="pull-left image">
+                        <?php 
+                            $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();                 
+                            echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu,30);
+                        ?>                        
+                </div>
             <a class="navbar-brand home-tit" href="{{ url('/') }}">
             <b>Sistema Educativo</b> - "{{ config('app.name', 'CCC-SIS') }}" </a>
         </div>

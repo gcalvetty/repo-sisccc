@@ -46,7 +46,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
                                 <th>Profesor</th>
                                 <th>Paralelo</th>
                                 <th>Modificar</th>                                                                        
@@ -86,7 +86,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
                                 <th>Profesor</th>
                                 <th>Paralelo</th>
                                 <th>Modificar</th>                                                                        
@@ -126,7 +126,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
                                 <th>Profesor</th>
                                 <th>Paralelo</th>
                                 <th>Modificar</th>                                                                        
@@ -170,7 +170,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
                                 <th>Profesor</th>
                                 <th>Paralelo</th>
                                 <th>Modificar</th>                                                                        
@@ -210,7 +210,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>N°</th>
                                 <th>Profesor</th>
                                 <th>Paralelo</th>
                                 <th>Modificar</th>                                                                        

@@ -28,7 +28,7 @@
     </section> 
     <section class="content">
         <div class="row">
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-md-6 col-sm-12 col-xs-12">
 
                 <div class="box">
                     <div class="box-header">
@@ -39,36 +39,30 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Curso</th>
-                                    <th>Paralelo</th>
                                     <th>Alumno</th>
-                                    <th>Avatar</th>
+                                    <th>Curso</th>                                  
+                                    <th>Subir</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($Lista as $Alumno)
-                                <?php $avatar = sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id); ?>
+                                @foreach($Lista as $Alumno)                                
                                 <tr>
-                                    <td>{{ $Alumno->id }}</td>  
-                                    <td>{{ $Alumno->curso }}</td>
-                                    <td>{{ $Alumno->aula }}</td>
-                                    <td><b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</td>
                                     <td>
-                                        <div class="col-md-6">
-                                        <a href="{{ route('Secr.subAvatar', ['idUsu' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
+                                        <div class="col-md-3">                                            
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
                                         </div>
-                                        <div class="col-md-6">                                        
-                                        @if(( $avatar!='') && ($avatar!=null))
-                                        <img src="{{ $avatar }}" height="30" width="40">
-                                        @else 
-                                        <img src="{{ asset('imagenes/avatar/user-ccc-peq.png')}}" height="30" width="40" class="img-circle" alt="Avatar">
-                                        @endif
-                                        </div>
-                                    </td>                                    
-                                    @endforeach    
-                                </tr>
-
+                                        <div class="col-md-9 text-left">
+                                        <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
+                                        </div>    
+                                    </td>
+                                    <td>                                        
+                                        {{ $Alumno->curso }} - {{ $Alumno->aula }}                                        
+                                    </td>
+                                    <td>                                        
+                                        <a href="{{ route('Secr.subAvatar', ['idUsu' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a>
+                                    </td>                                
+                                @endforeach
+                                </tr>    
                             </tbody>
                         </table>
                     </div>
@@ -76,7 +70,7 @@
                 </div>
                 <!-- /.box -->
             </div>
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-md-6 col-sm-12 col-xs-12">
     
                     <div class="box">
                         <div class="box-header">
@@ -87,34 +81,31 @@
                             <table id="example2" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>                                        
-                                        <th>Tipo</th>
+                                        <th>N°</th>
                                         <th>Nombre</th>
+                                        <th>Tipo</th>                                        
                                         <th>Avatar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($Lista2 as $Alumno)
-                                    <?php $avatar = sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id); ?>
-                                    <tr>
-                                        <td>{{ $Alumno->id }}</td>  
-                                        <td>{{ $Alumno->tipo_Usu }}</td>                                        
-                                        <td><b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</td>
+                                    <?php $aux = 1 ?>
+                                    @foreach($Lista2 as $Alumno)                                    
+                                    <tr>                                        
+                                        <td>{{ $aux++ }}</td>
                                         <td>
-                                            <div class="col-md-6">
+                                            <div class="col-md-3">
+                                                <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30); ?>
+                                            </div>
+                                            <div class="col-md-9 text-left">
+                                                <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</b>
+                                            </div>
+                                        </td>    
+                                        <td>{{ $Alumno->tipo_Usu }}</td>                                        
+                                        <td>                                            
                                             <a href="{{ route('Secr.subAvatar', ['idUsu' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
-                                            </div>
-                                            <div class="col-md-6">                                        
-                                            @if(( $avatar!='') && ($avatar!=null))
-                                            <img src="{{ $avatar }}" height="30" width="30">
-                                            @else 
-                                        <img src="{{ asset('imagenes/avatar/user-ccc-peq.png')}}" height="30" width="30" class="img-circle" alt="Avatar">
-                                        @endif
-                                            </div>
-                                        </td>                                    
-                                        @endforeach    
-                                    </tr>
-    
+                                        </td>                                                                             
+                                    </tr>    
+                                    @endforeach  
                                 </tbody>
                             </table>
                         </div>

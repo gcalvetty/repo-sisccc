@@ -54,7 +54,7 @@
                                     @foreach($tareas as $Alumno)
                                     <tr>                   
                                         <td>{{ $cont++ }}</td> 
-                                        <td>{{ $Alumno->tar_fec_ini }}</td> 
+                                        <td>{{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_ini) }}</td> 
                                         <td>{{ $Alumno->tar_materia }}</td>
                                         <td class="tar_desc">{{ $Alumno->tar_desc }}</td>                                                               
                                     </tr>

@@ -3,12 +3,12 @@
 /storage/libretas
 /storage/logs
 /public/storage
-/vendor/tcg/voyager/
 /vendor
 /.idea
 Homestead.json
 Homestead.yaml
 .env
+/.vscode
 /nbproject
 /Aux-Dashboard
 /public/nbproject/private/

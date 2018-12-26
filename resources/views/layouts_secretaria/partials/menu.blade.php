@@ -5,16 +5,10 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                    <?php 
-                  $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();
-                  $avatar = sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu); 
+                <?php 
+                    $idUsu = sis_ccc\libreriaCCC\fncCCC::getId(); 
+                    echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu, 30);                  
                 ?>
-                    @if(( $avatar!='') && ($avatar!=null))
-                    <img src="{{ $avatar }}" class="img-circle" alt="Avatar">
-                    @else 
-                    @yield('usuico')
-                    @endif
-                
             </div>
             <div class="pull-left info">
                 <p>@yield('usuccc')</p>
@@ -46,22 +40,32 @@
                 </a>
             </li> 
             
-            <li class="<?php echo ((Route::current()->getName() == 'Secr.libreta'))? "active":"";?>">
-                <a href="{{ route('Secr.libreta')}}">
-                  <i class="fa fa-file-text"></i> <span>Libretas</span>
-                  <span class="pull-right-container">
-                    <small class="label pull-right bg-green">subir</small>
-                  </span>
-                </a>
-            </li>
-            <li class="<?php echo ((Route::current()->getName() == 'Secr.Avatar'))? "active":"";?>">
-                <a href="{{ route('Secr.Avatar') }}">                    
-                    <i class="fa fa-file-image-o" aria-hidden="true"></i> <span>Subir Avatar</span>
-                    <span class="pull-right-container">
-                        <small class="label pull-right bg-green">subir</small>
-                    </span>         
-                </a>
-            </li> 
+            <li class="treeview <?php echo ((Route::current()->getName() == 'Secr.libreta'))? "active":"";?><?php echo ((Route::current()->getName() == 'Secr.Avatar'))? "active":"";?>">
+                    <a href="#">
+                        <i class="fa fa-th"></i> <span>Subir Documentos</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="<?php echo ((Route::current()->getName() == 'Secr.libreta'))? "active":"";?>">
+                            <a href="{{ route('Secr.libreta')}}">
+                            <i class="fa fa-file-text"></i> <span>Libretas</span>
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-green">subir</small>
+                            </span>
+                            </a>
+                        </li>
+                        <li class="<?php echo ((Route::current()->getName() == 'Secr.Avatar'))? "active":"";?>">
+                            <a href="{{ route('Secr.Avatar') }}">                    
+                                <i class="fa fa-file-image-o" aria-hidden="true"></i> <span>Avatar</span>
+                                <span class="pull-right-container">
+                                    <small class="label pull-right bg-green">subir</small>
+                                </span>         
+                            </a>
+                        </li> 
+                    </ul>
+            </li>            
             
             <li class="<?php echo ((Route::current()->getName() == 'Secr.reportes'))? "active":"";?>">
                 <a href="{{ route('Secr.reportes') }}">

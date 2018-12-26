@@ -233,7 +233,7 @@ order by nm.gmat_materia ASC');
 
     public static function list_Docentes_sinA() {
         $lisDocente = DB::select('Select 
-                u.id, u.ape_paterno, u.ape_materno, u.nombre 
+                u.id, u.ape_paterno, u.ape_materno, u.nombre, u.libreta 
                 from users as u
                 left join prof_materia as pm on u.id = pm.user_id
                 where (u.tipo_Usu= "Prof") and (pm.user_id is null) 
@@ -247,7 +247,7 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
      */
 
     public static function list_Docentes($nivel) {
-        $lisDocente = DB::select("select distinct u.id, u.ape_paterno, u.ape_materno, u.nombre 
+        $lisDocente = DB::select("select distinct u.id, u.ape_paterno, u.ape_materno, u.nombre, u.libreta 
         From users as u
             inner join prof_materia as pm on u.id = pm.user_id
             left join grd_nivel_materia as gnm on pm.gmat_id = gnm.gmat_id 

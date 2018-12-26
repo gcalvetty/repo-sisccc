@@ -60,15 +60,8 @@
         
         <script>
             $(function () {
-                $("#example1").DataTable();
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false
-                });
+                $("#example1").DataTable();                
+                $("#example2").DataTable();                
             });
             
 
@@ -80,36 +73,38 @@ new Vue({
     data: {
         listado: [],
         errors: [],
+        urlAux: '<?php echo ($NivelSel != 0)? "":"contador/"; ?>',
     },
     mounted: function () { //cuando se cargo la pagina
         $(".desbot").hide();
     },
     methods: {
         getAlum: function () {
-            var urlAlum = "contador/bloquear";            
+
+            var urlAlum = this.urlAux+"bloquear";            
             axios.get(urlAlum).then(response => {
                 this.listado = response.data;
             });
             },        
         ActAlm: function () {},
         bloqAlm: function (AlumId) {            
-            var url = "contador/bloquear/alumno/"+AlumId+"/blodes/1";
-            $("#" + AlumId + " .desbot.btndesbloq" + AlumId).show();
-            $("#" + AlumId + " .actbot.btnbloq" + AlumId).hide();
+            var url = this.urlAux+"bloquear/alumno/"+AlumId+"/blodes/1";
+            $("#"+AlumId+" .desbot.btndesbloq"+AlumId).show();
+            $("#"+AlumId+" .actbot.btnbloq"+AlumId).hide();
             
-            $("#" + AlumId + " .actbot.btndesbloq" + AlumId).show();
-            $("#" + AlumId + " .desbot.btnbloq" + AlumId).hide();
+            $("#"+AlumId+" .actbot.btndesbloq"+AlumId).show();
+            $("#"+AlumId+" .desbot.btnbloq"+AlumId).hide();
             axios.get(url).then(response => {
                 toastr.success('Alumno Bloqueado');
             });            
         },
         desbloqAlm: function (AlumId) {             
-            var url = "contador/bloquear/alumno/" + AlumId+"/blodes/2";
-            $("#" + AlumId + " .actbot.btnbloq" + AlumId).show();
-            $("#" + AlumId + " .desbot.btndesbloq" + AlumId).hide();
+            var url = this.urlAux+"bloquear/alumno/"+AlumId+"/blodes/2";
+            $("#"+ AlumId+" .actbot.btnbloq"+ AlumId).show();
+            $("#"+ AlumId+" .desbot.btndesbloq"+ AlumId).hide();
             
-            $("#" + AlumId + " .actbot.btndesbloq" + AlumId).hide();
-            $("#" + AlumId + " .desbot.btnbloq" + AlumId).show();
+            $("#"+AlumId+" .actbot.btndesbloq"+ AlumId).hide();
+            $("#"+AlumId+" .desbot.btnbloq"+ AlumId).show();
             axios.get(url).then(response => {
                 toastr.success('Alumno DesBloqueado');                
             });

@@ -115,26 +115,30 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Curso</th>
-                                    <th>Paralelo</th>
+                                    <th>N°</th>
                                     <th>Alumno</th>                                    
+                                    <th>Curso</th>
                                     <th>Estado</th>                  
                                     <th>Editar</th>                                    
                                     <th>Apoyos</th>
                                     <th>Mas</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach($Lista as $Alumno)
-                                <tr>
-                                    <td>{{ $Alumno->id }}</td>  
-                                    <td>{{ $Alumno->curso }}</td>
-                                    <td>{{ $Alumno->aula }}</td>
-                                    <td>
-                                        <div class="col-md-6"><b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}, {{ $Alumno->nombre }}</b></div>
-
-                                    </td>
+                            <?php $aux = 1 ?>
+                                    @foreach($Lista as $Alumno)
+                                    <tr>
+                                        <td>{{ $aux++ }}</td>  
+                                        <td>
+                                               <div class="col-md-2">                                            
+                                                    <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
+                                                </div>
+                                                <div class="col-md-9 text-left">
+                                                <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
+                                                </div>    
+                                        </td>
+                                        <td>
+                                                {{ $Alumno->curso }} - {{ $Alumno->aula }}    
+                                        </td>
                                     <td>
                                         @if ($Alumno->estado == "Inscrito")
                                         <span class="label label-success">{{ $Alumno->estado }}</span>

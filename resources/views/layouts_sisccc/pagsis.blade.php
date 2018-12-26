@@ -41,21 +41,14 @@
         </script>
     </head>
     <body class="sidebar-mini skin-green wysihtml5-supported"> 
-
         <div class="wrapper">
             @if (Auth::guest())       		
             @else     
             {!! Html::menuccc() !!}
             @endif
-
-
             @yield('sis_menu_lateral')
-
             @yield('sis_contenido')
-
             @yield('menu-configuracion')
-
-
         </div>
         <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=tjcHah7sB34YguDSZ8X4JxpC77rb3bQ4P8C4ujVW6W4G62t3N98vnkXKWzs6"></script></span>
         <!-- jQuery 3.1.1 -->
@@ -80,14 +73,7 @@
         <script>
             $(function () {
                 $("#example1").DataTable();
-                $('#example2').DataTable({
-                    "paging": true,
-                    "lengthChange": false,
-                    "searching": false,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": false
-                });
+                $('#example2').DataTable();
             });
         </script>
          @if((Route::current()->getName() == 'Dir.Reg')||

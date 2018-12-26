@@ -216,14 +216,8 @@ class SecrController extends Controller {
         $validatedData = $request->validate([
             'ArcPdf' => 'required|file|mimes:pdf',
         ]);
-
         if ($request->file('ArcPdf')) {
-            //--- almacebar Libreta del estudiante
-            $alm = User::find($request->idAlum);
-            $ruta= 'uploads/'.$alm->tipo_Usu.'/'.$request->idAlum.'';
-            $path = Storage::disk('publicLib')->putFileAs($ruta, $request->file('ArcPdf'),'libreta-'.self::$gyear.'.pdf');
-            $alm->libreta = asset($path);
-            $alm->save();            
+            $ruta= fGECN::constRuta(1, $request->idAlum, $request->file('ArcPdf'));                  
         }
         return redirect()->route('Secr.libreta')->with('info', 'Guardado Correctamente');
     }
@@ -258,21 +252,8 @@ class SecrController extends Controller {
             'usuNombre' => $usuNom, 
         ]);
     }
-    public function storeAvatar(Request $request){
-        $image_file = $request->imgAvatar;
-        list($type, $image_file) = explode(';', $image_file);
-        list(, $image_file)      = explode(',', $image_file);
-        $image_file = base64_decode($image_file);
-        $image_name= 'avatar-'.self::$gyear.'.png';
-
-        $usuAva = User::find($request->idUsu);   
-        $rutaImg = 'uploads/'.$usuAva->tipo_Usu.'/'.$request->idUsu.'/'.$image_name;       
-        $usuAva->avatar = asset($rutaImg);
-        $usuAva->save();        
-        
-        //Funciona ->         
-        Storage::disk('publicLib')->put($rutaImg, $image_file);
-        
+    public function storeAvatar(Request $request){        
+        fGECN::constRuta(2, $request->idUsu, $request->imgAvatar);        
         return response()->json([$request->all()]);          
     }
 

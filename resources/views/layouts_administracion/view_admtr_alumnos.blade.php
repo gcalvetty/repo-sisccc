@@ -31,7 +31,7 @@
 
     <section class="content">        
         <div class="row">
-            <div class="col-xs-12">
+                <div class="col-md-8 col-md-push-2">
 
                 <div class="box">
                     <div class="box-header">
@@ -42,28 +42,28 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Curso</th>
-                                    <th>Paralelo</th>
+                                    <th>N°</th>                                    
                                     <th>Alumno</th>                                    
-                                                   
-                                    
-                                    <th>Apoyos</th>
-                                    
+                                    <th>Curso</th>
+                                    <th>Apoyos</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $aux = 1 ?>
                                 @foreach($Lista as $Alumno)
                                 <tr>
-                                    <td>{{ $Alumno->id }}</td>  
-                                    <td>{{ $Alumno->curso }}</td>
-                                    <td>{{ $Alumno->aula }}</td>
+                                    <td>{{ $aux++ }}</td>                                                                         
                                     <td>
-                                        <div class="col-md-6"><b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}, {{ $Alumno->nombre }}</b></div>
-
+                                        <div class="col-md-2">                                            
+                                                <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 35) ?>
+                                        </div>
+                                        <div class="col-md-9 text-left">
+                                            <b>{{ $Alumno->ape_paterno.' '.$Alumno->ape_materno.' '.$Alumno->nombre }}
+                                        </div>
                                     </td>
-                                    
-                                       
+                                    <td>                                                
+                                            {{ $Alumno->curso }} - {{ $Alumno->aula }}    
+                                    </td>
                                     @if ($Alumno->estado == "No Inscrito")
                                     <td>
                                         <a href="#" target="_blank" class="btn btn-large disabled"><i class="fa fa-print fa-fw" aria-hidden="true"></i></a>
@@ -77,6 +77,8 @@
                                         <div class="col-md-4"  data-toggle="tooltip" data-placement="top"  title="Ver Libreta">
                                             @if ($Alumno->libreta !='')
                                             <a href="{{ $Alumno->libreta }}" class="btn btn-yahoo" target="_blank"><i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i></a>                                        
+                                            @else
+                                            <i class="fa fa-file-pdf-o fa-lg" aria-hidden="true"></i>
                                             @endif
                                         </div>
                                         <div class="col-md-4" data-toggle="tooltip" data-placement="top"  title="Ver Acceso">

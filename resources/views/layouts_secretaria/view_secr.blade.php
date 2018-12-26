@@ -125,20 +125,29 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Curso</th>
+                                    <th>N°</th>
                                     <th>Alumno</th>   
+                                    <th>Curso</th>                                   
                                     <th>Editar</th>
                                     <th>Imprimir</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($Lista as $Alumno)
-                                <tr>
-                                    <td>{{ $Alumno->id }}</td>  
-                                    <td>{{ $Alumno->curso }} - {{ $Alumno->aula }}</td>
-                                    <td>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</td>
-
+                                    <?php $aux = 1 ?>
+                                    @foreach($Lista as $Alumno)
+                                    <tr>
+                                        <td>{{ $aux++ }}</td>  
+                                        <td>
+                                               <div class="col-md-2">                                            
+                                                    <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
+                                                </div>
+                                                <div class="col-md-9 text-left">
+                                                <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
+                                                </div>    
+                                        </td>
+                                        <td>                                                
+                                                {{ $Alumno->curso }} - {{ $Alumno->aula }}    
+                                        </td>
                                     <td style="text-aling:center">
                                         <a href="{{ route('rude-s.edit', ['alumno' => $Alumno->id]) }}"><i class="fa fa-pencil-square-o   fa-lg" aria-hidden="true"></i></a>
                                     </td>    

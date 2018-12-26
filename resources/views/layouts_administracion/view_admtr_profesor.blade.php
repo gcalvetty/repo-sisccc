@@ -31,7 +31,7 @@
 
     <section class="content">        
         <div class="row">
-            <div class="col-xs-12">
+                <div class="col-md-8 col-md-push-2">
 
                 <div class="box">
                     <div class="box-header">
@@ -42,18 +42,35 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID</th>                                                                  
-                                    <th>Nombre</th>                                                                        
+                                    <th>N°</th>                                                                  
+                                    <th>Nombre</th>
+                                    <th>C.V.</th>                                                                        
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $aux = 1 ?>
                                 @foreach($Lista as $Docente)
                                 <tr>
-                                    <td>{{ $Docente->id }}</td>                                      
-                                    <td>{{ $Docente->ape_paterno.' '.$Docente->ape_materno.' '.$Docente->nombre }}</td>
+                                    <td>{{ $aux++ }}</td>                                                                         
+                                    <td>
+                                        <div class="col-md-2">                                            
+                                                <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Docente->id, 35) ?>
+                                        </div>
+                                        <div class="col-md-9 text-left">
+                                            <b>{{ $Docente->ape_paterno.' '.$Docente->ape_materno.' '.$Docente->nombre }}
+                                        </div>
+                                    </td>
+                                    <td>                                        
+                                        @if(($Docente->libreta!='') || ($Docente->libreta!=null))
+                                        <div data-toggle="tooltip" data-placement="top" title="Ver C.V.">
+                                            <a href="{{ $Docente->libreta }}" class="btn btn-yahoo" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> 
+                                        </div>
+                                        @else                                                                                                                        
+                                            <i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> 
+                                        @endif 
+                                    </td>
                                 </tr>
-                                @endforeach  
-
+                                @endforeach
                                 </tfoot>
                         </table>
                     </div>

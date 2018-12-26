@@ -9,14 +9,8 @@
             <div class="pull-left image">
                 <?php 
               $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();
-              $avatar = sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu); 
+              echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu, 30);         
             ?>
-                @if(( $avatar!='') && ($avatar!=null))
-                <img src="{{ $avatar }}" class="img-circle" alt="Avatar">
-                @else 
-                @yield('usuico')
-                @endif
-            
         </div>
             <div class="pull-left info">
                 <p>@yield('usuccc')</p>

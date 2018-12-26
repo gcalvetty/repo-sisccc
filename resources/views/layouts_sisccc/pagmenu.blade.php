@@ -21,16 +21,10 @@
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <?php 
-                  $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();
-                  $avatar = sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu); 
-                ?>
-                @if(( $avatar!='') && ($avatar!=null))
-                <img src="{{ $avatar }}" class="img-circle" alt="Avatar" height="350" width="350">
-                @else 
-                <img src="{{ asset('imagenes/avatar/user-ccc-peq.png')}}" class="img-circle" alt="Avatar" height="350" width="350">
-                @endif
-
+              <?php 
+                $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();                 
+                echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu,200);
+              ?>              
                 <p>
                   @yield('usuccc')
                   <small>@yield('Titulo')</small>

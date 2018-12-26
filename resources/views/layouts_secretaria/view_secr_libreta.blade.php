@@ -42,30 +42,36 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Curso</th>
-                                    <th>Paralelo</th>
+                                    <th>N°</th>
                                     <th>Alumno</th>
-                                    <th>Libreta</th>                                    
-
+                                    <th>Curso</th>                                                                        
+                                    <th>Libreta</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $aux = 1 ?>
                                 @foreach($Lista as $Alumno)
                                 <tr>
-                                    <td>{{ $Alumno->id }}</td>  
-                                    <td>{{ $Alumno->curso }}</td>
-                                    <td>{{ $Alumno->aula }}</td>
-                                    <td><b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</td>
+                                    <td>{{ $aux++ }}</td>  
+                                    <td>
+                                           <div class="col-md-2">                                            
+                                                <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
+                                            </div>
+                                            <div class="col-md-9 text-left">
+                                            <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
+                                            </div>    
+                                    </td>
+                                    <td>
+                                            {{ $Alumno->curso }} - {{ $Alumno->aula }}                                                                   
+                                    </td>
                                     <td>
                                         <a href="{{ route('Secr.sublib', ['alumno' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
                                         @if(($Alumno->libreta!='') || ($Alumno->libreta!=null))
                                         &nbsp;<a href="{{ $Alumno->libreta }}" target="_blanck"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> 
                                         @endif   
-                                    </td>                                    
-                                    @endforeach    
+                                    </td>
                                 </tr>
-
+                                @endforeach    
                             </tbody>
                         </table>
                     </div>

@@ -1,4 +1,4 @@
-@extends('layouts_sisccc.pagsis')
+@extends('layouts_sisccc.pagsis_secretaria_subirarchivo')
 @section('titulo','Secretaría | Subir Libreta')
 @section('usuccc')
 {{ $usuactivo }}
@@ -31,7 +31,7 @@
     <section class="content">
         <div class="row">
 
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Subir Libreta Formato PDF: <i class="fa fa-file-pdf-o" aria-hidden="true"></i></div>

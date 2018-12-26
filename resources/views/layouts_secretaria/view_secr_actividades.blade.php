@@ -1,5 +1,5 @@
 @extends('layouts_sisccc.pagsis_cal_actividad')
-@section('titulo','Secretaria')
+@section('titulo','Secretaria') 
 @section('usuccc')
 {{ $usuactivo }}
 @endsection

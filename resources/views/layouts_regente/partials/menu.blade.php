@@ -5,16 +5,10 @@
         <div class="user-panel">
             <div class="pull-left image">
                 <?php 
-              $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();
-              $avatar = sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu); 
-            ?>
-                @if(( $avatar!='') && ($avatar!=null))
-                <img src="{{ $avatar }}" class="img-circle" alt="Avatar">
-                @else 
-                @yield('usuico')
-                @endif
-            
-        </div>
+                    $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();
+                    echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu, 30);                   
+                ?>                
+            </div>
             <div class="pull-left info">
                 <p>@yield('usuccc')</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Conectado</a>

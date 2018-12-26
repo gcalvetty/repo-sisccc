@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"><head> 
+<html lang="es"><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,26 +23,19 @@
 
         <link href="/dist/css/AdminLTE.css" rel="stylesheet">          
         <link href="/dist/css/skins/_all-skins.css" rel="stylesheet">
-        <!-- DataTables -->
-        <link rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css">
+
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
         <!-- Scripts -->
-
-        <!-- datagrip -->
-        <link href="/css/jquery-ui.css" rel="stylesheet" type="text/css" >
-        <!-- fullCalendar 2.2.5-->               
-        <link rel="stylesheet" href="../plugins/fullcalendar/fullcalendar.min.css">
-        <link rel="stylesheet" href="../plugins/fullcalendar/fullcalendar.print.css" media="print">
-
         <script>
             window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
         </script>
     </head>
-    <body class="sidebar-mini skin-green wysihtml5-supported">
-        <div class="wrapper">
+    <body class="sidebar-mini skin-green wysihtml5-supported"> 
+
+        <div class="wrapper" id="docentes">
             @if (Auth::guest())       		
             @else     
             {!! Html::menuccc() !!}
@@ -52,12 +45,10 @@
             @yield('menu-configuracion')            
         </div>      
 
-
         <!-- jQuery 3.1.1 -->
         <script src="/jquery/jquery-3.1.1.min.js"></script>    
         <!-- jQuery UI 1.11.4 -->
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-        <script src="/plugins/jQueryUI/jquery-ui.js" type="text/javascript"></script>
 
         <!-- DataTables -->
         <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
@@ -69,16 +60,22 @@
 
         <!-- Bootstrap 3.3.6 -->
         <script src="/bootstrap/js/bootstrap.min.js"></script>
-        <script src="/dist/js/app.min.js"></script>
-        <script src="/jquery/vue.js"></script>
-        <script src="/jquery/axios.js"></script>
+        <script src="/dist/js/app.min.js"></script>        
+        <script src="/dist/js/ccc-escritorio.js"></script>
+        <script src="/jquery/moment.js" type="text/javascript"></script>
+        <script src="/jquery/vue.js" type="text/javascript"></script>        
+        <script src="/jquery/vee-validate.js" type="text/javascript"></script>              
+        <script src="/jquery/vue-datepicker/vuejs-datepicker.min.js" type="text/javascript"></script>
+     
+       
         <script src="/jquery/toastr.js" type="text/javascript"></script>
-        
-        @if((Route::current()->getName() == 'Secr.actividades') or 
-            (Route::current()->getName() == 'Admtr.secactividades'))        
-            <script src="/jquery/moment.js" type="text/javascript"></script>                   
-            <script src="/jquery/vee-validate.js" type="text/javascript"></script>
-            <script src="/jquery/vue-datepicker/vuejs-datepicker.min.js" type="text/javascript"></script>
-            <script src="/jquery/ccc-secretaria-actividad.js" type="module"></script>                     
-        @endif    
+        <!-- TextArea -->
+        <script src="/jquery/ckeditor/ckeditor.js"></script>          
+        <script src="/jquery/ckeditor/js/sample.js"></script>
+        <script type="module">
+            import esGECN from '/jquery/vue-datepicker/es.js';            
+            $(function () {
+                $("#example1").DataTable();                
+            });            
+        </script>
     </body>
