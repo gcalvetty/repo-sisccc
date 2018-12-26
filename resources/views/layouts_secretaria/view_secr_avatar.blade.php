@@ -59,7 +59,7 @@
                                         {{ $Alumno->curso }} - {{ $Alumno->aula }}                                        
                                     </td>
                                     <td>                                        
-                                        <a href="{{ route('Secr.subAvatar', ['idUsu' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a>
+                                            <a href="{{ route('Secr.subAvatar', ['idUsu' => $Alumno->id,'opc'=>3]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a>
                                     </td>                                
                                 @endforeach
                                 </tr>    
@@ -70,49 +70,48 @@
                 </div>
                 <!-- /.box -->
             </div>
-            <div class="col-md-6 col-sm-12 col-xs-12">
-    
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Lista de Personal</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <table id="example2" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>N°</th>
-                                        <th>Nombre</th>
-                                        <th>Tipo</th>                                        
-                                        <th>Avatar</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $aux = 1 ?>
-                                    @foreach($Lista2 as $Alumno)                                    
-                                    <tr>                                        
-                                        <td>{{ $aux++ }}</td>
-                                        <td>
-                                            <div class="col-md-3">
-                                                <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30); ?>
-                                            </div>
-                                            <div class="col-md-9 text-left">
-                                                <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</b>
-                                            </div>
-                                        </td>    
-                                        <td>{{ $Alumno->tipo_Usu }}</td>                                        
-                                        <td>                                            
-                                            <a href="{{ route('Secr.subAvatar', ['idUsu' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
-                                        </td>                                                                             
-                                    </tr>    
-                                    @endforeach  
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
+            <div class="col-md-6 col-sm-12 col-xs-12">    
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Lista de Personal</h3>
                     </div>
-                    <!-- /.box -->
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example2" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>N°</th>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>                                        
+                                    <th>Avatar</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $aux = 1 ?>
+                                @foreach($Lista2 as $Alumno)                                    
+                                <tr>                                        
+                                    <td>{{ $aux++ }}</td>
+                                    <td>
+                                        <div class="col-md-3">
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30); ?>
+                                        </div>
+                                        <div class="col-md-9 text-left">
+                                            <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</b>
+                                        </div>
+                                    </td>    
+                                    <td>{{ $Alumno->tipo_Usu }}</td>                                        
+                                    <td>
+                                        <a href="{{ route('Secr.subAvatar', ['idUsu' => $Alumno->id,'opc'=>3]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a>
+                                    </td>                                                                             
+                                </tr>    
+                                @endforeach  
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
+                <!-- /.box -->
+            </div>
             <!-- /.col -->
         </div>
         <!-- /.row -->

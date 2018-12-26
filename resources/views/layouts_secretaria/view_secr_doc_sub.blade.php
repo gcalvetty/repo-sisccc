@@ -19,7 +19,9 @@
 <div class="content-wrapper">    	
     <!-- Content Header (Page header) -->
     <section class="content-header">      
-        <h1>Subir Libreta:</h1> 
+        <h1>
+            Subir Documento:            
+        </h1> 
 
         {!! Breadcrumbs::render() !!}
     </section>  
@@ -29,14 +31,14 @@
         <div class="row">
             <div class="col-md-8 col-xs-push-2">
                 <div class="panel panel-success">
-                    <div class="panel-heading">Subir la libreta de: <b>{{ $usuNombre }}</b></div>
+                    <div class="panel-heading">Subir el Documento de: <b>{{ $usuNombre }}</b></div>
                         <div class="panel-body">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     Subir Libreta Formato PDF: <i class="fa fa-file-pdf-o" aria-hidden="true"></i></div>
                                 <div class="panel-body">
-                                    {!! Form::open(['route'=>'Secr.subirPdf','files'=>true]) !!}
-                                    @include('layouts_secretaria.partials.form_libreta')
+                                    {!! Form::open(['route'=>'Secr.subirdocPdf','files'=>true]) !!}
+                                    @include('layouts_secretaria.partials.form_doc')
                                     {!! Form::close() !!}
                                 </div>
                             </div>

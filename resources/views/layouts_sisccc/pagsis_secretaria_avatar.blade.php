@@ -91,8 +91,13 @@
                 boundary: {
                     width: 300,
                     height: 300
-                }
+                },
+                url: '<?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu, 300); ?>',
             });
+
+
+
+
             $('#image_file').on('change', function () { 
               var reader = new FileReader();
                 reader.onload = function (e) {
@@ -119,7 +124,20 @@
                 })
                 .then(function (response) {
                     console.log(response);
-                    toastr.success('Avatar Subido');    
+                    toastr.success('Avatar Subido');
+                    <?php
+                        $url='';
+                        switch($opc){
+                            case 1: $url=Route('Secr.libreta');
+                            break;                            
+                            case 2: $url=Route('Secr.doc');
+                            break;                            
+                            case 3: $url=Route('Secr.Avatar');
+                            break;                            
+                        }
+                    ?>
+                    location.href = "<?php echo $url; ?>";
+                    
                 })
                 .catch(function (error) {
                     console.log(error);

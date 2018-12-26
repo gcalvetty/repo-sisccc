@@ -19,25 +19,23 @@
 <div class="content-wrapper">    	
     <!-- Content Header (Page header) -->
     <section class="content-header">      
-        <h1>
-            Escritorio:
-            <small>Bienvenido!!!</small>
-        </h1> 
-
+        <h1>Subir Avatar</h1> 
         {!! Breadcrumbs::render() !!}
     </section>  
 
 
-    <section class="container">
+    <section class="content">
         <div class="row">
-
             <div class="col-md-12">
                 <div class="panel panel-success">
-                    <div class="panel-heading">Subir el Avatar de: <b>{{ $usuNombre }}</b></div>
+                    <div class="panel-heading">
+                        <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu, 30); ?>                        
+                        <b>{{ $usuNombre }}</b></div>
                         <div class="panel-body">
                           <div class="row">
                             <div class="col-md-4 text-center">
-                                <div id="upload-demo"></div>
+                                <div id="upload-demo">                                        
+                                </div>
                             </div>
                             <div class="col-md-4" style="padding:5%;">
                                 <strong>Seleccionar una Imagen:</strong>
@@ -46,14 +44,11 @@
                             </div>
                             <div class="col-md-4">
                                 <div id="preview-crop-image" style="background:#9d9d9d;width:300px;padding:50px 50px;height:300px;"></div>
-                            </div>
+                            </div>                            
                         </div>
                     </div>
-                </div> 
-                                    
+                </div>              
             </div>
-            
-            
         </div>
         <!-- /.row -->
     </section>

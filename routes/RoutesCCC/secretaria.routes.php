@@ -24,6 +24,11 @@ Route::get('/libreta',[
     'uses' => 'SecrController@verlibreta'    
 ]);
 
+Route::get('/documento',[ 
+    'as' => 'Secr.doc',
+    'uses' => 'SecrController@verdocumento'    
+]);
+
 Route::get('/reportes', [
     'as' => 'Secr.reportes',
     'uses' => 'SecrController@verReportes']);
@@ -49,13 +54,25 @@ Route::get('/subir/libreta/{alumno}',
 Route::post('/subir/libreta/guardar', 
         array('uses' => 'SecrController@storeLibreta',
               'as' => 'Secr.subirPdf'));
+              
+/*
+ * Doc Subir
+ */
+Route::get('/subir/documento/{idUsu}', 
+        array('uses' => 'SecrController@editdocumento',
+              'as' => 'Secr.subdoc'))->where(['idUsu'=>'[0-9]+']);
+
+Route::post('/subir/documento/guardar', 
+        array('uses' => 'SecrController@storeDocumento',
+                'as' => 'Secr.subirdocPdf'));
+
 /*
 * Avatar
 */      
 
-Route::get('/subir/avatar/{idUsu}', 
+Route::get('/subir/avatar-{idUsu}-{opc}', 
         array('uses' => 'SecrController@editAvatar',
-              'as' => 'Secr.subAvatar'))->where(['idUsu'=>'[0-9]+']);
+              'as' => 'Secr.subAvatar'))->where(['idUsu'=>'[0-9]+','opc'=>'[0-9]+']); //---1: Alumno --- 2: Personal --- 3: Avatar
 
 Route::post('/subir/avatar/guardar', 
         array('uses' => 'SecrController@storeAvatar',

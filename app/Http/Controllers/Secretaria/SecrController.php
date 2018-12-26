@@ -197,18 +197,19 @@ class SecrController extends Controller {
 
     public function editlibreta(Request $request) {
         $sql = new qGECN;
-        $lGECN = $sql::listAlumn($request);
-        $lGECNcnt = $sql::listAlumnXAul($request);
+        $lGECN = $sql::listAlumn($request);        
         $lgestion = self::$gyear;
         $Niveles = Grd_Nivel::get();
-        $user = fGECN::obt_nombre();
+        $user = fGECN::obt_nombre();        
+        $usuNom = fGECN::usuNom($request->alumno);
+        
         return view('layouts_secretaria/view_secr_libreta_sub', [
             'usuactivo' => $user,
             'Lista' => $lGECN,
-            'Niveles' => $Niveles,
-            
+            'Niveles' => $Niveles,            
             'Gestion' => $lgestion,
             'IdAlum' => $request->alumno,
+            'usuNombre' => $usuNom,
         ]);
     }
 
@@ -244,17 +245,62 @@ class SecrController extends Controller {
         $lgestion = self::$gyear;        
         $user = fGECN::obt_nombre();
         $usuNom = fGECN::usuNom($request->idUsu);
-        
         return view('layouts_secretaria/view_secr_avatar_sub', [
             'usuactivo' => $user,
             'Gestion' => $lgestion,
             'idUsu' => $request->idUsu,
-            'usuNombre' => $usuNom, 
+            'usuNombre' => $usuNom,
+            'opc' => $request->opc,
         ]);
     }
     public function storeAvatar(Request $request){        
-        fGECN::constRuta(2, $request->idUsu, $request->imgAvatar);        
+        fGECN::constRuta(2, $request->idUsu, $request->imgAvatar);          
         return response()->json([$request->all()]);          
+    }
+
+    /*
+     * Doc. del Personal
+     */
+
+    public function verdocumento(Request $request) {
+        $sql = new qGECN;
+        $lGECN = $sql::listUsu($request);        
+        $Niveles = Grd_Nivel::get();
+        $user = fGECN::obt_nombre();
+
+        return view('layouts_secretaria/view_secr_doc', [
+            'usuactivo' => $user,
+            'Lista' => $lGECN,
+            'Niveles' => $Niveles,                        
+            'Grd' => 0,
+        ]);
+    }
+
+    public function editdocumento(Request $request) {
+        $sql = new qGECN;
+        $lGECN = $sql::listUsu($request);        
+        $lgestion = self::$gyear;
+        $Niveles = Grd_Nivel::get();
+        $user = fGECN::obt_nombre();        
+        $usuNom = fGECN::usuNom($request->idUsu);
+        return view('layouts_secretaria/view_secr_doc_sub', [
+            'usuactivo' => $user,
+            'Lista' => $lGECN,
+            'Niveles' => $Niveles,
+            'usuNombre' => $usuNom, 
+            'Gestion' => $lgestion,
+            'idUsu' => $request->idUsu,
+        ]);
+    }
+
+    public function storeDocumento(Request $request) {
+        $validatedData = $request->validate([
+            'ArcPdf' => 'required|file|mimes:pdf',
+        ]);
+        if ($request->file('ArcPdf')) {
+            $ruta= fGECN::constRuta(3, $request->idUsu, $request->file('ArcPdf'));                  
+        }
+        return redirect()->route('Secr.doc')->with('info', 'Guardado Correctamente');
     }
 
 }

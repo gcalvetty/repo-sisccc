@@ -1,19 +1,18 @@
 @extends('layouts_sisccc.pagsis')
-@section('titulo','Administración - Profesores')	
+@section('titulo','Secretaría | Libreta')
 @section('usuccc')
 {{ $usuactivo }}
 @endsection
 @section('usuico')
-<i class="fa fa-desktop  fa-2x"></i>
+<i class="fa fa-skyatlas fa-2x"></i>
 @endsection
 @section('usuico-peq')
-<i class="fa fa-desktop fa-lg"></i>
+<i class="fa fa-skyatlas fa-lg"></i>
 @endsection
 
 @section('sis_menu_lateral')
-@include('layouts_administracion.partials.menu')
+@include('layouts_secretaria.partials.menu')
 @endsection
-
 
 @section('sis_contenido')
 <!-- Content Wrapper. Contains page content -->
@@ -29,49 +28,53 @@
     </section>  
 
 
-    <section class="content">        
+    <section class="content">
+
         <div class="row">
-                <div class="col-md-8 col-md-push-2">
+            <div class="col-xs-12">
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Lista de Profesores</h3>
+                        <h3 class="box-title">Lista de Personal</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="example2" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>N°</th>                                                                  
+                                    <th>N°</th>
                                     <th>Nombre</th>
-                                    <th>C.V.</th>                                                                        
+                                    <th>Tipo</th>
+                                    <th>Avatar</th>                                                                            
+                                    <th>C.V.</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $aux = 1 ?>
-                                @foreach($Lista as $Alumno)
-                                <tr>
-                                    <td>{{ $aux++ }}</td>                                                                         
+                                @foreach($Lista as $usuCCC)                                    
+                                <tr>                                        
+                                    <td>{{ $aux++ }}</td>
                                     <td>
-                                        <div class="col-md-2">                                            
-                                                <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 35) ?>
+                                        <div class="col-md-3">
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($usuCCC->id, 30); ?>
                                         </div>
                                         <div class="col-md-9 text-left">
-                                            <b>{{ $Alumno->ape_paterno.' '.$Alumno->ape_materno.' '.$Alumno->nombre }}
+                                            <b>{{ $usuCCC->ape_paterno }} {{ $usuCCC->ape_materno }} {{ $usuCCC->nombre }}</b>
                                         </div>
-                                    </td>
+                                    </td>    
+                                    <td>{{ $usuCCC->tipo_Usu }}</td>                                        
                                     <td>                                        
-                                        @if(($Alumno->libreta!='') || ($Alumno->libreta!=null))
-                                        <div data-toggle="tooltip" data-placement="top" title="Ver C.V.">
-                                            <a href="{{ $Alumno->libreta }}" class="btn btn-yahoo" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> 
-                                        </div>
-                                        @else                                                                                                                        
-                                            <i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> 
-                                        @endif 
+                                        <a href="{{ route('Secr.subAvatar', ['idUsu' => $usuCCC->id,'opc'=>2]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a>
                                     </td>
-                                </tr>
-                                @endforeach
-                                </tfoot>
+                                    <td>                                            
+                                        <a href="{{ route('Secr.subdoc', ['idUsu' => $usuCCC->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
+                                        @if(($usuCCC->libreta!='') || ($usuCCC->libreta!=null))
+                                        &nbsp;<a href="{{ $usuCCC->libreta }}" target="_blanck"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                        @endif 
+                                    </td>                                                                             
+                                </tr>    
+                                @endforeach  
+                            </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->

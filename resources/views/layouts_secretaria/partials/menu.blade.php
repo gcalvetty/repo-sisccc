@@ -40,7 +40,11 @@
                 </a>
             </li> 
             
-            <li class="treeview <?php echo ((Route::current()->getName() == 'Secr.libreta'))? "active":"";?><?php echo ((Route::current()->getName() == 'Secr.Avatar'))? "active":"";?>">
+            <li class="treeview <?php echo (
+                            (Route::current()->getName() == 'Secr.libreta')||
+                            (Route::current()->getName() == 'Secr.Avatar') ||
+                            (Route::current()->getName() == 'Secr.doc')                            
+                            )? "active":"";?>">
                     <a href="#">
                         <i class="fa fa-th"></i> <span>Subir Documentos</span>
                         <span class="pull-right-container">
@@ -51,6 +55,14 @@
                         <li class="<?php echo ((Route::current()->getName() == 'Secr.libreta'))? "active":"";?>">
                             <a href="{{ route('Secr.libreta')}}">
                             <i class="fa fa-file-text"></i> <span>Libretas</span>
+                            <span class="pull-right-container">
+                                <small class="label pull-right bg-green">subir</small>
+                            </span>
+                            </a>
+                        </li>
+                        <li class="<?php echo ((Route::current()->getName() == 'Secr.doc'))? "active":"";?>">
+                            <a href="{{ route('Secr.doc')}}">
+                            <i class="fa fa-file-text"></i> <span>Curriculum Vitae</span>
                             <span class="pull-right-container">
                                 <small class="label pull-right bg-green">subir</small>
                             </span>

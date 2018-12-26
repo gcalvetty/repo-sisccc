@@ -61,7 +61,7 @@ class fncCCC {
         $dt = Carbon::now();
         $gyear = $dt->year;
 
-        if($opc == 1){ // ---- .PDF ----
+        if($opc == 1){ // ---- libreta .PDF ----
             $path = Storage::disk('publicLib')->putFileAs($ruta, $file,'libreta-'.$gyear.'.pdf');            
             $usuReg->libreta = asset($path);          
         }   
@@ -76,7 +76,12 @@ class fncCCC {
             $usuReg->avatar = asset($rutaImg);
             //Funciona ->         
             Storage::disk('publicLib')->put($rutaImg, $image_file);            
-        }                                    
+        }
+        
+        if($opc == 3){ // ---- CV.PDF ----
+            $path = Storage::disk('publicLib')->putFileAs($ruta, $file,'cv.pdf');            
+            $usuReg->libreta = asset($path);          
+        }
         $usuReg->save();       
     }
 }

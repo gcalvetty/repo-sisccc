@@ -359,7 +359,7 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
     }
 
     public static function listUsu() {
-        $lisAlumno = User::select('id', 'nombre', 'ape_paterno', 'ape_materno', 'tipo_Usu', 'avatar')                
+        $lisAlumno = User::select('id', 'nombre', 'ape_paterno', 'ape_materno', 'tipo_Usu', 'avatar','libreta')                
                 ->where([
                         ['tipo_Usu', '<>', 'Est_ccc'],
                         ['tipo_Usu', '<>', 'SuperAdm']

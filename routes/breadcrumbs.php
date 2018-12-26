@@ -51,13 +51,23 @@ Breadcrumbs::register('Secr.sublib', function ($breadcrumbs) {
 });
 
 /* ------ */
+Breadcrumbs::register('Secr.doc', function ($breadcrumbs) {
+    $breadcrumbs->push('Documento', route('Secr.doc'));
+});
+
+Breadcrumbs::register('Secr.subdoc', function ($breadcrumbs) {
+    $breadcrumbs->parent('Secr.doc');
+    $breadcrumbs->push('Subir Documento', route('Secr.subdoc',['idUsu'=>1]));
+});
+
+/* ------ */
 Breadcrumbs::register('Secr.Avatar', function ($breadcrumbs) {
     $breadcrumbs->push('Avatar', route('Secr.Avatar'));
 });
 
 Breadcrumbs::register('Secr.subAvatar', function ($breadcrumbs) {
     $breadcrumbs->parent('Secr.Avatar');
-    $breadcrumbs->push('Subir Avatar', route('Secr.subAvatar',['id'=>1]));
+    $breadcrumbs->push('Subir Avatar', route('Secr.subAvatar',['id'=>1,'opc'=>1]));
 });
 
 

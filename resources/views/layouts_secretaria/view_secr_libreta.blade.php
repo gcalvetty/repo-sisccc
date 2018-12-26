@@ -44,7 +44,8 @@
                                 <tr>
                                     <th>N°</th>
                                     <th>Alumno</th>
-                                    <th>Curso</th>                                                                        
+                                    <th>Curso</th>
+                                    <th>Avatar</th>                                                                        
                                     <th>Libreta</th>
                                 </tr>
                             </thead>
@@ -63,6 +64,9 @@
                                     </td>
                                     <td>
                                             {{ $Alumno->curso }} - {{ $Alumno->aula }}                                                                   
+                                    </td>
+                                    <td>                                        
+                                            <a href="{{ route('Secr.subAvatar', ['idUsu' => $Alumno->id,'opc'=>1]) }}" ><i class="fa fa-upload" aria-hidden="true"></i></a>
                                     </td>
                                     <td>
                                         <a href="{{ route('Secr.sublib', ['alumno' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
