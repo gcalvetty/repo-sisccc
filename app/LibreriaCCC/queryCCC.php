@@ -155,7 +155,7 @@ order by curso asc, fec Desc
             $grd_nivel_aux ='and ge.grd_orden = '.$grd_nivel.' ';            
         }
         
-        $lisAluComp = DB::select('select rc.reg_id as id, u.nombre, u.ape_paterno, u.ape_materno, ge.grd_nombre as curso, rtc.regt_descripcion as tipcomp, rtt.regt_descripcion as tiptarj, rc.reg_obser as obser, rc.reg_fec as fec
+        $lisAluComp = DB::select('select u.id, u.nombre, u.ape_paterno, u.ape_materno, u.avatar, ge.grd_nombre as curso, rtc.regt_descripcion as tipcomp, rtt.regt_descripcion as tiptarj, rc.reg_obser as obser, rc.reg_fec as fec
 from users as u
 inner join reg_comportamiento as rc on rc.user_id = u.id
 left join reg_tipo_comportamiento as rtc on  rtc.regt_id = rc.reg_tipComp

@@ -33,21 +33,16 @@
             window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
         </script>
     </head>
-    <body class="sidebar-mini skin-green wysihtml5-supported sidebar-collapse"> 
+    <body class="sidebar-mini skin-green wysihtml5-supported"> 
 
         <div class="wrapper" id="docentes">
             @if (Auth::guest())       		
             @else     
             {!! Html::menuccc() !!}
             @endif
-
-
             @yield('sis_menu_lateral')
-
             @yield('sis_contenido')
-
             @yield('menu-configuracion')            
-
         </div>      
         <!-- jQuery 3.1.1 -->
         <script src="/jquery/jquery-3.1.1.min.js"></script>    

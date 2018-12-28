@@ -23,7 +23,7 @@
                     <i class="fa fa-th"></i> <span>Escritorio</span>            
                 </a>
             </li>
-            <li class="treeview">
+            <li class="<?php echo ((Route::current()->getName() == 'Psico.Comp'))? "active":"";?>">            
                 <a href="{{ route('Psico.Comp')}}">
                     <i class="fa fa-folder"></i> <span>Comportamiento</span>                    
                 </a>                

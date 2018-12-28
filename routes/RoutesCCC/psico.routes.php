@@ -11,7 +11,7 @@ Route::get('/comportamiento',[
 /*
  * CRUD
  */
-Route::get('/insComportamiento',[
+Route::post('/insComportamiento',[
     'as' => 'Psico.insCom',
     'uses' => 'PsicoController@insComportamiento',    
 ]);

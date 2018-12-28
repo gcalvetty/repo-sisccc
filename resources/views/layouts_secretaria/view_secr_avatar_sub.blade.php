@@ -26,7 +26,7 @@
 
     <section class="content">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10 col-xs-push-1">
                 <div class="panel panel-success">
                     <div class="panel-heading">
                         <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu, 30); ?>                        

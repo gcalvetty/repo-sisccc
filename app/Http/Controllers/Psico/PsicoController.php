@@ -10,6 +10,7 @@ use sis_ccc\libreriaCCC\queryCCC as qGECN;
 use sis_ccc\libreriaCCC\fncCCC as fGECN;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class PsicoController extends Controller {
     /*
@@ -36,7 +37,7 @@ class PsicoController extends Controller {
         $Niveles = Grd_Nivel::get();
         $user = fGECN::obt_nombre();
 
-        return view('layouts_psico/view_psico', [
+        return view('layouts_psico/view_psico_new', [
             'usuactivo' => $user,
             'Lista' => $lGECN,
             'ListaComp' => $lComp,
@@ -61,14 +62,22 @@ class PsicoController extends Controller {
     /*
      * CRUD
      */
-    public function insComportamiento(Request $req) {
+    public function insComportamiento(Request $req) {        
+        $validatedData = $req->validate([
+            'editor' => 'required',
+            'ArcDoc' => 'required|file|mimes:pdf',
+        ]);
         $data = $req->all();
-
         $dateBD = $this->setDateAttribute($data['fec']);
+        $ruta= fGECN::constRuta(4, $req->AlmId, $req->file('ArcDoc'));  
+        $path = Storage::disk('publicLib')->putFileAs($ruta, $req->file('ArcDoc'),'psico'.$dateBD.'.pdf');            
+        
+
         DB::Table('psico_comportamiento')->insert(
                 ['user_id' => $data['AlmId'],                    
-                    'reg_obser' => $data['editor'],
-                    'reg_fec' => $dateBD
+                 'reg_obser' => $data['editor'],
+                 'reg_fec' => $dateBD,
+                 'reg_doc' => asset($path),
                 ]
         );
         return redirect()->route('Psico.Reg')->withSuccess('OK');

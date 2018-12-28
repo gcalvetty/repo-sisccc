@@ -43,17 +43,18 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>N°</th>
-                                    <th>Comportamiento</th>
-                                    <th>Curso</th>
-                                    <th>Alumno</th> 
-                                    <th>Tarjeta</th> 
-                                    <th>Observacion</th>
-                                    <th>Fecha</th>
-                                    <th>Eliminar</th>                                    
+                                    <th class="col-md-1">N°</th>
+                                    <th class="col-md-4">Alumno</th> 
+                                    <th class="col-md-1">Curso</th>
+                                    <th class="col-md-1">Comportamiento</th>
+                                    <th class="col-md-1">Tarjeta</th> 
+                                    <th class="col-md-2">Observacion</th>
+                                    <th class="col-md-1">Fecha</th>
+                                    <th class="col-md-1">Eliminar</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $aux = 1 ?>                                
                                 @foreach($Lista as $Alumno)
                                 <?php
                                 $tipTar = "";
@@ -73,10 +74,17 @@
                                 }
                                 ?>
                                 <tr class="{{ $tipTar }}">
-                                    <td>{{ $Alumno->id }}</td>  
-                                    <td>{{ $Alumno->tipcomp }}</td>
+                                    <td>{{ $aux++ }}</td>                                     
+                                    <td>
+                                            <div class="col-md-2">                                            
+                                                    <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
+                                                </div>
+                                                <div class="col-md-9 text-left">
+                                                <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
+                                                </div>    
+                                    </td> 
                                     <td>{{ $Alumno->curso }} </td>
-                                    <td>{{ $Alumno->nombre }} {{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} </td>                                    
+                                    <td>{{ $Alumno->tipcomp }}</td>                                    
                                     <td>{{ $Alumno->tiptarj }}</td>
                                     <td><?php echo html_entity_decode($Alumno->obser) ?></td>
                                     <td>{{ $Alumno->fec }}</td>

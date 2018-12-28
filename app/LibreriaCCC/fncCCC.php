@@ -64,6 +64,7 @@ class fncCCC {
         if($opc == 1){ // ---- libreta .PDF ----
             $path = Storage::disk('publicLib')->putFileAs($ruta, $file,'libreta-'.$gyear.'.pdf');            
             $usuReg->libreta = asset($path);          
+            $usuReg->save(); 
         }   
 
         if($opc == 2){ // ---- Avatar ----            
@@ -76,12 +77,17 @@ class fncCCC {
             $usuReg->avatar = asset($rutaImg);
             //Funciona ->         
             Storage::disk('publicLib')->put($rutaImg, $image_file);            
+            $usuReg->save(); 
         }
         
         if($opc == 3){ // ---- CV.PDF ----
             $path = Storage::disk('publicLib')->putFileAs($ruta, $file,'cv.pdf');            
             $usuReg->libreta = asset($path);          
+            $usuReg->save(); 
         }
-        $usuReg->save();       
+
+        if($opc == 4){ // ---- Psicologo .Pdf, .Doc
+           return $ruta;
+        }             
     }
 }

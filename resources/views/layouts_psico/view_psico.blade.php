@@ -21,19 +21,16 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">      
         <h1>
-            Escritorio:
-            <small>Bienvenido!!!</small>
+            Lista de Alumnos
         </h1>
         <ol class="breadcrumb">
             <li><a href="/direccion/"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Escritorio</li>
         </ol>
-    </section>    
-
+    </section>
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Lista de Alumnos</h3>                        
@@ -44,20 +41,25 @@
                             <thead>
                                 <tr>
                                     <th>N°</th>
-                                    <th>Curso</th>
-                                    <th>Nombre</th> 
-                                    <th>Apellido</th> 
+                                    <th>Alumno</th>
+                                    <th>Curso</th>                                    
                                     <th>Conducta</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $aux = 1 ?>
                                 @foreach($Lista as $Alumno)
                                 <tr>
-                                    <td>{{ $Alumno->id }}</td>  
+                                    <td>{{ $aux++ }}</td>  
+                                    <td>
+                                            <div class="col-md-2">                                            
+                                                 <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
+                                             </div>
+                                             <div class="col-md-9 text-left">
+                                             <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
+                                             </div>    
+                                    </td>
                                     <td>{{ $Alumno->curso }} - {{ $Alumno->aula }}</td>
-                                    <td>{{ $Alumno->nombre }} </td>
-                                    <td>    
-                                    {{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} </td>
                                     <td>
                                         <button type="button" class="btn btn-danger" 
                                                 data-toggle="modal" 
@@ -66,7 +68,6 @@
                                                 data-nomalm=" {{ $Alumno->nombre }} {{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}">
                                             <i class="fa fa-edit"></i></button>
                                     </td>
-
                                     @endforeach    
                                 </tr>
 
@@ -101,17 +102,12 @@
                                 @if ($errors->has('fec'))<span class="help-block"><strong>{{ $errors->first('fec') }}</strong></span>@endif
                             </div>
                         </div>   
-                         <div class="col-lg-12">    
-
-                           
+                         <div class="col-lg-12">
                                 <textarea id="editor" name="editor" rows="5" cols="80" 
                                           v-bind:class="{'': true, 'has-error': errors.has('editor') }" 
-                                          data-vv-rules="required" >
-                                    
+                                          data-vv-rules="required" >                                    
                                 </textarea>
-                           
                         </div>
-                        
                         <input class="AlmId" id="AlmId" name="AlmId" value="" hidden="true">
                     </div>
                     <div class="modal-footer">
@@ -122,34 +118,7 @@
             </form>
         </div>
     </div>
-
-
-    <!-- /.content -->
-
 </div>
-<!-- /.content-wrapper -->
-<footer class="main-footer">
-    {!! Html::footer('siscccConfig.pie') !!}
-</footer>
+
 @endsection
 
-@section('menu-configuracion')
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home">1</i></a></li>      
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <!-- Home tab content -->
-        <div class="tab-pane" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Actividades Recientes</h3>
-        </div>
-    </div>
-</aside>
-<!-- /.control-sidebar -->
-<!-- Add the sidebar's background. This div must be placed
-     immediately after the control sidebar -->
-<div class="control-sidebar-bg"></div>
-@endsection

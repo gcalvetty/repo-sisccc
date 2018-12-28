@@ -18,11 +18,10 @@
 @section('sis_contenido')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">    	
-    <!-- Content Header (Page header) -->
+    
     <section class="content-header">      
         <h1>
-            Escritorio:1111
-            <small>Bienvenido!!!</small>
+            Lista de Alumnos
         </h1>
         <ol class="breadcrumb">
             <li><a href="/direccion/"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -32,7 +31,7 @@
 
     <section class="content">
         <div class="row">
-            <div class="col-md-8 col-md-push-2">
+            <div class="col-md-10 col-md-push-1">
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Lista de Alumnos</h3>                        
@@ -41,21 +40,28 @@
                     <div class="box-body ">
                         <table id="example1" class="table table-bordered table-striped ">
                             <thead>
-                                <tr>                                    
-                                    <th>Curso</th>
+                                <tr>
+                                    <th>N°</th>
                                     <th>Nombre</th> 
-                                    <th>Apellido</th> 
+                                    <th>Curso</th>                                    
                                     <th>Conducta</th> 
                                     <th>Reporte</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $aux = 1 ?>
                                 @foreach($Lista as $Alumno)
                                 <tr>                                    
+                                    <td>{{ $aux++ }}</td>                                     
+                                    <td>
+                                            <div class="col-md-2">                                            
+                                                 <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
+                                             </div>
+                                             <div class="col-md-9 text-left">
+                                             <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
+                                             </div>    
+                                    </td>
                                     <td>{{ $Alumno->curso }} - {{ $Alumno->aula }}</td>
-                                    <td>{{ $Alumno->nombre }} </td>
-                                    <td>    
-                                        {{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} </td>
                                     <td>
                                         <button type="button" class="btn btn-danger" 
                                                 data-toggle="modal" 
@@ -90,7 +96,7 @@
         </div>
         <!-- /.row -->
     </section>
-
+</div>
     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="EstudianteModal">
         <div class="modal-dialog" role="document" id="Comportamiento">            
             <form id="regente_frm" v-on:submit="validateBeforeSubmit" class="form-horizontal" role="form" action="{{route('Rege.insCom')}}">    
@@ -113,7 +119,7 @@
                                     </div>
                                     <span class="glyphicon  form-control-feedback" aria-hidden="true" v-bind:class="{'': true, 'glyphicon-remove': errors.has('fec') }"></span>
                                     @if ($errors->has('fec'))<span class="help-block"><strong>{{ $errors->first('fec') }}</strong></span>@endif
-                                </div>
+                                </div>                                
                             </div>
                             <div class="col-md-12 btn-tarjeta">                                
                                 <div class="btn-group">
@@ -125,7 +131,7 @@
                                     <ul class="dropdown-menu">
                                         <li v-for="option in tT.ts"><a href="#" v-bind:value="option.id" v-on:click="cambMem2(option.id,option.txt)">@{{ option.txt }}</a></li>                                    
                                     </ul>
-                                </div>
+                                </div>                                
 
                                 <div class="btn-group">
                                     <button v-on:click="cambTar(2);" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tarjeta Blanca</button>
@@ -136,7 +142,7 @@
                                     <ul class="dropdown-menu">
                                         <li v-for="option in tT.tb"><a href="#" v-bind:value="option.id" v-on:click="cambMem2(option.id,option.txt)">@{{ option.txt }}</a></li>                                    
                                     </ul>
-                                </div>
+                                </div>                                
 
                                 <div class="btn-group">
                                     <button v-on:click="cambTar(3);" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tarjeta Amarilla</button>
@@ -148,6 +154,7 @@
                                         <li v-for="option in tT.ta"><a href="#" v-bind:value="option.id" v-on:click="cambMem2(option.id,option.txt)">@{{ option.txt }}</a></li>                                    
                                     </ul>
                                 </div>
+                                
 
                                 <div class="btn-group">
                                     <button v-on:click="cambTar(4);" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Tarjeta Roja</button>
@@ -159,6 +166,7 @@
                                         <li v-for="option in tT.tr"><a href="#" v-bind:value="option.id" v-on:click="cambMem2(option.id,option.txt)">@{{ option.txt }}</a></li>                                    
                                     </ul>
                                 </div>
+                                
                             </div>
                             <div class="col-md-12 ">
                                 <div class="panel " v-bind:class="[ttarClass]" v-show="ttar.tarAct>0">
@@ -185,37 +193,12 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal" v-on:click="iniVal">Cerrar</button>
                         <button type="submit" class="btn btn-primary" v-bind:disabled="ttar.tarAct==0">Guardar</button>
                     </div>
+                    
             </form>
-        </div>
+        </div>            
     </div>
-
-
-    <!-- /.content -->
-
-</div>
-<!-- /.content-wrapper -->
+</div>    
 <footer class="main-footer">
-    {!! Html::footer('siscccConfig.pie') !!}
-</footer>
-@endsection
-
-@section('menu-configuracion')
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home">1</i></a></li>      
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <!-- Home tab content -->
-        <div class="tab-pane" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Actividades Recientes</h3>
-        </div>
-    </div>
-</aside>
-<!-- /.control-sidebar -->
-<!-- Add the sidebar's background. This div must be placed
-     immediately after the control sidebar -->
-<div class="control-sidebar-bg"></div>
+        {!! Html::footer('siscccConfig.pie') !!}
+</footer>  
 @endsection
