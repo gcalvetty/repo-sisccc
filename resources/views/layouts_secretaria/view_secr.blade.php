@@ -160,11 +160,9 @@
                                         <a href="{{ route('rude-s.imprimir', ['alumno' => $Alumno->id]) }}" target="_blank"><i class="fa fa-print  fa-lg" aria-hidden="true"></i></a>
                                     </td>
                                     @endif
-
-                                    @endforeach    
                                 </tr>
-
-                                </tfoot>
+                                @endforeach                                    
+                                </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->                    

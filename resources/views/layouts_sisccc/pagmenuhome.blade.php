@@ -1,13 +1,13 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container menu-home">
         <div class="navbar-header">
-                <div class="pull-left image">
+                <div class="pull-left image" style="padding: 6px 0;">
                         <?php 
                             $idUsu = sis_ccc\libreriaCCC\fncCCC::getId();                 
                             echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu,30);
                         ?>                        
                 </div>
-            <a class="navbar-brand home-tit" href="{{ url('/') }}">
+            <a class="navbar-brand home-tit" style="padding:10px 10px 0 30px" href="{{ url('/') }}">
             <b>Sistema Educativo</b> - "{{ config('app.name', 'CCC-SIS') }}" </a>
         </div>
 
@@ -34,7 +34,7 @@
 
                     <ul class="dropdown-menu" role="menu">
                         <li class="">
-                            <a href="{{ session('Ruta-Acceso') }}"><i class="fa fa-desktop" aria-hidden="true"></i> @lang('auth.dashbord')
+                            <a href="/{{ session('Ruta-Acceso') }}"><i class="fa fa-desktop" aria-hidden="true"></i> @lang('auth.dashbord')
                             </a>
 
                             <form id="logout-form" action="{{ route('cerrar-acceso') }}" method="POST" style="display: none;">

@@ -18,7 +18,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">Menú del Psicolog@</li>
-            <li class="active">
+            <li class="<?php echo ((Route::current()->getName() == 'Psico.Reg'))? "active":"";?>">
                 <a href="/psico/">
                     <i class="fa fa-th"></i> <span>Escritorio</span>            
                 </a>

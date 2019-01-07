@@ -96,8 +96,8 @@
                                                 data-nomalm=" {{ $Alumno->nombre }} {{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}">
                                             <i class="fa fa-trash"></i></button>
                                     </td>
-                                    @endforeach    
                                 </tr>
+                                @endforeach                                    
                                 </tbody>
                         </table>
                     </div>

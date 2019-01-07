@@ -65,13 +65,15 @@ class PsicoController extends Controller {
     public function insComportamiento(Request $req) {        
         $validatedData = $req->validate([
             'editor' => 'required',
-            'ArcDoc' => 'required|file|mimes:pdf',
+            'ArcDoc' => 'required|file|mimes:pdf,docx',
         ]);
+        $file = $req->file('ArcDoc');
+                
+        
         $data = $req->all();
         $dateBD = $this->setDateAttribute($data['fec']);
         $ruta= fGECN::constRuta(4, $req->AlmId, $req->file('ArcDoc'));  
-        $path = Storage::disk('publicLib')->putFileAs($ruta, $req->file('ArcDoc'),'psico'.$dateBD.'.pdf');            
-        
+        $path = Storage::disk('publicLib')->putFileAs($ruta, $req->file('ArcDoc'),'psico'.$dateBD.'.'.$file->extension()); 
 
         DB::Table('psico_comportamiento')->insert(
                 ['user_id' => $data['AlmId'],                    
@@ -86,10 +88,21 @@ class PsicoController extends Controller {
     public function delComportamiento(Request $req) {
         $data = $req->all();
 
-        $eliDocente = DB::delete('Delete '
+        $usuReg = DB::select('select * '
                         . ' From psico_comportamiento'
                         . ' where reg_id=' . $req->AlmId);        
+
+        $ruta= fGECN::constRuta(4, $usuReg[0]->user_id, '').'/'; 
+        $rutaFileURL  = $usuReg[0]->reg_doc;
+        $rutaNomb = explode($usuReg[0]->user_id."/", $rutaFileURL);                             
+        $borrFile = $ruta."".$rutaNomb[1];        
+        Storage::disk('publicLib')->delete($borrFile);
+                                
+        $eliDocente = DB::delete('Delete '
+                        . ' From psico_comportamiento'
+                        . ' where reg_id=' . $req->AlmId);                                        
         return redirect()->route('Psico.Comp')->withSuccess('OK');
+
     }
 
     /**

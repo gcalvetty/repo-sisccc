@@ -14,6 +14,60 @@
 @include('layouts_estudiante.partials.menu')
 @endsection	
 
+@section('est_pago')
+<section class="content">
+    <div id="contador_crud" class="row">
+        <div class="col-xs-12">
+
+            <div class="box">                   
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="box box-widget widget-user">
+                        <!-- Add the bg color to the header using any of the bg-* classes -->
+                        <div class="widget-user-header bg-yellow" >
+                            <h1 class="widget-user-desc">Pensiones Adeudadas!!!</h1>
+                            <h3 class="widget-user-username" >{{$usuactivo}}</h3> 
+
+                        </div>
+                        <div class="widget-user-image">
+                        <?php 
+                            $idUsu = sis_ccc\libreriaCCC\fncCCC::getId(); 
+                            echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu, 300);                  
+                        ?>
+                        </div>
+                        <div class="box-footer">
+                            <div class="row">                                    
+                                <!-- /.col -->
+                                <div class="col-md-12 border-right">
+                                    <div class="description-block">
+                                        <h5 class="description-header">Consultar por Facebook</h5>
+                                        <div class="col-sm-12  fb-comments" data-href="https://www.facebook.com/pg/ColegioCristianoColcapirhuaOficial" data-numposts="5"></div>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="bs-example" data-example-id="simple-alerts"> 
+
+                                        <div class="alert alert-danger" role="alert">                                                
+                                            <p><i class="fa fa-2x fa-exclamation-triangle"> Debe pasar a cancelar sus deudas pendiente!!! - </i>
+                                                <i class="fa fa-2x fa-phone-square"> 4 - 4372143</i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                </div>   
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+</section>
+@endsection
+
 @section('sis_contenido')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">    	
@@ -127,7 +181,7 @@
                                             <a href="{{ route("est.Tareas")}}">Ver Todas las Tareas <i class="fa fa-angle-double-right"></i></a>
                                         </td>
                                     </tr>                 
-                                    </tfoot>                 
+                                    </tbody>                 
                             </table>
                         </div>
                     </div>    
@@ -229,7 +283,7 @@
         </div>
         <!-- /.box-body -->
     </section>
-    @else
+    @else    
     @yield('est_pago')
     @endif
 </div>
@@ -243,55 +297,6 @@
 </footer>
 @endsection
 
-@section('est_pago')
-<section class="content">
-    <div id="contador_crud" class="row">
-        <div class="col-xs-12">
 
-            <div class="box">                   
-                <!-- /.box-header -->
-                <div class="box-body">
-                    <div class="box box-widget widget-user">
-                        <!-- Add the bg color to the header using any of the bg-* classes -->
-                        <div class="widget-user-header bg-yellow" >
-                            <h1 class="widget-user-desc">Pensiones Adeudadas!!!</h1>
-                            <h3 class="widget-user-username" >{{$usuactivo}}</h3> 
-
-                        </div>
-                        <div class="widget-user-image">
-                            <img class="img-circle" src="/imagenes/avatar/user-ccc-peq.png" alt="User Avatar">
-                        </div>
-                        <div class="box-footer">
-                            <div class="row">                                    
-                                <!-- /.col -->
-                                <div class="col-md-12 border-right">
-                                    <div class="description-block">
-                                        <h5 class="description-header">Consultar por Facebook</h5>
-                                        <div class="col-sm-12  fb-comments" data-href="https://www.facebook.com/pg/ColegioCristianoColcapirhuaOficial" data-numposts="5"></div>
-                                    </div>
-                                    <!-- /.description-block -->
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="bs-example" data-example-id="simple-alerts"> 
-
-                                        <div class="alert alert-danger" role="alert">                                                
-                                            <p><i class="fa fa-2x fa-exclamation-triangle"> Debe pasar a cancelar sus deudas pendiente!!! - </i>
-                                                <i class="fa fa-2x fa-phone-square"> 4 - 4372143</i></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                </div>   
-            </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-    </div>
-    <!-- /.col -->
-</section>
-@endsection
 
 

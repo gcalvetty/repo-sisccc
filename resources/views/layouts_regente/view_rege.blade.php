@@ -82,10 +82,11 @@
                                         <i class="fa fa-file-pdf-o"></i>
                                         @endif
                                     </td>
-                                    @endforeach    
                                 </tr>
+                                @endforeach    
+                                
 
-                                </tfoot>
+                                </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->

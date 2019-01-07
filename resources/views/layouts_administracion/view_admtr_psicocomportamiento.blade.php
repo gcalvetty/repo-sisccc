@@ -32,35 +32,43 @@
 
     <section class="content">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-8 col-md-push-2">
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Comportamiento Escolar - Lista de Alumnos</h3>                        
+                        <h3 class="box-title">Comportamiento Escolar - Departamento Psicolg@</h3>                        
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
-                                <tr>
+                                <tr>                                    
                                     <th>N°</th>
+                                    <th>Nombre</th> 
                                     <th>Curso</th>
-                                    <th>Alumno Nombre</th> 
-                                    <th>Alumno Apellido</th> 
                                     <th>Fecha</th>                                                                    
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $aux = 1 ?>
                                 @foreach($Lista as $Alumno)
                                 <tr>
-                                    <td>{{ $Alumno->id }}</td>  
-                                    <td>{{ $Alumno->curso }} </td>
-                                    <td>{{ $Alumno->nombre }} </td>                                    
-                                    <td>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} </td>
-                                    <td>{{ $Alumno->fec }}</td>                                    
-                                    @endforeach    
+                                    <td>{{ $aux++ }}</td>                                                                         
+                                    <td>
+                                        <div class="col-md-2">                                            
+                                                <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 35) ?>
+                                        </div>
+                                        <div class="col-md-9 text-left">
+                                            <b>{{ $Alumno->ape_paterno.' '.$Alumno->ape_materno.' '.$Alumno->nombre }}
+                                        </div>
+                                    </td>
+                                    <td>                                                
+                                            {{ $Alumno->curso }} - {{ $Alumno->aula }}    
+                                    </td>                                     
+                                    <td><?php echo sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->fec) ?></td>
                                 </tr>
-                                </tfoot>
+                                @endforeach                                    
+                                </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->

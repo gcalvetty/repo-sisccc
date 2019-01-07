@@ -73,9 +73,8 @@
                                         &nbsp;<a href="{{ $Alumno->libreta }}" target="_blanck"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> 
                                         @endif   
                                     </td>                                    
-                                    @endforeach    
                                 </tr>
-
+                                @endforeach                                   
                             </tbody>
                         </table>
                     </div>

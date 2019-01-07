@@ -78,10 +78,9 @@
                                             <i class="fa fa-file-pdf-o fa-lg"></i>
                                         @endif
                                     </td>
-                                    @endforeach    
                                 </tr>
-
-                                </tfoot>
+                                @endforeach    
+                                </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->

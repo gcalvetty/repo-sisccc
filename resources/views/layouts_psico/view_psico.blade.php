@@ -68,10 +68,9 @@
                                                 data-nomalm=" {{ $Alumno->nombre }} {{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}">
                                             <i class="fa fa-edit"></i></button>
                                     </td>
-                                    @endforeach    
                                 </tr>
-
-                                </tfoot>
+                                @endforeach                                    
+                                </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->

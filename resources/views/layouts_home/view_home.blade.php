@@ -171,7 +171,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="cta-content d-flex align-items-center justify-content-between flex-wrap">
-                        <h3>Suscripciones abiertas</h3>
+                        <h3>Inscripciones abiertas</h3>
                         <a href="{{ route('acceder') }}" class="btn academy-btn">Ver mas</a>
                     </div>
                 </div>

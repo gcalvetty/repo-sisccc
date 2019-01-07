@@ -172,7 +172,7 @@ order by curso ASC, fec Desc
     }
 
     public static function listAlumnComportamientoPsico() {
-        $lisAluComp = DB::select('select rc.reg_id as id, u.nombre, u.ape_paterno, u.ape_materno, ge.grd_nombre as curso, rc.reg_obser as obser, rc.reg_fec as fec
+        $lisAluComp = DB::select('select rg.user_id as id, rc.reg_id as idcom, u.nombre, u.ape_paterno, u.ape_materno, rg.gst_aula as aula, ge.grd_nombre as curso, rc.reg_obser as obser, rc.reg_doc as doc, rc.reg_fec as fec
 from users as u
 inner join psico_comportamiento as rc on rc.user_id = u.id
 

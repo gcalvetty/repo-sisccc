@@ -31,7 +31,7 @@
 
     <section class="content">        
         <div class="row">
-                <div class="col-md-8 col-md-push-2">
+                <div class="col-md-10 col-md-push-1">
 
                 <div class="box">
                     <div class="box-header">
@@ -66,7 +66,8 @@
                                     </td>
                                     @if ($Alumno->estado == "No Inscrito")
                                     <td>
-                                        <a href="#" target="_blank" class="btn btn-large disabled"><i class="fa fa-print fa-fw" aria-hidden="true"></i></a>
+                                        <a href="#" target="_blank" class="btn btn-danger disabled">                                            
+                                                <i class="fa fa-bell" aria-hidden="true"> En Mora</i></a>
                                     </td>
                                     @else
                                     <td>
@@ -92,8 +93,6 @@
 
                                     </td>
                                     @endif
-                                    
-
                                 </tr>
                                 @endforeach  
 

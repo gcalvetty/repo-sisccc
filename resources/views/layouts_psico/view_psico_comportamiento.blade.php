@@ -44,32 +44,51 @@
                             <thead>
                                 <tr>
                                     <th>N°</th>
-                                    <th>Curso</th>
-                                    <th>Alumno Nombre</th> 
-                                    <th>Alumno Apellido</th> 
+                                    <th>Alumno</th>
+                                    <th>Curso</th>                                    
+                                    <th>Documento</th>
                                     <th>Fecha</th>
                                     <th>Eliminar</th>                                    
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $aux = 1 ?>
                                 @foreach($Lista as $Alumno)
                                 <tr>
-                                    <td>{{ $Alumno->id }}</td>  
-                                    <td>{{ $Alumno->curso }} </td>
-                                    <td>{{ $Alumno->nombre }} </td>                                    
-                                    <td>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} </td>
-                                    <td>{{ $Alumno->fec }}</td>
+                                    <td>{{ $aux++ }}</td>  
+                                    <td>
+                                           <div class="col-md-2">                                            
+                                                <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
+                                            </div>
+                                            <div class="col-md-9 text-left">
+                                            <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
+                                            </div>    
+                                    </td>
+                                    <td>
+                                            {{ $Alumno->curso }} - {{ $Alumno->aula }}                                                                   
+                                    </td>                                                               
+                                    <td>                                        
+                                        @if(($Alumno->doc!='') || ($Alumno->doc!=null))
+                                        <div class="col-md-10">
+                                        <?php echo html_entity_decode($Alumno->obser) ?>
+                                        </div>
+                                        <div class="col-md-2">                  
+                                        <a href="{{ $Alumno->doc }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> 
+                                        </div>
+                                        @endif   
+                                    </td>
+                                    <td><?php echo sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->fec) ?></td>
                                     <td>
                                         <button type="button" class="btn btn-danger" 
                                                 data-toggle="modal" 
                                                 data-target=".bs-example-modal-lg"
-                                                data-idalm="{{ $Alumno->id }}"
+                                                data-idalm="{{ $Alumno->idcom }}"
                                                 data-nomalm=" {{ $Alumno->nombre }} {{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}">
                                             <i class="fa fa-trash"></i></button>
-                                    </td>
+                                    </td>                                    
+                                </tr>    
                                     @endforeach    
-                                </tr>
-                                </tfoot>
+                            </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->

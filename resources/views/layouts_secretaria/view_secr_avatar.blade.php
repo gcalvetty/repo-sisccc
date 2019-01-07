@@ -61,8 +61,9 @@
                                     <td>                                        
                                             <a href="{{ route('Secr.subAvatar', ['idUsu' => $Alumno->id,'opc'=>3]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a>
                                     </td>                                
-                                @endforeach
                                 </tr>    
+                                @endforeach
+                                
                             </tbody>
                         </table>
                     </div>

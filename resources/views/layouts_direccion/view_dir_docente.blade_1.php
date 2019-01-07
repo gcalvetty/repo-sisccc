@@ -70,7 +70,7 @@
                             </tr>
                             @endforeach  
 
-                            </tfoot>
+                            </tbody>
                     </table>
                 </div> 
             </section>
@@ -110,7 +110,7 @@
                             </tr>
                             @endforeach  
 
-                            </tfoot>
+                            </tbody>
                     </table>
                 </div> 
             </section>
@@ -150,7 +150,7 @@
                             </tr>
                             @endforeach  
 
-                            </tfoot>
+                            </tbody>
                     </table>
                 </div> 
             </section>
@@ -194,7 +194,7 @@
                             </tr>
                             @endforeach  
 
-                            </tfoot>
+                            </tbody>
                     </table>
                 </div> 
             </section>
@@ -233,7 +233,7 @@
 
                             </tr>
                             @endforeach  
-                            </tfoot>
+                            </tbody>
                     </table>
                 </div> 
             </section>
