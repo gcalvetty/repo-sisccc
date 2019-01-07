@@ -7,7 +7,7 @@
             <div class="pull-left image">
                 <?php 
                     $idUsu = sis_ccc\libreriaCCC\fncCCC::getId(); 
-                    echo sis_ccc\libreriaCCC\fncCCC::$idUsu, 30);              
+                    echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu, 30); 
                 ?>  
             </div>
             <div class="pull-left info">
