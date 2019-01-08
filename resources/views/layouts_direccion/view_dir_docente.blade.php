@@ -52,21 +52,23 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Profesor</th>
-                                <th>Paralelo</th>
+                                <th>Profesor</th>                                
                                 <th>Modificar</th>                                                                        
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($l1 as $Prof1)
-                            <tr>
-                                <td>{{ $Prof1->id }}</td>                                      
-                                <td>{{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
-                                </td>
-
-                                <td>
-                                    A                                    
-                                </td>
+                                <?php $aux = 1 ?>
+                                @foreach($l1 as $Prof1)
+                                <tr>
+                                    <td>{{ $aux++ }}</td>                                                                         
+                                    <td>
+                                        <div class="col-md-2">                                            
+                                                <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                        </div>
+                                        <div class="col-md-9 text-left">
+                                            {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                        </div>    
+                                    </td>
                                 <td>
                                     <button type="button" class="btn btn-primary" 
                                             data-toggle="modal" 
@@ -76,10 +78,8 @@
                                             >
                                         <i class="fa fa-edit"></i></button>                                   
                                 </td>
-
                             </tr>
                             @endforeach  
-
                             </tbody>
                     </table>
                 </div> 
@@ -89,28 +89,28 @@
                 <div class="box box-success">
                     <div class="box-header ui-sortable-handle" style="cursor: move;">
                         <i class="fa fa-comments-o"></i>
-
                         <h3 class="box-title">Docentes - Primaria</h3>
-
                     </div>
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Profesor</th>
-                                <th>Paralelo</th>
+                                <th>Profesor</th>                                
                                 <th>Modificar</th>                                                                        
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $aux = 1 ?>
                             @foreach($l2 as $Prof1)
                             <tr>
-                                <td>{{ $Prof1->id }}</td>                                      
-                                <td>{{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
-                                </td>
-
+                                <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    A                                    
+                                    <div class="col-md-2">                                            
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                    </div>
+                                    <div class="col-md-9 text-left">
+                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    </div>    
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-success" 
@@ -142,20 +142,22 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Profesor</th>
-                                <th>Paralelo</th>
+                                <th>Profesor</th>                                
                                 <th>Modificar</th>                                                                        
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $aux = 1 ?>
                             @foreach($l3 as $Prof1)
                             <tr>
-                                <td>{{ $Prof1->id }}</td>                                      
-                                <td> {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
-                                </td>
-
+                                <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    A                                    
+                                    <div class="col-md-2">                                            
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                    </div>
+                                    <div class="col-md-9 text-left">
+                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    </div>    
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-info" 
@@ -190,20 +192,22 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Profesor</th>
-                                <th>Paralelo</th>
+                                <th>Profesor</th>                                
                                 <th>Modificar</th>                                                                        
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $aux = 1 ?>
                             @foreach($l4 as $Prof1)
                             <tr>
-                                <td>{{ $Prof1->id }}</td>                                      
-                                <td>{{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
-                                </td>
-
+                                <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    A                                    
+                                    <div class="col-md-2">                                            
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                    </div>
+                                    <div class="col-md-9 text-left">
+                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    </div>    
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-title" 
@@ -234,20 +238,22 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Profesor</th>
-                                <th>Paralelo</th>
+                                <th>Profesor</th>                                
                                 <th>Modificar</th>                                                                        
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $aux = 1 ?>
                             @foreach($l0 as $Prof1)
                             <tr>
-                                <td>{{ $Prof1->id }}</td>                                      
-                                <td>{{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}</b>
-                                </td>
-
+                                <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    A                                    
+                                    <div class="col-md-2">                                            
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                    </div>
+                                    <div class="col-md-9 text-left">
+                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    </div>    
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-danger" 

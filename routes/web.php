@@ -56,7 +56,7 @@ Route::group(['middleware' => 'Grp_Tut', 'prefix' => 'tutor/', 'namespace' => 'T
  * fin del SIS CCC
  */
 
-Route::group(['middleware' => 'web'], function() {
+Route::group(['middleware' => 'web','prefix'=>'/',], function() {
     require __DIR__ . '/RoutesCCC/web.routes.php';
 });
 
@@ -66,9 +66,4 @@ Route::group(['prefix' => 'ccc/', 'namespace' => 'CCC'], function () {
 
 
 
-/*
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
-*/

@@ -24,7 +24,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="/dirección/"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Escritorio</li>
+            <li class="active">Listado de Docentes</li>
         </ol>
     </section>
 
@@ -52,24 +52,29 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Profesor</th>
-                                <th>Paralelo</th>
-                                <th>Acciones</th>                                                                        
+                                <th>Profesor</th>                                
+                                <th>C.V.</th>                                                                        
                             </tr>
-                        </thead>
+                        </thead>                                                   
                         <tbody>
+                            <?php $aux = 1 ?>
                             @foreach($l1 as $Prof1)
                             <tr>
-                                <td>{{ $Prof1->id }}</td>                                      
-                                <td>{{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
-                                </td>
-
+                                <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    A                                    
+                                    <div class="col-md-2">                                            
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                    </div>
+                                    <div class="col-md-9 text-left">
+                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    </div>    
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-address-book-o"></i></button>
-                                    <button type="button" class="btn btn-info"><i class="fa fa-file-pdf-o"></i></button>
+                                    @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
+                                    <a href="{{ $Prof1->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                    @else
+                                        <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
+                                    @endif 
                                 </td>
                             </tr>
                             @endforeach  
@@ -91,24 +96,28 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Profesor</th>
-                                <th>Paralelo</th>
-                                <th>Acciones</th>                                                                        
+                                <th>Profesor</th>                                
+                                <th>C.V.</th>                                                                        
                             </tr>
                         </thead>
-                        <tbody>
+                        <?php $aux = 1 ?>
                             @foreach($l2 as $Prof1)
                             <tr>
-                                <td>{{ $Prof1->id }}</td>                                      
-                                <td>{{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
-                                </td>
-
+                                <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    A                                    
+                                    <div class="col-md-2">                                            
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                    </div>
+                                    <div class="col-md-9 text-left">
+                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    </div>    
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-address-book-o"></i></button>
-                                    <button type="button" class="btn btn-info"><i class="fa fa-file-pdf-o"></i></button>
+                                    @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
+                                    <a href="{{ $Prof->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                    @else
+                                        <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
+                                    @endif                                                                        
                                 </td>
                             </tr>
                             @endforeach  
@@ -130,24 +139,28 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Profesor</th>
-                                <th>Paralelo</th>
-                                <th>Acciones</th>                                                                        
+                                <th>Profesor</th>                                
+                                <th>C.V.</th>                                                                        
                             </tr>
                         </thead>
-                        <tbody>
+                        <?php $aux = 1 ?>
                             @foreach($l3 as $Prof1)
                             <tr>
-                                <td>{{ $Prof1->id }}</td>                                      
-                                <td> {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
-                                </td>
-
+                                <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    A                                    
+                                    <div class="col-md-2">                                            
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                    </div>
+                                    <div class="col-md-9 text-left">
+                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    </div>    
                                 </td>
-                                <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-address-book-o"></i></button>
-                                    <button type="button" class="btn btn-info"><i class="fa fa-file-pdf-o"></i></button>
+                                <td>                                    
+                                    @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
+                                    <a href="{{ $Prof->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                    @else
+                                        <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
+                                    @endif 
                                 </td>
 
                             </tr>
@@ -174,26 +187,30 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Profesor</th>
-                                <th>Paralelo</th>
-                                <th>Acciones</th>                                                                        
+                                <th>Profesor</th>                                
+                                <th>C.V.</th>                                                                        
                             </tr>
                         </thead>
-                        <tbody>
+                        <?php $aux = 1 ?>
                             @foreach($l4 as $Prof1)
                             <tr>
-                                <td>{{ $Prof1->id }}</td>                                      
-                                <td>{{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                <td>{{ $aux++ }}</td>                                                                         
+                                <td>
+                                    <div class="col-md-2">                                            
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                    </div>
+                                    <div class="col-md-9 text-left">
+                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    </div>    
                                 </td>
 
-                                <td>
-                                    A                                    
+                                <td>                                    
+                                        @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
+                                        <a href="{{ $Prof->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                        @else
+                                            <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
+                                        @endif 
                                 </td>
-                                <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-address-book-o"></i></button>
-                                    <button type="button" class="btn btn-info"><i class="fa fa-file-pdf-o"></i></button>
-                                </td>
-
                             </tr>
                             @endforeach  
 
@@ -214,26 +231,29 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Profesor</th>
-                                <th>Paralelo</th>
-                                <th>Acciones</th>                                                                        
+                                <th>Profesor</th>                               
+                                <th>C.V.</th>                                                                        
                             </tr>
                         </thead>
-                        <tbody>
+                        <?php $aux = 1 ?>
                             @foreach($l0 as $Prof1)
                             <tr>
-                                <td>{{ $Prof1->id }}</td>                                      
-                                <td>{{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}</b>
-                                </td>
-
+                                <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    A                                    
+                                    <div class="col-md-2">                                            
+                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                    </div>
+                                    <div class="col-md-9 text-left">
+                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    </div>    
                                 </td>
-                                <td>
-                                    <button type="button" class="btn btn-success"><i class="fa fa-address-book-o"></i></button>
-                                    <button type="button" class="btn btn-info"><i class="fa fa-file-pdf-o"></i></button>
-                                </td>
-
+                                <td>                                    
+                                        @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
+                                        <a href="{{ $Prof->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                        @else
+                                            <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
+                                        @endif 
+                                    </td>
                             </tr>
                             @endforeach  
                             </tbody>

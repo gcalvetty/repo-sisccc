@@ -1,4 +1,4 @@
-@extends('layouts_sisccc.pagsis_actividad')
+@extends('layouts_sisccc.pagsis_estudiante_actividad')
 @section('titulo','Dirección | Actividades')
 @section('usuccc')
 {{ $usuactivo }}
@@ -12,7 +12,7 @@
 
 @section('sis_menu_lateral')
 @include('layouts_direccion.partials.menu')   
-@endsection
+@endsection	
 
 @section('sis_contenido')
 <!-- Content Wrapper. Contains page content -->
@@ -20,80 +20,76 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">      
         <h1>
-            Escritorio            
+            Actividad     
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/direccion/"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Escritorio</li>
+            <li><a href="/estudiante/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Actividad</li>
         </ol>
     </section>
 
-    <!-- Main content -->
     <section class="content">
-
-        <!-- Default box -->
         <div class="row">
-        <div class="col-md-12">
-          <!-- The time line -->
-          <ul class="timeline"> 
-            <li class="time-label">
-                  <span class="bg-green">
-                    12 Octubre 2017
-                  </span>
-            </li>
-            <!-- timeline item -->
-            <li>
-              <i class="fa fa-video-camera bg-maroon"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 5 days ago</span>
-
-                <h3 class="timeline-header"><a href="#">Becas</a> de estudio en e C.C.C.</h3>
-
-                <div class="timeline-body">
-                  <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/nYWUsqGjmjQ" frameborder="0" allowfullscreen=""></iframe>                    
-                  </div>
-                </div>                
-              </div>
-            </li>
-            <!-- END timeline item -->
-            <li>
-              <i class="fa fa-clock-o bg-gray"></i>
-            </li>
-          </ul>
+            <section class="col-lg-8 col-md-8 col-sm-12 col-md-push-2 col-lg-push-2 connectedSortable ui-sortable">
+                <div class="box box-success">
+                    <div class="box-header ui-sortable-handle" style="cursor: move;">
+                        <i class="fa fa-binoculars"></i>
+                        <h3 class="box-title">Actividades</h3>
+                    </div>
+                    <div class="box-body">    
+                        <div id="calendario"></div>
+                    </div>    
+                </div> 
+            </section>
         </div>
-        <!-- /.col -->
-      </div>
-        <!-- /.box -->
-
     </section>
-    <!-- /.content -->
-
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">
     {!! Html::footer('siscccConfig.pie') !!}
 </footer>
 @endsection
-
-@section('menu-configuracion')
+@section('sis_actividad')
+    <?php 
+        $col2 = array('#3cb043','#3a5311','#32612d','#3ded97','#028a0f'); // verde
+        $col1 = array('#ed7014','#b56727','#8d4004','#fc6a03','#c95b0c','#893101'); // naranja
+     ?>
+    @foreach($ListaC as $Comu)
+        <?php
+            $date = date_create($Comu->com_fec);
+            $fecha = date_format($date, 'Y-m-d');
+            $random_col=rand(0,4);
+            $rmdCol = $col1[$random_col];
+        ?>
+        {
+            title: '{{ $Comu->com_titulo }}', // --- Comunicado ---
+            start: '{{ $fecha }}', 
+            end:   '{{ $fecha }}',
+            constraint: 'availableForMeeting',
+            backgroundColor: '{{ $rmdCol }}', //
+            borderColor: '{{ $rmdCol }}' //
+        },                                    
+    @endforeach
+    
+    @foreach($ListaA as $Act)
+        <?php
+            $date = date_create($Act->act_fec);
+            $dateend = date_create($Act->act_fecfin);
+            $fecha = date_format($date, 'Y-m-d');
+            $fechaend = date_format($dateend, 'Y-m-d');            
+            $random_col=rand(0,4);
+            $rmdCol = $col2[$random_col];
+            
+        ?>
+        {
+            id: {{ $Act->act_id }},
+            title: '{{ $Act->act_titulo }}', // --- Actividad ---
+            start: '{{ $fecha }}',  
+            end:   '{{ $fechaend }}', 
+            constraint: 'businessHours',
+            backgroundColor: '{{ $rmdCol }}', //
+            borderColor: '{{ $rmdCol }}' //
+        },                                    
+    @endforeach
+@endsection
 <!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home">1</i></a></li>      
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <!-- Home tab content -->
-        <div class="tab-pane" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Actividades Recientes</h3>
-        </div>
-    </div>
-</aside>
-<!-- /.control-sidebar -->
-<!-- Add the sidebar's background. This div must be placed
-     immediately after the control sidebar -->
-<div class="control-sidebar-bg"></div>
-@endsection	

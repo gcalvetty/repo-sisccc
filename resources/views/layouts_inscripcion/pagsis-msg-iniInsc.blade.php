@@ -8,14 +8,14 @@
             <div class="panel-body"> 
                 <div class="col-md-6">
 
-                    <a href="{{ route('inscr-ccc-nuevo') }}" target="_blank">
+                    <a href="{{ route('inscr-ccc-nuevo') }}" target="nuevo">
                         <button type="button" class="btn btn-primary" >
                             <i class="fa fa-plus fa-2x" aria-hidden="true"></i> Nuevo <b>Estudiante</b>
                         </button>
                     </a>
                 </div>
                 <div class="col-md-6">            
-                    <a href="{{ route('inscr-ccc-ant') }}" target="_blank" >
+                    <a href="{{ route('inscr-ccc-ant') }}" target="antiguo" >
                         <button type="button" class="btn btn-success" >
                             <i class="fa fa-graduation-cap fa-2x" aria-hidden="true"></i> Antiguo <b>Estudiante</b>
                         </button>

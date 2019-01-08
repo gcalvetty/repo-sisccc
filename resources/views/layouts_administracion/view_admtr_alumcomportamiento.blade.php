@@ -68,7 +68,7 @@
                                         <?php $val = sis_ccc\Http\Controllers\Regente\RegeController::haveComportamiento($Alumno->id) ?>
                                         @if ($val>0)
                                         <div data-toggle="tooltip" data-placement="top" title="Ver C.V.">
-                                        <a href="{{ route('Admtr.PDFCom',$Alumno->id) }}" target="_blank">
+                                        <a href="{{ route('Admtr.PDFCom',$Alumno->id) }}" target="comportamiento-{{ $Alumno->id }}">
                                             <button type="button" class="btn btn-success">
                                                 <span class="badge"><i class="fa fa-file-pdf-o fa-lg"></i> {{ $val }}</span>                                                 
                                             </button>                                        

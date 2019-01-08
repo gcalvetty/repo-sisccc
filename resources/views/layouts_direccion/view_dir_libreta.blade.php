@@ -70,7 +70,7 @@
                                     <td>
                                         <a href="{{ route('Dir.sublib', ['alumno' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
                                         @if(($Alumno->libreta!='') || ($Alumno->libreta!=null))
-                                        &nbsp;<a href="{{ $Alumno->libreta }}" target="_blanck"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> 
+                                        &nbsp;<a href="{{ $Alumno->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a> 
                                         @endif   
                                     </td>                                    
                                 </tr>

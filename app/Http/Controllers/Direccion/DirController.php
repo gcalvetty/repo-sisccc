@@ -215,9 +215,13 @@ class DirController extends Controller
     {
         $user    = fGECN::obt_nombre();
         $Niveles = Grd_Nivel::get();
+        $this->lisCom   = qGECN::listComunicado(2,0); // tipo, cantidad 
+        $this->lisAct   = qGECN::listActividad(5);
         return view('layouts_direccion/view_dir_actividades', [
             'usuactivo' => $user,
             'Niveles'   => $Niveles,
+            'ListaC'    => $this->lisCom,
+            'ListaA'    => $this->lisAct,
             'Grd'       => 0,
         ]);
     }

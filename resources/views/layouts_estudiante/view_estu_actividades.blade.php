@@ -20,11 +20,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">      
         <h1>
-            Escritorio       
+            Actividad     
         </h1>
         <ol class="breadcrumb">
             <li><a href="/estudiante/"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Escritorio</li>
+            <li class="active">Actividad</li>
         </ol>
     </section>
 

@@ -69,7 +69,7 @@
                                     <td>                                            
                                         <a href="{{ route('Secr.subdoc', ['idUsu' => $usuCCC->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
                                         @if(($usuCCC->libreta!='') || ($usuCCC->libreta!=null))
-                                        &nbsp;<a href="{{ $usuCCC->libreta }}" target="_blanck"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                        &nbsp;<a href="{{ $usuCCC->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
                                         @endif 
                                     </td>                                                                             
                                 </tr>    

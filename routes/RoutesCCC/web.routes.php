@@ -39,7 +39,28 @@ Route::post('logout',[
         'uses' => 'Auth\LoginController@logout'
 ]);
 
-Auth::routes();
+// ----- usar este otro ----
+// Auth::routes();
+
+// Login Routes...
+Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
+Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@login']);
+Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+
+
+Route::get('direccion/registrar-nuevo-usuario-ccc', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('auth');
+Route::post('register', 'Auth\RegisterController@register')->middleware('auth');
+
+// Password Reset Routes...
+Route::get('password/reset-gecn', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email-gecn', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}/gecn', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset-gecn', 'Auth\ResetPasswordController@reset')->name('password.update');
+
+// Email Verification Routes...
+Route::get('email/verify-gecn', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/verify-gecn/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::get('email/resend-gecn', 'Auth\VerificationController@resend')->name('verification.resend');
 
 
 

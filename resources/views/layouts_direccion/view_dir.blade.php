@@ -117,53 +117,42 @@
                                 <tr>
                                     <th>N°</th>
                                     <th>Alumno</th>                                    
-                                    <th>Curso</th>
-                                    <th>Estado</th>                  
+                                    <th>Curso</th>                                    
                                     <th>Editar</th>                                    
                                     <th>Apoyos</th>
                                     <th>Mas</th>
                                 </tr>
                             </thead>
+                            <tbody>
                             <?php $aux = 1 ?>
                                     @foreach($Lista as $Alumno)
                                     <tr>
                                         <td>{{ $aux++ }}</td>  
                                         <td>
-                                               <div class="col-md-2">                                            
+                                               <div class="col-md-2 col-xs-12">                                            
                                                     <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
                                                 </div>
-                                                <div class="col-md-9 text-left">
+                                                <div class="col-md-9 col-xs-12 text-left">
                                                 <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
                                                 </div>    
                                         </td>
                                         <td>
                                                 {{ $Alumno->curso }} - {{ $Alumno->aula }}    
-                                        </td>
-                                    <td>
-                                        @if ($Alumno->estado == "Inscrito")
-                                        <span class="label label-success">{{ $Alumno->estado }}</span>
-                                        @else
-                                        <span class="label label-warning">{{ $Alumno->estado }}</span>
-                                        @endif                                        
-                                    </td>
+                                        </td>                                    
 
                                     <td style="text-aling:center">
-                                        <a href="{{ route('rude-d.edit', ['alumno' => $Alumno->id]) }}" class="btn btn-github">
+                                        <a href="{{ route('rude-d.edit', ['alumno' => $Alumno->id]) }}" target="editar-{{ $Alumno->id }}" class="btn btn-github">
                                             <i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i></a>
                                     </td>    
-                                    @if ($Alumno->estado == "No Inscrito")
-                                    <td>
-                                        <a href="#" target="_blank" class="btn btn-large disabled"><i class="fa fa-print fa-fw" aria-hidden="true"></i></a>
-                                    </td>
-                                    @else
+                                    
                                     <td>
                                         <div class="col-md-4" data-toggle="tooltip" data-placement="top" title="Imprimir RUDE">
-                                            <a href="{{ route('rude-d.imprimir', ['alumno' => $Alumno->id]) }}" target="_blank" class="btn btn-vimeo">
+                                            <a href="{{ route('rude-d.imprimir', ['alumno' => $Alumno->id]) }}" target="rude-{{ $Alumno->id }}" class="btn btn-vimeo">
                                                 <i class="fa fa-print  fa-fw" aria-hidden="true"></i></a>
                                         </div>    
                                         <div class="col-md-4"  data-toggle="tooltip" data-placement="top"  title="Ver Libreta">
                                             @if ($Alumno->libreta !='')
-                                            <a href="{{ $Alumno->libreta }}" class="btn btn-yahoo" target="_blank"><i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i></a>                                        
+                                            <a href="{{ $Alumno->libreta }}" class="btn btn-yahoo" target="libreta-{{ $Alumno->id }}"><i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i></a>                                        
                                             @endif
                                         </div>
                                         <div class="col-md-4" data-toggle="tooltip" data-placement="top"  title="Ver Acceso">
@@ -174,9 +163,8 @@
                                                     data-alumno="{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}">
                                                 <i class="fa fa-sign-in fa-fw" aria-hidden="true"></i></button>
                                         </div>
-
                                     </td>
-                                    @endif
+                                    
                                     <td>
                                         {!!Form::open([
                                         'method'=>'delete',

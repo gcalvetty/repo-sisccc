@@ -116,4 +116,3 @@ Route::resource('acc_comunicado', 'DirController', [
 ]
 );
 
-// *********************************
