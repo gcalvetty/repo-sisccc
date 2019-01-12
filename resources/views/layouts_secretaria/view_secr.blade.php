@@ -153,11 +153,12 @@
                                     </td>    
                                     @if ($Alumno->estado == "No Inscrito")
                                     <td>
-                                        <a href="#" target="_blank" class="btn btn-large disabled"><i class="fa fa-print" aria-hidden="true"></i></a>
+                                        <a href="#" target="_blank" class="btn btn-danger disabled">                                            
+                                                <i class="fa fa-bell" aria-hidden="true"> En Mora</i></a>
                                     </td>
                                     @else
                                     <td>
-                                        <a href="{{ route('rude-s.imprimir', ['alumno' => $Alumno->id]) }}" target="_blank"><i class="fa fa-print  fa-lg" aria-hidden="true"></i></a>
+                                        <a href="{{ route('rude-s.imprimir', ['alumno' => $Alumno->id]) }}" target="rude-{{ $Alumno->user_id }}"><i class="fa fa-print  fa-lg" aria-hidden="true"></i></a>
                                     </td>
                                     @endif
                                 </tr>

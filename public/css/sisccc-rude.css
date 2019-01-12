@@ -1,0 +1,10 @@
+/* ---- Navegacion ----*/
+.navbar-inverse { background-color: #008d4c; }
+.navbar-inverse .navbar-brand{ color:gold; }
+.nav > li > button { color:honeydew !important;   position: relative; display: block; padding: 3px 10px; margin: 8px 10px; }                
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus{background-color:mediumseagreen; color:gold; }
+
+/* ---- Pagina 1 ---- */
+.cont-svg1{ width: 935px; height: 1540px; z-index:3; top:40px; position:relative; }
+
+/* ---- Pagina 2 ---- */

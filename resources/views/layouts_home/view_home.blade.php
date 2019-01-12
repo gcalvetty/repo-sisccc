@@ -201,7 +201,7 @@
                 <div class="single-top-popular-course d-flex align-items-center flex-wrap mb-30 wow fadeInUp" data-wow-delay="400ms">
                     <div class="popular-course-content">
                         <h5>Actividades</h5>                                
-                        <p>Ver Actividades, a partir de las fechas inficadas</p>
+                        <p>Ver Actividades, a partir de las fechas indicadas</p>
                         <a href="{{ route('Home.Act') }}" class="btn academy-btn btn-sm">Ver mas</a>
                     </div>
                     <div class="popular-course-thumb bg-img" style="background-image: url({{ asset('paralax/img/bg-img/pc-1.jpg')}});"></div>
@@ -213,7 +213,7 @@
                 <div class="single-top-popular-course d-flex align-items-center flex-wrap mb-30 wow fadeInUp" data-wow-delay="500ms">
                     <div class="popular-course-content">
                         <h5>Comunicados</h5>                                
-                        <p>Comunicados para el plante Estudiantil</p>
+                        <p>Comunicados para el plantel Estudiantil</p>
                         <a href="{{ route('Home.Comu') }}" class="btn academy-btn btn-sm">Ver mas</a>
                     </div>
                     <div class="popular-course-thumb bg-img" style="background-image: url({{ asset('paralax/img/bg-img/pc-2.jpg')}});"></div>

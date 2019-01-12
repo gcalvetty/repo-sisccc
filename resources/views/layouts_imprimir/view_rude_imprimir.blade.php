@@ -5,7 +5,7 @@
     <title>RUDE</title>
     <link rel="stylesheet" type="text/css" href="/reportes/rude-img/T4P9TRNs.css" />    
   </head>
-  <body>
+  <body> 
       <div style="position:relative;width:612pt;height:936pt;" class="page">
 <div class="d1 fmt-9">
 <img class="i1" alt="Coat of arms of Bolivia.svg" src="/reportes/rude-img/icoBol.svg.png" width="70" height="54" srcset="/reportes/rude-img/icoBol.svg.png 1.5x, /reportes/rude-img/icoBol.svg.png 2x" data-file-width="1907" data-file-height="1723"/>          

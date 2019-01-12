@@ -111,14 +111,17 @@ class RudeSecController extends Controller {
      */
     public function imprimir(RUDE $alumno) {
         $sql = new qGECN;
+        
+        $nomAlm = fGECN::usuNom($alumno->user_id);
         $retInf = $sql::sqlImprRude($alumno);
         
-        return view('layouts_imprimir/view_rude_imprimir', ['datos' => $retInf[1],
+        return view('layouts_imprimir/view_rude_imprimir_2019', ['datos' => $retInf[1],
             'gestion' => collect($retInf[2]),    'lugnac' => collect($retInf[3]),
             'dir' => collect($retInf[4]),        'idioma' => collect($retInf[5]),
             'salud' => collect($retInf[6]),      'serBas' => collect($retInf[7]),
             'activ' => collect($retInf[8]),      'net' => collect($retInf[9]),
-            'transp' => collect($retInf[10]),    'tutor' => collect($retInf[11])
+            'transp' => collect($retInf[10]),    'tutor' => collect($retInf[11]),
+            'NomAlm' => $nomAlm,
         ]);
     }
 
