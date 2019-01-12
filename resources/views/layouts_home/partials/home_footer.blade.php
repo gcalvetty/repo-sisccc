@@ -10,9 +10,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p>
                         Copyright &copy;<script>document.write(new Date().getFullYear());</script> Todos derechos reservados C.C.C | Desarrollado <i class="fa fa-heart-o" aria-hidden="true"></i> por <a href="http://gecn-dev.tech" target="_blank">GECN-Dev</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </p>
                 </div>
             </div>
         </div>
