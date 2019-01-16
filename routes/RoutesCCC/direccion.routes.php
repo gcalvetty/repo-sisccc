@@ -33,6 +33,14 @@ Route::get('/libreta',[
 
 
 /*
+* Borrar Alumnos RUDE
+*/
+Route::get('/borrar/rude-gecn/{alumno}',[
+    'as' => 'Dir.delAlm',
+    'uses' => 'DirController@borrEst',
+])->where(['alumno'=>'[0-9]+']);
+
+/*
  * Libreta Subir
  */
 Route::get('/subir/libreta/{alumno}', 
@@ -55,8 +63,9 @@ Route::resource('rude-d', 'RudeController', ['parameters' => [
     'rude-d' => 'alumno',
 ]]);
 
-Route::get('rude-d/{alumno}/imprimir', ['as' => 'rude-d.imprimir',
-    'uses'                                       => 'RudeController@imprimir',
+Route::get('rude-d/{alumno}/imprimir', [
+    'as' => 'rude-d.imprimir',
+    'uses' => 'RudeController@imprimir',
 ])->where(['alumno' => '[0-9]+']);
 
 /*
@@ -106,6 +115,7 @@ Route::get('comunicado/mostrar', [
     'uses' => 'DirController@mostrarComunicado',
 ]);
 
+/* ---- Borrar Comunicado ---- */
 Route::get('borrar/{comunicado}', [
     'as'   => 'Dir.Act-borrar',
     'uses' => 'DirController@borrarComunicado',

@@ -1,4 +1,4 @@
-@extends('layouts_sisccc.pagsis')
+@extends('layouts_sisccc.pagsis_direccion')
 @section('titulo','Dirección')
 @section('usuccc')
 {{ $usuactivo }}
@@ -112,6 +112,23 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
+                        @if (session()->has('success'))                                                        
+                            <div class="bs-example">
+                                <div class="alert alert-info fade in">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>Información:</strong> {{ session('success') }}
+                                </div>
+                            </div>
+                        @endif
+                        @if (session()->has('warning'))                                                        
+                            <div class="bs-example">
+                                <div class="alert alert-danger fade in">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong>Información:</strong> {{ session('warning') }}
+                                </div>
+                            </div>
+                        @endif
+                        
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -120,7 +137,7 @@
                                     <th>Curso</th>                                    
                                     <th>Editar</th>                                    
                                     <th>Apoyos</th>
-                                    <th hidden>Mas</th>
+                                    <th>Mas</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -141,8 +158,10 @@
                                         </td>                                    
 
                                     <td style="text-aling:center">
+                                        <div data-toggle="tooltip" data-placement="top"  title="Editar RUDE">
                                         <a href="{{ route('rude-d.edit', ['alumno' => $Alumno->id]) }}" target="editar-{{ $Alumno->id }}" class="btn btn-github">
                                             <i class="fa fa-pencil-square-o fa-fw" aria-hidden="true"></i></a>
+                                        </div>    
                                     </td>    
                                     
                                     <td>
@@ -160,12 +179,14 @@
                                                     data-toggle="modal" 
                                                     data-target="#exampleModal20" 
                                                     data-usuario="{{ $Alumno->email }}"
-                                                    data-alumno="{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}">
+                                                    data-alumno="{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}"
+                                                    >
                                                 <i class="fa fa-sign-in fa-fw" aria-hidden="true"></i></button>
                                         </div>
                                     </td>
                                     
-                                    <td hidden>
+                                    <td>
+                                        <div data-toggle="tooltip" data-placement="top"  title="Borrar Alumno">
                                         {!!Form::open([
                                         'method'=>'delete',
                                         'route' =>['rude-d.destroy',$Alumno->id]
@@ -179,11 +200,13 @@
 
 
                                         {!!Form::close()!!}
+                                        </div>
                                     </td>
                                 </tr>
-                                @endforeach  
+                                @endforeach 
+                                
                             </tbody>
-                        </table>
+                        </table>                        
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -232,11 +255,13 @@
                 <div class="modal-footer">
 
                     {!!Form::open([
-                    'method'=>'delete',
-                    'route' =>['rude-d.destroy',1]
-                    ])!!} 
+                    'name' => 'delRude', 
+                    'class' => 'modal-delRude',   
+                    'method'=>'get',
+                    'route' =>['Dir.delAlm',1]
+                    ])!!}                    
                     <button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i></button>
-                    <button type="submit" class="btn btn-warning"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                     {!!Form::close()!!}
                 </div>
             </div>
@@ -248,25 +273,4 @@
 <footer class="main-footer">     
     {!! Html::footer('siscccConfig.pie') !!}
 </footer>
-@endsection
-
-@section('menu-configuracion')
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home">1</i></a></li>      
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <!-- Home tab content -->
-        <div class="tab-pane" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Actividades Recientes</h3>
-        </div>
-    </div>
-</aside>
-<!-- /.control-sidebar -->
-<!-- Add the sidebar's background. This div must be placed
-     immediately after the control sidebar -->
-<div class="control-sidebar-bg"></div>
 @endsection
