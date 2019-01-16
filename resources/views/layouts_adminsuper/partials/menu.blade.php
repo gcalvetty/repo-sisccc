@@ -82,7 +82,7 @@
                     </li>                                               
                     <li>
                         <a href="{{ route('Dir.actividades') }}" target="Opc2">
-                            <i class="fa  fa-calendar-check-o"></i> <span>Calendario de Actividades</span>
+                            <i class="fa  fa-calendar-check-o"></i> <span>Cal. de Actividades</span>
                         </a>
                     </li>
                     <li>
@@ -90,17 +90,6 @@
                             <i class="fa fa-file-text"></i> <span>Libretas</span>                              
                         </a>
                     </li>
-                    <hr />
-                    <li>
-                        <a href="{{ route('register') }}" target="Opc2">
-                            <i class="fa  fa-user-plus"></i> <span>Crear Nuevo Usuario</span>                                        
-                        </a>
-                    </li> 
-                    <li>
-                            <a href="{{ route('password.request','ingrese-email@ccc.edu.bo') }}"  target="Opc2">
-                            <i class="fa fa-key" aria-hidden="true"></i> <span>Modificar Contraseña</span>       
-                            </a>
-                    </li> 
                 </ul>
             </li>                        
             <!-- ********** Contador *********** -->
@@ -121,7 +110,7 @@
                 <ul class="treeview-menu">                    
                     <li>
                         <a href="{{ route('Secr.actividades') }}" target="Opc4">
-                            <i class="fa  fa-calendar-check-o"></i> <span>Calendario de Actividades</span>              
+                            <i class="fa  fa-calendar-check-o"></i> <span>Cal. de Actividades</span>              
                         </a>
                     </li> 
                     <li>
@@ -197,6 +186,23 @@
                     </li>            
                 </ul>
             </li>
+            <hr />
+            <li>
+                <a href="{{ route('inscr-ccc')}}" target="Opc7">
+                        <i class="fa fa-users" aria-hidden="true"></i> <span>Suscripción de Estudiantes</span>            
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('register') }}" target="Opc2">
+                    <i class="fa  fa-user-plus"></i> <span>Crear Nuevo Usuario</span>                                        
+                </a>
+            </li> 
+            <li>
+                    <a href="{{ route('password.request','ingrese-email@ccc.edu.bo') }}"  target="Opc2">
+                    <i class="fa fa-key" aria-hidden="true"></i> <span>Modificar Contraseña</span>       
+                    </a>
+            </li>
+            
         </ul>
     </section>
     <!-- /.sidebar -->

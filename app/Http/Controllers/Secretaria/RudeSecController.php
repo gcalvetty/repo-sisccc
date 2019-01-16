@@ -115,7 +115,7 @@ class RudeSecController extends Controller {
         $nomAlm = fGECN::usuNom($alumno->user_id);
         $retInf = $sql::sqlImprRude($alumno);
         
-        return view('layouts_imprimir/view_rude_imprimir_2019', ['datos' => $retInf[1],
+        return view('layouts_imprimir/view_rude_imprimir', ['datos' => $retInf[1],
             'gestion' => collect($retInf[2]),    'lugnac' => collect($retInf[3]),
             'dir' => collect($retInf[4]),        'idioma' => collect($retInf[5]),
             'salud' => collect($retInf[6]),      'serBas' => collect($retInf[7]),

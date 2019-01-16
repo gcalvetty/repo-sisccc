@@ -13,8 +13,8 @@
 
         <div class="menuGECN collapse navbar-collapse" id="app-navbar-collapse">                    
             <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
-                <!-- Authentication Links -->
+            <ul class="nav navbar-nav navbar-right" hidden>
+                <!-- Authentication Links -->                 
                 @can('usu_adm')
                 <li><a href="{{ route('acceder') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> @lang('auth.login')</a></li>
                 <li><a href="{{ url('/register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> @lang('auth.register')</a></li>
