@@ -32,7 +32,7 @@
               </li>              
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">                  
+                <div class="pull-left" hidden>                  
                   <a href="#" class="btn btn-default btn-flat">Perfil</a>                 
                 </div>
                 <div class="pull-right">
@@ -40,9 +40,8 @@
                                                document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i> @lang('auth.logout')
                             </a>
                   <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>          
-                              
+                  {{ csrf_field() }}
+                  </form> 
                 </div>
               </li>
             </ul>

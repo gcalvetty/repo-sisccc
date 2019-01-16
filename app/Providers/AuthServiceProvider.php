@@ -38,15 +38,18 @@ class AuthServiceProvider extends ServiceProvider {
             if($user->email == 'gcalvetty@gmail.com'){                
                 return true;
             }
-        });        
+            if($user->email == 'adm-CCC@ccc.edu.bo'){
+                return true;
+            }
+        });     
+
+        Gate::define('usu_ccc', function ($user) {           
+            return $user->tipo_Usu == "SuperAdm" ;       
+        });
+
         /*
          * Intranet
          */
-        
-        Gate::define('usu_ccc', function ($user) {           
-            return $user->tipo_Usu == "SuperAdm" ;
-        });
-        
         
         Gate::define('usu_admtr', function ($user) { 
             

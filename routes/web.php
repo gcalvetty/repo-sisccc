@@ -1,10 +1,17 @@
 <?php
+/*
+* Usuario Priv. Alto 
+*/
+Route::group(['middleware' => 'Grp_ccc', 'prefix' => 'superadm/', 'namespace' => 'AdmCCC'], function () {
+    require __DIR__ . '/RoutesCCC/adminCCC.routes.php';
+});
 
+ /*
+ * Usuarios Priv. Medio
+ */
 Route::group(['middleware' => 'Grp_Admtr', 'prefix' => 'administracion/', 'namespace' => 'Administracion'], function () {
     require __DIR__ . '/RoutesCCC/admtracion.routes.php';
 });
-
- 
 
 Route::group(['middleware' => 'Grp_Cont', 'prefix' => 'contador/', 'namespace' => 'Contador'], function () {
     require __DIR__ . '/RoutesCCC/contador.routes.php';
@@ -30,8 +37,6 @@ Route::group(['middleware' => 'Grp_Insc', 'prefix' => 'inscripcion/', 'namespace
 Route::group(['middleware' => 'Grp_Rege', 'prefix' => 'regente/', 'namespace' => 'Regente'], function () {
     require __DIR__ . '/RoutesCCC/regente.routes.php';
 });
-
-
 
 Route::group(['middleware' => 'Grp_Psi', 'prefix' => 'psico/', 'namespace' => 'Psico'], function () {
     require __DIR__ . '/RoutesCCC/psico.routes.php';

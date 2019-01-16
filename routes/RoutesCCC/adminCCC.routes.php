@@ -1,7 +1,5 @@
 <?php
 
 Route::get('/', [
-    'as' => 'Adm.Reg',
+    'as' => 'AdmCCC.Reg',
     'uses' => 'AdmController@index']);
-
-

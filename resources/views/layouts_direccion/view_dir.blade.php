@@ -120,7 +120,7 @@
                                     <th>Curso</th>                                    
                                     <th>Editar</th>                                    
                                     <th>Apoyos</th>
-                                    <th>Mas</th>
+                                    <th hidden>Mas</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -165,7 +165,7 @@
                                         </div>
                                     </td>
                                     
-                                    <td>
+                                    <td hidden>
                                         {!!Form::open([
                                         'method'=>'delete',
                                         'route' =>['rude-d.destroy',$Alumno->id]
@@ -210,9 +210,13 @@
                         <li class="list-group-item"><i class="fa fa-key" aria-hidden="true">-- cccedu --</i> </li>
                     </ul>
                 </div>
+                
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>  
-
+                    <a class="btn btn-direction modal-urlMod" href="#" >
+                           
+                            <i class="fa fa-key" aria-hidden="true"></i> <span>Modificar Contraseña</span>       
+                    </a>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

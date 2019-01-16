@@ -27,7 +27,7 @@ use AuthenticatesUsers;
      *
      * @var string
      */
-    protected $redirectTo = '/hom2';
+    protected $redirectTo = '/hom';
 
     //protected $username = 'name'; // se logea con nombre de usuario
 
@@ -42,7 +42,7 @@ use AuthenticatesUsers;
 
     public function redirectPath() {         
         $user = Auth::user()->tipo_Usu;       
-        $rutAcs = array('SuperAdm' => 'admin', 
+        $rutAcs = array('SuperAdm' => 'superadm', 
                         'Admtr' => 'administracion',
                         'Cont' => 'contador', 
                         'Dir' => 'direccion', 

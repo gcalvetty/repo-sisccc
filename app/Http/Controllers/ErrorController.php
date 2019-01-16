@@ -8,18 +8,27 @@ use Illuminate\Support\Facades\Session;
 
 class ErrorController extends Controller
 {
-    public function index(Request $request)
-    {        
-        if($request->session()->has('Ruta-Acceso'))
+    public function verRuta(Request $request){
+        switch($request->session()->get("Ruta-Acceso"))
         {
-        return view('layouts_home/view_home');            
+            case "direccion":       
+             return redirect()->Route('Dir.Reg');
+            break;               
+        } 
+    }
+    public function index(Request $request)
+    {              
+        $this->verRuta($request);        
+        if($request->session()->has('Ruta-Acceso'))
+        {                    
+           return view('layouts_home/view_home');            
         }
-        else{
-        Auth::logout();
-        Session::flush(); 
-	//return Redirect::route('homeCCC');
-        return view('layouts_home/view_home');         // welcome
-        }
-       
+        else{         
+            $this->verRuta($request);
+            Auth::logout();
+            Session::flush(); 
+            //return Redirect::route('homeCCC');
+            return view('layouts_home/view_home');         // welcome
+        }       
     }
 }

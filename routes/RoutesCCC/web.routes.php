@@ -52,10 +52,10 @@ Route::get('direccion/registrar-nuevo-usuario-ccc', 'Auth\RegisterController@sho
 Route::post('register', 'Auth\RegisterController@register')->middleware('auth');
 
 // Password Reset Routes...
-Route::get('password/reset-gecn', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-Route::post('password/email-gecn', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-Route::get('password/reset/{token}/gecn', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-Route::post('password/reset-gecn', 'Auth\ResetPasswordController@reset')->name('password.update');
+Route::get('direccion/password/reset-gecn/{usuemail}', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request')->where(['usuemail'=>'[A-z0-9\\._-]+@ccc.edu.bo']);
+Route::post('direccion/password/email-gecn', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('direccion/password/reset-gecn/{token}/gecn', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('direccion/password/reset-gecn', 'Auth\ResetPasswordController@reset')->name('password.update');
 
 // Email Verification Routes...
 Route::get('email/verify-gecn', 'Auth\VerificationController@show')->name('verification.notice');

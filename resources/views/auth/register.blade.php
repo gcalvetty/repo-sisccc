@@ -119,7 +119,12 @@
 
 
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
+                                <div class="col-md-6  text-center">
+                                        <a href="{{ route('Dir.Reg') }}" class="btn btn-warning">
+                                            Cancelar
+                                        </a>
+                                </div> 
+                                <div class="col-md-6 text-center">
                                     <button type="submit" class="btn btn-primary">
                                         @lang('auth.botReg')
                                     </button>

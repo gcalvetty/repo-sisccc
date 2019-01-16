@@ -17,20 +17,14 @@
         <meta name="theme-color" content="#7cba5f">
         <meta name="google-site-verification" content="TMCJ84VbGNP_H5cHT4uBHnMKj0lKeK0yYNPNw1wBgXU" />
         <!-- Styles -->
-
         <link href="{{ elixir('/css/app.css') }}" rel="stylesheet">
         <link href="{{ elixir('/css/sisccc.css') }}" rel="stylesheet">       
-
-        @if((Route::current()->getName() == 'rude-d.edit')or
-        (Route::current()->getName() == 'rude-ins.edit')or
-        (Route::current()->getName() == 'rude-s.edit'))
-        @include('layouts_sisccc.partials.pagsis_edit_css')
-        @endif        
-
         <link href="/dist/css/AdminLTE.css" rel="stylesheet">          
         <link href="/dist/css/skins/_all-skins.css" rel="stylesheet">
-        <!-- DataTables -->
-        <link rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css">
+        <style>
+        .admTra .small-box .icon { color: rgba(255, 255, 255, 0.5); }
+        </style>    
+        
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -56,58 +50,9 @@
         <!-- jQuery UI 1.11.4 -->
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
-        <!-- DataTables -->
-        <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
-        <script src="/plugins/datatables/dataTables.bootstrap.min.js"></script>
-        <!-- SlimScroll -->
-        <script src="/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-        <!-- FastClick -->
-        <script src="/plugins/fastclick/fastclick.js"></script>
-
         <!-- Bootstrap 3.3.6 -->
         <script src="/bootstrap/js/bootstrap.min.js"></script>
         <script src="/dist/js/app.min.js"></script>
         <script src="/dist/js/ccc-escritorio.js"></script>
-
-
-        <script>
-            $(function () {
-                $("#example1").DataTable();
-                $('#example2').DataTable();
-            });
-        </script>
-         @if((Route::current()->getName() == 'Dir.Reg')||
-             (Route::current()->getName() == 'Admtr.alumnos')||
-             (Route::current()->getName() == 'Admtr.listalumnos')
-             )
-        <script>
-            $('#exampleModal20').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
-                var alum = button.data('alumno');
-                var usu = button.data('usuario');
-                var modal = $(this);                
-                modal.find('.modal-title').text('Login del Alumno: ' + alum);
-                modal.find('.modal-usu').text(' '+usu);
-                modal.find('.modal-urlMod').attr('href','/direccion/password/reset-gecn/'+usu);
-                //modal.find('.modal-urlMod').attr('value','/password/reset-gecn/'+usu);
-            })
-            $('#exampleModal21').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
-                var alum = button.data('alumno');
-                var id = button.data('id');
-                var modal = $(this);                
-                modal.find('.modal-title').text('Login del Alumno: ' + alum);
-                modal.find('.modal-id').text(' '+id);
-            })
-        </script>
-        @endif
-
-        @if((Route::current()->getName() == 'rude-d.edit')or 
-        (Route::current()->getName() == 'rude-ins.edit')or
-        (Route::current()->getName() == 'rude-s.edit'))
-        @include('layouts_sisccc.partials.pagsis_edit_js')
-        @endif               
-        @if((Route::current()->getName() == 'Admtr.Reg'))             
-        @include('layouts_sisccc.partials.pagsis_charts_js',['some' => 'data'])            
-        @endif
+        
     </body>

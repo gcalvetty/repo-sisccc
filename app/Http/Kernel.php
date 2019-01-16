@@ -40,9 +40,13 @@ class Kernel extends HttpKernel {
             'bindings',
         ],
         /*
-         * Intranet
+         * Super Usuario
          */
-          'Grp_ccc'   => ['web','auth',Authorize::class.':usu_ccc'],
+        'Grp_ccc'   => ['web','auth',Authorize::class.':usu_ccc'],
+
+        /*
+         * Intranet
+         */          
           'Grp_Admtr' => ['web','auth',Authorize::class.':usu_admtr'],
           'Grp_Dir'  =>  ['web','auth',Authorize::class.':usu_dir'],
           'Grp_Prof'  => ['web','auth',Authorize::class.':usu_prof'],
