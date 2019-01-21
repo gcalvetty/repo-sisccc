@@ -34,5 +34,20 @@ class AdmController extends Controller
             'CantAlm' => $lGECNcnt,
             'Gestion' => $lgestion,
         ]);        
-    }    
+    }
+    /*
+    *  Usuarios
+    */
+    public function usuarios(){
+        dd('Borrar Usuarios');
+    }
+    
+    /*
+    * Borrar Usuarios
+    */
+    public function borrarusuarios(){
+        dd('Borrar Usuarios');
+    }
+
+    
 }

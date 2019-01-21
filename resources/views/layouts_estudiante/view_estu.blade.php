@@ -69,18 +69,16 @@
 @endsection
 
 @section('sis_contenido')
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">    	
     <!-- Content Header (Page header) -->
     <section class="content-header">      
         <h1>
             Escritorio           
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="/dirección/"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Escritorio</li>
-        </ol>
+        </h1>        
     </section>
+    
 
     <!-- Main content -->    
     @if ($VerCont=="Inscrito")
@@ -148,9 +146,8 @@
                     </div>
                 </div>
             </section>
-
-
         </div>    
+        
         <div class="row">
             <section class="col-lg-6 connectedSortable ui-sortable">
                 <div class="box box-success">
@@ -168,17 +165,20 @@
                                         <th>Descripción</th>                                
                                     </tr>
                                 </thead>
-                                <tbody>                                    
-                                    @foreach($tareas as $Alumno)
-                                    <tr>                                                          
-                                        <td class="col-md-2 col-sm-2">{{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_ini) }}</td> 
+                                
+                                <tbody>
+                                    @foreach($tareas as $Alumno)                                    
+                                    <tr>          
+                                        <td class="col-md-2 col-sm-2">                                            
+                                            {{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_ini) }}
+                                        </td> 
                                         <td class="col-md-4 col-sm-4">{{ $Alumno->tar_materia }}</td>
                                         <td class="col-md-6 col-sm-4"><p class="text-justify">{{ $Alumno->tar_desc }}</p></td>                                                               
                                     </tr>
-                                    @endforeach
+                                    @endforeach                                    
                                     <tr>
                                         <td  class="verReg" colspan="4">
-                                            <a href="{{ route("est.Tareas")}}">Ver Todas las Tareas <i class="fa fa-angle-double-right"></i></a>
+                                            <a href="{{ route('est.Tareas')}}">Ver Todas las Tareas <i class="fa fa-angle-double-right"></i></a>
                                         </td>
                                     </tr>                 
                                     </tbody>                 
@@ -228,7 +228,7 @@
                                             $tipTar = "danger";
                                             break;
                                     }
-                                    ?>
+                                    ?>{{ dd('llll') }}
                                     <tr class="{{ $tipTar }}" data-toggle="tooltip" data-placement="top" title="{{ $tipMem }}">                                                                                                                                                                             
                                         <td class="col-md-1">
                                             <span class="label label-{{ $tipTar }}">
@@ -243,7 +243,7 @@
                                     @endforeach  
                                     <tr>
                                         <td class="verReg" colspan="5">
-                                            <a href="{{ route("est.Compor")}}">Ver Todos las llamadas de Atención <i class="fa fa-angle-double-right"></i></a>
+                                            <a href="{{ route('est.Compor')}}">Ver Todos las llamadas de Atención <i class="fa fa-angle-double-right"></i></a>
                                         </td>
                                     </tr>                 
                                 </tbody>                 
@@ -252,8 +252,6 @@
                     </div> 
                 </div> 
             </section>
-
-
         </div>
 
         <!-- Default box -->        

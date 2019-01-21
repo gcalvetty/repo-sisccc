@@ -45,7 +45,11 @@ class fncCCC {
     } 
 
     public static function getDateAttribute($value) {
-        return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
+        if($value!=null){
+            return Carbon::createFromFormat('Y-m-d', $value)->format('d/m/Y');
+        }else{
+            return "-";
+        }
     }
 
     public static function setDateAttribute($value) {

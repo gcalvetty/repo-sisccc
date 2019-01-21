@@ -137,7 +137,7 @@
                                     <th>Curso</th>                                    
                                     <th>Editar</th>                                    
                                     <th>Apoyos</th>
-                                    <th>Mas</th>
+                                    <th>Borrar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -165,16 +165,18 @@
                                     </td>    
                                     
                                     <td>
-                                        <div class="col-md-4" data-toggle="tooltip" data-placement="top" title="Imprimir RUDE">
+                                        <div class="col-md-3" data-toggle="tooltip" data-placement="top" title="Imprimir RUDE">
                                             <a href="{{ route('rude-d.imprimir', ['alumno' => $Alumno->id]) }}" target="rude-{{ $Alumno->id }}" class="btn btn-vimeo">
                                                 <i class="fa fa-print  fa-fw" aria-hidden="true"></i></a>
                                         </div>    
-                                        <div class="col-md-4"  data-toggle="tooltip" data-placement="top"  title="Ver Libreta">
+                                        <div class="col-md-3"  data-toggle="tooltip" data-placement="top"  title="Ver Libreta">
                                             @if ($Alumno->libreta !='')
                                             <a href="{{ $Alumno->libreta }}" class="btn btn-yahoo" target="libreta-{{ $Alumno->id }}"><i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i></a>                                        
-                                            @endif
-                                        </div>
-                                        <div class="col-md-4" data-toggle="tooltip" data-placement="top"  title="Ver Acceso">
+                                            @else
+                                                <i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i>
+                                            @endif                                            
+                                        </div>                                        
+                                        <div class="col-md-3" data-toggle="tooltip" data-placement="top"  title="Ver Acceso">
                                             <button type="button" class="btn btn-facebook"
                                                     data-toggle="modal" 
                                                     data-target="#exampleModal20" 
@@ -183,6 +185,17 @@
                                                     >
                                                 <i class="fa fa-sign-in fa-fw" aria-hidden="true"></i></button>
                                         </div>
+                                        <div class="col-md-3">
+                                            <div data-toggle="tooltip" data-placement="top"  title="Dar de Baja">
+                                                    <button type="button" class="btn btn-warning"
+                                                            data-toggle="modal" 
+                                                            data-target="#exampleModal22" 
+                                                            data-id="{{ $Alumno->id }}"
+                                                            data-alumno="{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}">
+                                                            <i class="fa fa-eraser" aria-hidden="true"></i>
+                                                    </button>
+                                            </div>      
+                                        </div>    
                                     </td>
                                     
                                     <td>
@@ -280,6 +293,35 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">               
+                    <div class="modal-body">                        
+                            <div class="panel-group">
+                                <div class="panel panel-warning">
+                                    <div class="panel-heading">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 id="exampleModalLabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <label class="modal-title"></label></h4>
+                                    </div>
+                                </div>                               
+                            </div>
+                    </div>            
+                    <div class="modal-footer">
+    
+                        {!!Form::open([
+                        'name' => 'bajaRude', 
+                        'class' => 'modal-bajaRude',   
+                        'method'=>'get',
+                        'route' =>['Dir.bajaAlm',1]
+                        ])!!}                    
+                        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
+                        <button type="submit" class="btn btn-warning"><i class="fa fa-eraser" aria-hidden="true"></i> Aceptar </button>
+                        {!!Form::close()!!}
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </div>
 <!-- /.content-wrapper -->

@@ -278,8 +278,29 @@ class DirController extends Controller
         DB::delete('delete from comunicado where com_id=' . $id);
         return;
     }
+    /* Cancelar Suscripcion */
+    public function bajaAlumno($id){        
+        $userBaja = DB::select('select * from users where id = ?', [$id]);
+        
+        if(sizeof($userBaja)!= 0){            
+            if($userBaja[0]->tipo_Usu!='Est_ccc'){
+                return redirect()->route('Dir.Reg')->with('warning', 'No es un alumno Inscrito!!!');
+            }            
+            else{
+            $gestion = self::$gyear - 1;      
+            DB::table('rude_1_gestion')
+                ->where('user_id', $id)
+                ->update(['gst_gestion' =>$gestion]);
 
-    /* Borrar Estudiante */
+            return redirect()->route('Dir.Reg')->with('success', 'Alumn@ dado de BAJA!!!');
+            }
+        }  
+        else{            
+            return redirect()->route('Dir.Reg')->with('warning', 'Alumno no esta Inscrito en el Colegio!!!');
+        } 
+    }
+
+    /* Borrar Estudiante  */
     public function borrEst($id){
     	        
         $userDel = DB::select('select * from users where id = ?', [$id]);

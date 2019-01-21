@@ -35,6 +35,14 @@ Route::get('/libreta',[
 /*
 * Borrar Alumnos RUDE
 */
+Route::get('/baja/rude-gecn/{alumno}',[
+    'as' => 'Dir.bajaAlm',
+    'uses' => 'DirController@bajaAlumno',
+])->where(['alumno'=>'[0-9]+']);
+
+/*
+* Borrar Alumnos RUDE
+*/
 Route::get('/borrar/rude-gecn/{alumno}',[
     'as' => 'Dir.delAlm',
     'uses' => 'DirController@borrEst',

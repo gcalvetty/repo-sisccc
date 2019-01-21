@@ -188,20 +188,35 @@
             </li>
             <hr />
             <li>
-                <a href="{{ route('inscr-ccc')}}" target="Opc7">
-                        <i class="fa fa-users" aria-hidden="true"></i> <span>Suscripción de Estudiantes</span>            
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('register') }}" target="Opc2">
-                    <i class="fa  fa-user-plus"></i> <span>Crear Nuevo Usuario</span>                                        
-                </a>
-            </li> 
-            <li>
-                    <a href="{{ route('password.request','ingrese-email@ccc.edu.bo') }}"  target="Opc2">
-                    <i class="fa fa-key" aria-hidden="true"></i> <span>Modificar Contraseña</span>       
-                    </a>
-            </li>
+                <a href="#">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> <span>Mas Opciones</span>
+                    <span class="pull-right-container">                        
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>                
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ route('inscr-ccc')}}" target="suscripcion">
+                                <i class="fa fa-users" aria-hidden="true"></i> <span>Suscripción de Estudiantes</span>            
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('register') }}" target="nuevoUsuario">
+                            <i class="fa  fa-user-plus"></i> <span>Crear Nuevo Usuario</span>                                        
+                        </a>
+                    </li> 
+                    <li>
+                        <a href="{{ route('AdmCCC.usuReg') }}" target="borrarUsuario">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i> <span>Borrar Usuarios</span>                                        
+                        </a>
+                    </li> 
+                    <li>
+                            <a href="{{ route('password.request','ingrese-email@ccc.edu.bo') }}"  target="modiClv">
+                            <i class="fa fa-key" aria-hidden="true"></i> <span>Modificar Contraseña</span>       
+                            </a>
+                    </li>
+                </ul>
+            </li>            
             
         </ul>
     </section>

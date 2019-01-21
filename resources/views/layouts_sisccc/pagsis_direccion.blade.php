@@ -93,6 +93,17 @@
                 //modal.find('.modal-urlMod').attr('value','/password/reset-gecn/'+usu);
             })
 
+            /*---- BAJA RUDE ---- */
+            $('#exampleModal22').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var alum = button.data('alumno');
+                var id = button.data('id');
+                var modal = $(this);                                
+                modal.find('.modal-bajaRude').attr('action','/direccion/baja/rude-gecn/'+id);
+                modal.find('.modal-title').text('Alumno: ' + alum);
+                modal.find('.modal-id').text(' '+id);                
+            })
+
             /*---- BORRAR RUDE ---- */
             $('#exampleModal21').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
@@ -103,6 +114,8 @@
                 modal.find('.modal-title').text('Alumno: ' + alum);
                 modal.find('.modal-id').text(' '+id);                
             })
+
+
         </script>
         @endif
 
