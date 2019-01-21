@@ -154,8 +154,7 @@
                                         <th>#</th> 
                                         <th>Tipo</th>
                                         <th>Titulo</th>
-                                        <th>Descripción</th> 
-                                        <th>Fecha</th>                                 
+                                        <th>Descripción</th>                                                                        
                                         <th>Accion</th> 
                                     </tr> 
                                 </thead>
@@ -164,8 +163,7 @@
                                         <td>@{{ com.com_id}}</td>
                                         <td>@{{ com.comt_tipo}}</td>
                                         <td>@{{ com.com_titulo }}</td>
-                                        <td>@{{ com.com_desc}}</td>                                
-                                        <td>@{{ com.com_fec}}</td>                                        
+                                        <td>@{{ com.com_fec}} - @{{ com.com_desc}}</td>                                
                                         <td>
                                             <button type="button" class="btn btn-danger" v-on:click.prevent="eliminarComunicado(com)">
                                                 <i class="fa fa-trash-o"> </i>

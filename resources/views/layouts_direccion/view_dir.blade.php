@@ -62,7 +62,7 @@
                                     <td>{{ $Comu->com_id }}</td>  
                                     <td>{{ $Comu->com_titulo }}</td>
                                     <td>{{ $Comu->com_desc }}</td>                                    
-                                    <td>{{ $Comu->com_fec }}</td> 
+                                    <td><?php echo sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Comu->com_fec) ?></td> 
                                 </tr>                                
                                 @endforeach 
 
@@ -92,7 +92,7 @@
                                 <tr>
                                     <td>{{ $Act->act_id }}</td>  
                                     <td>{{ $Act->act_titulo }}</td>                                    
-                                    <td>{{ $Act->act_fec }}</td> 
+                                    <td><?php echo sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Act->act_fec) ?></td> 
                                 </tr>                                
                                 @endforeach 
 
@@ -247,11 +247,24 @@
 
     <div class="modal fade" id="exampleModal21" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 id="exampleModalLabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <label class="modal-title"></label></h4>
-                </div>
+            <div class="modal-content">               
+                <div class="modal-body">                        
+                        <div class="panel-group">
+                            <div class="panel panel-danger">
+                                <div class="panel-heading">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 id="exampleModalLabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <label class="modal-title"></label></h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p> Se eliminara todo el contenido registrado para el Alumno  </p>
+                                    <ul>
+                                        <li>RUDE</li>
+                                        <li>Documentación almacenada</li>
+                                    </ul>  
+                                </div>
+                            </div>                               
+                        </div>
+                </div>            
                 <div class="modal-footer">
 
                     {!!Form::open([
@@ -260,8 +273,8 @@
                     'method'=>'get',
                     'route' =>['Dir.delAlm',1]
                     ])!!}                    
-                    <button type="button" class="btn btn-info" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i></button>
-                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-ban" aria-hidden="true"></i> Cancelar</button>
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Aceptar </button>
                     {!!Form::close()!!}
                 </div>
             </div>

@@ -280,38 +280,47 @@ class DirController extends Controller
     }
 
     /* Borrar Estudiante */
-    public function borrEst($id){        
+    public function borrEst($id){
+    	        
         $userDel = DB::select('select * from users where id = ?', [$id]);
-
-        if((sizeof($userDel)>0)){        
-        DB::delete('delete from rude where user_id='.$id);
-        DB::delete('delete from rude_1_gestion where user_id='.$id);
-        DB::delete('delete from rude_2_lug_nac where user_id='.$id);
-        DB::delete('delete from rude_4_direccion where user_id='.$id);
-        DB::delete('delete from rude_5_1_idioma where user_id='.$id);
-        DB::delete('delete from rude_5_2_salud where user_id='.$id);
-        DB::delete('delete from rude_5_3_serbasicos where user_id='.$id);
-        DB::delete('delete from rude_5_4_actividades where user_id='.$id);
-        DB::delete('delete from rude_5_5_internet where user_id='.$id);
-        DB::delete('delete from rude_5_6_transporte where user_id='.$id);
-        DB::delete('delete from rude_6_tutor where user_id='.$id);
-        DB::delete('delete from psico_comportamiento where user_id='.$id);
-        DB::delete('delete from reg_comportamiento where user_id='.$id);        
-
-        // ---- Borramos todos sus datos en disco ----
-        $ruta= fGECN::constRuta(4, $id, ''); 
-        $rutaAux = str_replace ( '/' , "\\" , $ruta."_a");    
         
-        $dir = Storage::disk('publicLib')->files($rutaAux);
-        if (sizeof($dir)>0) {  
-              Storage::disk('publicLib')->deleteDirectory($rutaAux);  
-            } 
-        // ---- Eliminacion Exitosa ----    
-        DB::delete('delete from users where id = ?', [$id]);
-        return redirect()->route('Dir.Reg')->with('success', 'RUDE Borrado!!!');
-        }
-        else{
-        return redirect()->route('Dir.Reg')->with('warning', 'RUDE ya fue Borrado, eliminar el cache del navegador con CTRL+F5!!!');    
+        if(sizeof($userDel)!= 0){
+            if($userDel[0]->tipo_Usu=='SuperAdm'){
+                return redirect()->route('Dir.Reg')->with('warning', 'No debe borrar este Usuario!!!');
+            }
+
+            if((sizeof($userDel)>0)){        
+            DB::delete('delete from rude where user_id='.$id);
+            DB::delete('delete from rude_1_gestion where user_id='.$id);
+            DB::delete('delete from rude_2_lug_nac where user_id='.$id);
+            DB::delete('delete from rude_4_direccion where user_id='.$id);
+            DB::delete('delete from rude_5_1_idioma where user_id='.$id);
+            DB::delete('delete from rude_5_2_salud where user_id='.$id);
+            DB::delete('delete from rude_5_3_serbasicos where user_id='.$id);
+            DB::delete('delete from rude_5_4_actividades where user_id='.$id);
+            DB::delete('delete from rude_5_5_internet where user_id='.$id);
+            DB::delete('delete from rude_5_6_transporte where user_id='.$id);
+            DB::delete('delete from rude_6_tutor where user_id='.$id);
+            DB::delete('delete from psico_comportamiento where user_id='.$id);
+            DB::delete('delete from reg_comportamiento where user_id='.$id);        
+
+            // ---- Borramos todos sus datos en disco ----
+            $ruta= fGECN::constRuta(4, $id, ''); 
+            $rutaAux = str_replace ( '/' , "\\" , $ruta."_a");    
+            
+            $dir = Storage::disk('publicLib')->files($rutaAux);
+            if (sizeof($dir)>0) {  
+                Storage::disk('publicLib')->deleteDirectory($rutaAux);  
+                } 
+            // ---- Eliminacion Exitosa ----    
+            DB::delete('delete from users where id = ?', [$id]);
+            return redirect()->route('Dir.Reg')->with('success', 'RUDE Borrado!!!');
+            }
+            else{
+            return redirect()->route('Dir.Reg')->with('warning', 'RUDE ya fue Borrado, eliminar el cache del navegador con CTRL+F5!!!');    
+            }
+        }else{
+            return redirect()->route('Dir.Reg')->with('warning', 'NAVEGADOR no compatible');    
         }
         
     }

@@ -44,9 +44,8 @@
                             <thead>
                                 <tr>
                                     <th>N°</th>
-                                    <th>Curso</th>
-                                    <th>Paralelo</th>
                                     <th>Alumno</th>
+                                    <th>Curso</th>                                    
                                     <th>Libreta</th>
                                 </tr>
                             </thead>
@@ -66,7 +65,7 @@
                                         <td>
                                                 {{ $Alumno->curso }} - {{ $Alumno->aula }}                                            
                                         </td>
-                                    <td><b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}</td>
+                                   
                                     <td>
                                         <a href="{{ route('Dir.sublib', ['alumno' => $Alumno->id]) }}"><i class="fa fa-upload" aria-hidden="true"></i></a> 
                                         @if(($Alumno->libreta!='') || ($Alumno->libreta!=null))

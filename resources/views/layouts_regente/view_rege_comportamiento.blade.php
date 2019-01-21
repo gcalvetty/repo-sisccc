@@ -87,7 +87,7 @@
                                     <td>{{ $Alumno->tipcomp }}</td>                                    
                                     <td>{{ $Alumno->tiptarj }}</td>
                                     <td><?php echo html_entity_decode($Alumno->obser) ?></td>
-                                    <td>{{ $Alumno->fec }}</td>
+                                    <td><?php echo sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->fec) ?></td>
                                     <td>
                                         <button type="button" class="btn btn-danger" 
                                                 data-toggle="modal" 

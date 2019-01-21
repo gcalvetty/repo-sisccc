@@ -63,7 +63,7 @@
                                     <td>{{ $Comu->com_id }}</td>  
                                     <td>{{ $Comu->com_titulo }}</td>
                                     <td>{{ $Comu->com_desc }}</td>                                    
-                                    <td>{{ $Comu->com_fec }}</td> 
+                                    <td><?php echo sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Comu->com_fec) ?> </td> 
                                 </tr>                                
                                 @endforeach 
                             </tbody>
@@ -92,7 +92,7 @@
                                 <tr>
                                     <td>{{ $Act->act_id }}</td>  
                                     <td>{{ $Act->act_titulo }}</td>                                    
-                                    <td>{{ $Act->act_fec }}</td> 
+                                    <td><?php echo sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Act->act_fec) ?></td> 
                                 </tr>                                
                                 @endforeach 
 
