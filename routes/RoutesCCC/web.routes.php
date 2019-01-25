@@ -48,7 +48,7 @@ Route::post('login', ['as' => 'login.post', 'uses' => 'Auth\LoginController@logi
 Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
 
-Route::get('direccion/registrar-nuevo-usuario-ccc', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('auth');
+Route::get('superadm/registrar-nuevo-usuario-ccc', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('auth');
 Route::post('register', 'Auth\RegisterController@register')->middleware('auth');
 
 // Password Reset Routes...

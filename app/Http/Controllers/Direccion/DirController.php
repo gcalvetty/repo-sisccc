@@ -301,10 +301,8 @@ class DirController extends Controller
     }
 
     /* Borrar Estudiante  */
-    public function borrEst($id){
-    	        
-        $userDel = DB::select('select * from users where id = ?', [$id]);
-        
+    public function borrEst($id){    	        
+        $userDel = DB::select('select * from users where id = ?', [$id]);        
         if(sizeof($userDel)!= 0){
             if($userDel[0]->tipo_Usu=='SuperAdm'){
                 return redirect()->route('Dir.Reg')->with('warning', 'No debe borrar este Usuario!!!');

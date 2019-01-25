@@ -240,18 +240,16 @@
                     <h4 id="exampleModalLabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <label class="modal-title"></label></h4>
                 </div>
                 <div class="modal-body">
-
                     <ul class="list-group">
                         <li class="list-group-item "><i class="fa fa-user-circle-o modal-usu" aria-hidden="true"></i></li>
-                        <li class="list-group-item"><i class="fa fa-key" aria-hidden="true">-- cccedu --</i> </li>
+                        <li class="list-group-item">                            
+                            <a href="#" target="nuevoUsuario" class="btn btn-bitbucket active modal-urlMod" role="button">
+                                <i class="fa fa-key" aria-hidden="true"></i> <span>Modificar Contraseña</span>
+                            </a>
+                        </li>
                     </ul>
-                </div>
-                
-                <div class="modal-footer">
-                    <a class="btn btn-direction modal-urlMod" href="#" >
-                           
-                            <i class="fa fa-key" aria-hidden="true"></i> <span>Modificar Contraseña</span>       
-                    </a>
+                </div>                
+                <div class="modal-footer">                    
                     <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                 </div>
             </div>

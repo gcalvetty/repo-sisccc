@@ -35,7 +35,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/direccion';
+    protected $redirectTo = '/superadm';
 
     /**
      * Create a new controller instance.
@@ -44,7 +44,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('Grp_Dir');
+        $this->middleware('Grp_ccc');
     }
 
     /**

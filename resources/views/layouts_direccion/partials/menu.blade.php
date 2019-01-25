@@ -72,17 +72,21 @@
                   </span>
                 </a>
             </li>
-            <hr />
-            <li class="enable">
-                <a href="{{ route('register') }}">
-                    <i class="fa  fa-user-plus"></i> <span>Crear Nuevo Usuario</span>                                        
-                </a>
-            </li> 
+            <hr /> 
             <li class="enable">
                     <a href="{{ route('password.request','ingrese-email@ccc.edu.bo') }}">
                     <i class="fa fa-key" aria-hidden="true"></i> <span>Modificar Contraseña</span>       
                     </a>
             </li> 
+            <div class="hidden">           
+                       
+            <li class="enable">
+                <a href="{{ route('register') }}">
+                    <i class="fa  fa-user-plus"></i> <span>Crear Nuevo Usuario</span>                                        
+                </a>
+            </li> 
+            
+            </div>
         </ul>
     </section>
     <!-- /.sidebar -->

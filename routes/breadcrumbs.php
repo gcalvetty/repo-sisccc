@@ -2,6 +2,12 @@
 use sis_ccc\libreriaCCC\queryCCC as qGECN;
 
 /* --------------------------- */
+
+Breadcrumbs::register('AdmCCC.usuReg', function ($breadcrumbs) {
+    $breadcrumbs->push('Borrar Usuarios', route('AdmCCC.usuReg'));
+});
+
+/* --------------------------- */
 Breadcrumbs::register('Dir.Reg', function ($breadcrumbs) {
     $breadcrumbs->push('Dirección', route('Dir.Reg'));
 });

@@ -141,7 +141,6 @@ class SecrController extends Controller {
         $sql = new qGECN;
         $lisCom = $sql::listActividad2();
 
-
         return $lisCom;
     }
 

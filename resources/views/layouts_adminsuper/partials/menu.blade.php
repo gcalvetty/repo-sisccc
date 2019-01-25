@@ -187,7 +187,7 @@
                 </ul>
             </li>
             <hr />
-            <li>
+            <li class="<?php echo((Route::current()->getName() == 'AdmCCC.usuReg'))? 'active':''; ?>">
                 <a href="#">
                     <i class="fa fa-plus-square" aria-hidden="true"></i> <span>Mas Opciones</span>
                     <span class="pull-right-container">                        
@@ -197,17 +197,12 @@
                 <ul class="treeview-menu">
                     <li>
                         <a href="{{ route('inscr-ccc')}}" target="suscripcion">
-                                <i class="fa fa-users" aria-hidden="true"></i> <span>Suscripción de Estudiantes</span>            
+                            <i class="fa fa-user-circle-o" aria-hidden="true"></i> <span>Suscripción Estudiantil</span>            
                         </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('register') }}" target="nuevoUsuario">
-                            <i class="fa  fa-user-plus"></i> <span>Crear Nuevo Usuario</span>                                        
-                        </a>
-                    </li> 
-                    <li>
+                    </li>                    
+                    <li class="<?php echo ((Route::current()->getName() == 'AdmCCC.usuReg'))? "active":"";?>">
                         <a href="{{ route('AdmCCC.usuReg') }}" target="borrarUsuario">
-                            <i class="fa fa-trash-o" aria-hidden="true"></i> <span>Borrar Usuarios</span>                                        
+                            <i class="fa fa-users" aria-hidden="true"></i> <span>Usuarios</span>     
                         </a>
                     </li> 
                     <li>

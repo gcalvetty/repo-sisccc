@@ -4,6 +4,7 @@ namespace sis_ccc\Http\Controllers\AdmCCC;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use sis_ccc\Http\Requests;
 use sis_ccc\Http\Controllers\Controller;
 
@@ -38,15 +39,32 @@ class AdmController extends Controller
     /*
     *  Usuarios
     */
-    public function usuarios(){
-        dd('Borrar Usuarios');
+    public function usuarios(Request $request){
+        $sql = new qGECN;
+        $Niveles = Grd_Nivel::get();
+        $user = fGECN::obt_nombre();
+        $lGECN = $sql::listUsu($request);  
+        $lgestion = self::$gyear;
+        return view('layouts_adminsuper/view_admin_usuario', [
+            'usuactivo' => $user,
+            'Lista'   => $lGECN,            
+            
+            'Gestion' => $lgestion,
+        ]);
     }
     
     /*
     * Borrar Usuarios
     */
-    public function borrarusuarios(){
-        dd('Borrar Usuarios');
+    public function bajausuario($id){
+        $userDel = DB::select('select * from users where id = ?', [$id]);        
+        if(sizeof($userDel)!= 0){
+            if($userDel[0]->tipo_Usu=='SuperAdm'){
+                // return redirect()->route('Dir.Reg')->with('warning', 'No debe borrar este Usuario!!!');
+                dd('No se puede dar de baja a un Super Administrador');
+            }
+        }
+        dd('Dar de baja Usuarios1');
     }
 
     

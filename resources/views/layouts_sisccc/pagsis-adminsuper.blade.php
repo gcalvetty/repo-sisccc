@@ -54,5 +54,23 @@
         <script src="/bootstrap/js/bootstrap.min.js"></script>
         <script src="/dist/js/app.min.js"></script>
         <script src="/dist/js/ccc-escritorio.js"></script>
-        
+
+        <!-- DataTables -->
+        <script src="/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="/plugins/datatables/dataTables.bootstrap.min.js"></script>
+        <script>
+                $(function () {                   
+                    $('#exampleUsuarios').DataTable();
+                });
+                /*---- BAJA Usuario ---- */
+                $('#exampleModal22').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget);
+                    var alum = button.data('usuario');
+                    var id = button.data('id');
+                    var modal = $(this);                                
+                    modal.find('.modal-bajaRude').attr('action','/superadm/baja/'+id);
+                    modal.find('.modal-title').text('Usuario: ' + alum);
+                    modal.find('.modal-id').text(' '+id);                
+                })
+        </script>        
     </body>
