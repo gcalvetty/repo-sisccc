@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use sis_ccc\ModeloCCC\Grd_Nivel;
 use sis_ccc\libreriaCCC\queryCCC as qGECN;
 use sis_ccc\libreriaCCC\fncCCC as fGECN;
+use Illuminate\Support\Facades\Storage;
 
 class AdmController extends Controller
 {
@@ -67,6 +68,16 @@ class AdmController extends Controller
             }
             // _ Dar de baja
             else{                
+                // ---- Borramos todos sus datos en disco ----
+                $ruta= fGECN::constRuta(4, $id, ''); 
+                $rutaAux = str_replace ( '/' , "\\" , $ruta."_a");    
+                
+                $dir = Storage::disk('publicLib')->files($rutaAux);
+                if (sizeof($dir)>0) {  
+                    Storage::disk('publicLib')->deleteDirectory($rutaAux);  
+                    } 
+                // ---- Eliminacion Exitosa ----    
+                DB::delete('delete from users where id = ?', [$id]);
                 return redirect()->route('AdmCCC.usuReg')->with('success', $msg[1])
                                                          ->with('usuario', $userDel[0]->email);
             }
