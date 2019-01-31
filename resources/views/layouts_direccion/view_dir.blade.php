@@ -116,7 +116,7 @@
                             <div class="bs-example">
                                 <div class="alert alert-info fade in">
                                     <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                    <strong>Información:</strong> {{ session('success') }}
+                                    <strong><i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i> Información:</strong> {{ session('success') }}
                                 </div>
                             </div>
                         @endif
@@ -124,11 +124,10 @@
                             <div class="bs-example">
                                 <div class="alert alert-danger fade in">
                                     <a href="#" class="close" data-dismiss="alert">&times;</a>
-                                    <strong>Información:</strong> {{ session('warning') }}
+                                    <strong><i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i> Información:</strong> {{ session('warning') }}
                                 </div>
                             </div>
-                        @endif
-                        
+                        @endif                        
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>

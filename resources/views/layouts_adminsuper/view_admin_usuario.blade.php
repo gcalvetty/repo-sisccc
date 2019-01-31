@@ -44,6 +44,25 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
+                        @if (session()->has('success'))                                                        
+                        <div class="bs-example">
+                            <div class="alert alert-info fade in">
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <strong><i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i> Información:</strong> {{ session('success') }} 
+                                {{ session('usuario')}}</i>
+                            </div>
+                        </div>
+                        @endif
+                        @if (session()->has('warning'))                                                        
+                            <div class="bs-example">
+                                <div class="alert alert-warning fade in">
+                                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                    <strong><i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i> Información:</strong> {{ session('warning') }}
+                                </div>
+                            </div>
+                        @endif
+
+
                         <table id="exampleUsuarios" class="table table-bordered table-striped">
                             <thead>
                                 <tr>

@@ -58,13 +58,21 @@ class AdmController extends Controller
     */
     public function bajausuario($id){
         $userDel = DB::select('select * from users where id = ?', [$id]);        
+        $msg =array("No debe borrar este Usuario!!!","Se dio de baja al Usuario :", "No exite ese usuario en nuestros registros");
         if(sizeof($userDel)!= 0){
-            if($userDel[0]->tipo_Usu=='SuperAdm'){
-                // return redirect()->route('Dir.Reg')->with('warning', 'No debe borrar este Usuario!!!');
-                dd('No se puede dar de baja a un Super Administrador');
+            // _ no borrar Administradores
+            if($userDel[0]->tipo_Usu=='SuperAdm'){                    
+                return redirect()->route('AdmCCC.usuReg')->with('warning', $msg[0]);
+                //dd('No se puede dar de baja a un Super Administrador');
+            }
+            // _ Dar de baja
+            else{                
+                return redirect()->route('AdmCCC.usuReg')->with('success', $msg[1])
+                                                         ->with('usuario', $userDel[0]->email);
             }
         }
-        dd('Dar de baja Usuarios1');
+        // _ no hay usuario con es ID
+        return redirect()->route('AdmCCC.usuReg')->with('warning', $msg[2]);
     }
 
     
