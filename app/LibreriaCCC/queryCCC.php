@@ -155,7 +155,7 @@ order by curso asc, fec Desc
             $grd_nivel_aux ='and ge.grd_orden = '.$grd_nivel.' ';            
         }
         
-        $lisAluComp = DB::select('select u.id, u.nombre, u.ape_paterno, u.ape_materno, u.avatar, ge.grd_nombre as curso, rtc.regt_descripcion as tipcomp, rtt.regt_descripcion as tiptarj, rc.reg_obser as obser, rc.reg_fec as fec, rc.reg_id
+        $lisAluComp = DB::select('select u.id, u.nombre, u.ape_paterno, u.ape_materno, u.avatar, ge.grd_nombre as curso, rtc.regt_descripcion as tipcomp, rtt.regt_descripcion as tiptarj, rc.reg_obser as obser, rc.reg_fec as fec, rc.reg_id, rg.gst_gestion
 from users as u
 inner join reg_comportamiento as rc on rc.user_id = u.id
 left join reg_tipo_comportamiento as rtc on  rtc.regt_id = rc.reg_tipComp
@@ -163,10 +163,9 @@ left join reg_tipo_tarjeta	as rtt on rtt.regt_id = rc.reg_tipTarj
 
 left join rude_1_gestion as rg on u.id = rg.user_id
 left join grd_escolar as ge on rg.gst_grd_escolar = ge.grd_id 
-where u.tipo_Usu = "Est_ccc" '.$grd_nivel_aux.'
+where u.tipo_Usu = "Est_ccc" and YEAR(rc.reg_fec) = '.self::$gyear.'  '.$grd_nivel_aux.'
 order by curso ASC, fec Desc
-                ');
-        
+                ');         
 
         return $lisAluComp;
     }
@@ -1505,7 +1504,7 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
      * ---- Reportes de ayuda ----
      */
 
-    public static function Rep_list_Comportamiento() {
+    public static function Rep_list_Comportamiento() {        
         $lisAlumno = User::busXnom(null)->select(
                         "rc.reg_id as id", "ge.grd_nombre as Curso", "nombre as Nombre", "ape_paterno as Apellido Paterno", "ape_materno as Apellido Materno", "rt_c.regt_descripcion as Comportamiento", "rt_t.regt_descripcion as Tarjeta", "rc.reg_obser as Observación", "rc.reg_fec as Fecha"
                 )
@@ -1524,7 +1523,7 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
                 ->leftjoin("reg_tipo_tarjeta as rt_t", function($join) {
                     $join->on("rt_t.regt_id", "=", "rc.reg_tipTarj");
                 })->where([
-                    ['rg.gst_gestion', '=', '2018'],
+                    ['rg.gst_gestion', '=', self::$gyear],
                 ])
                 ->orderBy('rc.reg_fec', 'desc')
                 ->get();

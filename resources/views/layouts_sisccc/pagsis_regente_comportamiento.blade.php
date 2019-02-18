@@ -93,7 +93,7 @@
                 var nomAlm = button.data('nomalm');                    
                 
                 var modal = $(this);
-                modal.find('.Alm').text(nomAlm+" "+idAlm);
+                modal.find('.Alm').text(nomAlm);
                 modal.find('#AlmId').val(idAlm);
             });
 
