@@ -34,7 +34,7 @@
 
         <!-- Default box -->
         <div class="row">
-            <div class="col-md-3" id="tarea">
+            <div class="col-md-12" id="tarea">
                 <div class="box box-info">
                     <div class="box-header ui-sortable-handle" style="cursor: move;">
                         <i class="fa  fa-pencil-square-o"></i>
@@ -43,22 +43,19 @@
                     <div class="box-body">
                         <form action="#" v-on:submit.prevent="crearTarea" method="post">
                             <div class="form-group col-md-12">                                                       
-                                <select name="tar_m" id="tar_m" v-model="tar_materia" placeholder="Materia:">                                                                        
+                                <select name="tar_m" id="tar_m" v-model="tar_materia" placeholder="Materia:">
                                     <?php echo $Lista ?>                                                
                                 </select>                                
-                            </div>                           
-
+                            </div>
                             <div class="form-group col-md-12">
                                 <input type="text" class="form-control" 
                                        name="tar_desc"     
                                        v-model ="tar_desc"
                                        placeholder="Actividad a realizar">
-                            </div>                           
-
+                            </div>
                             <div class="box-footer clearfix">                        
                                 <input type="submit" class="btn btn-primary" value="Guardar">                             
-                            </div>
-                            
+                            </div>                            
                             <span v-for="error in errors" class="text-danger">
                                 @{{ error }}
                             </span> 
@@ -68,9 +65,9 @@
 
                 </div>
             </div>  
-
-
-            <div class="col-md-9" id="verTareas"> 
+        </div>    
+        <div class="row">
+            <div class="col-md-12" id="verTareas"> 
                 <div class="box box-success">
                     <div class="box-header ui-sortable-handle" style="cursor: move;">
                         <i class="fa fa-thumb-tack"></i>
@@ -80,19 +77,17 @@
                         <div class="table-responsive">
                             <table id="simple" class="table table-stripe table-hover">
                                 <thead> 
-                                    <tr>
-                                        <th>#</th> 
-                                        <th>Fecha</th>
-                                        <th>Curso</th>
-                                        <th>Materia</th> 
-                                        <th>Descripción</th>                                 
-                                        <th>Accion</th> 
+                                    <tr>                                        
+                                        <th class="col-md-1">Fecha</th>
+                                        <th class="col-md-2">Curso</th>
+                                        <th class="col-md-3">Materia</th> 
+                                        <th class="col-md-5">Descripción</th>                                 
+                                        <th class="col-md-1">Accion</th> 
                                     </tr> 
                                 </thead>
-                                <tbody v-for="tarea in listado">
-                                    <tr scope="row">
-                                        <td>@{{ tarea.tar_id}}</td>                                
-                                        <td>@{{ tarea.tar_fec_ini }}</td>
+                                <tbody>
+                                    <tr  v-for="tarea in listado" scope="row">                                        
+                                        <td>@{{ tarea.tar_fec }}</td>
                                         <td>@{{ tarea.tar_curso}}</td>                                
                                         <td>@{{ tarea.tar_materia}}</td>
                                         <td>@{{ tarea.tar_desc}}</td>                                

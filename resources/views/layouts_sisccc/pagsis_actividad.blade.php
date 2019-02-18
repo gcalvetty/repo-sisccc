@@ -125,14 +125,11 @@
                             toastr.warning('Seguimiento Eliminado!!!' + response.data);
                         })
                     },
-
                 }
             });
             $(document).ready(function () {
                 initSample();
             });
-        </script>
-        
+        </script>        
         @endif
-
     </body>

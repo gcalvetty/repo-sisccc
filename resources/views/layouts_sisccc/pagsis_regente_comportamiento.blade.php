@@ -89,12 +89,14 @@
             
             $('#EstudianteModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
-                    var idAlm = button.data('idalm')
-                    var nomAlm = button.data('nomalm')                    
-            var modal = $(this)
-                modal.find('.Alm').text(nomAlm)
-                modal.find('input.AlmId').val(idAlm)
+                var idAlm = button.data('idalm');
+                var nomAlm = button.data('nomalm');                    
+                
+                var modal = $(this);
+                modal.find('.Alm').text(nomAlm+" "+idAlm);
+                modal.find('#AlmId').val(idAlm);
             });
+
             $(document).ready(function () {
             @if (session('success'))
                     toastr.info('Se Elimino el Registro.', 'Reporte', {timeOut: 3000})

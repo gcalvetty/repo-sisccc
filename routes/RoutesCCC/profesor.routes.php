@@ -24,7 +24,7 @@ Route::get('/cuaderno_seguimiento', [
     'as' => 'Prof.cuadSegui',
     'uses' => 'ProfController@verCuaderno']);
 
-/* ---- accion de actividad ---- */
+/* ---- accion de actividad tarea ---- */
 Route::get('actividad/mostrar',[
     'as' => 'Prof.Act-guardar',
     'uses' => 'ProfController@mostrarActividades'    

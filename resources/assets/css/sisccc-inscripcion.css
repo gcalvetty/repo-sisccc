@@ -4,7 +4,7 @@
 .disc_est{ font-size:11px; }
 
 .form-control{ font-size:12px; }
-.table-striped td{ text-align:center;}
+.table-striped td, .table-striped th{ text-align:center;}
 .alert{-webkit-animation-duration:2s;
        -webkit-animation-delay:5s }
 .inscrForm{ margin-top: 100px;}

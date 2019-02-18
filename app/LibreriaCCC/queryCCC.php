@@ -155,7 +155,7 @@ order by curso asc, fec Desc
             $grd_nivel_aux ='and ge.grd_orden = '.$grd_nivel.' ';            
         }
         
-        $lisAluComp = DB::select('select u.id, u.nombre, u.ape_paterno, u.ape_materno, u.avatar, ge.grd_nombre as curso, rtc.regt_descripcion as tipcomp, rtt.regt_descripcion as tiptarj, rc.reg_obser as obser, rc.reg_fec as fec
+        $lisAluComp = DB::select('select u.id, u.nombre, u.ape_paterno, u.ape_materno, u.avatar, ge.grd_nombre as curso, rtc.regt_descripcion as tipcomp, rtt.regt_descripcion as tiptarj, rc.reg_obser as obser, rc.reg_fec as fec, rc.reg_id
 from users as u
 inner join reg_comportamiento as rc on rc.user_id = u.id
 left join reg_tipo_comportamiento as rtc on  rtc.regt_id = rc.reg_tipComp
@@ -1547,14 +1547,7 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
      * ---- Comunicado
      */
     public static function Rep_list_comuni() {
-        /*$lisAlumno = DB::table('comunicado as c')
-                    ->select("com_id as Id", "com_titulo as Comunicado", "com_desc as Descripción", "com_fec as Fecha", "comt_tipo as Para" )
-                    ->join("comunicado_tipo as ct", function($join) {
-                                $join->on("ct.comt_id", "=", "c.com_tipo");
-                            })
-                    ->orderBy('com_fec', 'DESC')                    
-                    ->get();*/
-
+        
                     $lisAlumno = DB::select('Select  com_id as Id, com_titulo as Comunicado, com_desc as Descripción, com_fec as Fecha, comt_tipo as Para 
 from comunicado as c
 inner join comunicado_tipo as ct on ct.comt_id = c.com_tipo

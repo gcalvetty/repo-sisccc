@@ -53,7 +53,7 @@ class RegeController extends Controller {
         $lGECN = $sql::listAlumnComportamiento($NivSel);
         $Niveles = Grd_Nivel::find(["2", "3"]);
         $user = fGECN::obt_nombre();
-
+        
         return view('layouts_regente/view_rege_comportamiento', [
             'usuactivo' => $user,
             'Lista' => $lGECN,
@@ -81,7 +81,7 @@ class RegeController extends Controller {
     }
 
     public function delComportamiento(Request $req) {
-        $data = $req->all();
+        $data = $req->all();        
         $eliDocente = DB::delete('Delete '
                         . ' From reg_comportamiento'
                         . ' where reg_id=' . $req->AlmId);

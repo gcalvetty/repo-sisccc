@@ -92,7 +92,7 @@
                                         <button type="button" class="btn btn-danger" 
                                                 data-toggle="modal" 
                                                 data-target=".bs-example-modal-lg"
-                                                data-idalm="{{ $Alumno->id }}"
+                                                data-idalm="{{ $Alumno->reg_id }}"
                                                 data-nomalm=" {{ $Alumno->nombre }} {{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}">
                                             <i class="fa fa-trash"></i></button>
                                     </td>
@@ -118,10 +118,9 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="exampleModalLabel">Desea elimar el Registro del Alumn@: <span class="Alm"></span></h4>
                     </div>
-                    <input class="AlmId" id="AlmId" name="AlmId" value="" hidden="true">
-
+                    <input class="AlmIdAux" id="AlmId" name="AlmId" value="" hidden="true">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>                        
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
                         {!! Form::submit('Aceptar', ['class' => 'btn btn-danger']); !!}
                     </div>
                 </div>

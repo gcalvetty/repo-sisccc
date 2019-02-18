@@ -149,7 +149,7 @@
                                                     <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
                                                 </div>
                                                 <div class="col-md-9 col-xs-12 text-left">
-                                                <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
+                                                <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }}<b/>, {{ $Alumno->nombre }}
                                                 </div>    
                                         </td>
                                         <td>

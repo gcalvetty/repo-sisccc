@@ -29,7 +29,7 @@
             </li>
             <li class="treeview <?php echo ($NivelSel != 0)? "active":"noactive:".$NivelSel; ?>">
                 <a href="#">
-                    <i class="fa fa-edit"></i> <span>Alumnos</span>
+                    <i class="fa fa-users" aria-hidden="true"></i> <span>Alumnos</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -44,9 +44,12 @@
                         </a> 
                     </li>                            
                     @endforeach
-                    
-
                 </ul>
+                <li class="<?php echo ((Route::current()->getName() == 'Cont.cuadSegui'))? "active":"";?>">
+                    <a href="{{ route('Cont.cuadSegui') }}">
+                        <i class="fa  fa-pencil-square-o"></i> <span>Cuaderno de Seguimiento</span>                    
+                    </a>
+                </li>
             </li> 
              
 

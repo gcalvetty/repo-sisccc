@@ -83,29 +83,23 @@
                                 <thead> 
                                     <tr>
                                         <th>#</th> 
-                                        <th>Fecha</th>
-                                        <th>Curso</th>
-                                        <th>Materia</th> 
+                                        <th>Fecha</th>                                         
                                         <th>Descripción</th>                                 
                                         <th>Accion</th> 
                                     </tr> 
                                 </thead>
-                                <tbody v-for="tarea in listado">
-                                    <tr scope="row">
+                                <tbody>
+                                    <tr v-for="tarea in listado" scope="row">
                                         <td>@{{ tarea.pc_id}}</td>                                
-                                        <td>@{{ tarea.pc_fec }}</td>
-                                        <td>@{{ tarea.pc_curso}}</td>                                
-                                        <td>@{{ tarea.pc_materia}}</td>
-                                        <td v-html="tarea.pc_desc" v-bind:id="tarea.pc_id" contenteditable="true">                                                                                                                               
+                                        <td>@{{ tarea.pc_fec }}</td>                                        
+                                        <td v-html="tarea.pc_desc" v-bind:id="tarea.pc_id" contenteditable="true">
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-danger" v-on:click.prevent="eliminarSeguimiento(tarea)">
                                                 <i class="fa fa-trash-o"> </i>
                                             </button>                                            
                                         </td>
-
                                     </tr>    
-
                                 </tbody>                                
                             </table>
                         </div>

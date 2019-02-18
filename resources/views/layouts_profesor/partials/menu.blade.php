@@ -36,7 +36,7 @@
                 </a>
             </li>
             
-            <li class="<?php echo ((Route::current()->getName() == 'Prof.cuadSegui'))? "active":"";?>">
+            <li class="hidden <?php echo ((Route::current()->getName() == 'Prof.cuadSegui'))? "active":"";?>">
                 <a href="{{ route('Prof.actividades') }}">
                     <i class="fa  fa-calendar-check-o"></i> <span>Calendario de Actividades</span>                    
                 </a>

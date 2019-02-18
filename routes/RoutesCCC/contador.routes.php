@@ -14,7 +14,6 @@ Route::get('bloquear/alumno/{id}/blodes/{accion}',[
     'uses' => 'Cont_Bloq_Alm_Controller@updateGECN'    
 ])->where(['accion'=>'[1-2]']);
 
-
 route::resource('bloquear','Cont_Bloq_Alm_Controller',
                 [
                     'except'=>['show','create','edit'],
@@ -23,4 +22,24 @@ route::resource('bloquear','Cont_Bloq_Alm_Controller',
                 );
                    
 
+/* ---- accion de Cuaderno de Seguimiento ---- */
+Route::get('cuaderno_seguimiento', [
+    'as' => 'Cont.cuadSegui',
+    'uses' => 'ContController@verCuaderno']);
+
+/* ---------------- */
+Route::get('cuaderno/mostrar',[
+    'as' => 'Cont.Cua-mostrar',
+    'uses' => 'ContController@mostrarSeguimiento'    
+]);
+
+Route::post('cuaderno/guardar',[
+    'as' => 'Cont.Cua-guardar',
+    'uses' => 'ContController@guardarSeguimiento'    
+]);
+
+Route::delete('cuaderno/borrar/{tarea}',[
+    'as' => 'Cont.Cua-borrar',
+    'uses' => 'ContController@borrarSeguimiento'    
+])->where(['tarea' => '[0-9]+']);
 

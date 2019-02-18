@@ -122,10 +122,12 @@ class ProfController extends Controller {
 
     /*
      * ---- Actividades
+     * Aqui se genera las Materias x Profesor
      */    
-    public function verActividades() {
+    
+    public function verActividades() {        
         $this->__get(1);
-        $curMat = qGECN::list_Cursos_materia();        
+        $curMat = qGECN::list_Cursos_materia();              
         $estMat = "";        
         foreach($curMat as $aux)
         {
@@ -145,11 +147,18 @@ class ProfController extends Controller {
             'Lista' => $estMat,                        
         ]);
     }
+
+    /*
+    * --- Cargamos todas las Tareas x Prof
+    */
     public function mostrarActividades() {
         $prof = Auth::user()->id;
-        $lisActi = DB::select('select *
+        setlocale(LC_ALL,"es_ES");
+        //setlocale(LC_TIME, 'spanish');
+        $lisActi = DB::select('select *, DATE_FORMAT(tar_fec_ini,"%d de %M") AS tar_fec
         from prof_tareas
-	where (user_id = "' . $prof . '") order by tar_id Desc LIMIT 10');
+    where (user_id = "' . $prof . '") order by tar_id Desc');
+      
         return $lisActi;
     }
 

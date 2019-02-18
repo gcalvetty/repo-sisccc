@@ -41,20 +41,20 @@
                         <table id="example1" class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>                                    
-                                    <th>#</th>                                    
-                                    <th>Alumno</th>
-                                    <th>Curso</th>
-                                    <th>Tel.</th>
-                                    <th>Cel.</th>
-                                    <th>Adeuda</th>
+                                    <th class="col-md-1">#</th>                                    
+                                    <th class="col-md-7">Alumno</th>
+                                    <th class="col-md-1">Curso</th>
+                                    <th class="col-md-1">Tel.</th>
+                                    <th class="col-md-1">Cel.</th>
+                                    <th class="col-md-1">Adeuda</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $aux = 1 ?>
                                 @foreach($Lista as $Alumno)
                                 <tr id="{{$Alumno->id}}">
-                                    <td>{{ $aux++ }}</td>  
-                                    <td>
+                                    <td class="col-md-1">{{ $aux++ }}</td>  
+                                    <td class="col-md-7">
                                            <div class="col-md-2">                                            
                                                 <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Alumno->id, 30) ?>
                                             </div>
@@ -62,15 +62,15 @@
                                             <b>{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}
                                             </div>    
                                     </td>
-                                    <td>                                                
+                                    <td class="col-md-1">                                                
                                             {{ $Alumno->curso }} - {{ $Alumno->aula }}    
                                     </td>
-                                    <td>
+                                    <td class="col-md-1">
                                         <?php echo sis_ccc\Http\Controllers\Contador\ContController::verTel($Alumno->Tel); ?>    
                                     </td>                                    
-                                    <td>
+                                    <td class="col-md-1">
                                         <?php echo sis_ccc\Http\Controllers\Contador\ContController::verTel($Alumno->Cel); ?>
-                                    <td>                                        
+                                    <td class="col-md-1">                                        
                                         @if($Alumno->estado == 'Inscrito')
                                         <button type="button" class="actbot btn btn-danger btnbloq{{ $Alumno->id }}" v-on:click.prevent="bloqAlm({{ $Alumno->id }});">                                                                                        
                                             <i class="fa fa-unlock-alt" aria-hidden="true"> Bloquear</i>
