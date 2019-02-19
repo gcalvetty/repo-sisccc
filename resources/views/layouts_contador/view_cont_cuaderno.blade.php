@@ -30,7 +30,7 @@
 
     <!-- Main content -->
     <section id="contador_crud"></section>
-    <section class="content" id="Prof_Seguimiento">
+    <section class="content" id="Cuad_Seguimiento">
 
         <!-- Default box -->
         <div class="row">
@@ -59,16 +59,14 @@
                                 </nav>   
                             <table id="simple" class="table table-hover table-striped">
                                 <thead> 
-                                    <tr>
-                                        <th class="col-md-1">#</th> 
-                                        <th class="col-md-2">Fecha</th>                                         
-                                        <th class="col-md-7">Descripción</th>                                 
+                                    <tr>                                        
+                                        <th class="col-md-2" @click="sort('fecha')">Fecha</th>
+                                        <th class="col-md-8">Descripción</th>                                 
                                         <th class="col-md-1">Accion</th> 
                                     </tr> 
                                 </thead>
                                 <tbody>
                                     <tr v-for="tarea in listado" scope="row" class="text-left">
-                                        <td>@{{ tarea.pc_id}}</td>                                
                                         <td>@{{ modFec(tarea.pc_fec) }}</td>                                        
                                         <td contenteditable="true" >
                                             <div  v-html="tarea.pc_desc" v-bind:id="tarea.pc_id" class="text-left"></div> 

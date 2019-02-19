@@ -60,7 +60,9 @@
         <script src="/bootstrap/js/bootstrap.min.js"></script>
         <script src="/dist/js/app.min.js"></script>
         <script src="/dist/js/ccc-escritorio.js"></script>
-        <script src="/jquery/vue.js"></script>
+
+        <!-- VUEJS -->
+        <script src="/jquery/vue.js"></script>        
         <script src="/jquery/axios.js"></script>
         <script src="/jquery/toastr.js" type="text/javascript"></script>
 
@@ -68,115 +70,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
         <script src="/plugins/fullcalendar/fullcalendar.min.js"></script>    
         <script src="/jquery/moment.js" type="text/javascript"></script>  
-        <script src="/jquery/locale/es-fecha.js" type="text/javascript"></script>  
-        
+        <script src="/jquery/locale/es-fecha.js" type="text/javascript"></script>          
         
         <!-- TextArea -->
         <script src="/jquery/ckeditor/ckeditor.js"></script>
         <script src="/jquery/ckeditor/js/sample.js"></script>    
-        <script>
-            moment.locale('es');            
-            a = new Vue({
-                el: "#Prof_Seguimiento",
-                created: function () {
-                    this.getAct();
-                },
-                data: {
-                    listado: [],
-                    paginacion :{
-                        'total'    : 0,
-                        'act_pag'  : 0,
-                        'por_pag'  : 0,
-                        'ult_pag'  : 0,
-                        'de'       : 0,
-                        'al'       : 0,
-                        },
-                    tar_desc: '',
-                    fini: '',                    
-                    errors: [],
-                    offset: 3,
-                    text: '',
-                    numCuad: 0,
-                },
-                mounted: function () { //cuando se cargo la pagina
-
-                },
-                computed:{
-                    isActived:function(){
-                        return this.paginacion.act_pag;
-                    },
-                    pagesNumber: function(){
-                        var pagesArray = [];
-                        if(!this.paginacion.al){
-                            return [];
-                        }
-                        // Desde
-                        var from = this.paginacion.act_pag - this.offset;
-                        if(from<1){
-                            from = 1;
-                        }
-                        // Hasta
-                        var to = from + (2 * this.offset);
-                        if(to >= this.paginacion.ult_pag){
-                            to = this.paginacion.ult_pag;
-                        }
-                        while(from <= to){
-                           pagesArray.push(from) ;
-                           from++;                           
-                        }
-                        return pagesArray;
-                    },
-                },
-                methods: {                    
-                    getAct: function (pag) {
-                        var urlAct = "cuaderno/mostrar?page="+pag;
-                        axios.get(urlAct).then(response => {
-                            this.listado = response.data.lisCuaderno.data;
-                            this.paginacion = response.data.paginacion;
-                        });
-                        this.numCuad = 0;                        
-                    },                    
-                    crearSeguimiento: function () {
-                        var urlGuaAct = "cuaderno/guardar";
-                        this.tar_desc = CKEDITOR.instances.editor.getData();
-                        axios.post(urlGuaAct, {
-                            Seguimiento: this.tar_desc
-                        }).then(response => {
-                            this.getAct();
-                            this.tar_desc = '';
-                            this.errors = '';
-                            toastr.info('Seguimiento Guardado!!!');
-                        }).catch(error => {
-                            this.errors = error.response.data
-                        });
-
-                    },
-                    eliminarSeguimiento: function (tarea) {
-                        var urlAct = "cuaderno/borrar/" + tarea.pc_id;
-
-                        axios.delete(urlAct).then(response => {
-                            this.getAct();
-                            toastr.success('Seguimiento Eliminado!!!' + response.data);
-                        })
-                    },
-                    modFec: function(fecha){
-                        // moment(String(tarea.pc_fec)).format('DD/MM') 
-                        fecMod = moment(String(fecha)).format('D MMM');
-                        return fecMod;
-                    },
-                    cambiarPag:function(pag){
-                        this.paginacion.act_pag = pag;
-                        this.getAct(pag);
-
-                    },
-                    idEdit:function(id){
-                        return "editor"+id;
-                    }
-                }
-            });
-            $(document).ready(function () {
-                initSample();
-            });            
-            
-        </script>                
+        
+        <!-- Seguimiento + Paginacion -->
+        <script src="/jquery/ccc-cuad-seguimiento.js" type="text/javascript"></script>                
     </body>

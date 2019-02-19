@@ -189,8 +189,7 @@
                         if(opc == 3) {this.ttarClass="panel-warning"; return "Tarjeta Amarilla"};
                         if(opc == 4) {this.ttarClass="panel-danger"; return "Tarjeta Roja"};                        
                     },       
-                    iniVal:function(event){
-                        
+                    iniVal:function(event){                        
                         this.ttar.tar=0;this.ttar.tarAct=0;this.ttar.mem=0;
                         toastr.warning('Se cancelo', 'Mensaje', {timeOut: 2000})
                     }       
