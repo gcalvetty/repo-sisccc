@@ -131,3 +131,24 @@ Route::resource('acc_comunicado', 'DirController', [
 ]
 );
 
+/* ---- accion de Cuaderno de Seguimiento ---- */
+Route::get('cuaderno_seguimiento', [
+    'as' => 'Dir.cuadSegui',
+    'uses' => 'DirController@verCuaderno']);
+
+/* ---------------- */
+Route::get('cuaderno/mostrar',[
+    'as' => 'Dir.Cua-mostrar',
+    'uses' => 'DirController@mostrarSeguimiento'    
+]);
+
+Route::post('cuaderno/guardar',[
+    'as' => 'Dir.Cua-guardar',
+    'uses' => 'DirController@guardarSeguimiento'    
+]);
+
+Route::delete('cuaderno/borrar/{tarea}',[
+    'as' => 'Dir.Cua-borrar',
+    'uses' => 'DirController@borrarSeguimiento'    
+])->where(['tarea' => '[0-9]+']);
+

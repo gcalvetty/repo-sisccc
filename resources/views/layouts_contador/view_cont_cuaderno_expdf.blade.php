@@ -34,14 +34,13 @@
 
         <!-- Default box -->
         <div class="row">
-            <div class="col-md-12" id="verTareas"> 
+            <div class="col-md-8" id="verTareas"> 
                 <div class="box box-success">
                     <div class="box-header ui-sortable-handle" style="cursor: move;">
                         <i class="fa fa-thumb-tack"></i>
                         <h3 class="box-title">Cuaderno de Seguimiento</h3>
                         <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#crear">Nueva Actividad</a>                                             
-                    </div>
-                   
+                    </div>                   
                     <div class="box-body">                        
                         <div class="table-responsive">
                             <nav>
@@ -78,13 +77,12 @@
                                         </td>
                                     </tr>
                                 </tbody>                                
-                            </table>
-                            
+                            </table>                            
                             @include('layouts_sisccc.partials.pagsis_crear_cuaSeg')
                         </div>
                     </div>
                 </div>   
-            </div>
+            </div>                     
         </div>
         <!-- /.col -->
 </div>

@@ -27,7 +27,13 @@
                 <a href="{{ route('Psico.Comp')}}">
                     <i class="fa fa-folder"></i> <span>Comportamiento</span>                    
                 </a>                
-            </li>            
+            </li>  
+            <hr>
+            <li class="<?php echo ((Route::current()->getName() == 'Psico.cuadSegui'))? "active":"";?>">
+                <a href="{{ route('Psico.cuadSegui') }}">
+                    <i class="fa  fa-pencil-square-o"></i> <span>Cuaderno de Seguimiento</span>                    
+                </a>
+            </li>          
         </ul>
     </section>
     <!-- /.sidebar -->

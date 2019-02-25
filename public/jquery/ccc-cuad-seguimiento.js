@@ -1,5 +1,5 @@
 moment.locale('es');         
-new Vue({
+const app1 = new Vue({
     el: "#Cuad_Seguimiento",
     created: function () {
         this.getAct();
@@ -82,7 +82,8 @@ new Vue({
             })
         },
         modFec: function(fecha){
-            // moment(String(tarea.pc_fec)).format('DD/MM') 
+            // moment(String(tarea.pc_fec)).format('DD/MM')
+            var fecMod = ''; 
             fecMod = moment(String(fecha)).format('D MMM');
             return fecMod;
         },
@@ -103,6 +104,7 @@ new Vue({
         },                  
     }
 });
+
 $(document).ready(function () {
     initSample();                
 });

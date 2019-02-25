@@ -53,7 +53,14 @@
                     <li><a href="#"><i class="fa fa-circle-o"></i> Llamadas de atencion</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> Observaciones</a></li>
                 </ul>
-            </li>                       
+            </li>  
+            
+            <hr>
+            <li class="<?php echo ((Route::current()->getName() == 'Cont.cuadSegui'))? "active":"";?>">
+                <a href="{{ route('Cont.cuadSegui') }}">
+                    <i class="fa  fa-pencil-square-o"></i> <span>Cuaderno de Seguimiento</span>                    
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

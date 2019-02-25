@@ -136,3 +136,24 @@ Route::resource('acc_calactividad', 'SecrController', [
 );
 
 
+/* ---- accion de Cuaderno de Seguimiento ---- */
+Route::get('cuaderno_seguimiento', [
+    'as' => 'Secr.cuadSegui',
+    'uses' => 'SecrController@verCuaderno']);
+
+/* ---------------- */
+Route::get('cuaderno/mostrar',[
+    'as' => 'Secr.Cua-mostrar',
+    'uses' => 'SecrController@mostrarSeguimiento'    
+]);
+
+Route::post('cuaderno/guardar',[
+    'as' => 'Secr.Cua-guardar',
+    'uses' => 'SecrController@guardarSeguimiento'    
+]);
+
+Route::delete('cuaderno/borrar/{tarea}',[
+    'as' => 'Secr.Cua-borrar',
+    'uses' => 'SecrController@borrarSeguimiento'    
+])->where(['tarea' => '[0-9]+']);
+

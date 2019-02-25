@@ -67,3 +67,7 @@ route::resource('cuaderno','ProfController',
                     //'parameters' => [ 'Prof'=>'id','Curso'=>'valor']
                 ]
                 );
+
+/*
+* ---- CUADERNO DE SEGUIMIENTO ----
+*/                

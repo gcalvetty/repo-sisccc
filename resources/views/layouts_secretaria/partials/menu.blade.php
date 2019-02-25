@@ -84,6 +84,12 @@
                     <i class="fa fa-file-excel-o"></i> <span>Reportes</span>                    
                 </a>
             </li> 
+            <hr>
+            <li class="<?php echo ((Route::current()->getName() == 'Secr.cuadSegui'))? "active":"";?>">
+                <a href="{{ route('Secr.cuadSegui') }}">
+                    <i class="fa  fa-pencil-square-o"></i> <span>Cuaderno de Seguimiento222</span>                    
+                </a>
+            </li>
             
             
             

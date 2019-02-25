@@ -40,13 +40,16 @@
                         <a href="{{ route('Rege.Comp')}}">
                             <i class="fa fa-circle-o"></i> <span>Todos los grados</span>                    
                         </a>                
-                    </li> 
+                    </li>                     
                 </ul>
             </li> 
 
-
-
-
+            <hr>
+            <li class="<?php echo ((Route::current()->getName() == 'Rege.cuadSegui'))? "active":"";?>">
+                <a href="{{ route('Rege.cuadSegui') }}">
+                    <i class="fa  fa-pencil-square-o"></i> <span>Cuaderno de Seguimiento</span>                    
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

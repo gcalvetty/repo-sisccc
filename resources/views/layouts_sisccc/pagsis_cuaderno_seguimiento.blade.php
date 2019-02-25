@@ -50,21 +50,15 @@
             @yield('sis_menu_lateral')
             @yield('sis_contenido')
             @yield('menu-configuracion')            
-        </div>      
-        <!-- jQuery 3.1.1 -->
-        <script src="/jquery/jquery-3.1.1.min.js"></script> 
-        <!-- jQuery UI 1.11.4 -->
-        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-
+        </div> 
+        
+        <script src="{{ asset("js/app.js") }}" ></script> 
+        <script src="{{ asset("js/app-tabla.js") }}" ></script> 
+        
         <!-- Bootstrap 3.3.6 -->
         <script src="/bootstrap/js/bootstrap.min.js"></script>
         <script src="/dist/js/app.min.js"></script>
         <script src="/dist/js/ccc-escritorio.js"></script>
-
-        <!-- VUEJS -->
-        <script src="/jquery/vue.js"></script>        
-        <script src="/jquery/axios.js"></script>
-        <script src="/jquery/toastr.js" type="text/javascript"></script>
 
         <!-- fullCalendar 2.2.5 -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
@@ -77,5 +71,11 @@
         <script src="/jquery/ckeditor/js/sample.js"></script>    
         
         <!-- Seguimiento + Paginacion -->
-        <script src="/jquery/ccc-cuad-seguimiento.js" type="text/javascript"></script>                
+        <script src="/jquery/ccc-cuad-seguimiento.js" type="text/javascript"></script>  
+
+        
+
+*****************************************
+
+
     </body>

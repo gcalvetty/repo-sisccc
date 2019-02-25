@@ -211,6 +211,12 @@
                             </a>
                     </li>
                 </ul>
+            </li>
+            <hr>
+            <li class="<?php echo ((Route::current()->getName() == 'AdmCCC.cuadSegui'))? "active":"";?>">
+                <a href="{{ route('AdmCCC.cuadSegui') }}">
+                    <i class="fa  fa-pencil-square-o"></i> <span>Cuaderno de Seguimiento</span>                    
+                </a>
             </li>            
             
         </ul>

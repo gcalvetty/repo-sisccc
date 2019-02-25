@@ -77,16 +77,13 @@
                     <a href="{{ route('password.request','ingrese-email@ccc.edu.bo') }}">
                     <i class="fa fa-key" aria-hidden="true"></i> <span>Modificar Contraseña</span>       
                     </a>
-            </li> 
-            <div class="hidden">           
-                       
-            <li class="enable">
-                <a href="{{ route('register') }}">
-                    <i class="fa  fa-user-plus"></i> <span>Crear Nuevo Usuario</span>                                        
+            </li>             
+            <hr>
+            <li class="<?php echo ((Route::current()->getName() == 'Dir.cuadSegui'))? "active":"";?>">
+                <a href="{{ route('Dir.cuadSegui') }}">
+                    <i class="fa  fa-pencil-square-o"></i> <span>Cuaderno de Seguimiento</span>                    
                 </a>
-            </li> 
-            
-            </div>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

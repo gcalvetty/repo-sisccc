@@ -79,3 +79,27 @@ Route::get('rude-adm/{alumno}/imprimir',
     ['as'  => 'rude-adm.imprimir',
         'uses' => 'AdmtrController@AlumnoImprimir',
     ])->where(['alumno' => '[0-9]+']);
+
+    
+/* ---- accion de Cuaderno de Seguimiento ---- */
+Route::get('cuaderno_seguimiento', [
+    'as' => 'Admtr.cuadSegui',
+    'uses' => 'AdmtrController@verCuaderno']);
+
+/* ---------------- */
+Route::get('cuaderno/mostrar',[
+    'as' => 'Admtr.Cua-mostrar',
+    'uses' => 'AdmtrController@mostrarSeguimiento'    
+]);
+
+Route::post('cuaderno/guardar',[
+    'as' => 'Admtr.Cua-guardar',
+    'uses' => 'AdmtrController@guardarSeguimiento'    
+]);
+
+Route::delete('cuaderno/borrar/{tarea}',[
+    'as' => 'Admtr.Cua-borrar',
+    'uses' => 'AdmtrController@borrarSeguimiento'    
+])->where(['tarea' => '[0-9]+']);
+
+

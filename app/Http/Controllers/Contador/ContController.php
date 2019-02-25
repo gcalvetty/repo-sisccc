@@ -83,7 +83,7 @@ class ContController extends Controller {
         $Niveles = Grd_Nivel::get();
         $NivSel = ($request->grd_nivel!=null)?$request->grd_nivel:0;
         $user   = fGECN::obt_nombre();             
-        return view('layouts_contador/view_cont_cuaderno', [
+        return view('layouts_sisccc/pagsis_cuaderno', [
             'usuactivo' => $user,            
             'Niveles' => $Niveles,
             'NivelSel' => $NivSel,            

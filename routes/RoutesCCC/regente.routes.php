@@ -30,3 +30,24 @@ Route::get('/PDFComportamiento/alum-{AlmId}-ccc',[
     'uses' => 'RegeController@PDFComportamiento',    
 ])->where(['AlmId'=>'[0-9]+']);
 
+/* ---- accion de Cuaderno de Seguimiento ---- */
+Route::get('cuaderno_seguimiento', [
+    'as' => 'Rege.cuadSegui',
+    'uses' => 'RegeController@verCuaderno']);
+
+/* ---------------- */
+Route::get('cuaderno/mostrar',[
+    'as' => 'Rege.Cua-mostrar',
+    'uses' => 'RegeController@mostrarSeguimiento'    
+]);
+
+Route::post('cuaderno/guardar',[
+    'as' => 'Rege.Cua-guardar',
+    'uses' => 'RegeController@guardarSeguimiento'    
+]);
+
+Route::delete('cuaderno/borrar/{tarea}',[
+    'as' => 'Rege.Cua-borrar',
+    'uses' => 'RegeController@borrarSeguimiento'    
+])->where(['tarea' => '[0-9]+']);
+
