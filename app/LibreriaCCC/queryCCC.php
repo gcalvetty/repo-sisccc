@@ -123,7 +123,7 @@ order by curso asc, fec Desc
         $lisActividad = DB::select('Select *
                 from cal_actividad as c 
                 where '.$condAux.'
-                order by act_fec ASC ' . $limAux);        
+                order by act_fec DESC ' . $limAux);        
         
         return $lisActividad;
     }    

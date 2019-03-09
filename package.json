@@ -8,7 +8,7 @@
   "license": "ISC",
   "directories": {
     "test": "tests"
-  },  
+  },
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -21,15 +21,13 @@
   "private": true,
   "devDependencies": {
     "axios": "^0.18",
-    "bootstrap": "^4.0.0",    
+    "bootstrap": "^4.0.0",
     "cross-env": "^5.1",
     "jquery": "^3.2",
     "laravel-mix": "^2.1.14",
-    "lodash": "^4.17.5", 
+    "lodash": "^4.17.5",
     "popper.js": "^1.12",
     "vue": "^2.5.7",
-        
-    
     "laravel-elixir": "^6.0.0-9",
     "laravel-elixir-vue-2": "^0.3.0",
     "laravel-elixir-webpack-official": "^1.0.2",
@@ -39,6 +37,7 @@
   "dependencies": {
     "ajv": "^6.5.4",
     "imagemin": "^6.0.0",
+    "sweetalert2": "^8.2.6",
     "vue-button-effect": "0.0.3",
     "vuejs-datepicker": "^0.9.29"
   }

@@ -11,7 +11,43 @@
 @endsection
 
 @section('sis_menu_lateral')
-@include('layouts_contador.partials.menu')   
+    <?php $rutaUrl = Route::current()->getName() ?>
+    @switch($rutaUrl)
+    
+    @case('AdmCCC.cuadSegui')
+        @include('layouts_adminsuper.partials.menu')   
+    @break
+
+    @case('Admtr.cuadSegui')
+        @include('layouts_administracion.partials.menu')   
+    @break
+
+    @case('Cont.cuadSegui')
+        @include('layouts_contador.partials.menu')   
+    @break
+
+    @case('Dir.cuadSegui')
+        @include('layouts_direccion.partials.menu')   
+    @break
+
+    @case('2')
+        @include('layouts_profesor.partials.menu')   
+    @break
+
+    @case('Psico.cuadSegui')
+        @include('layouts_psico.partials.menu')   
+    @break
+
+    @case('Rege.cuadSegui')
+        @include('layouts_regente.partials.menu')   
+    @break
+
+    @case('Secr.cuadSegui')
+        @include('layouts_secretaria.partials.menu')   
+    @break
+    
+    @endswitch
+    
 @endsection
 
 @section('sis_contenido')

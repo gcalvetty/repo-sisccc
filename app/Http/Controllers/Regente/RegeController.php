@@ -40,6 +40,8 @@ class RegeController extends Controller {
         $Niveles = Grd_Nivel::find(["2", "3"]);
         $user = fGECN::obt_nombre();
 
+        
+
         return view('layouts_regente/view_rege', [
             'usuactivo' => $user,
             'Lista' => $lGECN,
@@ -211,11 +213,12 @@ class RegeController extends Controller {
     public function verCuaderno(Request $request) {
         $Niveles = Grd_Nivel::get();
         $NivSel = ($request->grd_nivel!=null)?$request->grd_nivel:0;
-        $user   = fGECN::obt_nombre();             
+        $user   = fGECN::obt_nombre();
+        
         return view('layouts_sisccc/pagsis_cuaderno', [
             'usuactivo' => $user,            
             'Niveles' => $Niveles,
-            'NivelSel' => $NivSel,            
+            'NivSel' => $NivSel,            
         ]);
     }
 

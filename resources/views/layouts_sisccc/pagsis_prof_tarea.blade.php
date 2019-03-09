@@ -31,11 +31,7 @@
         <![endif]-->
         <!-- Scripts -->
 
-        <!-- datagrip -->
-        <link href="/css/jquery-ui.css" rel="stylesheet" type="text/css" >
-        <!-- fullCalendar 2.2.5-->               
-        <link rel="stylesheet" href="../plugins/fullcalendar/fullcalendar.min.css">
-        <link rel="stylesheet" href="../plugins/fullcalendar/fullcalendar.print.css" media="print">
+        
 
         <script>
             window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
@@ -50,27 +46,24 @@
             @yield('sis_menu_lateral')
             @yield('sis_contenido')
             @yield('menu-configuracion')            
-        </div> 
-        
-        <script src="{{ asset("js/app.js") }}" ></script> 
-        <script src="{{ asset("js/app-tabla.js") }}" ></script> 
-        
+        </div>      
+        <!-- jQuery 3.1.1 -->
+        <script src="/jquery/jquery-3.1.1.min.js"></script> 
+        <!-- jQuery UI 1.11.4 -->
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
         <!-- Bootstrap 3.3.6 -->
         <script src="/bootstrap/js/bootstrap.min.js"></script>
         <script src="/dist/js/app.min.js"></script>
         <script src="/dist/js/ccc-escritorio.js"></script>
+        <script src="/jquery/vue.js"></script>
+        <script src="/jquery/axios.js"></script>
+        <script src="/jquery/toastr.js" type="text/javascript"></script>
 
-        <!-- fullCalendar 2.2.5 -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-        <script src="/plugins/fullcalendar/fullcalendar.min.js"></script>    
-        <script src="/jquery/moment.js" type="text/javascript"></script>  
-        <script src="/jquery/locale/es-fecha.js" type="text/javascript"></script>          
-        
         <!-- TextArea -->
         <script src="/jquery/ckeditor/ckeditor.js"></script>
-        <script src="/jquery/ckeditor/js/sample.js"></script>    
-        
-        <!-- Seguimiento + Paginacion -->
-        <script src="/jquery/ccc-cuad-seguimiento.js" type="text/javascript"></script>  
+        <script src="/jquery/ckeditor/js/sample.js"></script>
 
+                         
+        <script src="/jquery/ccc-profesor-actividad.js" type="text/javascript"></script>        
     </body>

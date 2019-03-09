@@ -72,9 +72,11 @@
         <script src="/jquery/vue.js" type="text/javascript"></script>        
         <script src="/jquery/vee-validate.js" type="text/javascript"></script>
         <script src="/jquery/toastr.js" type="text/javascript"></script>  
-        <!-- TextArea -->
-        <script src="/jquery/ckeditor/ckeditor.js"></script>
-        <script src="/jquery/ckeditor/js/sample.js"></script>  
+        
+        
+        
+
+        
         <script>
             $(function () {
             $("#example1").DataTable();

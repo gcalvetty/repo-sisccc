@@ -356,7 +356,7 @@ class DirController extends Controller
                    ->select('*')
                    ->where('user_id',$usuId)
                    ->orderBy('pc_fec', 'DESC')
-                   ->paginate(5);
+                   ->paginate(5);        
                 
         return ['paginacion' =>[
                 'total'     => $cuadSeg->total(),
@@ -388,11 +388,13 @@ class DirController extends Controller
     public function verCuaderno(Request $request) {
         $Niveles = Grd_Nivel::get();
         $NivSel = ($request->grd_nivel!=null)?$request->grd_nivel:0;
-        $user   = fGECN::obt_nombre();             
+        $user   = fGECN::obt_nombre(); 
+                    
         return view('layouts_sisccc/pagsis_cuaderno', [
             'usuactivo' => $user,            
             'Niveles' => $Niveles,
-            'NivelSel' => $NivSel,            
+            'NivelSel' => $NivSel,  
+            'Grd'       => 0,         
         ]);
     }
 

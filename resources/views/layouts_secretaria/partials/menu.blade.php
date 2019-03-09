@@ -87,7 +87,7 @@
             <hr>
             <li class="<?php echo ((Route::current()->getName() == 'Secr.cuadSegui'))? "active":"";?>">
                 <a href="{{ route('Secr.cuadSegui') }}">
-                    <i class="fa  fa-pencil-square-o"></i> <span>Cuaderno de Seguimiento222</span>                    
+                    <i class="fa  fa-pencil-square-o"></i> <span>Cuaderno de Seguimiento</span>                    
                 </a>
             </li>
             
