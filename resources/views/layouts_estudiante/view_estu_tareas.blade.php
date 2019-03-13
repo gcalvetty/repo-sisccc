@@ -46,7 +46,8 @@
                                         <th>#</th>
                                         <th class="col-lg-2">Fecha</th>
                                         <th class="col-lg-3">Materia</th>
-                                        <th class="col-lg-7">Descripción</th>                                
+                                        <th class="col-lg-6">Descripción</th>
+                                        <th class="col-lg-1">Apoyo</th>                                
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,7 +57,20 @@
                                         <td>{{ $cont++ }}</td> 
                                         <td>{{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_ini) }}</td> 
                                         <td>{{ $Alumno->tar_materia }}</td>
-                                        <td class="tar_desc">{{ $Alumno->tar_desc }}</td>                                                               
+                                        <td class="tar_desc">
+                                            <?php echo html_entity_decode($Alumno->tar_desc) ?>    
+                                        </td> 
+                                        <td>
+                                                @if ($Alumno->tar_doc != '')
+                                                <div>
+                                                    <a href="{{ $Alumno->tar_doc }}" target="_blank" title="Apoyo"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                                </div>
+                                                @else
+                                                <div>
+                                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                                </div> 
+                                                @endif
+                                        </td>                                                              
                                     </tr>
                                     @endforeach                                                    
                                     </tbody>                 

@@ -30,6 +30,18 @@ Route::get('actividad/mostrar',[
     'uses' => 'ProfController@mostrarActividades'    
 ]);
 
+Route::post('actividad/guardar',[
+    'as' => 'Prof.Act-guardarGECN',
+    'uses' => 'ProfController@insActividad'    
+]);
+
+Route::get('actividad/borrar/{tarea}',[
+    'as' => 'Prof.Act-borrarGECN',
+    'uses' => 'ProfController@borrarActividad'    
+])->where(['tarea' => '[0-9]+']);
+
+
+
 Route::get('borrar/{tarea}',[
     'as' => 'Prof.Act-borrar',
     'uses' => 'ProfController@borrarActividades'    

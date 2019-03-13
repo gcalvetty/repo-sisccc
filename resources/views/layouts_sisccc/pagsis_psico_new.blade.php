@@ -69,12 +69,11 @@
         <script src="/jquery/vue.js" type="text/javascript"></script>        
         <script src="/jquery/vee-validate.js" type="text/javascript"></script>              
         <script src="/jquery/vue-datepicker/vuejs-datepicker.min.js" type="text/javascript"></script>
-     
-       
         <script src="/jquery/toastr.js" type="text/javascript"></script>
         <!-- TextArea -->
         <script src="/jquery/ckeditor/ckeditor.js"></script>          
         <script src="/jquery/ckeditor/js/sample.js"></script>
+        
         <script type="module">
             import esGECN from '/jquery/vue-datepicker/es.js';            
             $(function () {
@@ -127,7 +126,7 @@
                         return moment(date).format('D/MM/YYYY');
                     },       
                     iniVal:function(event){                                                                      
-                        toastr.warning('Se cancelo->'+this.editor+'<-', 'Mensaje', {timeOut: 2000})
+                        toastr.warning('Se cancelo', 'Mensaje', {timeOut: 2000})
                     }       
                 }
             });

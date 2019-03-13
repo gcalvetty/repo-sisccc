@@ -104,7 +104,7 @@
                                 <tbody>
                                     <tr v-for="tarea in listado" scope="row" class="text-left">
                                         <td>@{{ modFec(tarea.pc_fec) }}</td>                                        
-                                        <td contenteditable="true" >
+                                        <td contenteditable="true" > 
                                             <div  v-html="tarea.pc_desc" v-bind:id="tarea.pc_id" class="text-left"></div> 
                                         </td>
                                         <td>

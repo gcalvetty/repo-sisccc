@@ -54,14 +54,14 @@
     </div>
 
 </header>
-<!-- ##### Header Area End ##### -->
+<!-- ##### Header Area End ##### -->   
 <div class="home-cont3" style="margin-bottom: 20px">        
     <div class="container ns panel-body">    
         <div class="row">
             @if (true)
             <div class="logeado col-lg-10 col-xs-push-1">
                 <h1>Usuario, Logeado!!!</h1>            
-                <p><a class="btn btn-primary btn-lg" href="{{ session('Ruta-Acceso') }}" role="button"><i class="fa fa-desktop" aria-hidden="true"></i> @lang('auth.dashbord')</a></p>
+                <p><a class="btn btn-primary btn-lg " href="{{ session('Ruta-Acceso') }}" role="button"><i class="fa fa-desktop" aria-hidden="true"></i> @lang('auth.dashbord')</a></p>
             </div>                
             @endif
         </div><!-- /row -->

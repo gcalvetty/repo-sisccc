@@ -75,7 +75,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">      
         <h1>
-            Escritorio           
+            Escritorio         
         </h1>        
     </section>
     
@@ -162,7 +162,8 @@
                                     <tr>              
                                         <th>Fecha</th>
                                         <th>Materia</th>
-                                        <th>Descripción</th>                                
+                                        <th>Descripción</th> 
+                                        <th>Apoyo</th>                               
                                     </tr>
                                 </thead>
                                 
@@ -173,7 +174,20 @@
                                             {{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_ini) }}
                                         </td> 
                                         <td class="col-md-4 col-sm-4">{{ $Alumno->tar_materia }}</td>
-                                        <td class="col-md-6 col-sm-4"><p class="text-justify">{{ $Alumno->tar_desc }}</p></td>                                                               
+                                        <td class="col-md-5 col-sm-3">                                            
+                                            <p class="text-justify"><?php echo html_entity_decode($Alumno->tar_desc) ?></p>
+                                        </td>   
+                                        <td class="col-md-1 col-sm-1">
+                                            @if ($Alumno->tar_doc != '')
+                                            <div>
+                                                <a href="{{ $Alumno->tar_doc }}" target="_blank" title="Apoyo"><i class="fa fa-download" aria-hidden="true"></i></a>
+                                            </div>
+                                            @else
+                                            <div>
+                                                <i class="fa fa-download" aria-hidden="true"></i>
+                                            </div> 
+                                            @endif
+                                        </td>                                                            
                                     </tr>
                                     @endforeach                                    
                                     <tr>
@@ -228,7 +242,7 @@
                                             $tipTar = "danger";
                                             break;
                                     }
-                                    ?>{{ dd('llll') }}
+                                    ?>
                                     <tr class="{{ $tipTar }}" data-toggle="tooltip" data-placement="top" title="{{ $tipMem }}">                                                                                                                                                                             
                                         <td class="col-md-1">
                                             <span class="label label-{{ $tipTar }}">

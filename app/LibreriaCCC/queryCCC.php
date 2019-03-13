@@ -60,7 +60,7 @@ class queryCCC {
 
     public static function listTarEst($Alm, $limite) {
         $limAux = ($limite > 0) ? " Limit " . $limite : "";
-        $lisTar = DB::select('select u.nombre, rg.gst_grd_escolar as  curso, ge.grd_nombre, pt.tar_materia, pt.tar_desc, pt.tar_fec_ini
+        $lisTar = DB::select('select u.nombre, rg.gst_grd_escolar as  curso, ge.grd_nombre, pt.tar_materia, pt.tar_desc, pt.tar_fec_ini,  pt.tar_doc
 from users as u
 inner join rude_1_gestion as rg on u.id = rg.user_id
 left join grd_escolar as ge on ge.grd_id = rg.gst_grd_escolar

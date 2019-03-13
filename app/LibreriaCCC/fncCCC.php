@@ -93,5 +93,9 @@ class fncCCC {
         if($opc == 4){ // ---- Psicologo .Pdf, .Doc
            return $ruta;
         }             
+        if($opc == 5){ // ---- PRofesor Tareas .Pdf, .Doc
+            $ruta= 'uploads/Tareas/';
+            return $ruta;
+         }
     }
 }

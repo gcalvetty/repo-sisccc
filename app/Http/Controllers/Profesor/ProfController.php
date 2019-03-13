@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use sis_ccc\Http\Controllers\Controller;
 use sis_ccc\ModeloCCC\Grd_Nivel;
+use Carbon\Carbon;
 use sis_ccc\libreriaCCC\queryCCC as qGECN;
 use sis_ccc\libreriaCCC\fncCCC as fGECN;
+use Illuminate\Support\Facades\Storage;
 
 class ProfController extends Controller {
     var $idUser, $user, $Tar, $comprt, $lisCom, $lisAct, $almAct;
@@ -23,6 +25,10 @@ class ProfController extends Controller {
         
         $this->curDoc = DB::select('select Distinct(pm.grd_id) from prof_materia pm where pm.user_id=' . $this->idUser);
    }
+
+   public function setDateAttribute($value) {
+        return Carbon::createFromFormat('d/m/Y', $value)->toDateString();
+    }
 
     public function index(Request $request) {
         $this->__get(1);
@@ -121,7 +127,7 @@ class ProfController extends Controller {
     }
 
     /*
-     * ---- Actividades
+     * ---- Tarea
      * Aqui se genera las Materias x Profesor
      */    
     
@@ -142,7 +148,7 @@ class ProfController extends Controller {
             }
             $estMat .= htmlspecialchars_decode("</optgroup>");            
         }
-        return view('layouts_profesor/view_prof_actividades', [
+        return view('layouts_profesor/view_prof_tarea', [
             'usuactivo' => $this->user,
             'Lista' => $estMat,                        
         ]);
@@ -161,11 +167,69 @@ class ProfController extends Controller {
       
         return $lisActi;
     }
+    /*
+    * Guardar Actividad
+    */
+    public function insActividad(Request $req){
+        $validatedData = $req->validate([
+            'editor' => 'required',
+            'ArcDoc' => 'file|mimes:pdf,docx,jpge,png,jpg',
+        ]);
 
-    public function store(Request $request) {
+
         $prof = Auth::user()->id;
-        $fec = date("Y/m/d");     
+        $urlDoc = "";
+        
+        
+        $data = $req->all();
+        $file = $req->file('ArcDoc');
+        $dateBD = $this->setDateAttribute($data['fec']);
+        if($file != ""){            
+            $ruta= fGECN::constRuta(5, $prof, $req->file('ArcDoc')).''.$data['Curso'];  
+            $path = Storage::disk('publicLib')->putFileAs($ruta, $req->file('ArcDoc'),'apoyo-'.$data['Mat_Tit'].'-'.$dateBD.'.'.$file->extension()); 
+            $urlDoc = asset($path);
+        }
 
+        DB::table('prof_tareas')->insert(
+            ['user_id' => $prof,
+                'tar_curso' => $data['Curso'],
+                'tar_mat_id' => $data['Materia'],
+                'tar_materia' => $data['Mat_Tit'],
+                'tar_fec_ini' => $dateBD,
+                'tar_fec_fin' => $dateBD,
+                'tar_desc' => $data['editor'],
+                'tar_doc' => $urlDoc,
+            ]
+        );
+
+        return redirect()->route('Prof.actividades')->withSuccess('OK');
+
+    }
+
+
+    public function borrarActividad($id) {        
+        $prof = Auth::user()->id;     
+        $tarReg = DB::select('select * '
+                        . ' From prof_tareas'
+                        . ' where tar_id=' . $id);         
+        if($tarReg[0]->tar_doc!=""){            
+            $ruta= fGECN::constRuta(5, $prof, '').$tarReg[0]->tar_curso.'/';             
+            $rutaFileURL  = $tarReg[0]->tar_doc;            
+            $rutaNomb = explode($tarReg[0]->tar_curso."/", $rutaFileURL);                                         
+            $borrFile = $ruta."".$rutaNomb[1];                    
+            Storage::disk('publicLib')->delete($borrFile);
+        }
+        DB::delete('delete from prof_tareas where tar_id=' . $id);
+        
+    }
+
+
+
+    /*
+    * Antiguo guardar actividad
+    */
+    public function store(Request $request) {
+        $prof = Auth::user()->id;        
         $this->validate($request, [
             'Materia' => ' required',
             'Tarea' => 'required'
@@ -175,13 +239,29 @@ class ProfController extends Controller {
                     'tar_curso' => $request->Curso,
                     'tar_mat_id' => $request->Materia,
                     'tar_materia' => $request->Mat_Tit,
-                    'tar_fec_ini' => $fec,
-                    'tar_fec_fin' => $fec,
-                    'tar_desc' => $request->Tarea]
+                    'tar_fec_ini' => $request->fec,
+                    'tar_fec_fin' => $request->fec,
+                    'tar_desc' => $request->Tarea
+                ]
         );
         return;
     }
+
+
+
     public function destroy($id) {
+        $prof = Auth::user()->id;     
+        $tarReg = DB::select('select * '
+                        . ' From prof_tareas'
+                        . ' where tar_id=' . $id); 
+        if($tarReg[0]->tar_doc!=""){            
+            $ruta= fGECN::constRuta(5, $prof, '').$tarReg[0]->tar_curso.'/';             
+            $rutaFileURL  = $tarReg[0]->tar_doc;            
+            $rutaNomb = explode($tarReg[0]->tar_curso."/", $rutaFileURL);                                         
+            $borrFile = $ruta."".$rutaNomb[1];                    
+            Storage::disk('publicLib')->delete($borrFile);
+        }
+        
         DB::delete('delete from prof_tareas where tar_id=' . $id);
         return;
     }

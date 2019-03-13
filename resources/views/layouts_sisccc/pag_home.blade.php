@@ -31,6 +31,16 @@
         <script>
             window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
         </script>
+        <style>
+                .btn-group-lg>.btn, .btn-lg:hover {
+                    background-color: green;
+                    padding: .5rem 1rem;
+                    font-size: 1.25rem;
+                    line-height: 1.5;
+                    border-radius: .3rem;
+                    font-weight:400;
+                }
+        </style>
     </head>
 
     <body> 
