@@ -161,6 +161,7 @@
                                 <thead>
                                     <tr>              
                                         <th>Fecha</th>
+                                        <th>Entregar</th>
                                         <th>Materia</th>
                                         <th>Descripción</th> 
                                         <th>Apoyo</th>                               
@@ -172,8 +173,11 @@
                                     <tr>          
                                         <td class="col-md-2 col-sm-2">                                            
                                             {{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_ini) }}
+                                        </td>
+                                        <td class="col-md-2 col-sm-2">                                            
+                                            {{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_fin) }}
                                         </td> 
-                                        <td class="col-md-4 col-sm-4">{{ $Alumno->tar_materia }}</td>
+                                        <td class="col-md-2 col-sm-2">{{ $Alumno->tar_materia }}</td>
                                         <td class="col-md-5 col-sm-3">                                            
                                             <p class="text-justify"><?php echo html_entity_decode($Alumno->tar_desc) ?></p>
                                         </td>   

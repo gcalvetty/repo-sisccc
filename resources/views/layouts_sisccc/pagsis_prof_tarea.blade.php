@@ -27,7 +27,8 @@
         <link rel="stylesheet" href="/plugins/datatables/dataTables.bootstrap.css">
         <style>
             .materSel{ height: 30px !important; } 
-            .input-group.input-file input{ height: 36px !important; }            
+            .input-group.input-file input{ height: 36px !important; } 
+            .opcTar{ margin-bottom:15px; }
         </style>
 
         <!--[if lt IE 9]>
@@ -98,7 +99,8 @@
                         Materia:0,
                         Mat_Tit:"",
 
-                        fec: moment(),                                                
+                        fec: moment(),
+                        fecFin: moment(),                                                
                         editor: "",
                         mensajeGECN:[],
                         
@@ -133,6 +135,7 @@
                             Materia: this.tar_materia,
                             Mat_Tit: this.tar_mat_tit,
                             fec    : this.customFormatter2(this.fec),
+                            fecFin : this.customFormatter2(this.fecFin),
                             Tarea  : this.editor,
                         }).then(response => {                            
                             app2.getAct();                        

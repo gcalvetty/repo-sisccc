@@ -161,7 +161,7 @@ class ProfController extends Controller {
         $prof = Auth::user()->id;
         setlocale(LC_ALL,"es_ES");
         //setlocale(LC_TIME, 'spanish');
-        $lisActi = DB::select('select *, DATE_FORMAT(tar_fec_ini,"%d de %M") AS tar_fec
+        $lisActi = DB::select('select *, DATE_FORMAT(tar_fec_ini,"%d de %M") AS tar_fec,  DATE_FORMAT(tar_fec_fin,"%d de %M") AS tar_fecFin
         from prof_tareas
     where (user_id = "' . $prof . '") order by tar_id Desc');
       
@@ -173,7 +173,7 @@ class ProfController extends Controller {
     public function insActividad(Request $req){
         $validatedData = $req->validate([
             'editor' => 'required',
-            'ArcDoc' => 'file|mimes:pdf,docx,jpge,png,jpg',
+            'ArcDoc' => 'file|mimes:pdf,docx,jpeg,png',
         ]);
 
 
@@ -183,7 +183,8 @@ class ProfController extends Controller {
         
         $data = $req->all();
         $file = $req->file('ArcDoc');
-        $dateBD = $this->setDateAttribute($data['fec']);
+        $dateIniBD = $this->setDateAttribute($data['fec']);
+        $dateFinBD = $this->setDateAttribute($data['fecFin']);
         if($file != ""){            
             $ruta= fGECN::constRuta(5, $prof, $req->file('ArcDoc')).''.$data['Curso'];  
             $path = Storage::disk('publicLib')->putFileAs($ruta, $req->file('ArcDoc'),'apoyo-'.$data['Mat_Tit'].'-'.$dateBD.'.'.$file->extension()); 
@@ -195,8 +196,8 @@ class ProfController extends Controller {
                 'tar_curso' => $data['Curso'],
                 'tar_mat_id' => $data['Materia'],
                 'tar_materia' => $data['Mat_Tit'],
-                'tar_fec_ini' => $dateBD,
-                'tar_fec_fin' => $dateBD,
+                'tar_fec_ini' => $dateIniBD,
+                'tar_fec_fin' => $dateFinBD,
                 'tar_desc' => $data['editor'],
                 'tar_doc' => $urlDoc,
             ]

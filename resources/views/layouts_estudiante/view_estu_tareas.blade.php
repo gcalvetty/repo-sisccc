@@ -45,6 +45,7 @@
                                     <tr>                                
                                         <th>#</th>
                                         <th class="col-lg-2">Fecha</th>
+                                        <th class="col-lg-2">Fecha de Entrega</th>
                                         <th class="col-lg-3">Materia</th>
                                         <th class="col-lg-6">Descripción</th>
                                         <th class="col-lg-1">Apoyo</th>                                
@@ -56,6 +57,7 @@
                                     <tr>                   
                                         <td>{{ $cont++ }}</td> 
                                         <td>{{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_ini) }}</td> 
+                                        <td>{{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_fin) }}</td> 
                                         <td>{{ $Alumno->tar_materia }}</td>
                                         <td class="tar_desc">
                                             <?php echo html_entity_decode($Alumno->tar_desc) ?>    
