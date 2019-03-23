@@ -41,6 +41,19 @@
                     </div>
                     <div class="box-body">
                         <div class="table-responsive">
+                            <nav>
+                                <ul class="pagination">
+                                    <li v-if="paginacion.act_pag > 1">
+                                        <a href="#" @click.prevent="cambiarPag(paginacion.act_pag-1)"><span>Atras</span></a>
+                                    </li>
+                                    <li v-for="page in pagesNumber" v-bind:class="[page == isActived ? 'active':'']">
+                                        <a href="#" @click.prevent="cambiarPag(page)">@{{ page }}</a>
+                                    </li>                                    
+                                    <li  v-if="paginacion.act_pag < paginacion.ult_pag">
+                                            <a href="#" @click.prevent="cambiarPag(paginacion.act_pag+1)"><span>Siguiente</span></a>
+                                    </li>
+                                </ul>    
+                            </nav>
                             <table id="simple" class="table table-stripe table-hover">
                                 <thead> 
                                     <tr>                                        
@@ -55,8 +68,8 @@
                                 </thead>
                                 <tbody>
                                     <tr  v-for="tarea in listado" scope="row">                                        
-                                        <td class="col-md-1">@{{ tarea.tar_fec }}</td>
-                                        <td class="col-md-1">@{{ tarea.tar_fecFin }}</td>
+                                        <td class="col-md-1">@{{ modFec(tarea.tar_fec_ini) }}</td>
+                                        <td class="col-md-1">@{{ modFec(tarea.tar_fec_fin) }}</td>
                                         <td class="col-md-1">@{{ tarea.tar_curso}}</td>                                
                                         <td class="col-md-2">@{{ tarea.tar_materia}}</td>
                                         <td class="col-md-5">

@@ -157,15 +157,35 @@ class ProfController extends Controller {
     /*
     * --- Cargamos todas las Tareas x Prof
     */
-    public function mostrarActividades() {
-        $prof = Auth::user()->id;
+    public function mostrarActividades(Request $request) {
+        /* $prof = Auth::user()->id;        
         setlocale(LC_ALL,"es_ES");
         //setlocale(LC_TIME, 'spanish');
         $lisActi = DB::select('select *, DATE_FORMAT(tar_fec_ini,"%d de %M") AS tar_fec,  DATE_FORMAT(tar_fec_fin,"%d de %M") AS tar_fecFin
         from prof_tareas
-    where (user_id = "' . $prof . '") order by tar_id Desc');
-      
+    where (user_id = "' . $prof . '") order by tar_id Desc');      
         return $lisActi;
+        */
+
+        $prof = Auth::user()->id;              
+        $Tareas = DB::table('prof_tareas')
+                   ->select('*')
+                   ->where('user_id',$prof)
+                   ->orderBy('tar_fec_ini', 'DESC')
+                   ->paginate(7);
+                
+        return ['paginacion' =>[
+                'total'     => $Tareas->total(),
+                'act_pag'   => $Tareas->currentPage(),
+                'por_pag'   => $Tareas->perPage(),
+                'ult_pag'   => $Tareas->lastPage(),
+                'de'        => $Tareas->firstItem(),
+                'al'        => $Tareas->lastItem(),
+                ],
+                'lisTareas' => $Tareas,
+        ];
+
+
     }
     /*
     * Guardar Actividad
@@ -187,7 +207,7 @@ class ProfController extends Controller {
         $dateFinBD = $this->setDateAttribute($data['fecFin']);
         if($file != ""){            
             $ruta= fGECN::constRuta(5, $prof, $req->file('ArcDoc')).''.$data['Curso'];  
-            $path = Storage::disk('publicLib')->putFileAs($ruta, $req->file('ArcDoc'),'apoyo-'.$data['Mat_Tit'].'-'.$dateBD.'.'.$file->extension()); 
+            $path = Storage::disk('publicLib')->putFileAs($ruta, $req->file('ArcDoc'),'apoyo-'.$data['Mat_Tit'].'-'.$dateIniBD.'.'.$file->extension()); 
             $urlDoc = asset($path);
         }
 

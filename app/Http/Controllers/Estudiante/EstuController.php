@@ -68,15 +68,17 @@ class EstuController extends Controller {
     
     public function Tareas_index(){
         $this->__get(1);
+        $tarTot = qGECN::listTarEst($this->alum,0);
         return view('layouts_estudiante/view_estu_tareas', [
             'usuactivo' => $this->user,                           
-            'tareas' => $this->Tar,
+            'tareas' => $tarTot,
             'VerCont' => $this->almAct,      
         ]);
     }
     
     public function verLibreta(){       
         $this->__get(1);
+        
         $pathToFile = 'libretas/'.Auth::user()->libreta; // or txt etc.
         $fileNameFromStorage = rawurlencode(basename($pathToFile));
         $fileNameFromDatabase = rawurlencode('пожалуйста.pdf');

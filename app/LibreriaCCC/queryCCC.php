@@ -65,7 +65,7 @@ from users as u
 inner join rude_1_gestion as rg on u.id = rg.user_id
 left join grd_escolar as ge on ge.grd_id = rg.gst_grd_escolar
 left join prof_tareas as pt on pt.tar_curso = ge.grd_nombre
-where u.tipo_Usu = "Est_ccc" and u.id = ' . $Alm . ' ' . $limAux);
+where u.tipo_Usu = "Est_ccc" and u.id = ' . $Alm . '  Order by pt.tar_fec_ini DESC  ' . $limAux.' ');
         return $lisTar;
     }
 

@@ -61,7 +61,6 @@ class ContController extends Controller {
                 'al'        => $cuadSeg->lastItem(),
                 ],
                 'lisCuaderno' => $cuadSeg,
-
         ];
     }
 

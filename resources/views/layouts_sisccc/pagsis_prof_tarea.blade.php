@@ -93,7 +93,7 @@
    
                 validator: null,
                 data() {
-                    return {                        
+                    return {
                         tar_materia: '',
                         Curso:"",
                         Materia:0,
@@ -112,7 +112,8 @@
                         },
                     }
                 },
-                methods: { 
+                methods: {
+                    
                     obtMateria: function(event){
                         var cadena = this.tar_materia;
                         var res = cadena.split(',');                                                
@@ -211,16 +212,53 @@
                         this.getAct();
                     },
                     data: {
+                        paginacion :{
+                        'total'    : 0,
+                        'act_pag'  : 0,
+                        'por_pag'  : 0,
+                        'ult_pag'  : 0,
+                        'de'       : 0,
+                        'al'       : 0,
+                        },
+                        offset: 3,
+                        /* ------------ */ 
                         listado: [],
                     },
                     mounted: function () { //cuando se cargo la pagina
                 
                     },
-                    methods: {
-                        getAct: function () {
-                            var urlAct = "actividad/mostrar";
+                    computed:{
+                                isActived:function(){
+                                    return this.paginacion.act_pag;
+                                },
+                                pagesNumber: function(){
+                                    var pagesArray = [];
+                                    if(!this.paginacion.al){
+                                        return [];
+                                    }
+                                    // Desde
+                                    var from = this.paginacion.act_pag - this.offset;
+                                    if(from<1){
+                                        from = 1;
+                                    }
+                                    // Hasta
+                                    var to = from + (2 * this.offset);
+                                    if(to >= this.paginacion.ult_pag){
+                                        to = this.paginacion.ult_pag;
+                                    }
+                                    while(from <= to){
+                                        pagesArray.push(from) ;
+                                        from++;                           
+                                    }
+                                    return pagesArray;
+                                },
+                            },
+                    methods: {                        
+                        getAct: function (pag) {
+                            var urlAct = "actividad/mostrar?page="+pag;
                             axios.get(urlAct).then(response => {
-                                this.listado = response.data;
+                                this.listado = response.data.lisTareas.data;
+                                this.paginacion = response.data.paginacion;
                             });
                         },                
                         eliminarTarea: function (tarea) {
@@ -229,6 +267,17 @@
                                 this.getAct();
                                 toastr.warning('Tarea Eliminada!!!' + response.data);
                             })
+                        },
+                        modFec: function(fecha){
+                            // moment(String(tarea.pc_fec)).format('DD/MM')
+                            var fecMod = ''; 
+                            fecMod = moment(String(fecha)).format('D MMM');
+                            return fecMod;
+                        },
+                        cambiarPag:function(pag){
+                            this.paginacion.act_pag = pag;
+                            this.getAct(pag);
+
                         },
                     }
                 });
