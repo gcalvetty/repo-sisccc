@@ -20,7 +20,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">      
         <h1>
-            Escritorio           
+            Listado de Docentes    
         </h1>
         <ol class="breadcrumb">
             <li><a href="/dirección/"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -40,7 +40,52 @@
         </div>
         @endif
         <div class="row">
-            <section class="col-lg-4 connectedSortable ui-sortable">
+                <section class="col-lg-6 connectedSortable ui-sortable">
+                        <div class="box box-title">
+                            <div class="box-header ui-sortable-handle" style="cursor: move;">
+                                <i class="fa fa-comments-o"></i>
+        
+                                <h3 class="box-title">Docentes - Taller Inicial</h3>
+        
+                            </div>
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>N°</th>
+                                        <th>Profesor</th>                                
+                                        <th>Modificar</th>                                                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $aux = 1 ?>
+                                    @foreach($l4 as $Prof1)
+                                    <tr>
+                                        <td>{{ $aux++ }}</td>                                                                         
+                                        <td>
+                                            <div class="col-md-2">                                            
+                                                    <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
+                                            </div>
+                                            <div class="col-md-9 text-left">
+                                                {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                            </div>    
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-title" 
+                                                    data-toggle="modal" 
+                                                    data-target=".bs-example-modal-lg"
+                                                    data-iddoc="{{ $Prof1->id }}"
+                                                    data-nomdoc="{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }} {{ $Prof1->nombre }}">
+                                                <i class="fa fa-edit"></i></button>                                  
+                                        </td>
+        
+                                    </tr>
+                                    @endforeach  
+        
+                                    </tbody>
+                            </table>
+                        </div> 
+                    </section>
+            <section class="col-lg-6 connectedSortable ui-sortable">
                 <div class="box box-primary">
                     <div class="box-header ui-sortable-handle" style="cursor: move;">
                         <i class="fa fa-comments-o"></i>
@@ -85,7 +130,7 @@
                 </div> 
             </section>
 
-            <section class="col-lg-4 connectedSortable ui-sortable">
+            <section class="col-lg-6 connectedSortable ui-sortable">
                 <div class="box box-success">
                     <div class="box-header ui-sortable-handle" style="cursor: move;">
                         <i class="fa fa-comments-o"></i>
@@ -130,7 +175,7 @@
                 </div> 
             </section>
 
-            <section class="col-lg-4 connectedSortable ui-sortable ">
+            <section class="col-lg-6 connectedSortable ui-sortable ">
                 <div class="box box-info">
                     <div class="box-header ui-sortable-handle" style="cursor: move;">
                         <i class="fa fa-comments-o"></i>
@@ -176,57 +221,15 @@
                 </div> 
             </section>
 
+            
+
 
         </div>
 
         <div class="row">
-            <section class="col-lg-6 connectedSortable ui-sortable">
-                <div class="box box-title">
-                    <div class="box-header ui-sortable-handle" style="cursor: move;">
-                        <i class="fa fa-comments-o"></i>
+            
 
-                        <h3 class="box-title">Docentes - Taller Inicial</h3>
-
-                    </div>
-                    <table class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>N°</th>
-                                <th>Profesor</th>                                
-                                <th>Modificar</th>                                                                        
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $aux = 1 ?>
-                            @foreach($l4 as $Prof1)
-                            <tr>
-                                <td>{{ $aux++ }}</td>                                                                         
-                                <td>
-                                    <div class="col-md-2">                                            
-                                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
-                                    </div>
-                                    <div class="col-md-9 text-left">
-                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
-                                    </div>    
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-title" 
-                                            data-toggle="modal" 
-                                            data-target=".bs-example-modal-lg"
-                                            data-iddoc="{{ $Prof1->id }}"
-                                            data-nomdoc="{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }} {{ $Prof1->nombre }}">
-                                        <i class="fa fa-edit"></i></button>                                  
-                                </td>
-
-                            </tr>
-                            @endforeach  
-
-                            </tbody>
-                    </table>
-                </div> 
-            </section>
-
-            <section class="col-lg-6 connectedSortable ui-sortable">
+            <section class="col-lg-12 connectedSortable ui-sortable">
                 <div class="box box-danger">
                     <div class="box-header ui-sortable-handle" style="cursor: move;">
                         <i class="fa fa-comments-o"></i>
@@ -321,7 +324,9 @@
                                             <td>
                                                 <select multiple name="cur30[]" class="form-control input-sm">
                                                     <option value="1">1</option>
-                                                    <option value="2">2</option>                                        
+                                                    <option value="2">2</option>
+                                                    <option value="16">1 AA</option>
+                                                    <option value="17">2 AA</option>                                        
                                                 </select>
                                             </td></tr>
                                         <tr><td><div class="checkbox">
@@ -332,7 +337,9 @@
                                                 </div></td><td>
                                                 <select multiple name="cur31[]" class="form-control input-sm">
                                                     <option value="1">1</option>
-                                                    <option value="2">2</option>                                        
+                                                    <option value="2">2</option>                               
+                                                    <option value="16">1 AA</option>
+                                                    <option value="17">2 AA</option>                                        
                                                 </select>
                                             </td></tr>
                                         <tr><td><div class="checkbox">
@@ -342,7 +349,9 @@
                                                     </label>
                                                 </div></td><td><select name="cur32[]"  multiple class="form-control input-sm">
                                                     <option value="1">1</option>
-                                                    <option value="2">2</option>                                        
+                                                    <option value="2">2</option>                               
+                                                    <option value="16">1 AA</option>
+                                                    <option value="17">2 AA</option>                                    
                                                 </select></td></tr>
                                         <tr>
                                             <td><div class="checkbox">
@@ -353,7 +362,9 @@
                                                 </div></td>
                                             <td><select multiple name="cur33[]" class="form-control input-sm">
                                                     <option value="1">1</option>
-                                                    <option value="2">2</option>                                        
+                                                    <option value="2">2</option>                               
+                                                    <option value="16">1 AA</option>
+                                                    <option value="17">2 AA</option>                                    
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -365,7 +376,9 @@
                                                 </div></td>
                                             <td><select multiple name="cur34[]"class="form-control input-sm">
                                                     <option value="1">1</option>
-                                                    <option value="2">2</option>                                        
+                                                    <option value="2">2</option>                               
+                                                    <option value="16">1 AA</option>
+                                                    <option value="17">2 AA</option>                            
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -377,7 +390,9 @@
                                                 </div></td>
                                             <td> <select multiple name="cur35[]" class="form-control input-sm">
                                                     <option value="1">1</option>
-                                                    <option value="2">2</option>                                      
+                                                    <option value="2">2</option>                               
+                                                    <option value="16">1 AA</option>
+                                                    <option value="17">2 AA</option>                                  
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -389,7 +404,9 @@
                                                 </div></td>
                                             <td><select multiple name="cur36[]" class="form-control input-sm">
                                                     <option value="1">1</option>
-                                                    <option value="2">2</option>                                        
+                                                    <option value="2">2</option>                               
+                                                    <option value="16">1 AA</option>
+                                                    <option value="17">2 AA</option>        
                                                 </select></td>
                                         </tr>
                                     </tbody>
@@ -415,11 +432,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur44[]"  class="form-control input-sm">
                                                     <option value="3">1</option>
-                                                    <option value="4">2</option>                                        
+                                                    <option value="4">2</option>
                                                     <option value="5">3</option>
                                                     <option value="6">4</option>
                                                     <option value="7">5</option>
-                                                    <option value="8">6</option>                                       
+                                                    <option value="8">6</option>                               
+                                                    <option value="18">1 AA</option>
+                                                    <option value="19">2 AA</option>
+                                                    <option value="20">3 AA</option>
+                                                    <option value="21">4 AA</option>
+                                                    <option value="22">5 AA</option>
+                                                    <option value="23">6 AA</option>                                
                                                 </select>
 
                                             </td>
@@ -433,11 +456,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur45[]"  class="form-control input-sm">
                                                     <option value="3">1</option>
-                                                    <option value="4">2</option>                                        
+                                                    <option value="4">2</option>
                                                     <option value="5">3</option>
                                                     <option value="6">4</option>
                                                     <option value="7">5</option>
-                                                    <option value="8">6</option>                                       
+                                                    <option value="8">6</option>
+                                                    <option value="18">1 AA</option>
+                                                    <option value="19">2 AA</option>
+                                                    <option value="20">3 AA</option>
+                                                    <option value="21">4 AA</option>
+                                                    <option value="22">5 AA</option>
+                                                    <option value="23">6 AA</option>                            
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -449,11 +478,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur46[]"  class="form-control input-sm">
                                                     <option value="3">1</option>
-                                                    <option value="4">2</option>                                        
+                                                    <option value="4">2</option>
                                                     <option value="5">3</option>
                                                     <option value="6">4</option>
                                                     <option value="7">5</option>
-                                                    <option value="8">6</option>                                        
+                                                    <option value="8">6</option>
+                                                    <option value="18">1 AA</option>
+                                                    <option value="19">2 AA</option>
+                                                    <option value="20">3 AA</option>
+                                                    <option value="21">4 AA</option>
+                                                    <option value="22">5 AA</option>
+                                                    <option value="23">6 AA</option>                            
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -465,11 +500,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur47[]"  class="form-control input-sm">
                                                     <option value="3">1</option>
-                                                    <option value="4">2</option>                                        
+                                                    <option value="4">2</option>
                                                     <option value="5">3</option>
                                                     <option value="6">4</option>
                                                     <option value="7">5</option>
-                                                    <option value="8">6</option>                                        
+                                                    <option value="8">6</option>
+                                                    <option value="18">1 AA</option>
+                                                    <option value="19">2 AA</option>
+                                                    <option value="20">3 AA</option>
+                                                    <option value="21">4 AA</option>
+                                                    <option value="22">5 AA</option>
+                                                    <option value="23">6 AA</option>                            
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -481,11 +522,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur48[]"  class="form-control input-sm">
                                                     <option value="3">1</option>
-                                                    <option value="4">2</option>                                        
+                                                    <option value="4">2</option>
                                                     <option value="5">3</option>
                                                     <option value="6">4</option>
                                                     <option value="7">5</option>
-                                                    <option value="8">6</option>                                        
+                                                    <option value="8">6</option>
+                                                    <option value="18">1 AA</option>
+                                                    <option value="19">2 AA</option>
+                                                    <option value="20">3 AA</option>
+                                                    <option value="21">4 AA</option>
+                                                    <option value="22">5 AA</option>
+                                                    <option value="23">6 AA</option>                            
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -497,11 +544,17 @@
                                                 </div></td>
                                             <td> <select multiple name="cur49[]"  class="form-control input-sm">
                                                     <option value="3">1</option>
-                                                    <option value="4">2</option>                                        
+                                                    <option value="4">2</option>
                                                     <option value="5">3</option>
                                                     <option value="6">4</option>
                                                     <option value="7">5</option>
-                                                    <option value="8">6</option>                                        
+                                                    <option value="8">6</option>
+                                                    <option value="18">1 AA</option>
+                                                    <option value="19">2 AA</option>
+                                                    <option value="20">3 AA</option>
+                                                    <option value="21">4 AA</option>
+                                                    <option value="22">5 AA</option>
+                                                    <option value="23">6 AA</option>                            
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -513,11 +566,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur50[]"  class="form-control input-sm">
                                                     <option value="3">1</option>
-                                                    <option value="4">2</option>                                        
+                                                    <option value="4">2</option>
                                                     <option value="5">3</option>
                                                     <option value="6">4</option>
                                                     <option value="7">5</option>
-                                                    <option value="8">6</option>                                        
+                                                    <option value="8">6</option>
+                                                    <option value="18">1 AA</option>
+                                                    <option value="19">2 AA</option>
+                                                    <option value="20">3 AA</option>
+                                                    <option value="21">4 AA</option>
+                                                    <option value="22">5 AA</option>
+                                                    <option value="23">6 AA</option>                            
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -529,11 +588,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur51[]" class="form-control input-sm">
                                                     <option value="3">1</option>
-                                                    <option value="4">2</option>                                        
+                                                    <option value="4">2</option>
                                                     <option value="5">3</option>
                                                     <option value="6">4</option>
                                                     <option value="7">5</option>
-                                                    <option value="8">6</option>                                        
+                                                    <option value="8">6</option>
+                                                    <option value="18">1 AA</option>
+                                                    <option value="19">2 AA</option>
+                                                    <option value="20">3 AA</option>
+                                                    <option value="21">4 AA</option>
+                                                    <option value="22">5 AA</option>
+                                                    <option value="23">6 AA</option>                            
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -545,11 +610,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur52[]" class="form-control input-sm">
                                                     <option value="3">1</option>
-                                                    <option value="4">2</option>                                        
+                                                    <option value="4">2</option>
                                                     <option value="5">3</option>
                                                     <option value="6">4</option>
                                                     <option value="7">5</option>
-                                                    <option value="8">6</option>                                        
+                                                    <option value="8">6</option>
+                                                    <option value="18">1 AA</option>
+                                                    <option value="19">2 AA</option>
+                                                    <option value="20">3 AA</option>
+                                                    <option value="21">4 AA</option>
+                                                    <option value="22">5 AA</option>
+                                                    <option value="23">6 AA</option>                            
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -561,11 +632,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur53[]" class="form-control input-sm">
                                                     <option value="3">1</option>
-                                                    <option value="4">2</option>                                        
+                                                    <option value="4">2</option>
                                                     <option value="5">3</option>
                                                     <option value="6">4</option>
                                                     <option value="7">5</option>
-                                                    <option value="8">6</option>                                        
+                                                    <option value="8">6</option>
+                                                    <option value="18">1 AA</option>
+                                                    <option value="19">2 AA</option>
+                                                    <option value="20">3 AA</option>
+                                                    <option value="21">4 AA</option>
+                                                    <option value="22">5 AA</option>
+                                                    <option value="23">6 AA</option>                            
                                                 </select></td>
                                         </tr>
                                     </tbody>
@@ -591,11 +668,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur54[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                        
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option>                            
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -607,11 +690,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur55[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                       
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option>                             
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -623,11 +712,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur56[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                        
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option>                             
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -639,11 +734,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur57[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                       
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option>                           
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -655,11 +756,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur58[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                        
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option>                             
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -671,11 +778,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur59[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                       
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option>                        
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -687,11 +800,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur60[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                      
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option>                             
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -703,11 +822,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur61[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                        
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option> 
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -719,11 +844,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur62[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                        
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option> 
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -735,11 +866,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur63[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                        
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option> 
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -751,11 +888,17 @@
                                                 </div></td>
                                             <td><select multiple  name="cur64[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                       
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option> 
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -767,11 +910,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur65[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                       
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option> 
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -783,11 +932,17 @@
                                                 </div></td>
                                             <td><select multiple name="cur66[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option>
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
-                                                    <option value="14">6</option>                                        
+                                                    <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option> 
                                                 </select></td>
                                         </tr>
                                         <tr>
@@ -799,14 +954,19 @@
                                                 </div></td>
                                             <td><select multiple name="cur70[]" class="form-control input-sm">
                                                     <option value="9">1</option>
-                                                    <option value="10">2</option>                                        
+                                                    <option value="10">2</option> 
                                                     <option value="11">3</option>
                                                     <option value="12">4</option>
                                                     <option value="13">5</option>
                                                     <option value="14">6</option>
+                                                    <option value="24">1 AA</option>
+                                                    <option value="25">2 AA</option>
+                                                    <option value="26">3 AA</option>
+                                                    <option value="27">4 AA</option>
+                                                    <option value="28">5 AA</option>
+                                                    <option value="29">6 AA</option> 
                                                 </select></td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>

@@ -311,7 +311,7 @@
 
                 <div class="form-group {{ $errors->has('gst_aula') ? ' has-error' : '' }} has-feedback "  v-bind:class="{'': true, 'has-error': errors.has('gst_aula') }">
                     <p>En que Paralelo Esta el Estudiante:</p>
-                    <div class="input-group col-md-4 col-md-offset-8">
+                    <div class="input-group col-md-4 col-md-offset-8 hidden">
                         <span class="input-group-addon" id="basic-addon30">
                             <i class="fa fa-gg" aria-hidden="true"></i>
                         </span>
@@ -337,21 +337,24 @@
                         @endif
                         <a  href="#1inscr" data-toggle="tab">Taller Inicial</a>
                     </li>
-                    @if(($gestion['gst_grd_escolar']>=1)&&( $gestion['gst_grd_escolar']<=2))
+                    @if( (($gestion['gst_grd_escolar']>=1)&&( $gestion['gst_grd_escolar']<=2)) or
+                         (($gestion['gst_grd_escolar']>=16)&&( $gestion['gst_grd_escolar']<=17)) ) 
                     <li class="active">
                         @else
                     <li>
                         @endif
                         <a href="#2inscr" data-toggle="tab">Inicial</a>
                     </li>
-                    @if(($gestion['gst_grd_escolar']>=3)&&( $gestion['gst_grd_escolar']<=9))
+                    @if( (($gestion['gst_grd_escolar']>=3)&&( $gestion['gst_grd_escolar']<=9)) or 
+                         (($gestion['gst_grd_escolar']>=18)&&( $gestion['gst_grd_escolar']<=23)) )
                     <li class="active">
                         @else
                     <li>
                         @endif
                         <a href="#3inscr" data-toggle="tab">Primaria</a>
                     </li>
-                    @if(($gestion['gst_grd_escolar']>=9)&&( $gestion['gst_grd_escolar']<=14))
+                    @if( (($gestion['gst_grd_escolar']>=9)&&( $gestion['gst_grd_escolar']<=14)) or 
+                        (($gestion['gst_grd_escolar']>=24)&&( $gestion['gst_grd_escolar']<=29)) )
                     <li class="active">
                         @else
                     <li>
@@ -374,7 +377,8 @@
                                        >Taller Inicial
                             </label>                                        
                         </div>
-                        @if(($gestion['gst_grd_escolar']>=1)&&( $gestion['gst_grd_escolar']<=2))
+                        @if( (($gestion['gst_grd_escolar']>=1)&&( $gestion['gst_grd_escolar']<=2)) or
+                             (($gestion['gst_grd_escolar']>=16)&&( $gestion['gst_grd_escolar']<=17)) ) 
                         <div class="tab-pane active" id="2inscr">
                             @else
                             <div class="tab-pane" id="2inscr">    
@@ -384,9 +388,16 @@
                                 </label>                                        
                                 <label class="radio-inline">
                                     <input type="radio" v-model="optCurso" name="optCurso" value="2">2da Sección
+                                </label>                                                  
+                                <label class="radio-inline">
+                                    <input type="radio" v-model="optCurso" name="optCurso" value="16">1ra Sección AA
+                                </label>                                        
+                                <label class="radio-inline">
+                                    <input type="radio" v-model="optCurso" name="optCurso" value="17">2da Sección AA
                                 </label>                  
                             </div>
-                            @if(($gestion['gst_grd_escolar']>=3)&&( $gestion['gst_grd_escolar']<=8))
+                            @if( (($gestion['gst_grd_escolar']>=3)&&( $gestion['gst_grd_escolar']<=8)) or
+                                 (($gestion['gst_grd_escolar']>=18)&&( $gestion['gst_grd_escolar']<=23)) )
                             <div class="tab-pane active" id="3inscr">
                                 @else
                                 <div class="tab-pane" id="3inscr">    
@@ -408,9 +419,29 @@
                                     </label>
                                     <label class="radio-inline">
                                         <input type="radio" v-model="optCurso" name="optCurso" value="8">6to Prm.
+                                    </label>                                     
+                                    <BR>
+                                    <label class="radio-inline">
+                                        <input type="radio" v-model="optCurso" name="optCurso" value="18">1ro Prm. AA
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" v-model="optCurso" name="optCurso" value="19">2do Prm. AA
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" v-model="optCurso" name="optCurso" value="20">3ro Prm. AA
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" v-model="optCurso" name="optCurso" value="21">4to Prm. AA
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" v-model="optCurso" name="optCurso"  value="22">5to Prm. AA
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" v-model="optCurso" name="optCurso" value="23">6to Prm. AA
                                     </label>
                                 </div>
-                                @if(($gestion['gst_grd_escolar']>=9)&&( $gestion['gst_grd_escolar']<=14))
+                                @if( (($gestion['gst_grd_escolar']>=9)&&( $gestion['gst_grd_escolar']<=14)) or
+                                     (($gestion['gst_grd_escolar']>=24)&&( $gestion['gst_grd_escolar']<=29)) )
                                 <div class="tab-pane active" id="4inscr">
                                     @else
                                     <div class="tab-pane" id="4inscr">    
@@ -432,7 +463,28 @@
                                         </label>
                                         <label class="radio-inline">
                                             <input type="radio" v-model="optCurso" name="optCurso" value="14">6to Sec.
-                                        </label>	
+                                        </label>
+                                        <BR>                                        
+                                        <label class="radio-inline">
+                                            <input type="radio" v-model="optCurso" name="optCurso" value="24">1ro Sec. AA
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" v-model="optCurso" name="optCurso" value="25">2do Sec. AA
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" v-model="optCurso" name="optCurso" value="26">3ro Sec. AA
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" v-model="optCurso" name="optCurso" value="27">4to Sec. AA
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" v-model="optCurso" name="optCurso" value="28">5to Sec. AA
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" v-model="optCurso" name="optCurso" value="29">6to Sec. AA
+                                        </label>
+
+                                        
 
                                     </div>
                                     <span class="glyphicon  form-control-feedback" aria-hidden="true" v-bind:class="{'': true, 'glyphicon-remove': errors.has('optCurso') }"></span>

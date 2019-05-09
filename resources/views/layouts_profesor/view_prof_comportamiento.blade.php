@@ -11,7 +11,7 @@
 @endsection
 
 @section('sis_menu_lateral')
-@include('layouts_regente.partials.menu')
+@include('layouts_profesor.partials.menu')
 @endsection
 
 
@@ -73,9 +73,9 @@
                                     <td>
                                         <?php $val = sis_ccc\Http\Controllers\Regente\RegeController::haveComportamiento($Alumno->id) ?>
                                         @if ($val>0)
-                                        <a href="{{ route('Rege.PDFCom',$Alumno->id) }}" target="_blank">
+                                        <a href="{{ route('Prof.PDFCom',$Alumno->id) }}" target="_blank">
                                             <button type="button" class="btn btn-success" >
-                                                <span class="badge"><i class="fa fa-file-pdf-o"></i> {{ $val }}</span>                                                 
+                                                <span class="badge"><i class="fa fa-file-pdf-o"></i> {{ $val }}</span>
                                             </button>
                                         </a> 
                                         @else

@@ -153,7 +153,7 @@
                                                 </div>    
                                         </td>
                                         <td>
-                                                {{ $Alumno->curso }} - {{ $Alumno->aula }}    
+                                                {{ $Alumno->curso }}    
                                         </td>                                    
 
                                     <td style="text-aling:center">

@@ -287,4 +287,63 @@ class ProfController extends Controller {
         return;
     }
 
+/*
+* ---- Comportamiento de los Alumnos
+*/
+public function comportamiento(Request $request) {
+    $sql = new qGECN;
+    $NivSel = $request->grd_nivel;
+    $lGECN = $sql::listAlumnComportamiento($NivSel);
+    $Niveles = Grd_Nivel::find(["2", "3"]);
+    $user = fGECN::obt_nombre();
+    
+    return view('layouts_profesor/view_prof_comportamiento', [
+        'usuactivo' => $user,
+        'Lista' => $lGECN,
+        'Niveles' => $Niveles,
+        'NivSel' => $NivSel
+    ]);
+}
+
+public function insComportamiento(Request $req) {
+    $data = $req->all();
+    $dateBD = $this->setDateAttribute($data['fec']);
+    DB::Table('reg_comportamiento')->insert(
+            ['user_id' => $data['AlmId'],
+                'reg_tipComp' => $data['tarSelMem'],
+                'reg_tipTarj' => $data['tarSel'],
+                'reg_obser' => $data['editor'],
+                'reg_fec' => $dateBD
+            ]
+    );
+    return redirect()->route('Prof.Reg')->withSuccess('OK');
+}
+
+public function delComportamiento(Request $req) {
+    $data = $req->all();        
+    $eliDocente = DB::delete('Delete '
+                    . ' From reg_comportamiento'
+                    . ' where reg_id=' . $req->AlmId);
+    return redirect()->route('Prof.Comp')->withSuccess('OK');
+}
+
+static function haveComportamiento($AlmId){
+    
+    $comprt = qGECN::listCompEst($AlmId,0);
+    $totReg = count($comprt);        
+    return $totReg;        
+    
+}
+public function PDFComportamiento(Request $req) {                      
+        
+    $comprt = qGECN::listCompEst($req->AlmId,0);
+    $datAlm = User::find($req->AlmId);
+    
+    $pdf = PDF::loadView("layouts_reportes.pagsis_comportamiento_pdf", [
+        'alumno' => $datAlm->nombre." ".$datAlm->ape_paterno." ".$datAlm->ape_materno,
+        'comp'   => $comprt,            
+    ]);        
+    return $pdf->stream(); // download - stream
+}   
+
 }

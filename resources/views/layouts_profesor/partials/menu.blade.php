@@ -29,18 +29,11 @@
                     <i class="fa  fa-pencil-square-o"></i> <span>Actividades Escolares</span>                    
                 </a>
             </li>
-            <li class="treeview disabled">
-                    <a href="#">
-                        <i class="fa fa-folder"></i> <span>Comportamiento</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Llamadas de atencion</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Observaciones</a></li>
-                    </ul>
-            </li>             
+            <li class="<?php echo ((Route::current()->getName() == 'Prof.Comp')) ? "active" : ""; ?>">
+                <a href="{{ route('Prof.Comp')}}">
+                    <i class="fa fa-folder"></i> <span>Comportamiento</span>                    
+                </a>                
+            </li>            
             <hr>
             <li class="<?php echo ((Route::current()->getName() == 'Prof.cuadSegui'))? "active":"";?>">
                 <a href="{{ route('Prof.cuadSegui') }}">

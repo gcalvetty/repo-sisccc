@@ -24,7 +24,9 @@ Route::get('/cuaderno_seguimiento', [
     'as' => 'Prof.cuadSegui',
     'uses' => 'ProfController@verCuaderno']);
 
+/* ----------------------------------- */
 /* ---- accion de actividad tarea ---- */
+/* ----------------------------------- */
 Route::get('actividad/mostrar',[
     'as' => 'Prof.Act-guardar',
     'uses' => 'ProfController@mostrarActividades'    
@@ -47,9 +49,32 @@ Route::get('borrar/{tarea}',[
     'uses' => 'ProfController@borrarActividades'    
 ])->where(['tarea' => '[0-9]+']);
 
+/* ----------------------------------- */
+/* ---- Comportamiento del Alumno ---- */
+/* ----------------------------------- */
+Route::get('/comportamiento',[
+    'as' => 'Prof.Comp',
+    'uses' => 'ProfController@comportamiento',    
+]);
+
+Route::get('/insComportamiento',[
+    'as' => 'Prof.insCom',
+    'uses' => 'ProfControllerr@insComportamiento',    
+]);
+Route::get('/delComportamiento',[
+    'as' => 'Prof.delCom',
+    'uses' => 'ProfController@delComportamiento',    
+]);
+
+Route::get('/PDFComportamiento/alum-{AlmId}-ccc',[
+    'as' => 'Prof.PDFCom',
+    'uses' => 'ProfController@PDFComportamiento',    
+])->where(['AlmId'=>'[0-9]+']);
 
 
+/* ----------------------------------- */
 /* ---- accion de Cuaderno de Seguimiento ---- */
+/* ----------------------------------- */
 Route::get('cuaderno/mostrar',[
     'as' => 'Prof.Cua-mostrar',
     'uses' => 'ProfController@mostrarSeguimiento'    
