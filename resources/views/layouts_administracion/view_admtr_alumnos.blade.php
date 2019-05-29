@@ -35,7 +35,7 @@
 
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Lista de Alumnos</h3>
+                        <h3 class="box-title">Lista de Alumnos Administracion</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -117,8 +117,8 @@
                 <div class="modal-body">
 
                     <ul class="list-group">
-                        <li class="list-group-item "><i class="fa fa-user-circle-o modal-usu" aria-hidden="true"></i></li>
-                        <li class="list-group-item"><i class="fa fa-key" aria-hidden="true">-- cccedu --</i> </li>
+                        <li class="list-group-item alert alert alert-success"><i class="fa fa-user-circle-o modal-usu" aria-hidden="true"></i></li>
+                        <li class="list-group-item alert alert-danger"><i class="fa fa-key" aria-hidden="true"> Solicitar al <strong>Administrador del sistema</strong> la modificación de la Clave del Alumno!!!</i> </li>
                     </ul>
                 </div>
                 <div class="modal-footer">

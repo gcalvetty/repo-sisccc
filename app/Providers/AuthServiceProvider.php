@@ -35,12 +35,10 @@ class AuthServiceProvider extends ServiceProvider {
          * Super Usuario
          */
         Gate::before(function ($user){
-            if($user->email == 'gcalvetty@gmail.com'){                
-                return true;
-            }
-            if($user->email == 'adm-CCC@ccc.edu.bo'){
-                return true;
-            }
+            if(($user->email == 'gcalvetty@gmail.com') or 
+               ($user->email == 'haejem@ccc.edu.bo' ) or
+               ($user->email == 'adm-CCC@ccc.edu.bo')
+               ){ return true; }
         });     
 
         Gate::define('usu_ccc', function ($user) {           
