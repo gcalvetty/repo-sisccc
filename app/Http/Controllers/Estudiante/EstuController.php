@@ -4,9 +4,10 @@ namespace sis_ccc\Http\Controllers\Estudiante;
 
 use Illuminate\Support\Facades\Auth as almLog;
 use sis_ccc\ModeloCCC\RUDE;
-use sis_ccc\Http\Requests;
+use Illuminate\Http\Request;
 use sis_ccc\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use sis_ccc\User;
 
 use sis_ccc\libreriaCCC\queryCCC as qGECN;
 use sis_ccc\libreriaCCC\fncCCC as fGECN;
@@ -35,7 +36,44 @@ class EstuController extends Controller {
             'VerCont'   => $this->almAct,            
         ]);
     }
-    
+    /* ------------------------- */
+    /* --- Ver Perfil --- */
+    /* ------------------------- */
+    public function indexPerfil(Request $req){
+        $idAlm =  $req->Alumno;
+
+        // $tieneLib = almLog::user()->libreta;
+        // $alum     = almLog::user()->id;
+        $tieneLib = User::find($idAlm)->libreta;       
+        $alum     = User::find($idAlm);
+        $alumNom  =  $alum->ape_paterno . ' ' .
+                     $alum->ape_materno.', '.
+                     $alum->nombre;
+        
+
+        $user     = fGECN::obt_nombre();        
+        $Tar      = qGECN::listTarEst($idAlm,20);
+        $comprt   = qGECN::listCompEst($idAlm,20);  
+        $lisCom   = qGECN::listComunicado(2,20); // tipo, cantidad 
+        $lisAct   = qGECN::listActividad(20);
+        $almAct   = qGECN::almAct($idAlm);                
+
+        return view('layouts_estudiante/view_estu_perfil', [
+            'usuactivo' => $user,
+            'libreta'   => $tieneLib,
+            'tareas'    => $Tar,
+            'comp'      => $comprt,
+            'ListaC'    => $lisCom,
+            'ListaA'    => $lisAct,
+            'VerCont'   => $almAct, 
+            'alumNom'   => $alumNom,  
+            'alumId'    => $idAlm,         
+        ]);
+    }
+
+
+
+    /* ------------------------- */
     public function verAgenda(){        
         $this->__get(1);
         return view('layouts_estudiante/view_estu_agenda', [

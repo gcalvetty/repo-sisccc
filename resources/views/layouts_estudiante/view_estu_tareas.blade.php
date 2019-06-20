@@ -23,7 +23,7 @@
             Escritorio           
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route("Escritorio") }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{route("est.Escritorio") }}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Tarea</li>
         </ol>
     </section>

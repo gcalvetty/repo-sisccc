@@ -7,7 +7,7 @@
                 <div class="pull-left image">
                         <?php 
                             $idUsu = sis_ccc\libreriaCCC\fncCCC::getId(); 
-                            echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu, 30);                  
+                            echo sis_ccc\libreriaCCC\fncCCC::getAvatar($idUsu, 30); 
                         ?>
                 </div>
             <div class="pull-left info">
@@ -18,13 +18,13 @@
         
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">Menú del Estudiante</li>
-            <li class="<?php echo ((Route::current()->getName() == 'Escritorio'))? "active":"";?>">
-                <a href="{{ route('Escritorio') }}">
+            @if (($VerCont=="Inscrito")&&(isset($alumId)==null))
+            <li class="header">Menú del Estudiante</li>            
+            <li class="<?php echo ((Route::current()->getName() == 'est.Escritorio'))? "active":"";?>">
+                <a href="{{ route('est.Escritorio') }}">
                     <i class="fa fa-th"></i> <span>Escritorio</span>            
                 </a>
             </li>
-            @if ($VerCont=="Inscrito")
             <li class="treeview hidden">
                 <a href="#">
                     <i class="fa fa-edit"></i> <span>RUDE</span>

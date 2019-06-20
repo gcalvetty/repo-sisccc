@@ -25,7 +25,7 @@ class AdmtrController extends Controller {
         self::$gyear = $dt->year;
     }
 
-    public function index(Request $request) {
+    public function index(Request $request) {        
         $sql = new qGECN;
         $lGECN = $sql::listAlumnContador($request);
         $lGECNcnt = $sql::listAlumnXAul($request);
