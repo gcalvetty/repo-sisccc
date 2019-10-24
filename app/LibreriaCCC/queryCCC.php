@@ -37,8 +37,7 @@ class queryCCC {
         $Niveles = Grd_Nivel::where('grd_nivel_id', $grd_nivel)->get();
         foreach ($Niveles as $Nivel) {
             return $Nivel->grd_nivel_nombre;
-        }
-        //DB::table('users')->where('name', 'John')->first();
+        }        
     }
 
     public static function migaAlumno($id_alumno) {
@@ -1615,5 +1614,4 @@ order by com_fec Desc');
             });
         })->export('xls');
     }
-
 }
