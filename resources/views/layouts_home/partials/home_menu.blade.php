@@ -44,6 +44,7 @@
                                 <li><a href="{{ route('homeCCC') }}">Home</a></li>
                                 <li><a href="{{ route('Home.Act') }}">Actividades</a></li>
                                 <li><a href="{{ route('Home.Comu') }}">Comunicados</a></li>
+                                <li><a href="http://ccc.edu.bo/menu/" target="_blank">Menú del Mes</a></li>
                             </ul>
                         </div>
                         <!-- Nav End -->
