@@ -291,6 +291,7 @@ class ProfController extends Controller {
 * ---- Comportamiento de los Alumnos
 */
 public function comportamiento(Request $request) {
+    
     $sql = new qGECN;
     $NivSel = $request->grd_nivel;
     $lGECN = $sql::listAlumnComportamiento($NivSel);

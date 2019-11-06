@@ -35,7 +35,7 @@
                         <div class="panel-body">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Subir Libreta Formato PDF: <i class="fa fa-file-pdf-o" aria-hidden="true"></i></div>
+                                    Subir PDF: <i class="fa fa-file-pdf-o" aria-hidden="true"></i></div>
                                 <div class="panel-body">
                                     {!! Form::open(['route'=>'Secr.subirdocPdf','files'=>true]) !!}
                                     @include('layouts_secretaria.partials.form_doc')

@@ -4,7 +4,13 @@
 .disc_est{ font-size:11px; }
 
 .form-control{ font-size:12px; }
+/* ---- TABLA GECN --- */
 .table-striped td{ text-align:center;}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: beige; 
+}
+.table-striped > tbody tr td {  padding: 4px 0 4px 0 !important; }
+
 .alert{-webkit-animation-duration:2s;
        -webkit-animation-delay:5s }
 .inscrForm{ margin-top: 100px;}
@@ -15,6 +21,10 @@
 .menGECN .col-md-12{ padding: 10px 0 30px 0; margin-bottom: 15px; border-bottom: 1px solid lightgray; 
 }
 .menGECN button{ font-size: 12px; }
+
+span.nomProf{ font-weight: bold; text-transform: uppercase;  }
+span.apeProf{ font-size: 12px ; text-transform: uppercase; }
+
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */

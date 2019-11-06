@@ -62,19 +62,28 @@
                             <tr>
                                 <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    <div class="col-md-2">                                            
+                                    <div class="col-md-3">                                            
                                             <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
                                     </div>
-                                    <div class="col-md-9 text-left">
-                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    <div class="col-md-8 text-left">
+                                        <span class="nomProf">{{ $Prof1->nombre }}</span><br/> 
+                                        <span class="apeProf">{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}</span>
                                     </div>    
                                 </td>
                                 <td>
+                                    <button>
                                     @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
                                     <a href="{{ $Prof1->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
                                     @else
                                         <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
                                     @endif 
+                                    </button>
+                                    <button type="button" class="btn btn-facebook"
+                                                    data-toggle="modal" 
+                                                    data-target="#infProf" 
+                                                    data-usuario="{{ $Prof1->nombre }}"
+                                                    data-profesor="{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}">
+                                                <i class="fa fa-info fa-fw" aria-hidden="true"></i></button>
                                 </td>
                             </tr>
                             @endforeach  
@@ -105,19 +114,28 @@
                             <tr>
                                 <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    <div class="col-md-2">                                            
+                                    <div class="col-md-3">                                            
                                             <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
                                     </div>
-                                    <div class="col-md-9 text-left">
-                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    <div class="col-md-8 text-left">
+                                        <span class="nomProf">{{ $Prof1->nombre }}</span><br/>
+                                        <span class="apeProf">{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}</span>
                                     </div>    
                                 </td>
                                 <td>
+                                    <button>
                                     @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
-                                    <a href="{{ $Prof->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                    <a href="{{ $Prof1->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
                                     @else
                                         <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
-                                    @endif                                                                        
+                                    @endif 
+                                    </button> 
+                                    <button type="button" class="btn btn-facebook"
+                                                    data-toggle="modal" 
+                                                    data-target="#infProf" 
+                                                    data-usuario="{{ $Prof1->nombre }}"
+                                                    data-profesor="{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}">
+                                                <i class="fa fa-info fa-fw" aria-hidden="true"></i></button>                                                                      
                                 </td>
                             </tr>
                             @endforeach  
@@ -148,19 +166,28 @@
                             <tr>
                                 <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    <div class="col-md-2">                                            
+                                    <div class="col-md-3">                                            
                                             <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
                                     </div>
-                                    <div class="col-md-9 text-left">
-                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    <div class="col-md-8 text-left">
+                                    <span class="nomProf">{{ $Prof1->nombre }}</span><br/>
+                                    <span class="apeProf">{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}</span>
                                     </div>    
                                 </td>
                                 <td>                                    
+                                    <button>
                                     @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
-                                    <a href="{{ $Prof->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                    <a href="{{ $Prof1->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
                                     @else
                                         <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
                                     @endif 
+                                    </button> 
+                                    <button type="button" class="btn btn-facebook"
+                                                    data-toggle="modal" 
+                                                    data-target="#infProf" 
+                                                    data-usuario="{{ $Prof1->nombre }}"
+                                                    data-profesor="{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}">
+                                                <i class="fa fa-info fa-fw" aria-hidden="true"></i></button>
                                 </td>
 
                             </tr>
@@ -196,20 +223,29 @@
                             <tr>
                                 <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    <div class="col-md-2">                                            
+                                    <div class="col-md-3">                                            
                                             <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
                                     </div>
-                                    <div class="col-md-9 text-left">
-                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    <div class="col-md-8 text-left">
+                                    <span class="nomProf">{{ $Prof1->nombre }}</span><br/>
+                                    <span class="apeProf">{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}</span>
                                     </div>    
                                 </td>
 
                                 <td>                                    
-                                        @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
-                                        <a href="{{ $Prof->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
-                                        @else
-                                            <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
-                                        @endif 
+                                <button>
+                                    @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
+                                    <a href="{{ $Prof1->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                    @else
+                                        <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
+                                    @endif 
+                                    </button>
+                                        <button type="button" class="btn btn-facebook"
+                                                    data-toggle="modal" 
+                                                    data-target="#infProf" 
+                                                    data-usuario="{{ $Prof1->nombre }}"
+                                                    data-profesor="{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}">
+                                                <i class="fa fa-info fa-fw" aria-hidden="true"></i></button> 
                                 </td>
                             </tr>
                             @endforeach  
@@ -240,19 +276,29 @@
                             <tr>
                                 <td>{{ $aux++ }}</td>                                                                         
                                 <td>
-                                    <div class="col-md-2">                                            
+                                    <div class="col-md-3">                                            
                                             <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($Prof1->id, 35) ?>
                                     </div>
-                                    <div class="col-md-9 text-left">
-                                        {{ $Prof1->nombre }}, {{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}
+                                    <div class="col-md-8 text-left">
+                                    <span class="nomProf">{{ $Prof1->nombre }}</span><br/>
+                                    <span class="apeProf">{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}</span>
                                     </div>    
                                 </td>
                                 <td>                                    
-                                        @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
-                                        <a href="{{ $Prof->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
-                                        @else
-                                            <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
-                                        @endif 
+                                <button>
+                                    @if(($Prof1->libreta!='') || ($Prof1->libreta!=null))
+                                    <a href="{{ $Prof1->libreta }}" target="_blank"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>                                         
+                                    @else
+                                        <i class="fa fa-file-text fa-lg" aria-hidden="true" title="no disponible" disable></i>                                         
+                                    @endif 
+                                    </button>                                       
+                                        <button type="button" class="btn btn-facebook"
+                                                    data-toggle="modal" 
+                                                    data-target="#infProf" 
+                                                    data-usuario="{{ $Prof1->nombre }}"
+                                                    data-profesoresor="{{ $Prof1->ape_paterno }} {{ $Prof1->ape_materno }}">
+                                                <i class="fa fa-info fa-fw" aria-hidden="true"></i></button>
+
                                     </td>
                             </tr>
                             @endforeach  
@@ -262,6 +308,34 @@
             </section>
         </div>
     </section>
+</div>
+<div class="modal fade" id="infProf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 id="exampleModalLabel"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <label class="modal-title"></label></h4>
+                </div>
+                <div class="modal-body">
+
+                    <ul class="list-group">
+                        <li>CI:</li>
+                        <li>Dirección:</li>
+                        <li>Teléfono:</li>
+                        <li>Año de Antiguedad</li>
+                        <li>Curso:</li>                        
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>  
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.content -->
+
 </div>
 <!-- /.content-wrapper -->
 <footer class="main-footer">

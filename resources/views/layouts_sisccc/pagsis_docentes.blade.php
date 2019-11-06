@@ -85,6 +85,15 @@
                 modal.find('.Doc').text(nomDoc)
                 modal.find('.modal-body input.DocId').val(idDoc)
             });
+
+            $('#infProf').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var profesor = button.data('profesor');
+                var usu = button.data('usuario');
+                var modal = $(this);                
+                modal.find('.modal-title').text('Docente: ' + usu +', '+ profesor);
+                modal.find('.modal-usu').text(' '+usu);                
+            })
             
             $(document).ready(function () {
                 @if(session('success'))        

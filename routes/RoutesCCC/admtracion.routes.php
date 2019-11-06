@@ -14,7 +14,7 @@ Route::get('/profesores/nivel/{grd_nivel}', [
 
 Route::get('/listado_docentes', [
     'as'   => 'Admtr.Doc',
-    'uses' => 'AdmtrController@listDocentes']);
+    'uses' => 'AdmtrController@listDocentes']); 
 /* ---------- */
 
 Route::get('/alumnos/nivel/{grd_nivel}', [

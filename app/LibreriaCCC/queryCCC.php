@@ -1485,14 +1485,12 @@ order by u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
         return $lisAlumno;
     }
 
-    public static function Reporte_TareasNivel($req) {
-        
-        $grdNiv = Grd_Escolar::select('grd_nombre')->where('grd_id', $req->grd_nivel)->get();
+    public static function Reporte_TareasNivel($req) {        
+        $grdNiv = Grd_Escolar::select('grd_nombre')->where('grd_id', $req->grd_nivel)->get();        
         $a= $grdNiv[0]->grd_nombre;
         Excel::create('Alumnos - ' . $grdNiv[0]->grd_nombre, function($excel) use($a) {
             $excel->sheet('Curso', function($sheet) use($a) {
                 $lGECN = self::Rep_list_TareasNivel($a);
-
                 $sheet->fromArray($lGECN);
                 $sheet->setOrientation('landscape');
             });

@@ -29,8 +29,8 @@
                     <i class="fa  fa-pencil-square-o"></i> <span>Actividades Escolares</span>                    
                 </a>
             </li>
-            <li class="<?php echo ((Route::current()->getName() == 'Prof.Comp')) ? "active" : ""; ?>">
-                <a href="{{ route('Prof.Comp')}}">
+            <li class="<?php echo ((Route::current()->getName() == 'Prof.Comp')) ? "active" : ""; ?>" >
+                <a href="{{ route('Prof.Comp')}}" >
                     <i class="fa fa-folder"></i> <span>Comportamiento</span>                    
                 </a>                
             </li>            
