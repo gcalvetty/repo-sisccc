@@ -32,7 +32,8 @@
             <li class="active">Escritorio</li>
         </ol>
         @if(Session::has('MensajeElim'))
-        <p class="alert alert-success" transition="fade">{{ Session::get('MensajeElim')}}</p>           @endif
+        <p class="alert alert-success" transition="fade">{{ Session::get('MensajeElim')}}</p>           
+		@endif
     </section>
 
     <!-- Main content -->
