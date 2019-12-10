@@ -232,13 +232,17 @@ class AdmtrController extends Controller {
     /*
     * Cuaderno de Seguimiento 
     */    
-    public function mostrarSeguimiento(Request $request) {    
+    public function mostrarSeguimiento(Request $request) { 
+        if(!isset($request->idPer)){   
         $usuId = Auth::user()->id;                
+        }else{
+            $usuId = $request->idPer;                
+        }
         $cuadSeg = DB::table('cuad_seg')
                    ->select('*')
                    ->where('user_id',$usuId)
                    ->orderBy('pc_fec', 'DESC')
-                   ->paginate(5);
+                   ->paginate(25);
                 
         return ['paginacion' =>[
                 'total'     => $cuadSeg->total(),
@@ -277,5 +281,35 @@ class AdmtrController extends Controller {
             'NivelSel' => $NivSel,            
         ]);
     }
+
+    /*
+        Lista de administrativos
+    */
+    public function verPersonal(Request $request){
+        $sql = new qGECN;
+        $user = fGECN::obt_nombre();
+        $Niveles = Grd_Nivel::get();
+        $listAdm = $sql::list_Personal_Administrativo();
+        
+        return view('layouts_administracion/view_admtr_personal', [
+            'usuactivo' => $user,
+            'Niveles' => $Niveles,
+            'l1' => $listAdm,
+        ]);
+    }
+
+    public function verCuadernoPersonal(Request $request) {
+        $Niveles = Grd_Nivel::get();
+        $NivSel = ($request->grd_nivel!=null)?$request->grd_nivel:0;
+        $user   = fGECN::obt_nombre(); 
+        $PerAdm = $request->personal;            
+        return view('layouts_sisccc/pagsis_cuaderno_personal', [
+            'usuactivo' => $user,            
+            'Niveles' => $Niveles,
+            'NivelSel' => $NivSel,  
+            'PerAdm' =>  $PerAdm,
+        ]);
+    }
+
 
 }

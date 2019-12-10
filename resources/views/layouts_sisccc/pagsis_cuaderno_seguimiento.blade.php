@@ -71,6 +71,6 @@
         <script src="/jquery/ckeditor/js/sample.js"></script>    
         
         <!-- Seguimiento + Paginacion -->
-        <script src="/jquery/ccc-cuad-seguimiento.js" type="text/javascript"></script>  
+        <script src="/jquery/ccc-cuad-seguimiento-personal.js" type="text/javascript"></script>  
 
     </body>

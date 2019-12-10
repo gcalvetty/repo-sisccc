@@ -25,7 +25,16 @@
                 <a href="{{ route('Admtr.Reg') }}">
                     <i class="fa fa-th"></i> <span>Escritorio</span>            
                 </a>
-            </li>            
+            </li> 
+            
+            
+            <li class="<?php echo ((Route::current()->getName() == 'Admtr.admiccc'))? "active":"";?>">                
+                <a href="{{ route('Admtr.admiccc') }}">
+                    <i class="fa fa-building" aria-hidden="true"></i> <span>Plantel Administrativo</span>
+                    
+                </a>                                
+            </li>
+
             <li class="treeview <?php echo ((Route::current()->getName() == 'Admtr.Doc'))? "active":"";?>">                
                 <a href="#">
                     <i class="fa fa-id-card-o"></i> <span>Plantel Docente</span>

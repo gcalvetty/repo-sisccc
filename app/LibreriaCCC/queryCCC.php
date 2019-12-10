@@ -226,6 +226,21 @@ order by nm.gmat_materia ASC');
     }
 
     /*
+     * Listar Personal Administrativo
+     */
+
+    public static function list_Personal_Administrativo() {
+        $lisDocente = DB::select('Select 
+                u.id, u.ape_paterno, u.ape_materno, u.nombre, u.libreta, u.tipo_Usu 
+                from users as u
+                left join prof_materia as pm on u.id = pm.user_id
+                where (u.tipo_Usu != "Insc") and (u.tipo_Usu != "Est_ccc") and (u.tipo_Usu != "SuperAdm") and (u.tipo_Usu != "Prof") and (pm.user_id is null) 
+order by u.tipo_Usu asc, u.ape_paterno asc, u.ape_materno asc, u.nombre asc');
+
+        return $lisDocente;
+    }
+
+    /*
      * Listar Docentes - sin Asignación
      */
 

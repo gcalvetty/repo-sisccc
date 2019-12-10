@@ -1,5 +1,5 @@
-@extends('layouts_sisccc.pagsis_cuaderno_seguimiento')
-@section('titulo','Cuaderno de Actividades')
+@extends('layouts_sisccc.pagsis_cuaderno_seguimiento_personal')
+@section('titulo','Cuaderno de Actividades Personal')
 @section('usuccc')
 {{ $usuactivo }}
 @endsection
@@ -12,42 +12,7 @@
 
 @section('sis_menu_lateral')
     <?php $rutaUrl = Route::current()->getName() ?>
-    @switch($rutaUrl)
-    
-    @case('AdmCCC.cuadSegui')
-        @include('layouts_adminsuper.partials.menu')   
-    @break
-
-    @case('Admtr.cuadSegui')
-        @include('layouts_administracion.partials.menu')   
-    @break
-
-    @case('Cont.cuadSegui')
-        @include('layouts_contador.partials.menu')   
-    @break
-
-    @case('Dir.cuadSegui')
-        @include('layouts_direccion.partials.menu')   
-    @break
-
-    @case('2')
-        @include('layouts_profesor.partials.menu')   
-    @break
-
-    @case('Psico.cuadSegui')
-        @include('layouts_psico.partials.menu')   
-    @break
-
-    @case('Rege.cuadSegui')
-        @include('layouts_regente.partials.menu')   
-    @break
-
-    @case('Secr.cuadSegui')
-        @include('layouts_secretaria.partials.menu')   
-    @break
-    
-    @endswitch
-    
+    @include('layouts_administracion.partials.menu')    
 @endsection
 
 @section('sis_contenido')
@@ -55,8 +20,8 @@
 <div class="content-wrapper">    	
     <!-- Content Header (Page header) -->
     <section class="content-header">      
-        <h1>
-            Cuaderno de Seguimiento
+        <h1>            
+            Cuaderno de Seguimiento:
         </h1>
         <ol class="breadcrumb">
             <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -67,18 +32,13 @@
     <!-- Main content -->
     <section id="contador_crud"></section>
     <section class="content" id="Cuad_Seguimiento">
-
+           
         <!-- Default box -->
         <div class="row">
             <div class="col-md-12" id="verTareas"> 
                 <div class="box box-success">
-                    <div class="box-header ui-sortable-handle" style="cursor: move;">
-                        <i class="fa fa-thumb-tack"></i>
-                        <h3 class="box-title">Cuaderno de Seguimiento</h3>
-                        <a href="#" class="btn btn-primary pull-right" data-toggle="modal" data-target="#crear">Nueva Actividad</a>                                             
-                    </div>
-                   
-                    <div class="box-body">                        
+                    <div class="box-body">   
+                            <?php echo sis_ccc\libreriaCCC\fncCCC::getAvatar($PerAdm, 35) ?>  <?php echo sis_ccc\libreriaCCC\fncCCC::usuNom($PerAdm) ?>                     
                         <div class="table-responsive">
                             <nav>
                                     <ul class="pagination">
