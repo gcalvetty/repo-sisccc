@@ -37,6 +37,10 @@ Route::get('/avatar', [
     'as' => 'Secr.Avatar',
     'uses' => 'SecrController@verAvatar']);
 
+Route::get('/DatosPersonal',[
+	'as' => 'Secr.DatosPersonal',
+	'uses' => 'SecrController@DatosPersonal']);
+
 /*
  * Rutas Para listar Alumnos por Nivel
  */

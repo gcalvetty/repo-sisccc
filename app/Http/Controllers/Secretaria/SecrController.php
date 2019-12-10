@@ -46,6 +46,13 @@ class SecrController extends Controller {
         ]);
     }
 
+	/*
+	* Datos del Personal
+	*/
+	public function DatosPersonal(Request $request){
+		dd('llegamos aqui');
+	}
+
     /*
      * Reportes de Alumnos x Nivel
      */
@@ -313,7 +320,7 @@ class SecrController extends Controller {
                    ->select('*')
                    ->where('user_id',$usuId)
                    ->orderBy('pc_fec', 'DESC')
-                   ->paginate(5);
+                   ->paginate(25);
                 
         return ['paginacion' =>[
                 'total'     => $cuadSeg->total(),

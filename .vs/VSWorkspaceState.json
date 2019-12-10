@@ -2,10 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\app",
-    "\\resources",
+    "\\app\\Http",
+    "\\app\\Http\\Controllers",
+    "\\app\\Http\\Controllers\\Secretaria",
     "\\resources\\views",
-    "\\resources\\views\\layouts_profesor"
+    "\\resources\\views\\layouts_secretaria",
+    "\\resources\\views\\layouts_secretaria\\partials",
+    "\\routes",
+    "\\routes\\RoutesCCC"
   ],
-  "SelectedNode": "\\resources\\views\\layouts_profesor\\view_prof.blade.php",
+  "SelectedNode": "\\routes\\RoutesCCC\\secretaria.routes.php",
   "PreviewInSolutionExplorer": false
 }

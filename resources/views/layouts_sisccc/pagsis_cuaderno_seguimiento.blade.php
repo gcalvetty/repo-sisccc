@@ -40,7 +40,7 @@
         <script>
             window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
         </script>
-    </head>
+    </head>    
     <body class="sidebar-mini skin-green wysihtml5-supported">         
         <div class="wrapper">
             @if (Auth::guest())       		

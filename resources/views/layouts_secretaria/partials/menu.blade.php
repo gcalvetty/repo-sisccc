@@ -29,14 +29,19 @@
             
             <li class="<?php echo ((Route::current()->getName() == 'Secr.Reg1'))? "active":"";?> hidden">
                 <a href="{{ route('Secr.agenda') }}">
-                    <i class="fa fa-calendar"></i><span>Agenda</span>
-                    
+                    <i class="fa fa-calendar"></i><span>Agenda</span>                    
                 </a>
             </li>
             
             <li class="<?php echo ((Route::current()->getName() == 'Secr.actividades'))? "active":"";?>">
                 <a href="{{ route('Secr.actividades') }}">
                     <i class="fa  fa-calendar-check-o"></i> <span>Calendario de Actividades</span>                    
+                </a>
+            </li>
+			
+			<li class="<?php echo ((Route::current()->getName() == 'Secr.actividades'))? "active":"";?>">
+                <a href="{{ route('Secr.DatosPersonal') }}">
+                    <i class="fa  fa-calendar-check-o"></i> <span>Datos del Personal</span>                    
                 </a>
             </li> 
             
