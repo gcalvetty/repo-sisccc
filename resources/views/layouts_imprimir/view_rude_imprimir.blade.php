@@ -2,7 +2,7 @@
 <html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Style-Type" content="text/css" />
-    <title>RUDE</title>
+    <title>RUDE222</title>
     <link rel="stylesheet" type="text/css" href="/reportes/rude-img/T4P9TRNs.css" />    
   </head>
   <body> 
@@ -234,8 +234,8 @@
 <div style="position:absolute;top:348.37pt;left:265.29pt;z-index:357;">Nivelación de Rezago</div>
 <div style="position:absolute;top:351.09pt;left:354.75pt;z-index:357;letter-spacing:0.5em;" class="fmt-4">A   AA</div>
 <div style="position:absolute;top:339.83pt;left:523.63pt;z-index:357;letter-spacing:-.003em;">
-<span class="fmt-17" style="position:relative;left:0pt;top:-1pt;">Mañana</span>   <span class="fmt-17" style="position:relative;left:0pt;top:-1pt;">Tarde</span></div>
-<div style="position:absolute;top:349.41pt;left:559.93pt;z-index:357;" class="fmt-17">Noche</div></span>
+<span class="fmt-17" style="position:relative;left:0pt;top:2pt;">Mañana</span>   <span class="fmt-17" style="position:relative;left:0pt;top:2pt;">Tarde</span></div>
+<div style="position:absolute;top:350.41pt;left:559.93pt;z-index:357;" class="fmt-17">Noche</div></span>
 <img class="i44"  src="/reportes/rude-img/51af15f04c7faae9db9b26ff9d6139c1.png" alt="__rendered_path__24" />
 <span class="fmt-8" style="white-space:pre;">
 
@@ -767,13 +767,13 @@
 
 <img class="i411" src="/reportes/rude-img/2d20016436dc318aa08895be1f42dcdb.png" alt="__rendered_path__116" />
 
-@if($gestion["gst_grd_escolar"] == 1)
+@if(($gestion["gst_grd_escolar"] == 1) or ($gestion["gst_grd_escolar"] == 16))  
    <img class="i412" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />     
 @else
    <img class="i412" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />    
 @endif
 
-@if($gestion["gst_grd_escolar"] == 2)
+@if(($gestion["gst_grd_escolar"] == 2) or ($gestion["gst_grd_escolar"] == 17))
     <img class="i413" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i413" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
@@ -782,37 +782,37 @@
 <img class="i414" src="/reportes/rude-img/db74f101878d04e544cacec494b92cb2.png" alt="__rendered_path__118" />
 
 
-@if($gestion["gst_grd_escolar"] == 3)
+@if(($gestion["gst_grd_escolar"] == 3) or ($gestion["gst_grd_escolar"] == 18))
     <img class="i416" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i416" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
 @endif
-
-@if($gestion["gst_grd_escolar"] == 4)
-    <img class="i417" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
+ 
+@if(($gestion["gst_grd_escolar"] == 4) or ($gestion["gst_grd_escolar"] == 19))
+     <img class="i417" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i417" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
 @endif
 
-@if($gestion["gst_grd_escolar"] == 5)
+@if(($gestion["gst_grd_escolar"] == 5) or ($gestion["gst_grd_escolar"] == 20))
     <img class="i418" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i418" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
 @endif
 
-@if($gestion["gst_grd_escolar"] == 6)
+@if(($gestion["gst_grd_escolar"] == 6) or ($gestion["gst_grd_escolar"] == 21))
     <img class="i419" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i419" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
 @endif
 
-@if($gestion["gst_grd_escolar"] == 7)
+@if(($gestion["gst_grd_escolar"] == 7) or ($gestion["gst_grd_escolar"] == 22))
     <img class="i420" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i420" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
 @endif
 
-@if($gestion["gst_grd_escolar"] == 8)
+@if(($gestion["gst_grd_escolar"] == 8) or ($gestion["gst_grd_escolar"] == 23))
     <img class="i421" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i421" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
@@ -821,7 +821,7 @@
 
 
 
-@if($gestion["gst_grd_escolar"] == 9)
+@if(($gestion["gst_grd_escolar"] == 9)  or ($gestion["gst_grd_escolar"] == 24))
     <img class="i424" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i424" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
@@ -829,31 +829,31 @@
 
 <img class="i422" src="/reportes/rude-img/db74f101878d04e544cacec494b92cb2.png" alt="__rendered_path__118" />
 
-@if($gestion["gst_grd_escolar"] == 10)
+@if(($gestion["gst_grd_escolar"] == 10) or ($gestion["gst_grd_escolar"] == 25))
     <img class="i425" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i425" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
 @endif
 
-@if($gestion["gst_grd_escolar"] == 11)
+@if(($gestion["gst_grd_escolar"] == 11) or ($gestion["gst_grd_escolar"] == 26))
     <img class="i426" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i426" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
 @endif
 
-@if($gestion["gst_grd_escolar"] == 12)
+@if(($gestion["gst_grd_escolar"] == 12) or ($gestion["gst_grd_escolar"] == 27))
     <img class="i427" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i427" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
 @endif
 
-@if($gestion["gst_grd_escolar"] == 13)
+@if(($gestion["gst_grd_escolar"] == 13) or ($gestion["gst_grd_escolar"] == 28))
     <img class="i428" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i428" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
 @endif
 
-@if($gestion["gst_grd_escolar"] == 14)
+@if(($gestion["gst_grd_escolar"] == 14) or ($gestion["gst_grd_escolar"] == 29))
     <img class="i429" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i429" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
@@ -870,13 +870,13 @@
 <img class="i433" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />
 
 
-@if($gestion["gst_aula"] == "A")
+@if($gestion["gst_grd_escolar"] <= 14)
     <img class="i433a" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i433a" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        
 @endif
 
-@if($gestion["gst_aula"] == "AA")
+@if($gestion["gst_grd_escolar"] > 15) 
     <img class="i433b" src="/reportes/rude-img/59092513270423149140275825c1813ea.png" alt="__rendered_path__117" />
 @else
     <img class="i433b" src="/reportes/rude-img/59092513270423149140275825c1813e.png" alt="__rendered_path__117" />        

@@ -350,7 +350,14 @@
                                             </label>                                        
                                             <label class="radio-inline">
                                                 <input type="radio" name="optCurso" value="2">2da Sección
-                                            </label>                  
+                                            </label>                                                     
+                                            <hr/>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="16">1ra Sección AA
+                                            </label>                                        
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="17">2da Sección AA
+                                            </label>         
                                         </div>
                                         <div class="tab-pane" id="3inscr">
                                             <label class="radio-inline">
@@ -371,6 +378,25 @@
                                             <label class="radio-inline">
                                                 <input type="radio" name="optCurso" value="8">6to Prm.
                                             </label>
+                                            <hr/>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="18">1ro Prm. AA
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="19">2do Prm. AA
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="20">3ro Prm. AA
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="21">4to Prm. AA
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso"  value="22">5to Prm. AA
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="23">6to Prm. AA
+                                            </label>
                                         </div>
                                         <div class="tab-pane" id="4inscr">
                                             <label class="radio-inline">
@@ -390,6 +416,27 @@
                                             </label>
                                             <label class="radio-inline">
                                                 <input type="radio" name="optCurso" value="14">6to Sec.
+                                            </label>
+                                            
+                                            <hr/>                                            
+                                            
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="24">1ro Sec. AA
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="25">2do Sec. AA
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="26">3ro Sec. AA
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="27">4to Sec. AA
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="28">5to Sec. AA
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" v-model="optCurso" name="optCurso" value="29">6to Sec. AA
                                             </label>	
 
                                         </div>
