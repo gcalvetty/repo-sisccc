@@ -59,7 +59,7 @@ Route::get('/comportamiento',[
 
 Route::get('/insComportamiento',[
     'as' => 'Prof.insCom',
-    'uses' => 'ProfControllerr@insComportamiento',    
+    'uses' => 'ProfController@insComportamiento',    
 ]);
 Route::get('/delComportamiento',[
     'as' => 'Prof.delCom',
