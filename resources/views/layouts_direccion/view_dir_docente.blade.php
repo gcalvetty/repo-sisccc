@@ -294,7 +294,8 @@
                         <!-- Nav tabs -->
 
                         <ul class="nav nav-tabs" role="tablist">                        
-                            <li role="presentation" class="active"><a href="#m1" aria-controls="settings" role="tab" data-toggle="tab">Seccion</a></li>
+                            <li role="presentation" class="active"><a href="#m0" aria-controls="settings" role="tab" data-toggle="tab">Taller Incial</a></li>
+                            <li role="presentation"><a href="#m1" aria-controls="settings" role="tab" data-toggle="tab">Seccion</a></li>
                             <li role="presentation"><a href="#m2" aria-controls="profile" role="tab" data-toggle="tab">Primaria</a></li>
                             <li role="presentation"><a href="#m3" aria-controls="messages" role="tab" data-toggle="tab">Secundaria</a></li>
                             <li role="presentation" class="hidden"><a href="#m4" aria-controls="home" role="tab" data-toggle="tab">Taller Inicial</a></li>
@@ -302,9 +303,38 @@
                         </ul>
                         <!-- Tab panes -->
                         <div class="tab-content">
+                            <!-- *********** Taller Inicial *********** -->
+
+                            <div role="tabpanel" class="tab-pane active" id="m0">
+                                <table  class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-lg-6">Materia</th>
+                                            <th class="col-lg-6">Curso</th>                                
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="mat75"  value="75">
+                                                        Actividades Taller Inicial
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <select multiple name="cur75[]" class="form-control input-sm">
+                                                    <option value="15">1</option>                                                    
+                                                </select>
+                                            </td>
+                                        </tr>                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            
                             <!-- *********** SECCION *********** -->
 
-                            <div role="tabpanel" class="tab-pane  active" id="m1">
+                            <div role="tabpanel" class="tab-pane" id="m1">
                                 <table  class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
