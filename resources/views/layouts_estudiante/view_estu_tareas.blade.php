@@ -53,7 +53,7 @@
                                         <th class="col-lg-9">Descripción</th>
                                         
                                     </tr>
-                                </thead>
+                                </thead> 
                                 <tbody>
                                     <?php $cont = 1 ?>
                                     @foreach($tareas as $Alumno)
