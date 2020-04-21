@@ -10,6 +10,9 @@
     "require": {
         "php": ">=7.0",
         "laravel/framework": "5.6.*",
+        "fideloper/proxy": "^4.0",
+
+
         "laravelcollective/html": "^5.3.0",
         "barryvdh/laravel-debugbar": "^2.3",
         "nesbot/carbon": "^1.21",
@@ -18,18 +21,22 @@
         "dompdf/dompdf": "^0.8.0",
         "knplabs/knp-snappy": "*",
         "google/apiclient": "^2.1",
-        "laravel/tinker": "^1.0",
+        "laravel/tinker": "~1.0",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
         "predis/predis": "^1.1",
         "maatwebsite/excel": "~2.0",
         "league/flysystem": "1.0.43",
         "phpoffice/phpspreadsheet": "dev-master",
         "barryvdh/laravel-dompdf": "^0.8.0@dev"
+
+        
+
     },
     "require-dev": {
+        "phpunit/phpunit": "^7.0",
+
         "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~6.0",
+        "mockery/mockery": "0.9.*",        
         "symfony/css-selector": "3.1.*",
         "symfony/dom-crawler": "3.1.*"
     },
