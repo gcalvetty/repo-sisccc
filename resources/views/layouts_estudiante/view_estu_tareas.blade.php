@@ -54,7 +54,7 @@
                                         
                                     </tr>
                                 </thead> 
-                                <tbody>
+                                <tbody>modificado 
                                     <?php $cont = 1 ?>
                                     @foreach($tareas as $Alumno)
                                     <tr>
