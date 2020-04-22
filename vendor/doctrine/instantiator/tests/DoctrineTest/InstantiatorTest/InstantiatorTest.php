@@ -13,6 +13,7 @@ use DoctrineTest\InstantiatorTestAsset\ExceptionAsset;
 use DoctrineTest\InstantiatorTestAsset\FinalExceptionAsset;
 use DoctrineTest\InstantiatorTestAsset\PharExceptionAsset;
 use DoctrineTest\InstantiatorTestAsset\SerializableArrayObjectAsset;
+use DoctrineTest\InstantiatorTestAsset\SerializableFinalInternalChildAsset;
 use DoctrineTest\InstantiatorTestAsset\SimpleSerializableAsset;
 use DoctrineTest\InstantiatorTestAsset\SimpleTraitAsset;
 use DoctrineTest\InstantiatorTestAsset\UnCloneableAsset;
@@ -24,7 +25,6 @@ use PDORow;
 use PharException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
-use function defined;
 use function str_replace;
 use function uniqid;
 
@@ -70,13 +70,6 @@ class InstantiatorTest extends TestCase
 
     public function testExceptionOnUnSerializationException() : void
     {
-        if (defined('HHVM_VERSION')) {
-            $this->markTestSkipped(
-                'As of facebook/hhvm#3432, HHVM has no PDORow, and therefore '
-                . ' no internal final classes that cannot be instantiated'
-            );
-        }
-
         $this->expectException(UnexpectedValueException::class);
 
         $this->instantiator->instantiate(PDORow::class);
@@ -132,6 +125,7 @@ class InstantiatorTest extends TestCase
             [SerializableArrayObjectAsset::class],
             [WakeUpNoticesAsset::class],
             [UnserializeExceptionArrayObjectAsset::class],
+            [SerializableFinalInternalChildAsset::class],
         ];
     }
 

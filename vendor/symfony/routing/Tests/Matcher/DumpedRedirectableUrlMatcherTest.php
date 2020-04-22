@@ -17,6 +17,9 @@ use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection;
 
+/**
+ * @group legacy
+ */
 class DumpedRedirectableUrlMatcherTest extends RedirectableUrlMatcherTest
 {
     protected function getUrlMatcher(RouteCollection $routes, RequestContext $context = null)
@@ -25,19 +28,19 @@ class DumpedRedirectableUrlMatcherTest extends RedirectableUrlMatcherTest
 
         $class = 'DumpedRedirectableUrlMatcher'.++$i;
         $dumper = new PhpMatcherDumper($routes);
-        eval('?>'.$dumper->dump(array('class' => $class, 'base_class' => 'Symfony\Component\Routing\Tests\Matcher\TestDumpedRedirectableUrlMatcher')));
+        eval('?>'.$dumper->dump(['class' => $class, 'base_class' => 'Symfony\Component\Routing\Tests\Matcher\TestDumpedRedirectableUrlMatcher']));
 
         return $this->getMockBuilder($class)
-            ->setConstructorArgs(array($context ?: new RequestContext()))
-            ->setMethods(array('redirect'))
+            ->setConstructorArgs([$context ?: new RequestContext()])
+            ->setMethods(['redirect'])
             ->getMock();
     }
 }
 
 class TestDumpedRedirectableUrlMatcher extends UrlMatcher implements RedirectableUrlMatcherInterface
 {
-    public function redirect($path, $route, $scheme = null)
+    public function redirect($path, $route, $scheme = null): array
     {
-        return array();
+        return [];
     }
 }

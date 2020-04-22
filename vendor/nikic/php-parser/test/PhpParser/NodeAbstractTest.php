@@ -2,8 +2,6 @@
 
 namespace PhpParser;
 
-use PHPUnit\Framework\TestCase;
-
 class DummyNode extends NodeAbstract
 {
     public $subNode1;
@@ -25,7 +23,7 @@ class DummyNode extends NodeAbstract
     }
 }
 
-class NodeAbstractTest extends TestCase
+class NodeAbstractTest extends \PHPUnit\Framework\TestCase
 {
     public function provideNodes() {
         $attributes = [
@@ -36,8 +34,9 @@ class NodeAbstractTest extends TestCase
             'startFilePos' => 14,
             'endFilePos' => 15,
             'comments'  => [
-                new Comment('// Comment' . "\n"),
+                new Comment('// Comment 1' . "\n"),
                 new Comment\Doc('/** doc comment */'),
+                new Comment('// Comment 2' . "\n"),
             ],
         ];
 
@@ -81,12 +80,12 @@ class NodeAbstractTest extends TestCase
         $this->assertSame('/** doc comment */', $node->getDocComment()->getText());
         $comments = $node->getComments();
 
-        array_pop($comments); // remove doc comment
+        array_splice($comments, 1, 1, []); // remove doc comment
         $node->setAttribute('comments', $comments);
         $this->assertNull($node->getDocComment());
 
-        array_pop($comments); // remove comment
-        $node->setAttribute('comments', $comments);
+        // Remove all comments.
+        $node->setAttribute('comments', []);
         $this->assertNull($node->getDocComment());
     }
 
@@ -110,6 +109,12 @@ class NodeAbstractTest extends TestCase
         $node->setAttribute('comments', [$c1, $c2]);
         $node->setDocComment($docComment);
         $this->assertSame([$c1, $c2, $docComment], $node->getAttribute('comments'));
+
+        // Replace doc comment that is not at the end.
+        $newDocComment = new Comment\Doc('/** new baz */');
+        $node->setAttribute('comments', [$c1, $docComment, $c2]);
+        $node->setDocComment($newDocComment);
+        $this->assertSame([$c1, $newDocComment, $c2], $node->getAttribute('comments'));
     }
 
     /**
@@ -303,14 +308,20 @@ PHP;
                     "text": "\/\/ comment\n",
                     "line": 2,
                     "filePos": 6,
-                    "tokenPos": 1
+                    "tokenPos": 1,
+                    "endLine": 3,
+                    "endFilePos": 16,
+                    "endTokenPos": 1
                 },
                 {
                     "nodeType": "Comment_Doc",
                     "text": "\/** doc comment *\/",
                     "line": 3,
                     "filePos": 17,
-                    "tokenPos": 2
+                    "tokenPos": 2,
+                    "endLine": 3,
+                    "endFilePos": 34,
+                    "endTokenPos": 2
                 }
             ],
             "endLine": 6
