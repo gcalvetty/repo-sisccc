@@ -3,8 +3,12 @@
 namespace Illuminate\Redis\Limiters;
 
 use Exception;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Contracts\Redis\LimiterTimeoutException;
+use Illuminate\Support\Str;
 
 class ConcurrencyLimiter
 {
@@ -95,8 +99,12 @@ class ConcurrencyLimiter
     /**
      * Attempt to acquire the lock.
      *
+<<<<<<< HEAD
      * @param string $id A unique identifier for this lock
      *
+=======
+     * @param  string  $id  A unique identifier for this lock
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * @return mixed
      */
     protected function acquire($id)
@@ -126,7 +134,11 @@ class ConcurrencyLimiter
         return <<<'LUA'
 for index, value in pairs(redis.call('mget', unpack(KEYS))) do
     if not value then
+<<<<<<< HEAD
         redis.call('set', ARGV[1]..index, ARGV[3], "EX", ARGV[2])
+=======
+        redis.call('set', KEYS[index], ARGV[3], "EX", ARGV[2])
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         return ARGV[1]..index
     end
 end
@@ -136,6 +148,7 @@ LUA;
     /**
      * Release the lock.
      *
+<<<<<<< HEAD
      * @param  string $key
      * @param  string $id
      * @return void
@@ -155,6 +168,27 @@ LUA;
      */
     protected function releaseScript()
     {
+=======
+     * @param  string  $key
+     * @param  string  $id
+     * @return void
+     */
+    protected function release($key, $id)
+    {
+        $this->redis->eval($this->releaseScript(), 1, $key, $id);
+    }
+
+    /**
+     * Get the Lua script to atomically release a lock.
+     *
+     * KEYS[1] - The name of the lock
+     * ARGV[1] - The unique identifier for this lock
+     *
+     * @return string
+     */
+    protected function releaseScript()
+    {
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         return <<<'LUA'
 if redis.call('get', KEYS[1]) == ARGV[1]
 then

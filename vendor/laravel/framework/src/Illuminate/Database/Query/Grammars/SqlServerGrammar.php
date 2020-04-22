@@ -2,8 +2,8 @@
 
 namespace Illuminate\Database\Query\Grammars;
 
-use Illuminate\Support\Arr;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Arr;
 
 class SqlServerGrammar extends Grammar
 {
@@ -280,6 +280,17 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
+     * Wrap a union subquery in parentheses.
+     *
+     * @param  string  $sql
+     * @return string
+     */
+    protected function wrapUnion($sql)
+    {
+        return 'select * from ('.$sql.') as '.$this->wrapTable('temp_table');
+    }
+
+    /**
      * Compile an exists statement into SQL.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
@@ -295,30 +306,15 @@ class SqlServerGrammar extends Grammar
     }
 
     /**
-     * Compile a delete statement into SQL.
-     *
-     * @param  \Illuminate\Database\Query\Builder  $query
-     * @return string
-     */
-    public function compileDelete(Builder $query)
-    {
-        $table = $this->wrapTable($query->from);
-
-        $where = is_array($query->wheres) ? $this->compileWheres($query) : '';
-
-        return isset($query->joins)
-                    ? $this->compileDeleteWithJoins($query, $table, $where)
-                    : trim("delete from {$table} {$where}");
-    }
-
-    /**
-     * Compile a delete statement with joins into SQL.
+     * Compile an update statement with joins into SQL.
      *
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  string  $table
+     * @param  string  $columns
      * @param  string  $where
      * @return string
      */
+<<<<<<< HEAD
     protected function compileDeleteWithJoins(Builder $query, $table, $where)
     {
         $joins = ' '.$this->compileJoins($query, $query->joins);
@@ -366,12 +362,15 @@ class SqlServerGrammar extends Grammar
         if (isset($query->joins)) {
             $joins = ' '.$this->compileJoins($query, $query->joins);
         }
+=======
+    protected function compileUpdateWithJoins(Builder $query, $table, $columns, $where)
+    {
+        $alias = last(explode(' as ', $table));
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
-        // Of course, update queries may also be constrained by where clauses so we'll
-        // need to compile the where clauses and attach it to the query so only the
-        // intended records are updated by the SQL statements we generate to run.
-        $where = $this->compileWheres($query);
+        $joins = $this->compileJoins($query, $query->joins);
 
+<<<<<<< HEAD
         if (! empty($joins)) {
             return trim("update {$alias} set {$columns} from {$table}{$joins} {$where}");
         }
@@ -394,6 +393,9 @@ class SqlServerGrammar extends Grammar
         }
 
         return [$table, $alias];
+=======
+        return "update {$alias} set {$columns} from {$table} {$joins} {$where}";
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     }
 
     /**

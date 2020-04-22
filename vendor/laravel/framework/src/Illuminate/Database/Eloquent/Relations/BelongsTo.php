@@ -2,9 +2,9 @@
 
 namespace Illuminate\Database\Eloquent\Relations;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Concerns\SupportsDefaultModels;
 
 class BelongsTo extends Relation
@@ -194,17 +194,6 @@ class BelongsTo extends Relation
     }
 
     /**
-     * Update the parent model on the relationship.
-     *
-     * @param  array  $attributes
-     * @return mixed
-     */
-    public function update(array $attributes)
-    {
-        return $this->getResults()->fill($attributes)->save();
-    }
-
-    /**
      * Associate the model instance to the given parent.
      *
      * @param  \Illuminate\Database\Eloquent\Model|int|string  $model
@@ -365,6 +354,7 @@ class BelongsTo extends Relation
      * @return string
      */
     public function getRelationName()
+<<<<<<< HEAD
     {
         return $this->relationName;
     }
@@ -376,6 +366,8 @@ class BelongsTo extends Relation
      * @deprecated The getRelationName() method should be used instead. Will be removed in Laravel 6.0.
      */
     public function getRelation()
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     {
         return $this->relationName;
     }

@@ -2,8 +2,12 @@
 
 namespace Illuminate\Foundation\Validation;
 
+<<<<<<< HEAD
 use Illuminate\Http\Request;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Contracts\Validation\Factory;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 trait ValidatesRequests

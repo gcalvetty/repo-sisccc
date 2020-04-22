@@ -2,8 +2,11 @@
 
 namespace Illuminate\Database\Eloquent\Relations\Concerns;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
+<<<<<<< HEAD
+=======
+use Illuminate\Database\Eloquent\Model;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Collection as BaseCollection;
 
@@ -227,10 +230,21 @@ trait InteractsWithPivotTable
 
         $updated = $pivot ? $pivot->fill($attributes)->isDirty() : false;
 
+<<<<<<< HEAD
         $this->newPivot([
             $this->foreignPivotKey => $this->parent->{$this->parentKey},
             $this->relatedPivotKey => $this->parseId($id),
         ], true)->fill($attributes)->save();
+=======
+        $pivot = $this->newPivot([
+            $this->foreignPivotKey => $this->parent->{$this->parentKey},
+            $this->relatedPivotKey => $this->parseId($id),
+        ], true);
+
+        $pivot->timestamps = in_array($this->updatedAt(), $this->pivotColumns);
+
+        $pivot->fill($attributes)->save();
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
         if ($touch) {
             $this->touchIfTouching();

@@ -2,8 +2,8 @@
 
 namespace Illuminate\Database\Eloquent;
 
-use Exception;
 use ArrayAccess;
+<<<<<<< HEAD
 use JsonSerializable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -15,9 +15,23 @@ use Illuminate\Contracts\Queue\QueueableEntity;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Contracts\Queue\QueueableCollection;
 use Illuminate\Support\Collection as BaseCollection;
+=======
+use Exception;
+use Illuminate\Contracts\Queue\QueueableCollection;
+use Illuminate\Contracts\Queue\QueueableEntity;
+use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Contracts\Support\Jsonable;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection as BaseCollection;
+use Illuminate\Support\Str;
+use Illuminate\Support\Traits\ForwardsCalls;
+use JsonSerializable;
 
-abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializable, QueueableEntity, UrlRoutable
+abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializable, QueueableEntity, UrlRoutable
 {
     use Concerns\HasAttributes,
         Concerns\HasEvents,
@@ -219,6 +233,17 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
                 forward_static_call([$class, $method]);
 
                 $booted[] = $method;
+<<<<<<< HEAD
+            }
+
+            if (method_exists($class, $method = 'initialize'.class_basename($trait))) {
+                static::$traitInitializers[$class][] = $method;
+
+                static::$traitInitializers[$class] = array_unique(
+                    static::$traitInitializers[$class]
+                );
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
             }
 
             if (method_exists($class, $method = 'initialize'.class_basename($trait))) {
@@ -228,6 +253,18 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
                     static::$traitInitializers[$class]
                 );
             }
+        }
+    }
+
+    /**
+     * Initialize any initializable traits on the model.
+     *
+     * @return void
+     */
+    protected function initializeTraits()
+    {
+        foreach (static::$traitInitializers[static::class] as $method) {
+            $this->{$method}();
         }
     }
 
@@ -278,7 +315,11 @@ abstract class Model implements ArrayAccess, Arrayable, Jsonable, JsonSerializab
         static::$ignoreOnTouch = array_values(array_merge(static::$ignoreOnTouch, $models));
 
         try {
+<<<<<<< HEAD
             call_user_func($callback);
+=======
+            $callback();
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         } finally {
             static::$ignoreOnTouch = array_values(array_diff(static::$ignoreOnTouch, $models));
         }

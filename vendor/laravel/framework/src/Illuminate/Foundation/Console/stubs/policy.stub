@@ -2,9 +2,9 @@
 
 namespace DummyNamespace;
 
-use NamespacedDummyUserModel;
-use NamespacedDummyModel;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use NamespacedDummyModel;
+use NamespacedDummyUserModel;
 
 class DummyClass
 {
@@ -22,6 +22,20 @@ class DummyClass
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Determine whether the user can view any DocDummyPluralModel.
+     *
+     * @param  \NamespacedDummyUserModel  $user
+     * @return mixed
+     */
+    public function viewAny(DummyUser $user)
+    {
+        //
+    }
+
+    /**
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * Determine whether the user can view the DocDummyModel.
      *
      * @param  \NamespacedDummyUserModel  $user

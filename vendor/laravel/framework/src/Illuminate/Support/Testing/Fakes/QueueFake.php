@@ -3,8 +3,12 @@
 namespace Illuminate\Support\Testing\Fakes;
 
 use BadMethodCallException;
+<<<<<<< HEAD
 use Illuminate\Queue\QueueManager;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Contracts\Queue\Queue;
+use Illuminate\Queue\QueueManager;
 use PHPUnit\Framework\Assert as PHPUnit;
 
 class QueueFake extends QueueManager implements Queue

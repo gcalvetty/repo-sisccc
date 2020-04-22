@@ -3,9 +3,9 @@
 namespace Illuminate\Database\Migrations;
 
 use Closure;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use Illuminate\Filesystem\Filesystem;
 
 class MigrationCreator
 {
@@ -157,7 +157,11 @@ class MigrationCreator
     protected function firePostCreateHooks($table)
     {
         foreach ($this->postCreate as $callback) {
+<<<<<<< HEAD
             call_user_func($callback, $table);
+=======
+            $callback($table);
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         }
     }
 

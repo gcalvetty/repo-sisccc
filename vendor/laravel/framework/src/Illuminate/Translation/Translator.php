@@ -3,13 +3,13 @@
 namespace Illuminate\Translation;
 
 use Countable;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Traits\Macroable;
 use Illuminate\Contracts\Translation\Loader;
-use Illuminate\Support\NamespacedItemResolver;
 use Illuminate\Contracts\Translation\Translator as TranslatorContract;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
+use Illuminate\Support\NamespacedItemResolver;
+use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Macroable;
 
 class Translator extends NamespacedItemResolver implements TranslatorContract
 {
@@ -89,6 +89,7 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
     }
 
     /**
+<<<<<<< HEAD
      * Get the translation for a given key.
      *
      * @param  string  $key
@@ -102,6 +103,8 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
     }
 
     /**
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * Get the translation for the given key.
      *
      * @param  string  $key
@@ -112,6 +115,7 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
      */
     public function get($key, array $replace = [], $locale = null, $fallback = true)
     {
+<<<<<<< HEAD
         [$namespace, $group, $item] = $this->parseKey($key);
 
         // Here we will get the locale that should be used for the language line. If one
@@ -144,6 +148,8 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
      */
     public function getFromJson($key, array $replace = [], $locale = null)
     {
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         $locale = $locale ?: $this->locale;
 
         // For JSON translations, there is only one file per locale, so we will simply load
@@ -157,13 +163,25 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
         // using the typical translation file. This way developers can always just use a
         // helper such as __ instead of having to pick between trans or __ with views.
         if (! isset($line)) {
-            $fallback = $this->get($key, $replace, $locale);
+            [$namespace, $group, $item] = $this->parseKey($key);
 
-            if ($fallback !== $key) {
-                return $fallback;
+            // Here we will get the locale that should be used for the language line. If one
+            // was not passed, we will use the default locales which was given to us when
+            // the translator was instantiated. Then, we can load the lines and return.
+            $locales = $fallback ? $this->localeArray($locale) : [$locale];
+
+            foreach ($locales as $locale) {
+                if (! is_null($line = $this->getLine(
+                    $namespace, $group, $locale, $item, $replace
+                ))) {
+                    return $line ?? $key;
+                }
             }
         }
 
+        // If the line doesn't exist, we will return back the key which was requested as
+        // that will be quick to spot in the UI if language keys are wrong or missing
+        // from the application's language files. Otherwise we can return the line.
         return $this->makeReplacements($line ?: $key, $replace);
     }
 
@@ -171,6 +189,7 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
      * Get a translation according to an integer value.
      *
      * @param  string  $key
+<<<<<<< HEAD
      * @param  int|array|\Countable  $number
      * @param  array   $replace
      * @param  string|null  $locale
@@ -186,6 +205,9 @@ class Translator extends NamespacedItemResolver implements TranslatorContract
      *
      * @param  string  $key
      * @param  int|array|\Countable  $number
+=======
+     * @param  \Countable|int|array  $number
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * @param  array   $replace
      * @param  string|null  $locale
      * @return string

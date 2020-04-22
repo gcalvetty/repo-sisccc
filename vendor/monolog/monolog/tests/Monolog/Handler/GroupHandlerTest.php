@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -11,18 +11,19 @@
 
 namespace Monolog\Handler;
 
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
 use Monolog\Logger;
 
 class GroupHandlerTest extends TestCase
 {
     /**
      * @covers Monolog\Handler\GroupHandler::__construct
-     * @expectedException InvalidArgumentException
      */
     public function testConstructorOnlyTakesHandler()
     {
-        new GroupHandler(array(new TestHandler(), "foo"));
+        $this->expectException(\InvalidArgumentException::class);
+
+        new GroupHandler([new TestHandler(), "foo"]);
     }
 
     /**
@@ -31,14 +32,14 @@ class GroupHandlerTest extends TestCase
      */
     public function testHandle()
     {
-        $testHandlers = array(new TestHandler(), new TestHandler());
+        $testHandlers = [new TestHandler(), new TestHandler()];
         $handler = new GroupHandler($testHandlers);
         $handler->handle($this->getRecord(Logger::DEBUG));
         $handler->handle($this->getRecord(Logger::INFO));
         foreach ($testHandlers as $test) {
             $this->assertTrue($test->hasDebugRecords());
             $this->assertTrue($test->hasInfoRecords());
-            $this->assertTrue(count($test->getRecords()) === 2);
+            $this->assertCount(2, $test->getRecords());
         }
     }
 
@@ -47,13 +48,13 @@ class GroupHandlerTest extends TestCase
      */
     public function testHandleBatch()
     {
-        $testHandlers = array(new TestHandler(), new TestHandler());
+        $testHandlers = [new TestHandler(), new TestHandler()];
         $handler = new GroupHandler($testHandlers);
-        $handler->handleBatch(array($this->getRecord(Logger::DEBUG), $this->getRecord(Logger::INFO)));
+        $handler->handleBatch([$this->getRecord(Logger::DEBUG), $this->getRecord(Logger::INFO)]);
         foreach ($testHandlers as $test) {
             $this->assertTrue($test->hasDebugRecords());
             $this->assertTrue($test->hasInfoRecords());
-            $this->assertTrue(count($test->getRecords()) === 2);
+            $this->assertCount(2, $test->getRecords());
         }
     }
 
@@ -62,7 +63,7 @@ class GroupHandlerTest extends TestCase
      */
     public function testIsHandling()
     {
-        $testHandlers = array(new TestHandler(Logger::ERROR), new TestHandler(Logger::WARNING));
+        $testHandlers = [new TestHandler(Logger::ERROR), new TestHandler(Logger::WARNING)];
         $handler = new GroupHandler($testHandlers);
         $this->assertTrue($handler->isHandling($this->getRecord(Logger::ERROR)));
         $this->assertTrue($handler->isHandling($this->getRecord(Logger::WARNING)));
@@ -75,7 +76,7 @@ class GroupHandlerTest extends TestCase
     public function testHandleUsesProcessors()
     {
         $test = new TestHandler();
-        $handler = new GroupHandler(array($test));
+        $handler = new GroupHandler([$test]);
         $handler->pushProcessor(function ($record) {
             $record['extra']['foo'] = true;
 
@@ -92,7 +93,7 @@ class GroupHandlerTest extends TestCase
      */
     public function testHandleBatchUsesProcessors()
     {
-        $testHandlers = array(new TestHandler(), new TestHandler());
+        $testHandlers = [new TestHandler(), new TestHandler()];
         $handler = new GroupHandler($testHandlers);
         $handler->pushProcessor(function ($record) {
             $record['extra']['foo'] = true;
@@ -104,11 +105,15 @@ class GroupHandlerTest extends TestCase
 
             return $record;
         });
+<<<<<<< HEAD
         $handler->handleBatch(array($this->getRecord(Logger::DEBUG), $this->getRecord(Logger::INFO)));
+=======
+        $handler->handleBatch([$this->getRecord(Logger::DEBUG), $this->getRecord(Logger::INFO)]);
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         foreach ($testHandlers as $test) {
             $this->assertTrue($test->hasDebugRecords());
             $this->assertTrue($test->hasInfoRecords());
-            $this->assertTrue(count($test->getRecords()) === 2);
+            $this->assertCount(2, $test->getRecords());
             $records = $test->getRecords();
             $this->assertTrue($records[0]['extra']['foo']);
             $this->assertTrue($records[1]['extra']['foo']);

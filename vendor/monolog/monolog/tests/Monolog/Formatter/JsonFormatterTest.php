@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -12,7 +12,7 @@
 namespace Monolog\Formatter;
 
 use Monolog\Logger;
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
 
 class JsonFormatterTest extends TestCase
 {
@@ -38,11 +38,44 @@ class JsonFormatterTest extends TestCase
     {
         $formatter = new JsonFormatter();
         $record = $this->getRecord();
+        $record['context'] = $record['extra'] = new \stdClass;
         $this->assertEquals(json_encode($record)."\n", $formatter->format($record));
 
         $formatter = new JsonFormatter(JsonFormatter::BATCH_MODE_JSON, false);
         $record = $this->getRecord();
-        $this->assertEquals(json_encode($record), $formatter->format($record));
+        $this->assertEquals('{"message":"test","context":{},"level":300,"level_name":"WARNING","channel":"test","datetime":"'.$record['datetime']->format('Y-m-d\TH:i:s.uP').'","extra":{}}', $formatter->format($record));
+    }
+
+    /**
+     * @covers Monolog\Formatter\JsonFormatter::format
+     */
+    public function testFormatWithPrettyPrint()
+    {
+        $formatter = new JsonFormatter();
+        $formatter->setJsonPrettyPrint(true);
+        $record = $this->getRecord();
+        $record['context'] = $record['extra'] = new \stdClass;
+        $this->assertEquals(json_encode($record, JSON_PRETTY_PRINT)."\n", $formatter->format($record));
+
+        $formatter = new JsonFormatter(JsonFormatter::BATCH_MODE_JSON, false);
+        $formatter->setJsonPrettyPrint(true);
+        $record = $this->getRecord();
+        $this->assertEquals(
+            '{
+    "message": "test",
+    "context": {},
+    "level": 300,
+    "level_name": "WARNING",
+    "channel": "test",
+    "datetime": "'.$record['datetime']->format('Y-m-d\TH:i:s.uP').'",
+    "extra": {}
+}',
+            $formatter->format($record)
+        );
+
+        $formatter->setJsonPrettyPrint(false);
+        $record = $this->getRecord();
+        $this->assertEquals('{"message":"test","context":{},"level":300,"level_name":"WARNING","channel":"test","datetime":"'.$record['datetime']->format('Y-m-d\TH:i:s.uP').'","extra":{}}', $formatter->format($record));
     }
 
     /**
@@ -52,10 +85,10 @@ class JsonFormatterTest extends TestCase
     public function testFormatBatch()
     {
         $formatter = new JsonFormatter();
-        $records = array(
+        $records = [
             $this->getRecord(Logger::WARNING),
             $this->getRecord(Logger::DEBUG),
-        );
+        ];
         $this->assertEquals(json_encode($records), $formatter->formatBatch($records));
     }
 
@@ -66,11 +99,12 @@ class JsonFormatterTest extends TestCase
     public function testFormatBatchNewlines()
     {
         $formatter = new JsonFormatter(JsonFormatter::BATCH_MODE_NEWLINES);
-        $records = $expected = array(
+        $records = $expected = [
             $this->getRecord(Logger::WARNING),
             $this->getRecord(Logger::DEBUG),
-        );
+        ];
         array_walk($expected, function (&$value, $key) {
+            $value['context'] = $value['extra'] = new \stdClass;
             $value = json_encode($value);
         });
         $this->assertEquals(implode("\n", $expected), $formatter->formatBatch($records));
@@ -101,10 +135,6 @@ class JsonFormatterTest extends TestCase
 
     public function testDefFormatWithThrowable()
     {
-        if (!class_exists('Error') || !is_subclass_of('Error', 'Throwable')) {
-            $this->markTestSkipped('Requires PHP >=7');
-        }
-
         $formatter = new JsonFormatter();
         $throwable = new \Error('Foo');
         $formattedThrowable = $this->formatException($throwable);
@@ -114,12 +144,61 @@ class JsonFormatterTest extends TestCase
         $this->assertContextContainsFormattedException($formattedThrowable, $message);
     }
 
+<<<<<<< HEAD
+=======
+    public function testMaxNormalizeDepth()
+    {
+        $formatter = new JsonFormatter(JsonFormatter::BATCH_MODE_JSON, true);
+        $formatter->setMaxNormalizeDepth(1);
+        $throwable = new \Error('Foo');
+
+        $message = $this->formatRecordWithExceptionInContext($formatter, $throwable);
+
+        $this->assertContextContainsFormattedException('"Over 1 levels deep, aborting normalization"', $message);
+    }
+
+    public function testMaxNormalizeItemCountWith0ItemsMax()
+    {
+        $formatter = new JsonFormatter(JsonFormatter::BATCH_MODE_JSON, true);
+        $formatter->setMaxNormalizeDepth(9);
+        $formatter->setMaxNormalizeItemCount(0);
+        $throwable = new \Error('Foo');
+
+        $message = $this->formatRecordWithExceptionInContext($formatter, $throwable);
+
+        $this->assertEquals(
+            '{"...":"Over 0 items (6 total), aborting normalization"}'."\n",
+            $message
+        );
+    }
+
+    public function testMaxNormalizeItemCountWith2ItemsMax()
+    {
+        $formatter = new JsonFormatter(JsonFormatter::BATCH_MODE_JSON, true);
+        $formatter->setMaxNormalizeDepth(9);
+        $formatter->setMaxNormalizeItemCount(2);
+        $throwable = new \Error('Foo');
+
+        $message = $this->formatRecordWithExceptionInContext($formatter, $throwable);
+
+        $this->assertEquals(
+            '{"level_name":"CRITICAL","channel":"core","...":"Over 2 items (6 total), aborting normalization"}'."\n",
+            $message
+        );
+    }
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     public function testDefFormatWithResource()
     {
         $formatter = new JsonFormatter(JsonFormatter::BATCH_MODE_JSON, false);
         $record = $this->getRecord();
+<<<<<<< HEAD
         $record['context'] = array('field_resource' => curl_init());
         $this->assertEquals('{"message":"test","context":{"field_resource":"[resource] (curl)"},"level":300,"level_name":"WARNING","channel":"test","datetime":'.json_encode($record['datetime']).',"extra":[]}', $formatter->format($record));
+=======
+        $record['context'] = ['field_resource' => curl_init()];
+        $this->assertEquals('{"message":"test","context":{"field_resource":"[resource(curl)]"},"level":300,"level_name":"WARNING","channel":"test","datetime":"'.$record['datetime']->format('Y-m-d\TH:i:s.uP').'","extra":{}}', $formatter->format($record));
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     }
 
     /**
@@ -131,27 +210,28 @@ class JsonFormatterTest extends TestCase
     private function assertContextContainsFormattedException($expected, $actual)
     {
         $this->assertEquals(
-            '{"level_name":"CRITICAL","channel":"core","context":{"exception":'.$expected.'},"datetime":null,"extra":[],"message":"foobar"}'."\n",
+            '{"level_name":"CRITICAL","channel":"core","context":{"exception":'.$expected.'},"datetime":null,"extra":{},"message":"foobar"}'."\n",
             $actual
         );
     }
 
     /**
      * @param JsonFormatter $formatter
-     * @param \Exception|\Throwable $exception
+     * @param \Throwable    $exception
      *
      * @return string
      */
-    private function formatRecordWithExceptionInContext(JsonFormatter $formatter, $exception)
+    private function formatRecordWithExceptionInContext(JsonFormatter $formatter, \Throwable $exception)
     {
-        $message = $formatter->format(array(
+        $message = $formatter->format([
             'level_name' => 'CRITICAL',
             'channel' => 'core',
-            'context' => array('exception' => $exception),
+            'context' => ['exception' => $exception],
             'datetime' => null,
-            'extra' => array(),
+            'extra' => [],
             'message' => 'foobar',
-        ));
+        ]);
+
         return $message;
     }
 
@@ -162,11 +242,9 @@ class JsonFormatterTest extends TestCase
      */
     private function formatExceptionFilePathWithLine($exception)
     {
-        $options = 0;
-        if (version_compare(PHP_VERSION, '5.4.0', '>=')) {
-            $options = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
-        }
+        $options = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE;
         $path = substr(json_encode($exception->getFile(), $options), 1, -1);
+
         return $path . ':' . $exception->getLine();
     }
 
@@ -186,6 +264,7 @@ class JsonFormatterTest extends TestCase
             ',"file":"' . $this->formatExceptionFilePathWithLine($exception) .
             ($previous ? '","previous":' . $previous : '"') .
             '}';
+
         return $formattedException;
     }
 

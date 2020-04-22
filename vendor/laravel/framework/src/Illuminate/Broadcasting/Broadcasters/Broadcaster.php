@@ -3,15 +3,22 @@
 namespace Illuminate\Broadcasting\Broadcasters;
 
 use Exception;
+<<<<<<< HEAD
 use ReflectionClass;
 use ReflectionFunction;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Container\Container;
-use Illuminate\Contracts\Routing\UrlRoutable;
-use Illuminate\Contracts\Routing\BindingRegistrar;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Illuminate\Contracts\Broadcasting\Broadcaster as BroadcasterContract;
+use Illuminate\Contracts\Routing\BindingRegistrar;
+use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use ReflectionClass;
+use ReflectionFunction;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 abstract class Broadcaster implements BroadcasterContract
 {
@@ -261,7 +268,11 @@ abstract class Broadcaster implements BroadcasterContract
      * Normalize the given callback into a callable.
      *
      * @param  mixed  $callback
+<<<<<<< HEAD
      * @return callable|\Closure
+=======
+     * @return \Closure|callable
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      */
     protected function normalizeChannelHandlerToCallable($callback)
     {

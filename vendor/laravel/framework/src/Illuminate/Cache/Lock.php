@@ -2,10 +2,15 @@
 
 namespace Illuminate\Cache;
 
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 use Illuminate\Support\InteractsWithTime;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Contracts\Cache\Lock as LockContract;
 use Illuminate\Contracts\Cache\LockTimeoutException;
+use Illuminate\Support\InteractsWithTime;
+use Illuminate\Support\Str;
 
 abstract class Lock implements LockContract
 {
@@ -61,7 +66,11 @@ abstract class Lock implements LockContract
     /**
      * Release the lock.
      *
+<<<<<<< HEAD
      * @return void
+=======
+     * @return bool
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      */
     abstract public function release();
 

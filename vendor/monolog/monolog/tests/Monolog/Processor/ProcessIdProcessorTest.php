@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -11,7 +11,7 @@
 
 namespace Monolog\Processor;
 
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
 
 class ProcessIdProcessorTest extends TestCase
 {
@@ -23,7 +23,7 @@ class ProcessIdProcessorTest extends TestCase
         $processor = new ProcessIdProcessor();
         $record = $processor($this->getRecord());
         $this->assertArrayHasKey('process_id', $record['extra']);
-        $this->assertInternalType('int', $record['extra']['process_id']);
+        $this->assertIsInt($record['extra']['process_id']);
         $this->assertGreaterThan(0, $record['extra']['process_id']);
         $this->assertEquals(getmypid(), $record['extra']['process_id']);
     }

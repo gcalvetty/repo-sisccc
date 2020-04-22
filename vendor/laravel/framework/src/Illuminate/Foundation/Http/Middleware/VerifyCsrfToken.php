@@ -3,12 +3,21 @@
 namespace Illuminate\Foundation\Http\Middleware;
 
 use Closure;
+<<<<<<< HEAD
 use Illuminate\Support\InteractsWithTime;
 use Symfony\Component\HttpFoundation\Cookie;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Session\TokenMismatchException;
 use Illuminate\Contracts\Foundation\Application;
+=======
+use Illuminate\Contracts\Encryption\Encrypter;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Support\Responsable;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Cookie\Middleware\EncryptCookies;
+use Illuminate\Session\TokenMismatchException;
+use Illuminate\Support\InteractsWithTime;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class VerifyCsrfToken
 {
@@ -176,6 +185,10 @@ class VerifyCsrfToken
     protected function addCookieToResponse($request, $response)
     {
         $config = config('session');
+
+        if ($response instanceof Responsable) {
+            $response = $response->toResponse($request);
+        }
 
         $response->headers->setCookie(
             new Cookie(

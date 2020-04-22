@@ -22,6 +22,16 @@ interface Gate
     public function define($ability, $callback);
 
     /**
+     * Define abilities for a resource.
+     *
+     * @param  string  $name
+     * @param  string  $class
+     * @param  array|null   $abilities
+     * @return $this
+     */
+    public function resource($name, $class, array $abilities = null);
+
+    /**
      * Define a policy class for a given class type.
      *
      * @param  string  $class
@@ -94,11 +104,28 @@ interface Gate
     public function authorize($ability, $arguments = []);
 
     /**
+<<<<<<< HEAD
+=======
+     * Inspect the user for the given ability.
+     *
+     * @param  string  $ability
+     * @param  array|mixed  $arguments
+     * @return \Illuminate\Auth\Access\Response
+     */
+    public function inspect($ability, $arguments = []);
+
+    /**
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * Get the raw result from the authorization callback.
      *
      * @param  string  $ability
      * @param  array|mixed  $arguments
      * @return mixed
+<<<<<<< HEAD
+=======
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      */
     public function raw($ability, $arguments = []);
 

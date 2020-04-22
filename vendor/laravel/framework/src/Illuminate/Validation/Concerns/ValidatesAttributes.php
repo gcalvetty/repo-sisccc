@@ -2,14 +2,22 @@
 
 namespace Illuminate\Validation\Concerns;
 
-use DateTime;
 use Countable;
-use Exception;
-use Throwable;
-use DateTimeZone;
+use DateTime;
 use DateTimeInterface;
+use DateTimeZone;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\DNSCheckValidation;
+use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
+use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
+use Egulias\EmailValidator\Validation\RFCValidation;
+use Egulias\EmailValidator\Validation\SpoofCheckValidation;
+use Exception;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use InvalidArgumentException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Date;
@@ -17,13 +25,23 @@ use Illuminate\Validation\Rules\Exists;
 use Illuminate\Validation\Rules\Unique;
 use Illuminate\Validation\ValidationData;
 use Egulias\EmailValidator\EmailValidator;
+=======
+use Illuminate\Validation\Rules\Exists;
+use Illuminate\Validation\Rules\Unique;
+use Illuminate\Validation\ValidationData;
+use InvalidArgumentException;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Symfony\Component\HttpFoundation\File\File;
 use Egulias\EmailValidator\Validation\RFCValidation;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+<<<<<<< HEAD
 use Egulias\EmailValidator\Validation\DNSCheckValidation;
 use Egulias\EmailValidator\Validation\SpoofCheckValidation;
 use Egulias\EmailValidator\Validation\NoRFCWarningsValidation;
 use Egulias\EmailValidator\Validation\MultipleValidationWithAnd;
+=======
+use Throwable;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
 trait ValidatesAttributes
 {
@@ -499,7 +517,11 @@ trait ValidatesAttributes
      */
     public function validateDimensions($attribute, $value, $parameters)
     {
+<<<<<<< HEAD
         if ($this->isValidFileInstance($value) && $value->getClientMimeType() === 'image/svg+xml') {
+=======
+        if ($this->isValidFileInstance($value) && $value->getMimeType() === 'image/svg+xml') {
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
             return true;
         }
 
@@ -914,6 +936,13 @@ trait ValidatesAttributes
             return $this->getSize($attribute, $value) > $parameters[0];
         }
 
+<<<<<<< HEAD
+=======
+        if ($this->hasRule($attribute, $this->numericRules) && is_numeric($value) && is_numeric($comparedToValue)) {
+            return $value > $comparedToValue;
+        }
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         if (! $this->isSameType($value, $comparedToValue)) {
             return false;
         }
@@ -941,6 +970,13 @@ trait ValidatesAttributes
             return $this->getSize($attribute, $value) < $parameters[0];
         }
 
+<<<<<<< HEAD
+=======
+        if ($this->hasRule($attribute, $this->numericRules) && is_numeric($value) && is_numeric($comparedToValue)) {
+            return $value < $comparedToValue;
+        }
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         if (! $this->isSameType($value, $comparedToValue)) {
             return false;
         }
@@ -968,6 +1004,13 @@ trait ValidatesAttributes
             return $this->getSize($attribute, $value) >= $parameters[0];
         }
 
+<<<<<<< HEAD
+=======
+        if ($this->hasRule($attribute, $this->numericRules) && is_numeric($value) && is_numeric($comparedToValue)) {
+            return $value >= $comparedToValue;
+        }
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         if (! $this->isSameType($value, $comparedToValue)) {
             return false;
         }
@@ -995,6 +1038,13 @@ trait ValidatesAttributes
             return $this->getSize($attribute, $value) <= $parameters[0];
         }
 
+<<<<<<< HEAD
+=======
+        if ($this->hasRule($attribute, $this->numericRules) && is_numeric($value) && is_numeric($comparedToValue)) {
+            return $value <= $comparedToValue;
+        }
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         if (! $this->isSameType($value, $comparedToValue)) {
             return false;
         }

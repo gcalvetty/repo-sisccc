@@ -6,9 +6,15 @@ use Closure;
 use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Cache\Store;
+<<<<<<< HEAD
 use Illuminate\Support\InteractsWithTime;
 use Illuminate\Database\PostgresConnection;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Database\ConnectionInterface;
+use Illuminate\Database\PostgresConnection;
+use Illuminate\Support\InteractsWithTime;
+use Illuminate\Support\Str;
 
 class DatabaseStore implements Store
 {

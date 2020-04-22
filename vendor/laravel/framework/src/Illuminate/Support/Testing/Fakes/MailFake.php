@@ -2,11 +2,16 @@
 
 namespace Illuminate\Support\Testing\Fakes;
 
-use Illuminate\Contracts\Mail\Mailer;
 use Illuminate\Contracts\Mail\Mailable;
+<<<<<<< HEAD
 use Illuminate\Contracts\Mail\MailQueue;
 use PHPUnit\Framework\Assert as PHPUnit;
+=======
+use Illuminate\Contracts\Mail\Mailer;
+use Illuminate\Contracts\Mail\MailQueue;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Contracts\Queue\ShouldQueue;
+use PHPUnit\Framework\Assert as PHPUnit;
 
 class MailFake implements Mailer, MailQueue
 {
@@ -315,7 +320,11 @@ class MailFake implements Mailer, MailQueue
      * Queue a new e-mail message for sending after (n) seconds.
      *
      * @param  \DateTimeInterface|\DateInterval|int  $delay
+<<<<<<< HEAD
      * @param  string|array|\Illuminate\Contracts\Mail\Mailable  $view
+=======
+     * @param  \Illuminate\Contracts\Mail\Mailable|string|array  $view
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * @param  string  $queue
      * @return mixed
      */

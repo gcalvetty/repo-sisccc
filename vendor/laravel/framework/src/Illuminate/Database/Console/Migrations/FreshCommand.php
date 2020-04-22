@@ -36,6 +36,7 @@ class FreshCommand extends Command
         }
 
         $database = $this->input->getOption('database');
+<<<<<<< HEAD
 
         if ($this->option('drop-views')) {
             $this->dropAllViews($database);
@@ -44,15 +45,25 @@ class FreshCommand extends Command
         }
 
         $this->dropAllTables($database);
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
-        $this->info('Dropped all tables successfully.');
+        $this->call('db:wipe', array_filter([
+            '--database' => $database,
+            '--drop-views' => $this->option('drop-views'),
+            '--drop-types' => $this->option('drop-types'),
+            '--force' => true,
+        ]));
 
+<<<<<<< HEAD
         if ($this->option('drop-types')) {
             $this->dropAllTypes($database);
 
             $this->info('Dropped all types successfully.');
         }
 
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         $this->call('migrate', array_filter([
             '--database' => $database,
             '--path' => $this->input->getOption('path'),
@@ -67,6 +78,7 @@ class FreshCommand extends Command
     }
 
     /**
+<<<<<<< HEAD
      * Drop all of the database tables.
      *
      * @param  string  $database
@@ -106,6 +118,8 @@ class FreshCommand extends Command
     }
 
     /**
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * Determine if the developer has requested database seeding.
      *
      * @return bool

@@ -10,7 +10,11 @@ class SortedMiddleware extends Collection
      * Create a new Sorted Middleware container.
      *
      * @param  array  $priorityMap
+<<<<<<< HEAD
      * @param  array|\Illuminate\Support\Collection  $middlewares
+=======
+     * @param  \Illuminate\Support\Collection|array  $middlewares
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * @return void
      */
     public function __construct(array $priorityMap, $middlewares)

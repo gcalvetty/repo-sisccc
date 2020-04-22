@@ -5,8 +5,8 @@ namespace Illuminate\Console\Scheduling;
 use DateTimeInterface;
 use Illuminate\Console\Application;
 use Illuminate\Container\Container;
-use Illuminate\Support\ProcessUtils;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\ProcessUtils;
 
 class Schedule
 {
@@ -19,6 +19,7 @@ class Schedule
 
     /**
      * The event mutex implementation.
+<<<<<<< HEAD
      *
      * @var \Illuminate\Console\Scheduling\EventMutex
      */
@@ -29,6 +30,18 @@ class Schedule
      *
      * @var \Illuminate\Console\Scheduling\SchedulingMutex
      */
+=======
+     *
+     * @var \Illuminate\Console\Scheduling\EventMutex
+     */
+    protected $eventMutex;
+
+    /**
+     * The scheduling mutex implementation.
+     *
+     * @var \Illuminate\Console\Scheduling\SchedulingMutex
+     */
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     protected $schedulingMutex;
 
     /**

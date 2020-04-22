@@ -4,6 +4,7 @@ namespace Illuminate\Http\Resources;
 
 use JsonSerializable;
 use Illuminate\Support\Collection;
+use JsonSerializable;
 
 class MergeValue
 {

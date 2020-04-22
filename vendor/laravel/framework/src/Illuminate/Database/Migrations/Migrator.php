@@ -2,9 +2,17 @@
 
 namespace Illuminate\Database\Migrations;
 
+use Illuminate\Console\OutputStyle;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Database\ConnectionResolverInterface as Resolver;
+use Illuminate\Database\Events\MigrationEnded;
+use Illuminate\Database\Events\MigrationsEnded;
+use Illuminate\Database\Events\MigrationsStarted;
+use Illuminate\Database\Events\MigrationStarted;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
+<<<<<<< HEAD
 use Illuminate\Console\OutputStyle;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -13,6 +21,9 @@ use Illuminate\Database\Events\MigrationsEnded;
 use Illuminate\Database\Events\MigrationStarted;
 use Illuminate\Database\Events\MigrationsStarted;
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
+=======
+use Illuminate\Support\Str;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
 class Migrator
 {
@@ -458,10 +469,16 @@ class Migrator
     {
         return Collection::make($paths)->flatMap(function ($path) {
             return Str::endsWith($path, '.php') ? [$path] : $this->files->glob($path.'/*_*.php');
+<<<<<<< HEAD
         })->filter()->sortBy(function ($file) {
             return $this->getMigrationName($file);
         })->values()->keyBy(function ($file) {
+=======
+        })->filter()->values()->keyBy(function ($file) {
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
             return $this->getMigrationName($file);
+        })->sortBy(function ($file, $key) {
+            return $key;
         })->all();
     }
 

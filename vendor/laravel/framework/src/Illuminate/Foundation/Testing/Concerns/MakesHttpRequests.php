@@ -2,12 +2,12 @@
 
 namespace Illuminate\Foundation\Testing\Concerns;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Testing\TestResponse;
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
-use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 trait MakesHttpRequests
 {
@@ -295,13 +295,18 @@ trait MakesHttpRequests
     }
 
     /**
+<<<<<<< HEAD
      * Visit the given URI with a OPTION request.
+=======
+     * Visit the given URI with a OPTIONS request.
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      *
      * @param  string  $uri
      * @param  array  $data
      * @param  array  $headers
      * @return \Illuminate\Foundation\Testing\TestResponse
      */
+<<<<<<< HEAD
     public function option($uri, array $data = [], array $headers = [])
     {
         $server = $this->transformHeadersToServerVars($headers);
@@ -311,15 +316,32 @@ trait MakesHttpRequests
 
     /**
      * Visit the given URI with a OPTION request, expecting a JSON response.
+=======
+    public function options($uri, array $data = [], array $headers = [])
+    {
+        $server = $this->transformHeadersToServerVars($headers);
+
+        return $this->call('OPTIONS', $uri, $data, [], [], $server);
+    }
+
+    /**
+     * Visit the given URI with a OPTIONS request, expecting a JSON response.
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      *
      * @param  string  $uri
      * @param  array  $data
      * @param  array  $headers
      * @return \Illuminate\Foundation\Testing\TestResponse
      */
+<<<<<<< HEAD
     public function optionJson($uri, array $data = [], array $headers = [])
     {
         return $this->json('OPTION', $uri, $data, $headers);
+=======
+    public function optionsJson($uri, array $data = [], array $headers = [])
+    {
+        return $this->json('OPTIONS', $uri, $data, $headers);
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     }
 
     /**

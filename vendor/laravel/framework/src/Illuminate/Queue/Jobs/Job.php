@@ -2,7 +2,13 @@
 
 namespace Illuminate\Queue\Jobs;
 
+<<<<<<< HEAD
 use Illuminate\Queue\Events\JobFailed;
+=======
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Queue\Events\JobFailed;
+use Illuminate\Queue\ManuallyFailedException;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Support\InteractsWithTime;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Queue\ManuallyFailedException;
@@ -213,6 +219,16 @@ abstract class Job
     protected function resolve($class)
     {
         return $this->container->make($class);
+    }
+
+    /**
+     * Get the resolved job handler instance.
+     *
+     * @return mixed
+     */
+    public function getResolvedJob()
+    {
+        return $this->instance;
     }
 
     /**

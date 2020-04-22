@@ -1,16 +1,24 @@
 <?php
 
+<<<<<<< HEAD
 use PhpOption\Option;
+=======
+use Illuminate\Contracts\Support\Htmlable;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use Illuminate\Support\Optional;
 use Illuminate\Support\Collection;
+<<<<<<< HEAD
 use Dotenv\Environment\DotenvFactory;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\HigherOrderTapProxy;
 use Dotenv\Environment\Adapter\PutenvAdapter;
 use Dotenv\Environment\Adapter\EnvConstAdapter;
 use Dotenv\Environment\Adapter\ServerConstAdapter;
+=======
+use Illuminate\Support\Env;
+use Illuminate\Support\HigherOrderTapProxy;
+use Illuminate\Support\Optional;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
 if (! function_exists('append_config')) {
     /**
@@ -35,6 +43,7 @@ if (! function_exists('append_config')) {
     }
 }
 
+<<<<<<< HEAD
 if (! function_exists('array_add')) {
     /**
      * Add an element to an array using "dot" notation if it doesn't exist.
@@ -377,6 +386,8 @@ if (! function_exists('array_wrap')) {
     }
 }
 
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 if (! function_exists('blank')) {
     /**
      * Determine if the given value is "blank".
@@ -406,6 +417,7 @@ if (! function_exists('blank')) {
     }
 }
 
+<<<<<<< HEAD
 if (! function_exists('camel_case')) {
     /**
      * Convert a value to camel case.
@@ -421,6 +433,8 @@ if (! function_exists('camel_case')) {
     }
 }
 
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 if (! function_exists('class_basename')) {
     /**
      * Get the class "basename" of the given object / class.
@@ -614,6 +628,7 @@ if (! function_exists('e')) {
     }
 }
 
+<<<<<<< HEAD
 if (! function_exists('ends_with')) {
     /**
      * Determine if a given string ends with a given substring.
@@ -630,6 +645,8 @@ if (! function_exists('ends_with')) {
     }
 }
 
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 if (! function_exists('env')) {
     /**
      * Gets the value of an environment variable.
@@ -640,6 +657,7 @@ if (! function_exists('env')) {
      */
     function env($key, $default = null)
     {
+<<<<<<< HEAD
         static $variables;
 
         if ($variables === null) {
@@ -672,6 +690,9 @@ if (! function_exists('env')) {
             ->getOrCall(function () use ($default) {
                 return value($default);
             });
+=======
+        return Env::get($key, $default);
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     }
 }
 
@@ -701,6 +722,7 @@ if (! function_exists('head')) {
     }
 }
 
+<<<<<<< HEAD
 if (! function_exists('kebab_case')) {
     /**
      * Convert a string to kebab case.
@@ -716,6 +738,8 @@ if (! function_exists('kebab_case')) {
     }
 }
 
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 if (! function_exists('last')) {
     /**
      * Get the last element from an array.
@@ -831,6 +855,7 @@ if (! function_exists('retry')) {
     }
 }
 
+<<<<<<< HEAD
 if (! function_exists('snake_case')) {
     /**
      * Convert a string to snake case.
@@ -1107,6 +1132,8 @@ if (! function_exists('studly_case')) {
     }
 }
 
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 if (! function_exists('tap')) {
     /**
      * Call the given Closure with the given value then return the value.
@@ -1168,6 +1195,7 @@ if (! function_exists('throw_unless')) {
     }
 }
 
+<<<<<<< HEAD
 if (! function_exists('title_case')) {
     /**
      * Convert a value to title case.
@@ -1183,6 +1211,8 @@ if (! function_exists('title_case')) {
     }
 }
 
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 if (! function_exists('trait_uses_recursive')) {
     /**
      * Returns all traits used by a trait and its traits.

@@ -5,6 +5,8 @@ namespace Illuminate\Database\Eloquent\Concerns;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Support\Arr;
+use InvalidArgumentException;
 
 trait HasEvents
 {

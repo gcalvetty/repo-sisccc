@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -12,14 +12,15 @@
 namespace Monolog\Handler;
 
 use Monolog\Logger;
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class SwiftMailerHandlerTest extends TestCase
 {
-    /** @var \Swift_Mailer|\PHPUnit_Framework_MockObject_MockObject */
+    /** @var \Swift_Mailer|MockObject */
     private $mailer;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->mailer = $this
             ->getMockBuilder('Swift_Mailer')
@@ -37,10 +38,10 @@ class SwiftMailerHandlerTest extends TestCase
         };
         $handler = new SwiftMailerHandler($this->mailer, $callback);
 
-        $records = array(
+        $records = [
             $this->getRecord(Logger::DEBUG),
             $this->getRecord(Logger::INFO),
-        );
+        ];
         $handler->handleBatch($records);
     }
 
@@ -66,9 +67,9 @@ class SwiftMailerHandlerTest extends TestCase
         $handler = new SwiftMailerHandler($this->mailer, $callback);
 
         // Logging 1 record makes this an Emergency
-        $records = array(
+        $records = [
             $this->getRecord(Logger::EMERGENCY),
-        );
+        ];
         $handler->handleBatch($records);
     }
 
@@ -83,14 +84,15 @@ class SwiftMailerHandlerTest extends TestCase
             ->method('send')
             ->with($this->callback(function ($value) use (&$receivedMessage) {
                 $receivedMessage = $value;
+
                 return true;
             }));
 
         $handler = new SwiftMailerHandler($this->mailer, $messageTemplate);
 
-        $records = array(
+        $records = [
             $this->getRecord(Logger::EMERGENCY),
-        );
+        ];
         $handler->handleBatch($records);
 
         $this->assertEquals('Alert: EMERGENCY test', $receivedMessage->getSubject());
@@ -103,10 +105,10 @@ class SwiftMailerHandlerTest extends TestCase
 
         $method = new \ReflectionMethod('Monolog\Handler\SwiftMailerHandler', 'buildMessage');
         $method->setAccessible(true);
-        $method->invokeArgs($handler, array($messageTemplate, array()));
+        $method->invokeArgs($handler, [$messageTemplate, []]);
 
-        $builtMessage1 = $method->invoke($handler, $messageTemplate, array());
-        $builtMessage2 = $method->invoke($handler, $messageTemplate, array());
+        $builtMessage1 = $method->invoke($handler, $messageTemplate, []);
+        $builtMessage2 = $method->invoke($handler, $messageTemplate, []);
 
         $this->assertFalse($builtMessage1->getId() === $builtMessage2->getId(), 'Two different messages have the same id');
     }

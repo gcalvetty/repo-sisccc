@@ -3,9 +3,14 @@
 namespace Illuminate\Http\Resources\Json;
 
 use Countable;
+<<<<<<< HEAD
 use IteratorAggregate;
 use Illuminate\Pagination\AbstractPaginator;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Http\Resources\CollectsResources;
+use Illuminate\Pagination\AbstractPaginator;
+use IteratorAggregate;
 
 class ResourceCollection extends JsonResource implements Countable, IteratorAggregate
 {

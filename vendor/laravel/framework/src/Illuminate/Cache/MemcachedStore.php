@@ -2,10 +2,15 @@
 
 namespace Illuminate\Cache;
 
+use Illuminate\Contracts\Cache\LockProvider;
+use Illuminate\Support\InteractsWithTime;
 use Memcached;
 use ReflectionMethod;
+<<<<<<< HEAD
 use Illuminate\Support\InteractsWithTime;
 use Illuminate\Contracts\Cache\LockProvider;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
 class MemcachedStore extends TaggableStore implements LockProvider
 {

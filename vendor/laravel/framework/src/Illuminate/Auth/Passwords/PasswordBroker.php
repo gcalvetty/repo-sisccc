@@ -3,11 +3,11 @@
 namespace Illuminate\Auth\Passwords;
 
 use Closure;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Contracts\Auth\PasswordBroker as PasswordBrokerContract;
+use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Support\Arr;
 use UnexpectedValueException;
-use Illuminate\Contracts\Auth\UserProvider;
-use Illuminate\Contracts\Auth\PasswordBroker as PasswordBrokerContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class PasswordBroker implements PasswordBrokerContract
 {
@@ -26,21 +26,13 @@ class PasswordBroker implements PasswordBrokerContract
     protected $users;
 
     /**
-     * The custom password validator callback.
-     *
-     * @var \Closure
-     */
-    protected $passwordValidator;
-
-    /**
      * Create a new password broker instance.
      *
      * @param  \Illuminate\Auth\Passwords\TokenRepositoryInterface  $tokens
      * @param  \Illuminate\Contracts\Auth\UserProvider  $users
      * @return void
      */
-    public function __construct(TokenRepositoryInterface $tokens,
-                                UserProvider $users)
+    public function __construct(TokenRepositoryInterface $tokens, UserProvider $users)
     {
         $this->users = $users;
         $this->tokens = $tokens;
@@ -82,11 +74,11 @@ class PasswordBroker implements PasswordBrokerContract
      */
     public function reset(array $credentials, Closure $callback)
     {
+        $user = $this->validateReset($credentials);
+
         // If the responses from the validate method is not a user instance, we will
         // assume that it is a redirect and simply return it from this method and
         // the user is properly redirected having an error message on the post.
-        $user = $this->validateReset($credentials);
-
         if (! $user instanceof CanResetPasswordContract) {
             return $user;
         }
@@ -115,10 +107,6 @@ class PasswordBroker implements PasswordBrokerContract
             return static::INVALID_USER;
         }
 
-        if (! $this->validateNewPassword($credentials)) {
-            return static::INVALID_PASSWORD;
-        }
-
         if (! $this->tokens->exists($user, $credentials['token'])) {
             return static::INVALID_TOKEN;
         }
@@ -127,6 +115,7 @@ class PasswordBroker implements PasswordBrokerContract
     }
 
     /**
+<<<<<<< HEAD
      * Set a custom password validator.
      *
      * @param  \Closure  $callback
@@ -176,6 +165,8 @@ class PasswordBroker implements PasswordBrokerContract
     }
 
     /**
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * Get the user for the given credentials.
      *
      * @param  array  $credentials

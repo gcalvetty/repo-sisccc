@@ -3,20 +3,31 @@
 namespace Illuminate\Database\Eloquent\Concerns;
 
 use Closure;
+<<<<<<< HEAD
 use RuntimeException;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Expression;
+=======
+use Illuminate\Database\Eloquent\Builder;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Database\Query\Expression;
+use Illuminate\Support\Str;
+use RuntimeException;
 
 trait QueriesRelationships
 {
     /**
      * Add a relationship count / exists condition to the query.
      *
+<<<<<<< HEAD
      * @param  string|\Illuminate\Database\Eloquent\Relations\Relation  $relation
+=======
+     * @param  \Illuminate\Database\Eloquent\Relations\Relation|string  $relation
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * @param  string  $operator
      * @param  int     $count
      * @param  string  $boolean

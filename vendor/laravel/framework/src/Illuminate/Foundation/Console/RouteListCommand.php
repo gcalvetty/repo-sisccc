@@ -3,11 +3,11 @@
 namespace Illuminate\Foundation\Console;
 
 use Closure;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
+use Illuminate\Console\Command;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
-use Illuminate\Console\Command;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
 class RouteListCommand extends Command
@@ -214,6 +214,7 @@ class RouteListCommand extends Command
         if ($this->option('compact')) {
             return array_intersect($availableColumns, $this->compactColumns);
         }
+<<<<<<< HEAD
 
         if ($columns = $this->option('columns')) {
             return array_intersect($availableColumns, $this->parseColumns($columns));
@@ -243,6 +244,37 @@ class RouteListCommand extends Command
         return $results;
     }
 
+=======
+
+        if ($columns = $this->option('columns')) {
+            return array_intersect($availableColumns, $this->parseColumns($columns));
+        }
+
+        return $availableColumns;
+    }
+
+    /**
+     * Parse the column list.
+     *
+     * @param  array  $columns
+     * @return array
+     */
+    protected function parseColumns(array $columns)
+    {
+        $results = [];
+
+        foreach ($columns as $i => $column) {
+            if (Str::contains($column, ',')) {
+                $results = array_merge($results, explode(',', $column));
+            } else {
+                $results[] = $column;
+            }
+        }
+
+        return $results;
+    }
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     /**
      * Get the console command options.
      *

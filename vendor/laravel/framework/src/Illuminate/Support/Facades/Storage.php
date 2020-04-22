@@ -15,18 +15,29 @@ class Storage extends Facade
      * Replace the given disk with a local testing disk.
      *
      * @param  string|null  $disk
+<<<<<<< HEAD
      *
      * @return \Illuminate\Filesystem\Filesystem
+=======
+     * @param  array  $config
+     * @return \Illuminate\Contracts\Filesystem\Filesystem
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      */
-    public static function fake($disk = null)
+    public static function fake($disk = null, array $config = [])
     {
-        $disk = $disk ?: self::$app['config']->get('filesystems.default');
+        $disk = $disk ?: static::$app['config']->get('filesystems.default');
 
         (new Filesystem)->cleanDirectory(
             $root = storage_path('framework/testing/disks/'.$disk)
         );
 
+<<<<<<< HEAD
         static::set($disk, $fake = self::createLocalDriver(['root' => $root]));
+=======
+        static::set($disk, $fake = static::createLocalDriver(array_merge($config, [
+            'root' => $root,
+        ])));
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
         return $fake;
     }
@@ -35,15 +46,26 @@ class Storage extends Facade
      * Replace the given disk with a persistent local testing disk.
      *
      * @param  string|null  $disk
+<<<<<<< HEAD
      * @return \Illuminate\Filesystem\Filesystem
+=======
+     * @param  array  $config
+     * @return \Illuminate\Contracts\Filesystem\Filesystem
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      */
-    public static function persistentFake($disk = null)
+    public static function persistentFake($disk = null, array $config = [])
     {
-        $disk = $disk ?: self::$app['config']->get('filesystems.default');
+        $disk = $disk ?: static::$app['config']->get('filesystems.default');
 
+<<<<<<< HEAD
         static::set($disk, $fake = self::createLocalDriver([
             'root' => storage_path('framework/testing/disks/'.$disk),
         ]));
+=======
+        static::set($disk, $fake = static::createLocalDriver(array_merge($config, [
+            'root' => storage_path('framework/testing/disks/'.$disk),
+        ])));
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
         return $fake;
     }

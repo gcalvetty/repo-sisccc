@@ -3,9 +3,9 @@
 namespace Illuminate\Database\Eloquent\Relations;
 
 use BadMethodCallException;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class MorphTo extends BelongsTo
 {
@@ -122,9 +122,15 @@ class MorphTo extends BelongsTo
                                 $this->getQuery()->getEagerLoads(),
                                 (array) ($this->morphableEagerLoads[get_class($instance)] ?? [])
                             ));
+<<<<<<< HEAD
 
         $whereIn = $this->whereInMethod($instance, $ownerKey);
 
+=======
+
+        $whereIn = $this->whereInMethod($instance, $ownerKey);
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         return $query->{$whereIn}(
             $instance->getTable().'.'.$ownerKey, $this->gatherKeysByType($type)
         )->get();

@@ -2,12 +2,20 @@
 
 namespace Illuminate\Notifications;
 
+<<<<<<< HEAD
 use InvalidArgumentException;
 use Illuminate\Support\Manager;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Bus\Dispatcher as Bus;
 use Illuminate\Contracts\Notifications\Factory as FactoryContract;
+=======
+use Illuminate\Contracts\Bus\Dispatcher as Bus;
+use Illuminate\Contracts\Events\Dispatcher;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Contracts\Notifications\Dispatcher as DispatcherContract;
+use Illuminate\Contracts\Notifications\Factory as FactoryContract;
+use Illuminate\Support\Manager;
+use InvalidArgumentException;
 
 class ChannelManager extends Manager implements DispatcherContract, FactoryContract
 {
@@ -35,7 +43,11 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
     public function send($notifiables, $notification)
     {
         return (new NotificationSender(
+<<<<<<< HEAD
             $this, $this->app->make(Bus::class), $this->app->make(Dispatcher::class), $this->locale)
+=======
+            $this, $this->container->make(Bus::class), $this->container->make(Dispatcher::class), $this->locale)
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         )->send($notifiables, $notification);
     }
 
@@ -50,7 +62,11 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
     public function sendNow($notifiables, $notification, array $channels = null)
     {
         return (new NotificationSender(
+<<<<<<< HEAD
             $this, $this->app->make(Bus::class), $this->app->make(Dispatcher::class), $this->locale)
+=======
+            $this, $this->container->make(Bus::class), $this->container->make(Dispatcher::class), $this->locale)
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         )->sendNow($notifiables, $notification, $channels);
     }
 
@@ -72,7 +88,7 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
      */
     protected function createDatabaseDriver()
     {
-        return $this->app->make(Channels\DatabaseChannel::class);
+        return $this->container->make(Channels\DatabaseChannel::class);
     }
 
     /**
@@ -82,7 +98,7 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
      */
     protected function createBroadcastDriver()
     {
-        return $this->app->make(Channels\BroadcastChannel::class);
+        return $this->container->make(Channels\BroadcastChannel::class);
     }
 
     /**
@@ -92,7 +108,11 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
      */
     protected function createMailDriver()
     {
+<<<<<<< HEAD
         return $this->app->make(Channels\MailChannel::class);
+=======
+        return $this->container->make(Channels\MailChannel::class);
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     }
 
     /**
@@ -109,7 +129,7 @@ class ChannelManager extends Manager implements DispatcherContract, FactoryContr
             return parent::createDriver($driver);
         } catch (InvalidArgumentException $e) {
             if (class_exists($driver)) {
-                return $this->app->make($driver);
+                return $this->container->make($driver);
             }
 
             throw $e;

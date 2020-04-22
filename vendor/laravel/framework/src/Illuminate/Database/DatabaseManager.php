@@ -2,12 +2,17 @@
 
 namespace Illuminate\Database;
 
-use PDO;
+use Illuminate\Database\Connectors\ConnectionFactory;
 use Illuminate\Support\Arr;
+use Illuminate\Support\ConfigurationUrlParser;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
+<<<<<<< HEAD
 use Illuminate\Support\ConfigurationUrlParser;
 use Illuminate\Database\Connectors\ConnectionFactory;
+=======
+use PDO;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
 /**
  * @mixin \Illuminate\Database\Connection

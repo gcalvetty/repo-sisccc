@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 /*
  * This file is part of the Monolog package.
  *
@@ -10,6 +11,7 @@
 
 namespace Monolog\Handler;
 
+use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\NormalizerFormatter;
 use Monolog\Logger;
 
@@ -26,16 +28,18 @@ class ZendMonitorHandler extends AbstractProcessingHandler
      *
      * @var array
      */
+<<<<<<< HEAD
     protected $levelMap = array();
+=======
+    protected $levelMap = [];
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
     /**
-     * Construct
-     *
-     * @param  int                       $level
-     * @param  bool                      $bubble
+     * @param  string|int                $level  The minimum logging level at which this handler will be triggered.
+     * @param  bool                      $bubble Whether the messages that are handled can bubble up the stack or not.
      * @throws MissingExtensionException
      */
-    public function __construct($level = Logger::DEBUG, $bubble = true)
+    public function __construct($level = Logger::DEBUG, bool $bubble = true)
     {
         if (!function_exists('zend_monitor_custom_event')) {
             throw new MissingExtensionException(
@@ -43,7 +47,11 @@ class ZendMonitorHandler extends AbstractProcessingHandler
             );
         }
         //zend monitor constants are not defined if zend monitor is not enabled.
+<<<<<<< HEAD
         $this->levelMap = array(
+=======
+        $this->levelMap = [
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
             Logger::DEBUG     => \ZEND_MONITOR_EVENT_SEVERITY_INFO,
             Logger::INFO      => \ZEND_MONITOR_EVENT_SEVERITY_INFO,
             Logger::NOTICE    => \ZEND_MONITOR_EVENT_SEVERITY_INFO,
@@ -52,14 +60,18 @@ class ZendMonitorHandler extends AbstractProcessingHandler
             Logger::CRITICAL  => \ZEND_MONITOR_EVENT_SEVERITY_ERROR,
             Logger::ALERT     => \ZEND_MONITOR_EVENT_SEVERITY_ERROR,
             Logger::EMERGENCY => \ZEND_MONITOR_EVENT_SEVERITY_ERROR,
+<<<<<<< HEAD
         );
+=======
+        ];
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         parent::__construct($level, $bubble);
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record)
+    protected function write(array $record): void
     {
         $this->writeZendMonitorCustomEvent(
             Logger::getLevelName($record['level']),
@@ -76,7 +88,11 @@ class ZendMonitorHandler extends AbstractProcessingHandler
      * @param mixed $formatted Displayed in Custom Variables tab
      * @param int $severity Set the event severity level (-1,0,1)
      */
+<<<<<<< HEAD
     protected function writeZendMonitorCustomEvent($type, $message, $formatted, $severity)
+=======
+    protected function writeZendMonitorCustomEvent(string $type, string $message, array $formatted, int $severity): void
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     {
         zend_monitor_custom_event($type, $message, $formatted, $severity);
     }
@@ -84,17 +100,12 @@ class ZendMonitorHandler extends AbstractProcessingHandler
     /**
      * {@inheritdoc}
      */
-    public function getDefaultFormatter()
+    public function getDefaultFormatter(): FormatterInterface
     {
         return new NormalizerFormatter();
     }
 
-    /**
-     * Get the level map
-     *
-     * @return array
-     */
-    public function getLevelMap()
+    public function getLevelMap(): array
     {
         return $this->levelMap;
     }

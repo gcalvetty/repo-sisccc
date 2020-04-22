@@ -42,13 +42,20 @@ class MemcachedLock extends Lock
     /**
      * Release the lock.
      *
-     * @return void
+     * @return bool
      */
     public function release()
     {
         if ($this->isOwnedByCurrentProcess()) {
+<<<<<<< HEAD
             $this->memcached->delete($this->name);
         }
+=======
+            return $this->memcached->delete($this->name);
+        }
+
+        return false;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
     }
 
     /**

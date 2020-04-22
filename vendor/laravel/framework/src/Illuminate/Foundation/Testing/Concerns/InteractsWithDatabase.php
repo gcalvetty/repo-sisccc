@@ -2,11 +2,15 @@
 
 namespace Illuminate\Foundation\Testing\Concerns;
 
+<<<<<<< HEAD
 use Illuminate\Support\Arr;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\Constraints\HasInDatabase;
-use PHPUnit\Framework\Constraint\LogicalNot as ReverseConstraint;
 use Illuminate\Foundation\Testing\Constraints\SoftDeletedInDatabase;
+use Illuminate\Support\Arr;
+use PHPUnit\Framework\Constraint\LogicalNot as ReverseConstraint;
 
 trait InteractsWithDatabase
 {
@@ -49,7 +53,11 @@ trait InteractsWithDatabase
     /**
      * Assert the given record has been deleted.
      *
+<<<<<<< HEAD
      * @param  string|\Illuminate\Database\Eloquent\Model  $table
+=======
+     * @param  \Illuminate\Database\Eloquent\Model|string  $table
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * @param  array  $data
      * @param  string|null  $connection
      * @return $this

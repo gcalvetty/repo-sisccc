@@ -3,9 +3,13 @@
 namespace Illuminate\Foundation\Testing;
 
 use Closure;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\Assert as PHPUnit;
+use Illuminate\Foundation\Testing\Constraints\SeeInOrder;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+<<<<<<< HEAD
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Traits\Tappable;
@@ -13,6 +17,12 @@ use Illuminate\Support\Traits\Macroable;
 use Illuminate\Foundation\Testing\Assert as PHPUnit;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Illuminate\Foundation\Testing\Constraints\SeeInOrder;
+=======
+use Illuminate\Support\Str;
+use Illuminate\Support\Traits\Macroable;
+use Illuminate\Support\Traits\Tappable;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
 /**
  * @mixin \Illuminate\Http\Response
@@ -465,6 +475,20 @@ class TestResponse
     }
 
     /**
+     * Assert that the expected value exists at the given path in the response.
+     *
+     * @param  string  $path
+     * @param  mixed  $expect
+     * @return $this
+     */
+    public function assertJsonPath($path, $expect)
+    {
+        PHPUnit::assertEquals($expect, $this->json($path));
+
+        return $this;
+    }
+
+    /**
      * Assert that the response has the exact given JSON.
      *
      * @param  array  $data
@@ -652,6 +676,7 @@ class TestResponse
      * Assert that the response has the given JSON validation errors.
      *
      * @param  string|array  $errors
+<<<<<<< HEAD
      * @return $this
      */
     public function assertJsonValidationErrors($errors)
@@ -704,6 +729,62 @@ class TestResponse
      */
     public function assertJsonMissingValidationErrors($keys = null)
     {
+=======
+     * @param  string  $responseKey
+     * @return $this
+     */
+    public function assertJsonValidationErrors($errors, $responseKey = 'errors')
+    {
+        $errors = Arr::wrap($errors);
+
+        PHPUnit::assertNotEmpty($errors, 'No validation errors were provided.');
+
+        $jsonErrors = $this->json()[$responseKey] ?? [];
+
+        $errorMessage = $jsonErrors
+                ? 'Response has the following JSON validation errors:'.
+                        PHP_EOL.PHP_EOL.json_encode($jsonErrors, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE).PHP_EOL
+                : 'Response does not have JSON validation errors.';
+
+        foreach ($errors as $key => $value) {
+            PHPUnit::assertArrayHasKey(
+                (is_int($key)) ? $value : $key,
+                $jsonErrors,
+                "Failed to find a validation error in the response for key: '{$value}'".PHP_EOL.PHP_EOL.$errorMessage
+            );
+
+            if (! is_int($key)) {
+                $hasError = false;
+
+                foreach (Arr::wrap($jsonErrors[$key]) as $jsonErrorMessage) {
+                    if (Str::contains($jsonErrorMessage, $value)) {
+                        $hasError = true;
+
+                        break;
+                    }
+                }
+
+                if (! $hasError) {
+                    PHPUnit::fail(
+                        "Failed to find a validation error in the response for key and message: '$key' => '$value'".PHP_EOL.PHP_EOL.$errorMessage
+                    );
+                }
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * Assert that the response has no JSON validation errors for the given keys.
+     *
+     * @param  string|array|null  $keys
+     * @param  string  $responseKey
+     * @return $this
+     */
+    public function assertJsonMissingValidationErrors($keys = null, $responseKey = 'errors')
+    {
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         if ($this->getContent() === '') {
             PHPUnit::assertTrue(true);
 
@@ -712,13 +793,22 @@ class TestResponse
 
         $json = $this->json();
 
+<<<<<<< HEAD
         if (! array_key_exists('errors', $json)) {
             PHPUnit::assertArrayNotHasKey('errors', $json);
+=======
+        if (! array_key_exists($responseKey, $json)) {
+            PHPUnit::assertArrayNotHasKey($responseKey, $json);
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
             return $this;
         }
 
+<<<<<<< HEAD
         $errors = $json['errors'];
+=======
+        $errors = $json[$responseKey];
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
         if (is_null($keys) && count($errors) > 0) {
             PHPUnit::fail(

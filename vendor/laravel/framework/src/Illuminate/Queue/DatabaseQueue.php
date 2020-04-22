@@ -2,11 +2,15 @@
 
 namespace Illuminate\Queue;
 
+<<<<<<< HEAD
 use Illuminate\Support\Carbon;
+=======
+use Illuminate\Contracts\Queue\Queue as QueueContract;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Database\Connection;
 use Illuminate\Queue\Jobs\DatabaseJob;
 use Illuminate\Queue\Jobs\DatabaseJobRecord;
-use Illuminate\Contracts\Queue\Queue as QueueContract;
+use Illuminate\Support\Carbon;
 
 class DatabaseQueue extends Queue implements QueueContract
 {

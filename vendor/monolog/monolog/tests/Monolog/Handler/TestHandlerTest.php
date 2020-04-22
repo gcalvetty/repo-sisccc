@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -11,7 +11,7 @@
 
 namespace Monolog\Handler;
 
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
 use Monolog\Logger;
 
 /**
@@ -51,66 +51,68 @@ class TestHandlerTest extends TestCase
 
         $records = $handler->getRecords();
         unset($records[0]['formatted']);
-        $this->assertEquals(array($record), $records);
+        $this->assertEquals([$record], $records);
     }
 
-    public function testHandlerAssertEmptyContext() {
+    public function testHandlerAssertEmptyContext()
+    {
         $handler = new TestHandler;
-        $record  = $this->getRecord(Logger::WARNING, 'test', array());
-        $this->assertFalse($handler->hasWarning(array(
+        $record  = $this->getRecord(Logger::WARNING, 'test', []);
+        $this->assertFalse($handler->hasWarning([
             'message' => 'test',
-            'context' => array(),
-        )));
+            'context' => [],
+        ]));
 
         $handler->handle($record);
 
-        $this->assertTrue($handler->hasWarning(array(
+        $this->assertTrue($handler->hasWarning([
             'message' => 'test',
-            'context' => array(),
-        )));
-        $this->assertFalse($handler->hasWarning(array(
+            'context' => [],
+        ]));
+        $this->assertFalse($handler->hasWarning([
             'message' => 'test',
-            'context' => array(
-                'foo' => 'bar'
-            ),
-        )));
+            'context' => [
+                'foo' => 'bar',
+            ],
+        ]));
     }
 
-    public function testHandlerAssertNonEmptyContext() {
+    public function testHandlerAssertNonEmptyContext()
+    {
         $handler = new TestHandler;
-        $record  = $this->getRecord(Logger::WARNING, 'test', array('foo' => 'bar'));
-        $this->assertFalse($handler->hasWarning(array(
+        $record  = $this->getRecord(Logger::WARNING, 'test', ['foo' => 'bar']);
+        $this->assertFalse($handler->hasWarning([
             'message' => 'test',
-            'context' => array(
-                'foo' => 'bar'
-            ),
-        )));
+            'context' => [
+                'foo' => 'bar',
+            ],
+        ]));
 
         $handler->handle($record);
 
-        $this->assertTrue($handler->hasWarning(array(
+        $this->assertTrue($handler->hasWarning([
             'message' => 'test',
-            'context' => array(
-                'foo' => 'bar'
-            ),
-        )));
-        $this->assertFalse($handler->hasWarning(array(
+            'context' => [
+                'foo' => 'bar',
+            ],
+        ]));
+        $this->assertFalse($handler->hasWarning([
             'message' => 'test',
-            'context' => array(),
-        )));
+            'context' => [],
+        ]));
     }
 
     public function methodProvider()
     {
-        return array(
-            array('Emergency', Logger::EMERGENCY),
-            array('Alert'    , Logger::ALERT),
-            array('Critical' , Logger::CRITICAL),
-            array('Error'    , Logger::ERROR),
-            array('Warning'  , Logger::WARNING),
-            array('Info'     , Logger::INFO),
-            array('Notice'   , Logger::NOTICE),
-            array('Debug'    , Logger::DEBUG),
-        );
+        return [
+            ['Emergency', Logger::EMERGENCY],
+            ['Alert'    , Logger::ALERT],
+            ['Critical' , Logger::CRITICAL],
+            ['Error'    , Logger::ERROR],
+            ['Warning'  , Logger::WARNING],
+            ['Info'     , Logger::INFO],
+            ['Notice'   , Logger::NOTICE],
+            ['Debug'    , Logger::DEBUG],
+        ];
     }
 }

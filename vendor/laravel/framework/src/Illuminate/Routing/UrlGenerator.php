@@ -3,8 +3,14 @@
 namespace Illuminate\Routing;
 
 use Closure;
+use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContract;
+use Illuminate\Contracts\Routing\UrlRoutable;
+use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\InteractsWithTime;
 use Illuminate\Support\Str;
+<<<<<<< HEAD
 use Illuminate\Http\Request;
 use InvalidArgumentException;
 use Illuminate\Support\Carbon;
@@ -12,6 +18,11 @@ use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\InteractsWithTime;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\Routing\UrlGenerator as UrlGeneratorContract;
+=======
+use Illuminate\Support\Traits\Macroable;
+use InvalidArgumentException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
 class UrlGenerator implements UrlGeneratorContract
 {
@@ -301,6 +312,7 @@ class UrlGenerator implements UrlGeneratorContract
 
         if (is_null($this->cachedScheme)) {
             $this->cachedScheme = $this->forceScheme ?: $this->request->getScheme().'://';
+<<<<<<< HEAD
         }
 
         return $this->cachedScheme;
@@ -323,6 +335,30 @@ class UrlGenerator implements UrlGeneratorContract
             $parameters = $parameters + ['expires' => $this->availableAt($expiration)];
         }
 
+=======
+        }
+
+        return $this->cachedScheme;
+    }
+
+    /**
+     * Create a signed route URL for a named route.
+     *
+     * @param  string  $name
+     * @param  array  $parameters
+     * @param  \DateTimeInterface|\DateInterval|int|null  $expiration
+     * @param  bool  $absolute
+     * @return string
+     */
+    public function signedRoute($name, $parameters = [], $expiration = null, $absolute = true)
+    {
+        $parameters = $this->formatParameters($parameters);
+
+        if ($expiration) {
+            $parameters = $parameters + ['expires' => $this->availableAt($expiration)];
+        }
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         ksort($parameters);
 
         $key = call_user_func($this->keyResolver);
@@ -377,7 +413,7 @@ class UrlGenerator implements UrlGeneratorContract
      * @param  bool  $absolute
      * @return string
      *
-     * @throws \InvalidArgumentException
+     * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException
      */
     public function route($name, $parameters = [], $absolute = true)
     {
@@ -385,7 +421,7 @@ class UrlGenerator implements UrlGeneratorContract
             return $this->toRoute($route, $parameters, $absolute);
         }
 
-        throw new InvalidArgumentException("Route [{$name}] not defined.");
+        throw new RouteNotFoundException("Route [{$name}] not defined.");
     }
 
     /**
@@ -398,7 +434,7 @@ class UrlGenerator implements UrlGeneratorContract
      *
      * @throws \Illuminate\Routing\Exceptions\UrlGenerationException
      */
-    protected function toRoute($route, $parameters, $absolute)
+    public function toRoute($route, $parameters, $absolute)
     {
         return $this->routeUrl()->to(
             $route, $this->formatParameters($parameters), $absolute

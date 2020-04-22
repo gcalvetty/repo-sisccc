@@ -3,15 +3,29 @@
 namespace Illuminate\Redis\Connections;
 
 use Closure;
+<<<<<<< HEAD
 use Predis\Command\ServerFlushDatabase;
 use Predis\Connection\Aggregate\ClusterInterface;
 use Illuminate\Contracts\Redis\Connection as ConnectionContract;
+=======
+use Illuminate\Contracts\Redis\Connection as ConnectionContract;
+use Predis\Command\ServerFlushDatabase;
+use Predis\Connection\Aggregate\ClusterInterface;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
 /**
  * @mixin \Predis\Client
+ * @deprecated Predis is no longer maintained by its original author
  */
 class PredisConnection extends Connection implements ConnectionContract
 {
+    /**
+     * The Predis client.
+     *
+     * @var \Predis\Client
+     */
+    protected $client;
+
     /**
      * Create a new Predis connection.
      *

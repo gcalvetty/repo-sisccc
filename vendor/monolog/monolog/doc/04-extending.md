@@ -2,6 +2,13 @@
 
 Monolog is fully extensible, allowing you to adapt your logger to your needs.
 
+## Understanding log records
+
+See [the page about log records](message-structure.md) to learn what makes up
+a log record before going further. This is essential to understand as all
+Handlers/Formatters/Processors need to deal with log records in one way or
+another.
+
 ## Writing your own handler
 
 Monolog provides many built-in handlers. But if the one you need does not
@@ -23,13 +30,13 @@ class PDOHandler extends AbstractProcessingHandler
     private $pdo;
     private $statement;
 
-    public function __construct(PDO $pdo, $level = Logger::DEBUG, $bubble = true)
+    public function __construct(PDO $pdo, $level = Logger::DEBUG, bool $bubble = true)
     {
         $this->pdo = $pdo;
         parent::__construct($level, $bubble);
     }
 
-    protected function write(array $record)
+    protected function write(array $record): void
     {
         if (!$this->initialized) {
             $this->initialize();
@@ -66,7 +73,7 @@ You can now use this handler in your logger:
 $logger->pushHandler(new PDOHandler(new PDO('sqlite:logs.sqlite')));
 
 // You can now use your logger
-$logger->addInfo('My logger is now ready');
+$logger->info('My logger is now ready');
 ```
 
 The `Monolog\Handler\AbstractProcessingHandler` class provides most of the

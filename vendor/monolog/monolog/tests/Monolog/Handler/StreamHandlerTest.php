@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -11,7 +11,7 @@
 
 namespace Monolog\Handler;
 
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
 use Monolog\Logger;
 
 class StreamHandlerTest extends TestCase
@@ -51,13 +51,38 @@ class StreamHandlerTest extends TestCase
     {
         $handler = new StreamHandler('php://memory');
         $handler->handle($this->getRecord(Logger::WARNING, 'test'));
-        $streamProp = new \ReflectionProperty('Monolog\Handler\StreamHandler', 'stream');
-        $streamProp->setAccessible(true);
-        $handle = $streamProp->getValue($handler);
+        $stream = $handler->getStream();
 
-        $this->assertTrue(is_resource($handle));
+        $this->assertTrue(is_resource($stream));
         $handler->close();
-        $this->assertFalse(is_resource($handle));
+        $this->assertFalse(is_resource($stream));
+    }
+
+    /**
+     * @covers Monolog\Handler\StreamHandler::close
+     * @covers Monolog\Handler\Handler::__sleep
+     */
+    public function testSerialization()
+    {
+        $handler = new StreamHandler('php://memory');
+        $handler->handle($this->getRecord(Logger::WARNING, 'testfoo'));
+        $stream = $handler->getStream();
+
+        $this->assertTrue(is_resource($stream));
+        fseek($stream, 0);
+        $this->assertStringContainsString('testfoo', stream_get_contents($stream));
+        $serialized = serialize($handler);
+        $this->assertFalse(is_resource($stream));
+
+        $handler = unserialize($serialized);
+        $handler->handle($this->getRecord(Logger::WARNING, 'testbar'));
+        $stream = $handler->getStream();
+
+        $this->assertTrue(is_resource($stream));
+        fseek($stream, 0);
+        $contents = stream_get_contents($stream);
+        $this->assertStringNotContainsString('testfoo', $contents);
+        $this->assertStringContainsString('testbar', $contents);
     }
 
     /**
@@ -81,53 +106,57 @@ class StreamHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException LogicException
      * @covers Monolog\Handler\StreamHandler::__construct
      * @covers Monolog\Handler\StreamHandler::write
      */
     public function testWriteMissingResource()
     {
+        $this->expectException(\LogicException::class);
+
         $handler = new StreamHandler(null);
         $handler->handle($this->getRecord());
     }
 
     public function invalidArgumentProvider()
     {
-        return array(
-            array(1),
-            array(array()),
-            array(array('bogus://url')),
-        );
+        return [
+            [1],
+            [[]],
+            [['bogus://url']],
+        ];
     }
 
     /**
      * @dataProvider invalidArgumentProvider
-     * @expectedException InvalidArgumentException
      * @covers Monolog\Handler\StreamHandler::__construct
      */
     public function testWriteInvalidArgument($invalidArgument)
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $handler = new StreamHandler($invalidArgument);
     }
 
     /**
-     * @expectedException UnexpectedValueException
      * @covers Monolog\Handler\StreamHandler::__construct
      * @covers Monolog\Handler\StreamHandler::write
      */
     public function testWriteInvalidResource()
     {
+        $this->expectException(\UnexpectedValueException::class);
+
         $handler = new StreamHandler('bogus://url');
         $handler->handle($this->getRecord());
     }
 
     /**
-     * @expectedException UnexpectedValueException
      * @covers Monolog\Handler\StreamHandler::__construct
      * @covers Monolog\Handler\StreamHandler::write
      */
     public function testWriteNonExistingResource()
     {
+        $this->expectException(\UnexpectedValueException::class);
+
         $handler = new StreamHandler('ftp://foo/bar/baz/'.rand(0, 10000));
         $handler->handle($this->getRecord());
     }
@@ -153,32 +182,42 @@ class StreamHandlerTest extends TestCase
     }
 
     /**
-     * @expectedException Exception
-     * @expectedExceptionMessageRegExp /There is no existing directory at/
      * @covers Monolog\Handler\StreamHandler::__construct
      * @covers Monolog\Handler\StreamHandler::write
+     * @dataProvider provideNonExistingAndNotCreatablePath
      */
-    public function testWriteNonExistingAndNotCreatablePath()
+    public function testWriteNonExistingAndNotCreatablePath($nonExistingAndNotCreatablePath)
     {
         if (defined('PHP_WINDOWS_VERSION_BUILD')) {
             $this->markTestSkipped('Permissions checks can not run on windows');
         }
-        $handler = new StreamHandler('/foo/bar/'.rand(0, 10000).DIRECTORY_SEPARATOR.rand(0, 10000));
+
+        $handler = null;
+
+        try {
+            $handler = new StreamHandler($nonExistingAndNotCreatablePath);
+        } catch (\Exception $fail) {
+            $this->fail(
+                'A non-existing and not creatable path should throw an Exception earliest on first write.
+                 Not during instantiation.'
+            );
+        }
+
+        $this->expectException(\UnexpectedValueException::class);
+        $this->expectExceptionMessage('There is no existing directory at');
+
         $handler->handle($this->getRecord());
     }
 
-    /**
-     * @expectedException Exception
-     * @expectedExceptionMessageRegExp /There is no existing directory at/
-     * @covers Monolog\Handler\StreamHandler::__construct
-     * @covers Monolog\Handler\StreamHandler::write
-     */
-    public function testWriteNonExistingAndNotCreatableFileResource()
+    public function provideNonExistingAndNotCreatablePath()
     {
-        if (defined('PHP_WINDOWS_VERSION_BUILD')) {
-            $this->markTestSkipped('Permissions checks can not run on windows');
-        }
-        $handler = new StreamHandler('file:///foo/bar/'.rand(0, 10000).DIRECTORY_SEPARATOR.rand(0, 10000));
-        $handler->handle($this->getRecord());
+        return [
+            '/foo/bar/…' => [
+                '/foo/bar/'.rand(0, 10000).DIRECTORY_SEPARATOR.rand(0, 10000),
+            ],
+            'file:///foo/bar/…' => [
+                'file:///foo/bar/'.rand(0, 10000).DIRECTORY_SEPARATOR.rand(0, 10000),
+            ],
+        ];
     }
 }

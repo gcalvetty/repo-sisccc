@@ -3,16 +3,37 @@
 namespace Illuminate\Support;
 
 use Closure;
+use Illuminate\Contracts\Container\Container;
 use InvalidArgumentException;
 
 abstract class Manager
 {
     /**
-     * The application instance.
+     * The container instance.
      *
+<<<<<<< HEAD
      * @var \Illuminate\Contracts\Foundation\Application
+=======
+     * @var \Illuminate\Contracts\Container\Container
+     */
+    protected $container;
+
+    /**
+     * The container instance.
+     *
+     * @var \Illuminate\Contracts\Container\Container
+     *
+     * @deprecated Use the $container property instead.
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      */
     protected $app;
+
+    /**
+     * The configuration repository instance.
+     *
+     * @var \Illuminate\Contracts\Config\Repository
+     */
+    protected $config;
 
     /**
      * The registered custom driver creators.
@@ -31,12 +52,18 @@ abstract class Manager
     /**
      * Create a new manager instance.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Contracts\Foundation\Application  $app
+=======
+     * @param  \Illuminate\Contracts\Container\Container  $container
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * @return void
      */
-    public function __construct($app)
+    public function __construct(Container $container)
     {
-        $this->app = $app;
+        $this->app = $container;
+        $this->container = $container;
+        $this->config = $container->make('config');
     }
 
     /**
@@ -107,7 +134,7 @@ abstract class Manager
      */
     protected function callCustomCreator($driver)
     {
-        return $this->customCreators[$driver]($this->app);
+        return $this->customCreators[$driver]($this->container);
     }
 
     /**

@@ -2,12 +2,19 @@
 
 namespace Illuminate\Mail;
 
-use Swift_Mailer;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\Arr;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
 use Swift_DependencyContainer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Support\DeferrableProvider;
+=======
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
+use Swift_DependencyContainer;
+use Swift_Mailer;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
 class MailServiceProvider extends ServiceProvider implements DeferrableProvider
 {
@@ -86,14 +93,23 @@ class MailServiceProvider extends ServiceProvider implements DeferrableProvider
         // Once we have the transporter registered, we will register the actual Swift
         // mailer instance, passing in the transport instances, which allows us to
         // override this transporter instances during app start-up if necessary.
+<<<<<<< HEAD
         $this->app->singleton('swift.mailer', function () {
             if ($domain = $this->app->make('config')->get('mail.domain')) {
+=======
+        $this->app->singleton('swift.mailer', function ($app) {
+            if ($domain = $app->make('config')->get('mail.domain')) {
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
                 Swift_DependencyContainer::getInstance()
                                 ->register('mime.idgenerator.idright')
                                 ->asValue($domain);
             }
 
+<<<<<<< HEAD
             return new Swift_Mailer($this->app['swift.transport']->driver());
+=======
+            return new Swift_Mailer($app['swift.transport']->driver());
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         });
     }
 

@@ -3,12 +3,16 @@
 namespace Illuminate\Routing\Middleware;
 
 use Closure;
-use RuntimeException;
-use Illuminate\Support\Str;
 use Illuminate\Cache\RateLimiter;
-use Illuminate\Support\InteractsWithTime;
-use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Support\InteractsWithTime;
+use Illuminate\Support\Str;
+use RuntimeException;
+use Symfony\Component\HttpFoundation\Response;
+<<<<<<< HEAD
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 
 class ThrottleRequests
 {
@@ -39,13 +43,17 @@ class ThrottleRequests
      * @param  \Closure  $next
      * @param  int|string  $maxAttempts
      * @param  float|int  $decayMinutes
+<<<<<<< HEAD
+=======
+     * @param  string  $prefix
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @throws \Illuminate\Http\Exceptions\ThrottleRequestsException
      */
-    public function handle($request, Closure $next, $maxAttempts = 60, $decayMinutes = 1)
+    public function handle($request, Closure $next, $maxAttempts = 60, $decayMinutes = 1, $prefix = '')
     {
-        $key = $this->resolveRequestSignature($request);
+        $key = $prefix.$this->resolveRequestSignature($request);
 
         $maxAttempts = $this->resolveMaxAttempts($request, $maxAttempts);
 

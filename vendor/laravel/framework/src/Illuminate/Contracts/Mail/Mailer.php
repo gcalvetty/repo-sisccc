@@ -32,7 +32,11 @@ interface Mailer
     /**
      * Send a new message using a view.
      *
+<<<<<<< HEAD
      * @param  string|array|\Illuminate\Contracts\Mail\Mailable  $view
+=======
+     * @param  \Illuminate\Contracts\Mail\Mailable|string|array  $view
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * @param  array  $data
      * @param  \Closure|string|null  $callback
      * @return void

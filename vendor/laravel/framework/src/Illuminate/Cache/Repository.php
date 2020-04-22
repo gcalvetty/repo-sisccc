@@ -2,25 +2,25 @@
 
 namespace Illuminate\Cache;
 
-use Closure;
 use ArrayAccess;
-use DateTimeInterface;
 use BadMethodCallException;
-use Illuminate\Support\Carbon;
+use Closure;
+use DateTimeInterface;
 use Illuminate\Cache\Events\CacheHit;
-use Illuminate\Contracts\Cache\Store;
-use Illuminate\Cache\Events\KeyWritten;
 use Illuminate\Cache\Events\CacheMissed;
-use Illuminate\Support\Traits\Macroable;
 use Illuminate\Cache\Events\KeyForgotten;
-use Illuminate\Support\InteractsWithTime;
-use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Cache\Events\KeyWritten;
 use Illuminate\Contracts\Cache\Repository as CacheContract;
+use Illuminate\Contracts\Cache\Store;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\InteractsWithTime;
+use Illuminate\Support\Traits\Macroable;
 
 /**
  * @mixin \Illuminate\Contracts\Cache\Store
  */
-class Repository implements CacheContract, ArrayAccess
+class Repository implements ArrayAccess, CacheContract
 {
     use InteractsWithTime;
     use Macroable {
@@ -203,6 +203,7 @@ class Repository implements CacheContract, ArrayAccess
         }
 
         $seconds = $this->getSeconds($ttl);
+<<<<<<< HEAD
 
         if ($seconds <= 0) {
             return $this->forget($key);
@@ -214,6 +215,19 @@ class Repository implements CacheContract, ArrayAccess
             $this->event(new KeyWritten($key, $value, $seconds));
         }
 
+=======
+
+        if ($seconds <= 0) {
+            return $this->forget($key);
+        }
+
+        $result = $this->store->put($this->itemKey($key), $value, $seconds);
+
+        if ($result) {
+            $this->event(new KeyWritten($key, $value, $seconds));
+        }
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         return $result;
     }
 
@@ -237,9 +251,15 @@ class Repository implements CacheContract, ArrayAccess
         if ($ttl === null) {
             return $this->putManyForever($values);
         }
+<<<<<<< HEAD
 
         $seconds = $this->getSeconds($ttl);
 
+=======
+
+        $seconds = $this->getSeconds($ttl);
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         if ($seconds <= 0) {
             return $this->deleteMultiple(array_keys($values));
         }
@@ -353,11 +373,19 @@ class Repository implements CacheContract, ArrayAccess
     public function forever($key, $value)
     {
         $result = $this->store->forever($this->itemKey($key), $value);
+<<<<<<< HEAD
 
         if ($result) {
             $this->event(new KeyWritten($key, $value));
         }
 
+=======
+
+        if ($result) {
+            $this->event(new KeyWritten($key, $value));
+        }
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         return $result;
     }
 

@@ -2,8 +2,12 @@
 
 namespace Illuminate\Broadcasting\Broadcasters;
 
+<<<<<<< HEAD
 use Illuminate\Support\Arr;
+=======
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Contracts\Redis\Factory as Redis;
+use Illuminate\Support\Arr;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class RedisBroadcaster extends Broadcaster

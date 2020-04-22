@@ -3,6 +3,12 @@
 namespace Illuminate\Console\Scheduling;
 
 use Illuminate\Console\Command;
+<<<<<<< HEAD
+=======
+use Illuminate\Console\Events\ScheduledTaskFinished;
+use Illuminate\Console\Events\ScheduledTaskStarting;
+use Illuminate\Contracts\Events\Dispatcher;
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
 use Illuminate\Support\Facades\Date;
 
 class ScheduleRunCommand extends Command
@@ -43,14 +49,23 @@ class ScheduleRunCommand extends Command
     protected $eventsRan = false;
 
     /**
+<<<<<<< HEAD
+=======
+     * The event dispatcher.
+     *
+     * @var \Illuminate\Contracts\Notifications\Dispatcher
+     */
+    protected $dispatcher;
+
+    /**
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
      * Create a new command instance.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    public function __construct(Schedule $schedule)
+    public function __construct()
     {
-        $this->schedule = $schedule;
+        $this->startedAt = Date::now();
 
         $this->startedAt = Date::now();
 
@@ -60,10 +75,18 @@ class ScheduleRunCommand extends Command
     /**
      * Execute the console command.
      *
+     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
      * @return void
      */
-    public function handle()
+    public function handle(Schedule $schedule, Dispatcher $dispatcher)
     {
+<<<<<<< HEAD
+=======
+        $this->schedule = $schedule;
+        $this->dispatcher = $dispatcher;
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         foreach ($this->schedule->dueEvents($this->laravel) as $event) {
             if (! $event->filtersPass($this->laravel)) {
                 continue;
@@ -108,8 +131,22 @@ class ScheduleRunCommand extends Command
     {
         $this->line('<info>Running scheduled command:</info> '.$event->getSummaryForDisplay());
 
+<<<<<<< HEAD
         $event->run($this->laravel);
 
+=======
+        $this->dispatcher->dispatch(new ScheduledTaskStarting($event));
+
+        $start = microtime(true);
+
+        $event->run($this->laravel);
+
+        $this->dispatcher->dispatch(new ScheduledTaskFinished(
+            $event,
+            round(microtime(true) - $start, 2)
+        ));
+
+>>>>>>> ebb8527f6a804a1a73e920c9f634529630f5ec33
         $this->eventsRan = true;
     }
 }
