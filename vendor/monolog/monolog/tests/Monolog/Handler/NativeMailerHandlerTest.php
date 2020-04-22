@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -11,7 +11,7 @@
 
 namespace Monolog\Handler;
 
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
 use Monolog\Logger;
 use InvalidArgumentException;
 
@@ -22,51 +22,46 @@ function mail($to, $subject, $message, $additional_headers = null, $additional_p
 
 class NativeMailerHandlerTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
-        $GLOBALS['mail'] = array();
+        $GLOBALS['mail'] = [];
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testConstructorHeaderInjection()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $mailer = new NativeMailerHandler('spammer@example.org', 'dear victim', "receiver@example.org\r\nFrom: faked@attacker.org");
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testSetterHeaderInjection()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $mailer = new NativeMailerHandler('spammer@example.org', 'dear victim', 'receiver@example.org');
         $mailer->addHeader("Content-Type: text/html\r\nFrom: faked@attacker.org");
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testSetterArrayHeaderInjection()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $mailer = new NativeMailerHandler('spammer@example.org', 'dear victim', 'receiver@example.org');
-        $mailer->addHeader(array("Content-Type: text/html\r\nFrom: faked@attacker.org"));
+        $mailer->addHeader(["Content-Type: text/html\r\nFrom: faked@attacker.org"]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testSetterContentTypeInjection()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $mailer = new NativeMailerHandler('spammer@example.org', 'dear victim', 'receiver@example.org');
         $mailer->setContentType("text/html\r\nFrom: faked@attacker.org");
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testSetterEncodingInjection()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $mailer = new NativeMailerHandler('spammer@example.org', 'dear victim', 'receiver@example.org');
         $mailer->setEncoding("utf-8\r\nFrom: faked@attacker.org");
     }
@@ -78,7 +73,8 @@ class NativeMailerHandlerTest extends TestCase
         $from = 'receiver@example.org';
 
         $mailer = new NativeMailerHandler($to, $subject, $from);
-        $mailer->handleBatch(array());
+        $mailer->setFormatter(new \Monolog\Formatter\LineFormatter);
+        $mailer->handleBatch([]);
 
         // batch is empty, nothing sent
         $this->assertEmpty($GLOBALS['mail']);
@@ -86,7 +82,7 @@ class NativeMailerHandlerTest extends TestCase
         // non-empty batch
         $mailer->handle($this->getRecord(Logger::ERROR, "Foo\nBar\r\n\r\nBaz"));
         $this->assertNotEmpty($GLOBALS['mail']);
-        $this->assertInternalType('array', $GLOBALS['mail']);
+        $this->assertIsArray($GLOBALS['mail']);
         $this->assertArrayHasKey('0', $GLOBALS['mail']);
         $params = $GLOBALS['mail'][0];
         $this->assertCount(5, $params);
@@ -102,7 +98,7 @@ class NativeMailerHandlerTest extends TestCase
         $mailer = new NativeMailerHandler('to@example.org', 'Alert: %level_name% %message%', 'from@example.org');
         $mailer->handle($this->getRecord(Logger::ERROR, "Foo\nBar\r\n\r\nBaz"));
         $this->assertNotEmpty($GLOBALS['mail']);
-        $this->assertInternalType('array', $GLOBALS['mail']);
+        $this->assertIsArray($GLOBALS['mail']);
         $this->assertArrayHasKey('0', $GLOBALS['mail']);
         $params = $GLOBALS['mail'][0];
         $this->assertCount(5, $params);

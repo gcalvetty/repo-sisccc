@@ -17,14 +17,10 @@ and as such installable via [Composer](http://getcomposer.org/).
 composer require monolog/monolog
 ```
 
-If you do not use Composer, you can grab the code from GitHub, and use any
-PSR-0 compatible autoloader (e.g. the [Symfony2 ClassLoader component](https://github.com/symfony/ClassLoader))
-to load Monolog classes.
-
 ## Core Concepts
 
 Every `Logger` instance has a channel (name) and a stack of handlers. Whenever
-you add a record to the logger, it traverses the handler stack. Each handler
+you add a [record](message-structure.md) to the logger, it traverses the handler stack. Each handler
 decides whether it fully handled the record, and if so, the propagation of the
 record ends there.
 
@@ -97,7 +93,7 @@ $logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::DEBUG));
 $logger->pushHandler(new FirePHPHandler());
 
 // You can now use your logger
-$logger->addInfo('My logger is now ready');
+$logger->info('My logger is now ready');
 ```
 
 Let's explain it. The first step is to create the logger instance which will
@@ -118,7 +114,7 @@ you want to override other configured loggers.
 
 ## Adding extra data in the records
 
-Monolog provides two different ways to add extra informations along the simple
+Monolog provides two different ways to add extra information along the simple
 textual message.
 
 ### Using the logging context
@@ -129,7 +125,7 @@ record:
 ```php
 <?php
 
-$logger->addInfo('Adding a new user', array('username' => 'Seldaek'));
+$logger->info('Adding a new user', array('username' => 'Seldaek'));
 ```
 
 Simple handlers (like the StreamHandler for instance) will simply format
@@ -163,7 +159,7 @@ Look at the [dedicated chapter](https://github.com/Seldaek/monolog/blob/master/d
 
 Channels are a great way to identify to which part of the application a record
 is related. This is useful in big applications (and is leveraged by
-MonologBundle in Symfony2).
+MonologBundle in Symfony).
 
 Picture two loggers sharing a handler that writes to a single log file.
 Channels would allow you to identify the logger that issued every record.
@@ -210,7 +206,7 @@ write your own (e.g. a multiline text file for human-readable output).
 To configure a predefined formatter class, just set it as the handler's field:
 
 ```php
-// the default date format is "Y-m-d H:i:s"
+// the default date format is "Y-m-d\TH:i:sP"
 $dateFormat = "Y n j, g:i a";
 // the default output format is "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n"
 $output = "%datetime% > %level_name% > %message% %context% %extra%\n";

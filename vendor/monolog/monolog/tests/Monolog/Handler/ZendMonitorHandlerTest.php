@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types=1);
+
 /*
  * This file is part of the Monolog package.
  *
@@ -10,14 +11,14 @@
 
 namespace Monolog\Handler;
 
+use Monolog\Test\TestCase;
 use Monolog\Logger;
-use Monolog\TestCase;
 
 class ZendMonitorHandlerTest extends TestCase
 {
     protected $zendMonitorHandler;
 
-    public function setUp()
+    public function setUp(): void
     {
         if (!function_exists('zend_monitor_custom_event')) {
             $this->markTestSkipped('ZendServer is not installed');
@@ -30,12 +31,12 @@ class ZendMonitorHandlerTest extends TestCase
     public function testWrite()
     {
         $record = $this->getRecord();
-        $formatterResult = array(
+        $formatterResult = [
             'message' => $record['message'],
-        );
+        ];
 
         $zendMonitor = $this->getMockBuilder('Monolog\Handler\ZendMonitorHandler')
-            ->setMethods(array('writeZendMonitorCustomEvent', 'getDefaultFormatter'))
+            ->setMethods(['writeZendMonitorCustomEvent', 'getDefaultFormatter'])
             ->getMock();
 
         $formatterMock = $this->getMockBuilder('Monolog\Formatter\NormalizerFormatter')

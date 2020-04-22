@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -11,7 +11,7 @@
 
 namespace Monolog\Processor;
 
-class PsrLogMessageProcessorTest extends \PHPUnit_Framework_TestCase
+class PsrLogMessageProcessorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider getPairs
@@ -20,24 +20,59 @@ class PsrLogMessageProcessorTest extends \PHPUnit_Framework_TestCase
     {
         $proc = new PsrLogMessageProcessor;
 
-        $message = $proc(array(
+        $message = $proc([
             'message' => '{foo}',
-            'context' => array('foo' => $val),
-        ));
+            'context' => ['foo' => $val],
+        ]);
         $this->assertEquals($expected, $message['message']);
+        $this->assertSame(['foo' => $val], $message['context']);
+    }
+
+    public function testReplacementWithContextRemoval()
+    {
+        $proc = new PsrLogMessageProcessor($dateFormat = null, $removeUsedContextFields = true);
+
+        $message = $proc([
+            'message' => '{foo}',
+            'context' => ['foo' => 'bar', 'lorem' => 'ipsum'],
+        ]);
+        $this->assertSame('bar', $message['message']);
+        $this->assertSame(['lorem' => 'ipsum'], $message['context']);
+    }
+
+    public function testCustomDateFormat()
+    {
+        $format = "Y-m-d";
+        $date = new \DateTime();
+
+        $proc = new PsrLogMessageProcessor($format);
+
+        $message = $proc([
+            'message' => '{foo}',
+            'context' => ['foo' => $date],
+        ]);
+        $this->assertEquals($date->format($format), $message['message']);
+        $this->assertSame(['foo' => $date], $message['context']);
     }
 
     public function getPairs()
     {
-        return array(
-            array('foo',    'foo'),
-            array('3',      '3'),
-            array(3,        '3'),
-            array(null,     ''),
-            array(true,     '1'),
-            array(false,    ''),
-            array(new \stdClass, '[object stdClass]'),
-            array(array(), '[array]'),
-        );
+        $date = new \DateTime();
+
+        return [
+            ['foo',    'foo'],
+            ['3',      '3'],
+            [3,        '3'],
+            [null,     ''],
+            [true,     '1'],
+            [false,    ''],
+            [$date, $date->format(PsrLogMessageProcessor::SIMPLE_DATE)],
+            [new \stdClass, '[object stdClass]'],
+            [[], 'array[]'],
+            [[], 'array[]'],
+            [[1, 2, 3], 'array[1,2,3]'],
+            [['foo' => 'bar'], 'array{"foo":"bar"}'],
+            [stream_context_create(), '[resource]'],
+        ];
     }
 }

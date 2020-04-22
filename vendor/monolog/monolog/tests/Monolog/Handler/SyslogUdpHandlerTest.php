@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -11,38 +11,33 @@
 
 namespace Monolog\Handler;
 
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
 
 /**
  * @requires extension sockets
  */
 class SyslogUdpHandlerTest extends TestCase
 {
-    /**
-     * @expectedException UnexpectedValueException
-     */
     public function testWeValidateFacilities()
     {
-        $handler = new SyslogUdpHandler("ip", null, "invalidFacility");
+        $this->expectException(\UnexpectedValueException::class);
+
+        $handler = new SyslogUdpHandler("ip", 514, "invalidFacility");
     }
 
     public function testWeSplitIntoLines()
     {
-        $time = '2014-01-07T12:34';
         $pid = getmypid();
         $host = gethostname();
 
-        $handler = $this->getMockBuilder('\Monolog\Handler\SyslogUdpHandler')
-            ->setConstructorArgs(array("127.0.0.1", 514, "authpriv"))
-            ->setMethods(array('getDateTime'))
-            ->getMock();
-
-        $handler->method('getDateTime')
-            ->willReturn($time);
-
+        $handler = new \Monolog\Handler\SyslogUdpHandler("127.0.0.1", 514, "authpriv");
         $handler->setFormatter(new \Monolog\Formatter\ChromePHPFormatter());
 
-        $socket = $this->getMock('\Monolog\Handler\SyslogUdp\UdpSocket', array('write'), array('lol', 'lol'));
+        $time = '2014-01-07T12:34:56+00:00';
+        $socket = $this->getMockBuilder('Monolog\Handler\SyslogUdp\UdpSocket')
+            ->setMethods(['write'])
+            ->setConstructorArgs(['lol'])
+            ->getMock();
         $socket->expects($this->at(0))
             ->method('write')
             ->with("lol", "<".(LOG_AUTHPRIV + LOG_WARNING).">1 $time $host php $pid - - ");
@@ -60,7 +55,10 @@ class SyslogUdpHandlerTest extends TestCase
         $handler = new SyslogUdpHandler("127.0.0.1", 514, "authpriv");
         $handler->setFormatter($this->getIdentityFormatter());
 
-        $socket = $this->getMock('\Monolog\Handler\SyslogUdp\UdpSocket', array('write'), array('lol', 'lol'));
+        $socket = $this->getMockBuilder('Monolog\Handler\SyslogUdp\UdpSocket')
+            ->setMethods(['write'])
+            ->setConstructorArgs(['lol'])
+            ->getMock();
         $socket->expects($this->never())
             ->method('write');
 
@@ -69,15 +67,14 @@ class SyslogUdpHandlerTest extends TestCase
         $handler->handle($this->getRecordWithMessage(null));
     }
 
-
     public function testRfc()
     {
-        $time = 'Mar 22 21:16:47';
+        $time = 'Jan 07 12:34:56';
         $pid = getmypid();
         $host = gethostname();
 
         $handler = $this->getMockBuilder('\Monolog\Handler\SyslogUdpHandler')
-            ->setConstructorArgs(array("127.0.0.1", 514, "authpriv", null, null, "php", \Monolog\Handler\SyslogUdpHandler::RFC3164))
+            ->setConstructorArgs(array("127.0.0.1", 514, "authpriv", 'debug', true, "php", \Monolog\Handler\SyslogUdpHandler::RFC3164))
             ->setMethods(array('getDateTime'))
             ->getMock();
 
@@ -86,7 +83,10 @@ class SyslogUdpHandlerTest extends TestCase
 
         $handler->setFormatter(new \Monolog\Formatter\ChromePHPFormatter());
 
-        $socket = $this->getMock('\Monolog\Handler\SyslogUdp\UdpSocket', array('write'), array('lol', 'lol'));
+        $socket = $this->getMockBuilder('\Monolog\Handler\SyslogUdp\UdpSocket')
+            ->setConstructorArgs(array('lol', 999))
+            ->setMethods(array('write'))
+            ->getMock();
         $socket->expects($this->at(0))
             ->method('write')
             ->with("lol", "<".(LOG_AUTHPRIV + LOG_WARNING).">$time $host php[$pid]: ");
@@ -101,6 +101,6 @@ class SyslogUdpHandlerTest extends TestCase
 
     protected function getRecordWithMessage($msg)
     {
-        return array('message' => $msg, 'level' => \Monolog\Logger::WARNING, 'context' => null, 'extra' => array(), 'channel' => 'lol');
+        return ['message' => $msg, 'level' => \Monolog\Logger::WARNING, 'context' => null, 'extra' => [], 'channel' => 'lol', 'datetime' => new \DateTimeImmutable('2014-01-07 12:34:56')];
     }
 }

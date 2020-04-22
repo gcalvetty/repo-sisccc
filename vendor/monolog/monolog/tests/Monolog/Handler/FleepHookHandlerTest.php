@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -13,7 +13,7 @@ namespace Monolog\Handler;
 
 use Monolog\Formatter\LineFormatter;
 use Monolog\Logger;
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
 
 /**
  * @coversDefaultClass \Monolog\Handler\FleepHookHandler
@@ -30,7 +30,7 @@ class FleepHookHandlerTest extends TestCase
      */
     private $handler;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -56,15 +56,15 @@ class FleepHookHandlerTest extends TestCase
      */
     public function testHandlerUsesLineFormatterWhichIgnoresEmptyArrays()
     {
-        $record = array(
+        $record = [
             'message' => 'msg',
-            'context' => array(),
+            'context' => [],
             'level' => Logger::DEBUG,
             'level_name' => Logger::getLevelName(Logger::DEBUG),
             'channel' => 'channel',
-            'datetime' => new \DateTime(),
-            'extra' => array(),
-        );
+            'datetime' => new \DateTimeImmutable(),
+            'extra' => [],
+        ];
 
         $expectedFormatter = new LineFormatter(null, null, true, true);
         $expected = $expectedFormatter->format($record);
@@ -80,6 +80,6 @@ class FleepHookHandlerTest extends TestCase
      */
     public function testConnectionStringisConstructedCorrectly()
     {
-        $this->assertEquals('ssl://' . FleepHookHandler::FLEEP_HOST . ':443', $this->handler->getConnectionString());
+        $this->assertEquals('ssl://fleep.io:443', $this->handler->getConnectionString());
     }
 }

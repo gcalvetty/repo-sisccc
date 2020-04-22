@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -11,7 +11,7 @@
 
 namespace Monolog\Handler;
 
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
 use Monolog\Logger;
 use Monolog\Formatter\LineFormatter;
 
@@ -22,18 +22,19 @@ function error_log()
 
 class ErrorLogHandlerTest extends TestCase
 {
-    protected function setUp()
+    protected function setUp(): void
     {
-        $GLOBALS['error_log'] = array();
+        $GLOBALS['error_log'] = [];
     }
 
     /**
      * @covers Monolog\Handler\ErrorLogHandler::__construct
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage The given message type "42" is not supported
      */
-    public function testShouldNotAcceptAnInvalidTypeOnContructor()
+    public function testShouldNotAcceptAnInvalidTypeOnConstructor()
     {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The given message type "42" is not supported');
+
         new ErrorLogHandler(42);
     }
 

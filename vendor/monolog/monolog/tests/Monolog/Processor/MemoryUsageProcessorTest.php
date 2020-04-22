@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /*
  * This file is part of the Monolog package.
@@ -11,7 +11,7 @@
 
 namespace Monolog\Processor;
 
-use Monolog\TestCase;
+use Monolog\Test\TestCase;
 
 class MemoryUsageProcessorTest extends TestCase
 {
@@ -36,7 +36,7 @@ class MemoryUsageProcessorTest extends TestCase
         $processor = new MemoryUsageProcessor(true, false);
         $record = $processor($this->getRecord());
         $this->assertArrayHasKey('memory_usage', $record['extra']);
-        $this->assertInternalType('int', $record['extra']['memory_usage']);
+        $this->assertIsInt($record['extra']['memory_usage']);
         $this->assertGreaterThan(0, $record['extra']['memory_usage']);
     }
 }
