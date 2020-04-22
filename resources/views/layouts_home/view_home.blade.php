@@ -13,7 +13,7 @@
 <!-- ##### Hero Area Start ##### -->
 <section class="hero-area">
     <div class="hero-slides owl-carousel">
-
+        
         <!-- Single Hero Slide -->
         <div class="single-hero-slide bg-img" style="background-image: url({{ asset('paralax/img/bg-img/bg-1.jpg')}});">
             <div class="container h-100">
@@ -36,7 +36,7 @@
                     <div class="col-12">
                         <div class="hero-slides-content">
                             <h4 data-animation="fadeInUp" data-delay="100ms">Reservas</h4>
-                            <h2 data-animation="fadeInUp" data-delay="400ms">2019</h2>
+                            <h2 data-animation="fadeInUp" data-delay="400ms"><?php echo sis_ccc\libreriaCCC\fncCCC::AnioReserva();?></h2>
                             <a href="https://www.facebook.com/ColegioCristianoColcapirhuaOficial/" target="_blank" class="btn academy-btn" data-animation="fadeInUp" data-delay="1000ms">Solicitar mas Información</a>
                         </div>
                     </div>

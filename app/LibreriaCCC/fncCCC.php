@@ -7,7 +7,16 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
-class fncCCC {    
+class fncCCC {      
+    public static function AnioReserva(){
+        $mes = date("m");
+        $anio = date("Y");        
+        if($mes >= 10){
+            $anioInc = date("Y", strtotime('+1 year', strtotime($anio)));
+            return $anioInc;
+        }
+        return $anio;        
+    }
     
     public static function CorrDatInsc($a) {
         return ucwords(strtolower(trim($a)));

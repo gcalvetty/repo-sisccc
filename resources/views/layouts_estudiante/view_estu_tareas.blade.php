@@ -23,55 +23,51 @@
             Escritorio           
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{route("Escritorio") }}"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="{{route("est.Escritorio") }}"><i class="fa fa-dashboard"></i> Home</a></li>
             <li class="active">Tarea</li>
         </ol>
     </section>
 
     <!-- Main content -->    
-
+    
     <section class="content">
         <div class="row">
-            <section class="col-lg-12 connectedSortable ui-sortable">
+            <section class="col-lg-12 connectedSortable ui-sortable">                
                 <div class="box box-success">
                     <div class="box-header ui-sortable-handle" style="cursor: move;">
                         <i class="fa fa-tasks"></i>
                         <h3 class="box-title">Tareas</h3>
-                    </div>
+                        <div class="btn-ImprGECN" style="text-align:right; float:right;">
+                            <button type="button" onclick="javascript:window.print('IMPTareasCCCGECN')" class="noimp btn btn-lg btn-success">
+                            <i class="fa fa-print fa-2x" aria-hidden="true"></i> Imprimir</button>
+                        </div>        
+                    </div>                    
+                    
                     <div class="box-body">    
-                        <div class="tarea">
+                        <div class="tarea" id="IMPTareasCCCGECN">
                             <table id="example1" class="table table-condensed table-hover table-striped">
                                 <thead>
-                                    <tr>                                
-                                        <th>#</th>
-                                        <th class="col-lg-2">Fecha</th>
-                                        <th class="col-lg-2">Fecha de Entrega</th>
-                                        <th class="col-lg-3">Materia</th>
-                                        <th class="col-lg-6">Descripción</th>
-                                        <th class="col-lg-1">Apoyo</th>                                
+                                    <tr>
+                                        <th class="col-lg-1">Fechas</th>                                        
+                                        <th class="col-lg-2">Materia</th>
+                                        <th class="col-lg-9">Descripción</th>
+                                        
                                     </tr>
-                                </thead>
+                                </thead> 
                                 <tbody>
                                     <?php $cont = 1 ?>
                                     @foreach($tareas as $Alumno)
-                                    <tr>                   
-                                        <td>{{ $cont++ }}</td> 
-                                        <td>{{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_ini) }}</td> 
-                                        <td>{{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_fin) }}</td> 
+                                    <tr>
+                                        <td>Ini: {{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_ini) }}<br/>
+                                            Fin: {{ sis_ccc\libreriaCCC\fncCCC::getDateAttribute($Alumno->tar_fec_fin) }}</td> 
                                         <td>{{ $Alumno->tar_materia }}</td>
                                         <td class="tar_desc">
                                             <?php echo html_entity_decode($Alumno->tar_desc) ?>    
-                                        </td> 
-                                        <td>
-                                                @if ($Alumno->tar_doc != '')
-                                                <div>
-                                                    <a href="{{ $Alumno->tar_doc }}" target="_blank" title="Apoyo"><i class="fa fa-download" aria-hidden="true"></i></a>
-                                                </div>
-                                                @else
-                                                <div>
-                                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                                </div> 
-                                                @endif
+                                            @if ($Alumno->tar_doc != '')
+                                            <div class="noimpr">
+                                                    <a href="{{ $Alumno->tar_doc }}" target="_blank" title="Apoyo" class="noimpr"><i class="fa fa-download fa-2x" aria-hidden="true"></i> Descargar!!!</a>
+                                            </div>
+                                            @endif
                                         </td>                                                              
                                     </tr>
                                     @endforeach                                                    
@@ -85,7 +81,7 @@
     </section>
 </div>
 <!-- /.content-wrapper -->
-<footer class="main-footer">
+<footer class="main-footer noimp">
     {!! Html::footer('siscccConfig.pie') !!}
 </footer>
 @endsection

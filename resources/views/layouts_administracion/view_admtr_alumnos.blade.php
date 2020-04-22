@@ -89,6 +89,8 @@
                                                     data-usuario="{{ $Alumno->email }}"
                                                     data-alumno="{{ $Alumno->ape_paterno }} {{ $Alumno->ape_materno }} {{ $Alumno->nombre }}">
                                                 <i class="fa fa-sign-in fa-fw" aria-hidden="true"></i></button>
+                                            
+                                            <a href="{{  route('est.verPerfil', ['Alumno' => $Alumno->id])  }}" class="btn btn-yahoo" target="Perfil"><i class="fa fa-file-pdf-o fa-fw" aria-hidden="true"></i></a>                                  
                                         </div>
 
                                     </td>

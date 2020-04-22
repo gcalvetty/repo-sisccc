@@ -354,7 +354,7 @@
                         <a href="#3inscr" data-toggle="tab">Primaria</a>
                     </li>
                     @if( (($gestion['gst_grd_escolar']>=9)&&( $gestion['gst_grd_escolar']<=14)) or 
-                        (($gestion['gst_grd_escolar']>=24)&&( $gestion['gst_grd_escolar']<=29)) )
+                         (($gestion['gst_grd_escolar']>=24)&&( $gestion['gst_grd_escolar']<=29)) )
                     <li class="active">
                         @else
                     <li>

@@ -40,7 +40,7 @@
         <script>
             window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
         </script>
-    </head>
+    </head>    
     <body class="sidebar-mini skin-green wysihtml5-supported">         
         <div class="wrapper">
             @if (Auth::guest())       		
@@ -71,6 +71,6 @@
         <script src="/jquery/ckeditor/js/sample.js"></script>    
         
         <!-- Seguimiento + Paginacion -->
-        <script src="/jquery/ccc-cuad-seguimiento.js" type="text/javascript"></script>  
+        <script src="/jquery/ccc-cuad-seguimiento-personal.js" type="text/javascript"></script>  
 
     </body>

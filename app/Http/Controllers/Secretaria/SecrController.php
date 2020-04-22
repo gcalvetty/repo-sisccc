@@ -46,6 +46,13 @@ class SecrController extends Controller {
         ]);
     }
 
+	/*
+	* Datos del Personal
+	*/
+	public function DatosPersonal(Request $request){
+		dd('llegamos aqui');
+	}
+
     /*
      * Reportes de Alumnos x Nivel
      */
@@ -68,8 +75,7 @@ class SecrController extends Controller {
      * Reporte de Tareas por Curso: Seccion - Primaria - Secundaria
      */
 
-    public function ReporteTareaNivel(Request $request) {
-
+    public function ReporteTareaNivel(Request $request) {        
         $sql = new qGECN;
         $sql::Reporte_TareasNivel($request);
     }
@@ -314,7 +320,7 @@ class SecrController extends Controller {
                    ->select('*')
                    ->where('user_id',$usuId)
                    ->orderBy('pc_fec', 'DESC')
-                   ->paginate(5);
+                   ->paginate(25);
                 
         return ['paginacion' =>[
                 'total'     => $cuadSeg->total(),

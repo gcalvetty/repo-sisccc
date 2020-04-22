@@ -4,8 +4,18 @@ use Illuminate\Auth\Middleware\Authorize;
 use sis_ccc\ModeloCCC\RUDE;
 use sis_ccc\ModeloCCC\Nota;
 
+/* ---------------------------------   
+   ---- Ver Perfil de Estudiante ---
+   --------------------------------- */     
+
+Route::get('/VerPerfil-{Alumno}', [
+    'as' => 'est.verPerfil',
+    'uses' => 'EstuController@indexPerfil'])->middleware(Authorize::class . ':EscritorioView,'.RUDE::class)->where(['Alumno'=>'[0-9]+']);
+
+/* ----------------------- */    
+
 Route::get('/', [
-    'as' => 'Escritorio',
+    'as' => 'est.Escritorio',
     'uses' => 'EstuController@index'])->middleware(Authorize::class . ':EscritorioView,'.RUDE::class);
 
 Route::get('/Informacion', [

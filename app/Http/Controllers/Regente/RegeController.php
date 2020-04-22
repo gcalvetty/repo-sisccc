@@ -181,7 +181,7 @@ class RegeController extends Controller {
                    ->select('*')
                    ->where('user_id',$usuId)
                    ->orderBy('pc_fec', 'DESC')
-                   ->paginate(5);
+                   ->paginate(25);
                 
         return ['paginacion' =>[
                 'total'     => $cuadSeg->total(),

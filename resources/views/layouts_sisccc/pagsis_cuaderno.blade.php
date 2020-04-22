@@ -1,5 +1,5 @@
 @extends('layouts_sisccc.pagsis_cuaderno_seguimiento')
-@section('titulo','Contador | Cuaderno de Actividades')
+@section('titulo','Cuaderno de Actividades')
 @section('usuccc')
 {{ $usuactivo }}
 @endsection

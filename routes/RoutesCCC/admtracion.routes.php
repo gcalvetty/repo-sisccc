@@ -14,7 +14,7 @@ Route::get('/profesores/nivel/{grd_nivel}', [
 
 Route::get('/listado_docentes', [
     'as'   => 'Admtr.Doc',
-    'uses' => 'AdmtrController@listDocentes']);
+    'uses' => 'AdmtrController@listDocentes']); 
 /* ---------- */
 
 Route::get('/alumnos/nivel/{grd_nivel}', [
@@ -85,6 +85,22 @@ Route::get('rude-adm/{alumno}/imprimir',
 Route::get('cuaderno_seguimiento', [
     'as' => 'Admtr.cuadSegui',
     'uses' => 'AdmtrController@verCuaderno']);
+
+
+/* 
+* Personal Administrativo
+*/        
+/* ---------------- */
+Route::get('personal',[
+    'as' => 'Admtr.admiccc',
+    'uses' => 'AdmtrController@verPersonal'    
+]);
+
+Route::get('cuaderno_seguimiento_personal/{personal}', [
+    'as' => 'Admtr.cuadSeguiPersonal',
+    'uses' => 'AdmtrController@verCuadernoPersonal',
+    ])->where(['personal' => '[0-9]+']);
+
 
 /* ---------------- */
 Route::get('cuaderno/mostrar',[

@@ -37,6 +37,10 @@ Route::get('/avatar', [
     'as' => 'Secr.Avatar',
     'uses' => 'SecrController@verAvatar']);
 
+Route::get('/DatosPersonal',[
+	'as' => 'Secr.DatosPersonal',
+	'uses' => 'SecrController@DatosPersonal']);
+
 /*
  * Rutas Para listar Alumnos por Nivel
  */
@@ -104,7 +108,7 @@ Route::get('/reporte/rude/',
 
 Route::get('/reporte/Tarea-{grd_nivel}-alumnos/', 
         array('uses'=> 'SecrController@ReporteTareaNivel',
-              'as' => 'rep.TareaAlum'))->where(['grd_nivel'=>'[0-4]']);
+              'as' => 'rep.TareaAlum'))->where(['grd_nivel'=>'[0-9]+']);
 
 /* ----- */
 Route::get('/reporte/regencia/', 
