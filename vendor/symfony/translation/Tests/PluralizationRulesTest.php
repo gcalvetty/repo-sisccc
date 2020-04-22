@@ -57,18 +57,16 @@ class PluralizationRulesTest extends TestCase
      * This array should contain all currently known langcodes.
      *
      * As it is impossible to have this ever complete we should try as hard as possible to have it almost complete.
-     *
-     * @return array
      */
-    public function successLangcodes()
+    public function successLangcodes(): array
     {
-        return array(
-            array('1', array('ay', 'bo', 'cgg', 'dz', 'id', 'ja', 'jbo', 'ka', 'kk', 'km', 'ko', 'ky')),
-            array('2', array('nl', 'fr', 'en', 'de', 'de_GE', 'hy', 'hy_AM')),
-            array('3', array('be', 'bs', 'cs', 'hr')),
-            array('4', array('cy', 'mt', 'sl')),
-            array('6', array('ar')),
-        );
+        return [
+            ['1', ['ay', 'bo', 'cgg', 'dz', 'id', 'ja', 'jbo', 'ka', 'kk', 'km', 'ko', 'ky']],
+            ['2', ['nl', 'fr', 'en', 'de', 'de_GE', 'hy', 'hy_AM']],
+            ['3', ['be', 'bs', 'cs', 'hr']],
+            ['4', ['cy', 'mt', 'sl']],
+            ['6', ['ar']],
+        ];
     }
 
     /**
@@ -79,15 +77,15 @@ class PluralizationRulesTest extends TestCase
      *
      * @return array with nplural together with langcodes
      */
-    public function failingLangcodes()
+    public function failingLangcodes(): array
     {
-        return array(
-            array('1', array('fa')),
-            array('2', array('jbo')),
-            array('3', array('cbs')),
-            array('4', array('gd', 'kw')),
-            array('5', array('ga')),
-        );
+        return [
+            ['1', ['fa']],
+            ['2', ['jbo']],
+            ['3', ['cbs']],
+            ['4', ['gd', 'kw']],
+            ['5', ['ga']],
+        ];
     }
 
     /**
@@ -111,7 +109,7 @@ class PluralizationRulesTest extends TestCase
 
     protected function generateTestData($langCodes)
     {
-        $matrix = array();
+        $matrix = [];
         foreach ($langCodes as $langCode) {
             for ($count = 0; $count < 200; ++$count) {
                 $plural = PluralizationRules::get($count, $langCode);

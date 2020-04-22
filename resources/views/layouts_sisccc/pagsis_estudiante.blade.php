@@ -31,6 +31,34 @@
         <script>
             window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token(),]); ?>
         </script>
+        <style type="text/css" media="print">
+            @media print {
+                @page { 
+                    margin: 2cm;        /* All margins set to 2cm */                                        
+                }
+                BODY {
+                        font: Verdana, Geneva, Arial, Helvetica, sans-serif !important;
+                        margin: 10 0 10 0px;  
+                        -webkit-print-color-adjust: exact !important;                     
+                        
+                    }
+                .odd{ background-color: #f5f5dc !important; }
+                td{ border-bottom:1px solid #ddd; }    
+
+                td,th,
+                td p{ font-size:8pt !important; }    
+                table{ /* page-break-inside: avoid; */ 
+  -webkit-print-color-adjust: exact; }    
+            
+                    .dataTables_filter,
+                    .dataTables_length,
+                    .dataTables_info,
+                    .dataTables_paginate,
+                    .noimp {display:none; }   
+                    a { text-decoration: none; }
+                    a[href]:after { content: " (" attr(href) ")"; }
+            }
+        </style>
     </head>
     <body class="sidebar-mini skin-green wysihtml5-supported"> 
         <div id="fb-root"></div>

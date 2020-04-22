@@ -34,7 +34,7 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * a message may be redelivered later. Acknowledging a message more than once
    * will not result in an error. (subscriptions.acknowledge)
    *
-   * @param string $subscription The subscription whose message is being
+   * @param string $subscription Required. The subscription whose message is being
    * acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
    * @param Google_Service_Pubsub_AcknowledgeRequest $postBody
    * @param array $optParams Optional parameters.
@@ -56,13 +56,14 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * If the name is not provided in the request, the server will assign a random
    * name for this subscription on the same project as the topic, conforming to
    * the [resource name
-   * format](https://cloud.google.com/pubsub/docs/overview#names). The generated
-   * name is populated in the returned Subscription object. Note that for REST API
-   * requests, you must specify a name in the request. (subscriptions.create)
+   * format](https://cloud.google.com/pubsub/docs/admin#resource_names). The
+   * generated name is populated in the returned Subscription object. Note that
+   * for REST API requests, you must specify a name in the request.
+   * (subscriptions.create)
    *
-   * @param string $name The name of the subscription. It must have the format
-   * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
-   * start with a letter, and contain only letters (`[A-Za-z]`), numbers
+   * @param string $name Required. The name of the subscription. It must have the
+   * format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}`
+   * must start with a letter, and contain only letters (`[A-Za-z]`), numbers
    * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus
    * (`+`) or percent signs (`%`). It must be between 3 and 255 characters in
    * length, and it must not start with `"goog"`.
@@ -83,7 +84,7 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * the same name, but the new one has no association with the old subscription
    * or its topic unless the same topic is specified. (subscriptions.delete)
    *
-   * @param string $subscription The subscription to delete. Format is
+   * @param string $subscription Required. The subscription to delete. Format is
    * `projects/{project}/subscriptions/{sub}`.
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_PubsubEmpty
@@ -97,8 +98,8 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
   /**
    * Gets the configuration details of a subscription. (subscriptions.get)
    *
-   * @param string $subscription The name of the subscription to get. Format is
-   * `projects/{project}/subscriptions/{sub}`.
+   * @param string $subscription Required. The name of the subscription to get.
+   * Format is `projects/{project}/subscriptions/{sub}`.
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_Subscription
    */
@@ -116,6 +117,16 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * requested. See the operation documentation for the appropriate value for this
    * field.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param int options.requestedPolicyVersion Optional. The policy format
+   * version to be returned.
+   *
+   * Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+   * rejected.
+   *
+   * Requests for policies with any conditional bindings must specify version 3.
+   * Policies without any conditional bindings may specify any valid value or
+   * leave the field unset.
    * @return Google_Service_Pubsub_Policy
    */
   public function getIamPolicy($resource, $optParams = array())
@@ -127,7 +138,7 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
   /**
    * Lists matching subscriptions. (subscriptions.listProjectsSubscriptions)
    *
-   * @param string $project The name of the project in which to list
+   * @param string $project Required. The name of the project in which to list
    * subscriptions. Format is `projects/{project-id}`.
    * @param array $optParams Optional parameters.
    *
@@ -152,7 +163,7 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * `ackDeadlineSeconds` used for subsequent messages.
    * (subscriptions.modifyAckDeadline)
    *
-   * @param string $subscription The name of the subscription. Format is
+   * @param string $subscription Required. The name of the subscription. Format is
    * `projects/{project}/subscriptions/{sub}`.
    * @param Google_Service_Pubsub_ModifyAckDeadlineRequest $postBody
    * @param array $optParams Optional parameters.
@@ -173,7 +184,7 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * continuously through the call regardless of changes to the `PushConfig`.
    * (subscriptions.modifyPushConfig)
    *
-   * @param string $subscription The name of the subscription. Format is
+   * @param string $subscription Required. The name of the subscription. Format is
    * `projects/{project}/subscriptions/{sub}`.
    * @param Google_Service_Pubsub_ModifyPushConfigRequest $postBody
    * @param array $optParams Optional parameters.
@@ -189,9 +200,9 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * Updates an existing subscription. Note that certain properties of a
    * subscription, such as its topic, are not modifiable. (subscriptions.patch)
    *
-   * @param string $name The name of the subscription. It must have the format
-   * `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must
-   * start with a letter, and contain only letters (`[A-Za-z]`), numbers
+   * @param string $name Required. The name of the subscription. It must have the
+   * format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}`
+   * must start with a letter, and contain only letters (`[A-Za-z]`), numbers
    * (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus
    * (`+`) or percent signs (`%`). It must be between 3 and 255 characters in
    * length, and it must not start with `"goog"`.
@@ -210,8 +221,8 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * are too many concurrent pull requests pending for the given subscription.
    * (subscriptions.pull)
    *
-   * @param string $subscription The subscription from which messages should be
-   * pulled. Format is `projects/{project}/subscriptions/{sub}`.
+   * @param string $subscription Required. The subscription from which messages
+   * should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
    * @param Google_Service_Pubsub_PullRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_PullResponse
@@ -228,12 +239,9 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
    * which allow you to manage message acknowledgments in bulk. That is, you can
    * set the acknowledgment state of messages in an existing subscription to the
    * state captured by a snapshot. Note that both the subscription and the
-   * snapshot must be on the same topic. BETA: This feature is part of a beta
-   * release. This API might be changed in backward-incompatible ways and is not
-   * recommended for production use. It is not subject to any SLA or deprecation
-   * policy. (subscriptions.seek)
+   * snapshot must be on the same topic. (subscriptions.seek)
    *
-   * @param string $subscription The subscription to affect.
+   * @param string $subscription Required. The subscription to affect.
    * @param Google_Service_Pubsub_SeekRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_SeekResponse
@@ -246,7 +254,10 @@ class Google_Service_Pubsub_Resource_ProjectsSubscriptions extends Google_Servic
   }
   /**
    * Sets the access control policy on the specified resource. Replaces any
-   * existing policy. (subscriptions.setIamPolicy)
+   * existing policy.
+   *
+   * Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+   * (subscriptions.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
    * specified. See the operation documentation for the appropriate value for this

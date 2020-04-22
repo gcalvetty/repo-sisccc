@@ -30,7 +30,7 @@ class Google_Service_Pubsub_Resource_ProjectsTopics extends Google_Service_Resou
    *
    * resource name rules. (topics.create)
    *
-   * @param string $name The name of the topic. It must have the format
+   * @param string $name Required. The name of the topic. It must have the format
    * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
    * and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
    * underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs
@@ -53,7 +53,7 @@ class Google_Service_Pubsub_Resource_ProjectsTopics extends Google_Service_Resou
    * subscriptions. Existing subscriptions to this topic are not deleted, but
    * their `topic` field is set to `_deleted-topic_`. (topics.delete)
    *
-   * @param string $topic Name of the topic to delete. Format is
+   * @param string $topic Required. Name of the topic to delete. Format is
    * `projects/{project}/topics/{topic}`.
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_PubsubEmpty
@@ -67,7 +67,7 @@ class Google_Service_Pubsub_Resource_ProjectsTopics extends Google_Service_Resou
   /**
    * Gets the configuration of a topic. (topics.get)
    *
-   * @param string $topic The name of the topic to get. Format is
+   * @param string $topic Required. The name of the topic to get. Format is
    * `projects/{project}/topics/{topic}`.
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_Topic
@@ -86,6 +86,16 @@ class Google_Service_Pubsub_Resource_ProjectsTopics extends Google_Service_Resou
    * requested. See the operation documentation for the appropriate value for this
    * field.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param int options.requestedPolicyVersion Optional. The policy format
+   * version to be returned.
+   *
+   * Valid values are 0, 1, and 3. Requests specifying an invalid value will be
+   * rejected.
+   *
+   * Requests for policies with any conditional bindings must specify version 3.
+   * Policies without any conditional bindings may specify any valid value or
+   * leave the field unset.
    * @return Google_Service_Pubsub_Policy
    */
   public function getIamPolicy($resource, $optParams = array())
@@ -97,14 +107,14 @@ class Google_Service_Pubsub_Resource_ProjectsTopics extends Google_Service_Resou
   /**
    * Lists matching topics. (topics.listProjectsTopics)
    *
-   * @param string $project The name of the project in which to list topics.
-   * Format is `projects/{project-id}`.
+   * @param string $project Required. The name of the project in which to list
+   * topics. Format is `projects/{project-id}`.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param int pageSize Maximum number of topics to return.
    * @opt_param string pageToken The value returned by the last
    * `ListTopicsResponse`; indicates that this is a continuation of a prior
    * `ListTopics` call, and that the system should return the next page of data.
+   * @opt_param int pageSize Maximum number of topics to return.
    * @return Google_Service_Pubsub_ListTopicsResponse
    */
   public function listProjectsTopics($project, $optParams = array())
@@ -117,7 +127,7 @@ class Google_Service_Pubsub_Resource_ProjectsTopics extends Google_Service_Resou
    * Updates an existing topic. Note that certain properties of a topic are not
    * modifiable. (topics.patch)
    *
-   * @param string $name The name of the topic. It must have the format
+   * @param string $name Required. The name of the topic. It must have the format
    * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,
    * and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`),
    * underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs
@@ -137,8 +147,8 @@ class Google_Service_Pubsub_Resource_ProjectsTopics extends Google_Service_Resou
    * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic does
    * not exist. (topics.publish)
    *
-   * @param string $topic The messages in the request will be published on this
-   * topic. Format is `projects/{project}/topics/{topic}`.
+   * @param string $topic Required. The messages in the request will be published
+   * on this topic. Format is `projects/{project}/topics/{topic}`.
    * @param Google_Service_Pubsub_PublishRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_PublishResponse
@@ -151,7 +161,10 @@ class Google_Service_Pubsub_Resource_ProjectsTopics extends Google_Service_Resou
   }
   /**
    * Sets the access control policy on the specified resource. Replaces any
-   * existing policy. (topics.setIamPolicy)
+   * existing policy.
+   *
+   * Can return Public Errors: NOT_FOUND, INVALID_ARGUMENT and PERMISSION_DENIED
+   * (topics.setIamPolicy)
    *
    * @param string $resource REQUIRED: The resource for which the policy is being
    * specified. See the operation documentation for the appropriate value for this

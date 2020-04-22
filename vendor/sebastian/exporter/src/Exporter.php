@@ -47,8 +47,8 @@ class Exporter
     }
 
     /**
-     * @param mixed   $data
-     * @param Context $context
+     * @param array<mixed> $data
+     * @param Context      $context
      *
      * @return string
      */
@@ -146,6 +146,13 @@ class Exporter
         $array = [];
 
         foreach ((array) $value as $key => $val) {
+            // Exception traces commonly reference hundreds to thousands of
+            // objects currently loaded in memory. Including them in the result
+            // has a severe negative performance impact.
+            if ("\0Error\0trace" === $key || "\0Exception\0trace" === $key) {
+                continue;
+            }
+
             // properties are transformed to keys in the following way:
             // private   $property => "\0Classname\0property"
             // protected $property => "\0*\0property"
@@ -166,18 +173,6 @@ class Exporter
         // above (fast) mechanism nor with reflection in Zend.
         // Format the output similarly to print_r() in this case
         if ($value instanceof \SplObjectStorage) {
-            // However, the fast method does work in HHVM, and exposes the
-            // internal implementation. Hide it again.
-            if (\property_exists('\SplObjectStorage', '__storage')) {
-                unset($array['__storage']);
-            } elseif (\property_exists('\SplObjectStorage', 'storage')) {
-                unset($array['storage']);
-            }
-
-            if (\property_exists('\SplObjectStorage', '__key')) {
-                unset($array['__key']);
-            }
-
             foreach ($value as $key => $val) {
                 $array[\spl_object_hash($val)] = [
                     'obj' => $val,
@@ -245,7 +240,7 @@ class Exporter
             "'";
         }
 
-        $whitespace = \str_repeat(' ', 4 * $indentation);
+        $whitespace = \str_repeat(' ', (int)(4 * $indentation));
 
         if (!$processed) {
             $processed = new Context;

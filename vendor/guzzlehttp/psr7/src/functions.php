@@ -33,7 +33,13 @@ function str(MessageInterface $message)
     }
 
     foreach ($message->getHeaders() as $name => $values) {
-        $msg .= "\r\n{$name}: " . implode(', ', $values);
+        if (strtolower($name) === 'set-cookie') {
+            foreach ($values as $value) {
+                $msg .= "\r\n{$name}: " . $value;
+            }
+        } else {
+            $msg .= "\r\n{$name}: " . implode(', ', $values);
+        }
     }
 
     return "{$msg}\r\n\r\n" . $message->getBody();
@@ -637,6 +643,7 @@ function mimetype_from_filename($filename)
 function mimetype_from_extension($extension)
 {
     static $mimetypes = [
+        '3gp' => 'video/3gpp',
         '7z' => 'application/x-7z-compressed',
         'aac' => 'audio/x-aac',
         'ai' => 'application/postscript',
@@ -723,6 +730,7 @@ function mimetype_from_extension($extension)
         'txt' => 'text/plain',
         'wav' => 'audio/x-wav',
         'webm' => 'video/webm',
+        'webp' => 'image/webp',
         'wma' => 'audio/x-ms-wma',
         'wmv' => 'video/x-ms-wmv',
         'woff' => 'application/x-font-woff',
@@ -839,7 +847,7 @@ function _parse_request_uri($path, array $headers)
 }
 
 /**
- * Get a short summary of the message body
+ * Get a short summary of the message body.
  *
  * Will return `null` if the response is not printable.
  *
@@ -852,11 +860,16 @@ function get_message_body_summary(MessageInterface $message, $truncateAt = 120)
 {
     $body = $message->getBody();
 
-    if (!$body->isSeekable()) {
+    if (!$body->isSeekable() || !$body->isReadable()) {
         return null;
     }
 
     $size = $body->getSize();
+
+    if ($size === 0) {
+        return null;
+    }
+
     $summary = $body->read($truncateAt);
     $body->rewind();
 

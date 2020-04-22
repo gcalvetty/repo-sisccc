@@ -41,7 +41,7 @@ class TestHttpKernel extends HttpKernel implements ControllerResolverInterface, 
 
     public function assert(\Closure $callback)
     {
-        $trustedConfig = array(Request::getTrustedProxies(), Request::getTrustedHeaderSet());
+        $trustedConfig = [Request::getTrustedProxies(), Request::getTrustedHeaderSet()];
 
         list($trustedProxies, $trustedHeaderSet, $backendRequest) = $this->backendRequest;
         Request::setTrustedProxies($trustedProxies, $trustedHeaderSet);
@@ -54,10 +54,10 @@ class TestHttpKernel extends HttpKernel implements ControllerResolverInterface, 
         }
     }
 
-    public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = false)
+    public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = false): Response
     {
         $this->catch = $catch;
-        $this->backendRequest = array(Request::getTrustedProxies(), Request::getTrustedHeaderSet(), $request);
+        $this->backendRequest = [Request::getTrustedProxies(), Request::getTrustedHeaderSet(), $request];
 
         return parent::handle($request, $type, $catch);
     }
@@ -69,12 +69,12 @@ class TestHttpKernel extends HttpKernel implements ControllerResolverInterface, 
 
     public function getController(Request $request)
     {
-        return array($this, 'callController');
+        return [$this, 'callController'];
     }
 
-    public function getArguments(Request $request, $controller)
+    public function getArguments(Request $request, $controller): array
     {
-        return array($request);
+        return [$request];
     }
 
     public function callController(Request $request)

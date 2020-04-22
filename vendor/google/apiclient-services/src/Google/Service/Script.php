@@ -94,13 +94,15 @@ class Google_Service_Script extends Google_Service
   /**
    * Constructs the internal representation of the Script service.
    *
-   * @param Google_Client $client
+   * @param Google_Client $client The client used to deliver requests.
+   * @param string $rootUrl The root URL used for requests to the service.
    */
-  public function __construct(Google_Client $client)
+  public function __construct(Google_Client $client, $rootUrl = null)
   {
     parent::__construct($client);
-    $this->rootUrl = 'https://script.googleapis.com/';
+    $this->rootUrl = $rootUrl ?: 'https://script.googleapis.com/';
     $this->servicePath = '';
+    $this->batchPath = 'batch';
     $this->version = 'v1';
     $this->serviceName = 'script';
 
@@ -114,10 +116,6 @@ class Google_Service_Script extends Google_Service
               'path' => 'v1/processes',
               'httpMethod' => 'GET',
               'parameters' => array(
-                'userProcessFilter.functionName' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'userProcessFilter.scriptId' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -161,11 +159,41 @@ class Google_Service_Script extends Google_Service
                   'type' => 'string',
                   'repeated' => true,
                 ),
+                'userProcessFilter.functionName' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
               ),
             ),'listScriptProcesses' => array(
               'path' => 'v1/processes:listScriptProcesses',
               'httpMethod' => 'GET',
               'parameters' => array(
+                'scriptProcessFilter.statuses' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
+                'scriptProcessFilter.functionName' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'scriptProcessFilter.startTime' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'scriptProcessFilter.deploymentId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'scriptId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'scriptProcessFilter.types' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -179,32 +207,6 @@ class Google_Service_Script extends Google_Service
                   'type' => 'string',
                 ),
                 'scriptProcessFilter.userAccessLevels' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'scriptProcessFilter.statuses' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'scriptProcessFilter.startTime' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'scriptProcessFilter.functionName' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'scriptProcessFilter.deploymentId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'scriptId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'scriptProcessFilter.types' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,

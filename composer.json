@@ -8,10 +8,13 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
-        "laravel/framework": "5.5.*@dev",
+        "php": "^7.3",
+        "laravel/framework": "5.7.*",
+        "fideloper/proxy":"^4.0",
+        
+
         "laravelcollective/html": "^5.3.0",
-        "barryvdh/laravel-debugbar": "^2.3",
+        
         "nesbot/carbon": "^1.21",
         "h4cc/wkhtmltopdf-amd64": "0.12.x",
         "h4cc/wkhtmltoimage-amd64": "0.12.x",
@@ -24,7 +27,13 @@
         "maatwebsite/excel": "~2.0",
         "league/flysystem": "1.0.43",
         "phpoffice/phpspreadsheet": "dev-master",
-        "barryvdh/laravel-dompdf": "^0.8.0@dev"
+        "barryvdh/laravel-dompdf": "^0.8.0@dev",
+
+        "ext-zip": "*",
+        "guzzlehttp/guzzle": "~4.0|~5.0|~6.0",
+        "symfony/console": "~3.0|~4.0",
+        "symfony/filesystem": "~3.0|~4.0",
+        "symfony/process": "~3.0|~4.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

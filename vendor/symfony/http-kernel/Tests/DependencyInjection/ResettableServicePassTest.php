@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\ResettableServicePass;
 use Symfony\Component\HttpKernel\DependencyInjection\ServicesResetter;
 use Symfony\Component\HttpKernel\Tests\Fixtures\ClearableService;
+use Symfony\Component\HttpKernel\Tests\Fixtures\MultiResettableService;
 use Symfony\Component\HttpKernel\Tests\Fixtures\ResettableService;
 
 class ResettableServicePassTest extends TestCase
@@ -19,14 +20,18 @@ class ResettableServicePassTest extends TestCase
         $container = new ContainerBuilder();
         $container->register('one', ResettableService::class)
             ->setPublic(true)
-            ->addTag('kernel.reset', array('method' => 'reset'));
+            ->addTag('kernel.reset', ['method' => 'reset']);
         $container->register('two', ClearableService::class)
             ->setPublic(true)
-            ->addTag('kernel.reset', array('method' => 'clear'));
+            ->addTag('kernel.reset', ['method' => 'clear']);
+        $container->register('three', MultiResettableService::class)
+            ->setPublic(true)
+            ->addTag('kernel.reset', ['method' => 'resetFirst'])
+            ->addTag('kernel.reset', ['method' => 'resetSecond']);
 
         $container->register('services_resetter', ServicesResetter::class)
             ->setPublic(true)
-            ->setArguments(array(null, array()));
+            ->setArguments([null, []]);
         $container->addCompilerPass(new ResettableServicePass());
 
         $container->compile();
@@ -34,31 +39,31 @@ class ResettableServicePassTest extends TestCase
         $definition = $container->getDefinition('services_resetter');
 
         $this->assertEquals(
-            array(
-                new IteratorArgument(array(
+            [
+                new IteratorArgument([
                     'one' => new Reference('one', ContainerInterface::IGNORE_ON_UNINITIALIZED_REFERENCE),
                     'two' => new Reference('two', ContainerInterface::IGNORE_ON_UNINITIALIZED_REFERENCE),
-                )),
-                array(
-                    'one' => 'reset',
-                    'two' => 'clear',
-                ),
-            ),
+                    'three' => new Reference('three', ContainerInterface::IGNORE_ON_UNINITIALIZED_REFERENCE),
+                ]),
+                [
+                    'one' => ['reset'],
+                    'two' => ['clear'],
+                    'three' => ['resetFirst', 'resetSecond'],
+                ],
+            ],
             $definition->getArguments()
         );
     }
 
-    /**
-     * @expectedException \Symfony\Component\DependencyInjection\Exception\RuntimeException
-     * @expectedExceptionMessage Tag kernel.reset requires the "method" attribute to be set.
-     */
     public function testMissingMethod()
     {
+        $this->expectException('Symfony\Component\DependencyInjection\Exception\RuntimeException');
+        $this->expectExceptionMessage('Tag "kernel.reset" requires the "method" attribute to be set.');
         $container = new ContainerBuilder();
         $container->register(ResettableService::class)
             ->addTag('kernel.reset');
         $container->register('services_resetter', ServicesResetter::class)
-            ->setArguments(array(null, array()));
+            ->setArguments([null, []]);
         $container->addCompilerPass(new ResettableServicePass());
 
         $container->compile();
@@ -68,7 +73,7 @@ class ResettableServicePassTest extends TestCase
     {
         $container = new ContainerBuilder();
         $container->register('services_resetter', ServicesResetter::class)
-            ->setArguments(array(null, array()));
+            ->setArguments([null, []]);
         $container->addCompilerPass(new ResettableServicePass());
 
         $container->compile();

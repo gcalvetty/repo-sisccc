@@ -6,9 +6,8 @@ use PhpParser\Node\Expr;
 use PhpParser\Node\Scalar;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt;
-use PHPUnit\Framework\TestCase;
 
-abstract class ParserTest extends TestCase
+abstract class ParserTest extends \PHPUnit\Framework\TestCase
 {
     /** @returns Parser */
     abstract protected function getParser(Lexer $lexer);
@@ -61,7 +60,8 @@ EOC;
         $this->assertInstanceOf(Stmt\Function_::class, $fn);
         $this->assertEquals([
             'comments' => [
-                new Comment\Doc('/** Doc comment */', 2, 6, 1),
+                new Comment\Doc('/** Doc comment */',
+                    2, 6, 1, 2, 23, 1),
             ],
             'startLine' => 3,
             'endLine' => 7,
@@ -83,8 +83,10 @@ EOC;
         $this->assertInstanceOf(Stmt\Echo_::class, $echo);
         $this->assertEquals([
             'comments' => [
-                new Comment("// Line\n", 4, 49, 12),
-                new Comment("// Comments\n", 5, 61, 14),
+                new Comment("// Line\n",
+                    4, 49, 12, 5, 56, 12),
+                new Comment("// Comments\n",
+                    5, 61, 14, 6, 72, 14),
             ],
             'startLine' => 6,
             'endLine' => 6,
@@ -167,6 +169,10 @@ EOC;
             ["namespace Foo;", ['kind' => Stmt\Namespace_::KIND_SEMICOLON]],
             ["namespace Foo {}", ['kind' => Stmt\Namespace_::KIND_BRACED]],
             ["namespace {}", ['kind' => Stmt\Namespace_::KIND_BRACED]],
+            ["(float) 5.0", ['kind' => Expr\Cast\Double::KIND_FLOAT]],
+            ["(double) 5.0", ['kind' => Expr\Cast\Double::KIND_DOUBLE]],
+            ["(real) 5.0", ['kind' => Expr\Cast\Double::KIND_REAL]],
+            [" (  REAL )  5.0", ['kind' => Expr\Cast\Double::KIND_REAL]],
         ];
     }
 }

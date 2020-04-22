@@ -38,7 +38,7 @@ use Monolog\Handler\SyslogHandler as MonologSyslogHandler;
  */
 class Google_Client
 {
-  const LIBVER = "2.2.2";
+  const LIBVER = "2.4.1";
   const USER_AGENT_SUFFIX = "google-api-php-client/";
   const OAUTH2_REVOKE_URI = 'https://oauth2.googleapis.com/revoke';
   const OAUTH2_TOKEN_URI = 'https://oauth2.googleapis.com/token';
@@ -125,7 +125,7 @@ class Google_Client
           'login_hint' => '',
           'request_visible_actions' => '',
           'access_type' => 'online',
-          'approval_prompt' => 'consent',
+          'approval_prompt' => 'auto',
 
           // Task Runner retry configuration
           // @see Google_Task_Runner
@@ -142,6 +142,10 @@ class Google_Client
           // Service class used in Google_Client::verifyIdToken.
           // Explicitly pass this in to avoid setting JWT::$leeway
           'jwt' => null,
+
+          // Setting api_format_v2 will return more detailed error messages
+          // from certain APIs.
+          'api_format_v2' => false
         ],
         $config
     );
@@ -412,6 +416,17 @@ class Google_Client
   }
 
   /**
+   * Set the access token used for requests.
+   *
+   * Note that at the time requests are sent, tokens are cached. A token will be
+   * cached for each combination of service and authentication scopes. If a
+   * cache pool is not provided, creating a new instance of the client will
+   * allow modification of access tokens. If a persistent cache pool is
+   * provided, in order to change the access token, you must clear the cached
+   * token by calling `$client->getCache()->clear()`. (Use caution in this case,
+   * as calling `clear()` will remove all cache items, including any items not
+   * related to Google API PHP Client.)
+   *
    * @param string|array $token
    * @throws InvalidArgumentException
    */
@@ -569,9 +584,8 @@ class Google_Client
 
   /**
    * @param string $approvalPrompt Possible values for approval_prompt include:
-   *  {@code "none"} Do not display any authentication or consent screens. Must not be specified with other values.
-   *  {@code "consent"} Prompt the user for consent.
-   *  {@code "select_account"} Prompt the user to select an account.
+   *  {@code "force"} to force the approval UI to appear.
+   *  {@code "auto"} to request auto-approval when possible. (This is the default value)
    */
   public function setApprovalPrompt($approvalPrompt)
   {
@@ -638,6 +652,9 @@ class Google_Client
    * If no value is specified and the user has not previously authorized
    * access, then the user is shown a consent screen.
    * @param $prompt string
+   *  {@code "none"} Do not display any authentication or consent screens. Must not be specified with other values.
+   *  {@code "consent"} Prompt the user for consent.
+   *  {@code "select_account"} Prompt the user to select an account.
    */
   public function setPrompt($prompt)
   {
@@ -679,7 +696,7 @@ class Google_Client
    * Revoke an OAuth2 access token or refresh token. This method will revoke the current access
    * token, if a token isn't provided.
    *
-   * @param string|null $token The token (access token or a refresh token) that should be revoked.
+   * @param string|array|null $token The token (access token or a refresh token) that should be revoked.
    * @return boolean Returns True if the revocation was successful, otherwise False.
    */
   public function revokeToken($token = null)
@@ -695,7 +712,8 @@ class Google_Client
    * Verify an id_token. This method will verify the current id_token, if one
    * isn't provided.
    *
-   * @throws LogicException
+   * @throws LogicException If no token was provided and no token was set using `setAccessToken`.
+   * @throws UnexpectedValueException If the token is not a valid JWT.
    * @param string|null $idToken The token (id_token) that should be verified.
    * @return array|false Returns the token payload as an array if the verification was
    * successful, false otherwise.
@@ -786,12 +804,31 @@ class Google_Client
    */
   public function execute(RequestInterface $request, $expectedClass = null)
   {
-    $request = $request->withHeader(
-        'User-Agent',
-        $this->config['application_name']
-        . " " . self::USER_AGENT_SUFFIX
-        . $this->getLibraryVersion()
-    );
+    $request = $request
+        ->withHeader(
+            'User-Agent',
+            sprintf(
+                '%s %s%s',
+                $this->config['application_name'],
+                self::USER_AGENT_SUFFIX,
+                $this->getLibraryVersion()
+            )
+        )
+        ->withHeader(
+            'x-goog-api-client',
+            sprintf(
+                'gl-php/%s gdcl/%s',
+                phpversion(),
+                $this->getLibraryVersion()
+            )
+        );
+
+    if ($this->config['api_format_v2']) {
+        $request = $request->withHeader(
+            'X-GOOG-API-FORMAT-VERSION',
+            2
+        );
+    }
 
     // call the authorize method
     // this is where most of the grunt work is done
@@ -864,7 +901,7 @@ class Google_Client
   {
     if (is_string($config)) {
       if (!file_exists($config)) {
-        throw new InvalidArgumentException('file does not exist');
+        throw new InvalidArgumentException(sprintf('file "%s" does not exist', $config));
       }
 
       $json = file_get_contents($config);
@@ -1051,6 +1088,18 @@ class Google_Client
     }
 
     return $this->http;
+  }
+
+  /**
+   * Set the API format version.
+   *
+   * `true` will use V2, which may return more useful error messages.
+   *
+   * @param bool $value
+   */
+  public function setApiFormatV2($value)
+  {
+    $this->config['api_format_v2'] = (bool) $value;
   }
 
   protected function createDefaultHttpClient()

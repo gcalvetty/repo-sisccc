@@ -5,10 +5,12 @@
  */
 class Swift_Smoke_HtmlWithAttachmentSmokeTest extends SwiftMailerSmokeTestCase
 {
-    private $_attFile;
+    private $attFile;
 
-    protected function setUp()
+    protected function setUp(): void
     {
+        parent::setUp();
+
         $this->attFile = __DIR__.'/../../../_samples/files/textfile.zip';
     }
 
